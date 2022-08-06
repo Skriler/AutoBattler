@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8000776155586724510}
   - component: {fileID: 8000776155586724511}
   - component: {fileID: 8000776155586724496}
-  - component: {fileID: 6452104505739638330}
+  - component: {fileID: 5459603388553350485}
   m_Layer: 0
   m_Name: Samurai
   m_TagString: Untagged
@@ -106,7 +106,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6452104505739638330
+--- !u!114 &5459603388553350485
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8000776155586724497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8387988017611c479ee374e5b19af78, type: 3}
+  m_Script: {fileID: 11500000, guid: 0513b598c52c30b4586032b9c396bb46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8000776155586724511}
   animator: {fileID: 8000776155586724496}
-  damage: 2
-  health: 10
+  baseDamage: 2
+  baseHealth: 10

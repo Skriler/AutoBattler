@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8237455561310214643}
   - component: {fileID: 8237455561310214642}
   - component: {fileID: 8237455561310214645}
-  - component: {fileID: 6497969396024997358}
+  - component: {fileID: 2561483174923761787}
   m_Layer: 0
   m_Name: Huntress
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8237455561310214644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5, y: -2.233, z: 0}
+  m_LocalPosition: {x: 193.86359, y: 522.99426, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,7 +106,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6497969396024997358
+--- !u!114 &2561483174923761787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8237455561310214644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8387988017611c479ee374e5b19af78, type: 3}
+  m_Script: {fileID: 11500000, guid: 01dc300701945984785b4335aa1e330c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 8237455561310214642}
   animator: {fileID: 8237455561310214645}
-  damage: 2
-  health: 10
+  baseDamage: 2
+  baseHealth: 10

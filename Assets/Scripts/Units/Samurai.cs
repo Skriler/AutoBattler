@@ -1,0 +1,16 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+class Samurai : BaseUnit
+{
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+
+    }
+}

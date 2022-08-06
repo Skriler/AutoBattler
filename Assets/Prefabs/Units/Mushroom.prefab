@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9679142342273483}
   - component: {fileID: 9679142342273332}
   - component: {fileID: 9679142342273333}
-  - component: {fileID: 6062093179817770142}
+  - component: {fileID: 7315566695364362712}
   m_Layer: 0
   m_Name: Mushroom
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9679142342273334}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.47, y: -0.15, z: 0}
+  m_LocalPosition: {x: 193.86359, y: 522.99426, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,7 +106,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6062093179817770142
+--- !u!114 &7315566695364362712
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 9679142342273334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8387988017611c479ee374e5b19af78, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a8b1ca87e3e9ac4580f464a39cc2d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 9679142342273332}
   animator: {fileID: 9679142342273333}
-  damage: 2
-  health: 10
+  baseDamage: 2
+  baseHealth: 10

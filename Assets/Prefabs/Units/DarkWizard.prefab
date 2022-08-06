@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5754163604667071974}
   - component: {fileID: 5754163604667071975}
   - component: {fileID: 5754163604667071993}
-  - component: {fileID: 1114018246120767044}
+  - component: {fileID: 9003593576820251052}
   m_Layer: 0
   m_Name: DarkWizard
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5754163604667071972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.32, y: -2.22, z: 0}
+  m_LocalPosition: {x: 193.86359, y: 522.99426, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,7 +106,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1114018246120767044
+--- !u!114 &9003593576820251052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,9 +115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5754163604667071972}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8387988017611c479ee374e5b19af78, type: 3}
+  m_Script: {fileID: 11500000, guid: 923e69262608afa4db99968fd56034d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5754163604667071975}
   animator: {fileID: 5754163604667071993}
-  damage: 2
-  health: 10
+  baseDamage: 2
+  baseHealth: 10
