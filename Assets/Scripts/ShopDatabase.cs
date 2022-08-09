@@ -8,7 +8,7 @@ public class ShopDatabase : ScriptableObject
     [Serializable]
     public struct ShopUnit
     {
-        public GameObject prefab;
+        public BaseUnit prefab;
         public Sprite image;
         public string title;
         public int cost;
