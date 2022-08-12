@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Manager<T> : MonoBehaviour where T : Manager<T>
 {
-    public static T Instance;
+    public static T Instance { get; private set; }
 
     protected void Awake()
     {

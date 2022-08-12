@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -7,11 +5,11 @@ using TMPro;
 
 public class UICard : MonoBehaviour
 {
-    public UnityEvent<UICard, ShopDatabase.ShopUnit> OnCardClick;
+    [SerializeField] private UnityEvent<UICard, ShopDatabase.ShopUnit> OnCardClick;
 
-    public TextMeshProUGUI title;
-    public TextMeshProUGUI cost;
-    public Image unitImage;
+    [SerializeField] private TextMeshProUGUI title;
+    [SerializeField] private TextMeshProUGUI cost;
+    [SerializeField] private Image unitImage;
     //public GameObject prefab;
     //public GameObject unitCard;
 

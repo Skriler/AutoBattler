@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Shop Database", menuName = "Custom/ShopDatabase")]
 public class ShopDatabase : ScriptableObject
 {
-    [Serializable]
+    [Serializable] 
     public struct ShopUnit
     {
         public BaseUnit prefab;
@@ -14,5 +14,15 @@ public class ShopDatabase : ScriptableObject
         public int cost;
     }
 
-    public List<ShopUnit> shopUnits;
+    [SerializeField] private List<ShopUnit> shopUnits;
+
+    public List<ShopUnit> GetUnits()
+    {
+        return shopUnits;
+    }
+
+    public int GetUnitsAmount()
+    {
+        return shopUnits.Count;
+    }
 }

@@ -1,14 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class UIShop : MonoBehaviour
 {
-    public UnityEvent<ShopDatabase.ShopUnit> OnUnitBought;
+    [SerializeField] private UnityEvent<ShopDatabase.ShopUnit> OnUnitBought;
 
-    public List<UICard> unitCards;
+    [SerializeField] private List<UICard> unitCards;
 
     private ShopDatabase shopDb;
 
@@ -36,9 +34,12 @@ public class UIShop : MonoBehaviour
 
     private void GenerateUnitCards()
     {
+        List<ShopDatabase.ShopUnit> shopUnits = shopDb.GetUnits();
+        int unitsAmount = shopDb.GetUnitsAmount();
+
         for (int i = 0; i < unitCards.Count; ++i)
         {
-            unitCards[i].Setup(shopDb.shopUnits[Random.Range(0, shopDb.shopUnits.Count)]);
+            unitCards[i].Setup(shopUnits[Random.Range(0, unitsAmount)]);
         }
     }
 

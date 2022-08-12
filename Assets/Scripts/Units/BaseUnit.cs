@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
-    public SpriteRenderer spriteRenderer;
-    public Animator animator;
+    [SerializeField] private int baseDamage = 2;
+    [SerializeField] private int baseHealth = 10;
 
-    public int baseDamage = 2;
-    public int baseHealth = 10;
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
 }
