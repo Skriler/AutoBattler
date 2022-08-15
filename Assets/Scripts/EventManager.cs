@@ -5,9 +5,13 @@ using UnityEngine.Events;
 
 public static class EventManager
 {
-    //public static UnityEvent<FieldManager.TileStatus, Vector3> OnDraggedUnitChangedPosition;
-    public static event UnityAction OnDraggedUnitChangedPosition;
+    public static UnityAction<Vector3> OnDraggedUnitChangedPosition;
 
-    public static void SendDraggedUnitChangedPosition()
-        => OnDraggedUnitChangedPosition.Invoke();
+    public static UnityAction<Vector3> OnUnitEndDrag;
+
+    public static void SendDraggedUnitChangedPosition(Vector3 position)
+        => OnDraggedUnitChangedPosition.Invoke(position);
+
+    public static void SendUnitEndDrag(Vector3 position)
+        => OnUnitEndDrag.Invoke(position);
 }

@@ -21,8 +21,6 @@ public class Draggable : MonoBehaviour
 
     public void OnStartDrag()
     {
-        Debug.Log("OnStartDrag");
-
         startPosition = transform.position;
         startSortingOrder = spriteRenderer.sortingOrder;
         spriteRenderer.sortingOrder = dragSortingOrder;
@@ -30,18 +28,20 @@ public class Draggable : MonoBehaviour
 
     public void OnDragging()
     {
-        Debug.Log("OnDragging");
-
         Vector3 currentPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition) + dragOffset;
+
+        EventManager.SendDraggedUnitChangedPosition(currentPosition);
+
         currentPosition.z = 0;
         transform.position = currentPosition;
-
-        EventManager.SendDraggedUnitChangedPosition();
+        currentPosition += dragOffset;
     }
 
     public void OnEndDrag()
     {
-        Debug.Log("OnEndDrag");
+        Vector3 currentPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+        EventManager.SendUnitEndDrag(currentPosition);
 
         transform.position = startPosition;
         spriteRenderer.sortingOrder = startSortingOrder;

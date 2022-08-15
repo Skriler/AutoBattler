@@ -1,17 +1,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 public class UIShop : MonoBehaviour
 {
     [SerializeField] private UnityEvent<ShopDatabase.ShopUnit> OnUnitBought;
 
     [SerializeField] private List<UICard> unitCards;
+    [SerializeField] private TextMeshProUGUI btnShowShopText;
 
     private ShopDatabase shopDb;
+    private bool isOpen;
 
     private void Start()
     {
+        gameObject.SetActive(isOpen);
         shopDb = GameManager.Instance.shopDatabase;
         GenerateUnitCards();
     }
@@ -30,6 +34,17 @@ public class UIShop : MonoBehaviour
     {
         SetActiveUnitCards();
         GenerateUnitCards();
+    }
+
+    public void OnShowShopClick()
+    {
+        isOpen = !isOpen;
+        gameObject.SetActive(isOpen);
+
+        if (isOpen)
+            btnShowShopText.text = "Close Shop";
+        else
+            btnShowShopText.text = "Open Shop";
     }
 
     private void GenerateUnitCards()
