@@ -12,12 +12,12 @@ public class GameManager : Manager<GameManager>
         
     }
 
-    void Start()
+    private void Start()
     {
         
     }
 
-    void Update()
+    private void Update()
     {
         
     }

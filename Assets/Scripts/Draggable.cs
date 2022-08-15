@@ -7,16 +7,16 @@ public class Draggable : MonoBehaviour
     [SerializeField] private int dragSortingOrder = 10;
     [SerializeField] private Vector3 dragOffset = new Vector3(-0.1f, -0.1f, 0);
 
-    private Camera mainCamera;
     private SpriteRenderer spriteRenderer;
+    private Camera mainCamera;
 
     private Vector3 startPosition;
     private int startSortingOrder;
 
-    public void Start()
+    private void Start()
     {
-        mainCamera = Camera.main;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        mainCamera = Camera.main;
     }
 
     public void OnStartDrag()
@@ -35,6 +35,8 @@ public class Draggable : MonoBehaviour
         Vector3 currentPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition) + dragOffset;
         currentPosition.z = 0;
         transform.position = currentPosition;
+
+        EventManager.SendDraggedUnitChangedPosition();
     }
 
     public void OnEndDrag()

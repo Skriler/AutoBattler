@@ -10,7 +10,7 @@ public class UIShop : MonoBehaviour
 
     private ShopDatabase shopDb;
 
-    public void Start()
+    private void Start()
     {
         shopDb = GameManager.Instance.shopDatabase;
         GenerateUnitCards();

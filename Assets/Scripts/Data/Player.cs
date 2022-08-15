@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    
+    [SerializeField] private int startHealth = 50; 
+    [SerializeField] private int startGold = 50; 
 
-    void Start()
-    {
-        
-    }
+    public Army Field { get; private set; }
+    public Storage Storage { get; private set; }
+    public int Health { get; private set; }
+    public int Gold { get; private set; }
 
-    void Update()
+    private void Start()
     {
-        
+        Health = startHealth;
+        Gold = startGold;
     }
 }
