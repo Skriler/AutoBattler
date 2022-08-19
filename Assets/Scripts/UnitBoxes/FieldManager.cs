@@ -1,24 +1,23 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using AutoBattler.UnitBoxes.Structs;
 using AutoBattler.UnitBoxes.Enums;
 
 namespace AutoBattler.UnitBoxes
 {
     public class FieldManager : UnitBoxManager
     {
-        [SerializeField] private TileBase fieldCellTile;
-
-        private Tilemap fieldTilemap;
+        private GridManager gridManager;
+        private BaseUnit[,] units;
 
         private void Start()
         {
-            fieldTilemap = GetComponent<Tilemap>();
+            gridManager = GetComponent<GridManager>();
+            units = new BaseUnit[gridManager.GetWidth(), gridManager.GetHeight()];
         }
 
-        public override void AddUnit(ShopDatabase.ShopUnit shopUnit)
+        public override void AddUnit(int x, int y)
         {
-            
+
         }
 
         public override void DeleteUnit()
@@ -31,11 +30,9 @@ namespace AutoBattler.UnitBoxes
 
         }
 
-        public override bool IsCellOccupied(Vector3 position)
+        public override bool IsCellOccupied(int x, int y)
         {
-            bool isCellOccupied = false;
-
-            return isCellOccupied;
+            return units[x, y] != null;
         }
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public abstract class UnitBoxManager : MonoBehaviour
 {
-    public abstract void AddUnit(ShopDatabase.ShopUnit shopUnit);
+    public abstract void AddUnit(int x, int y);
     public abstract void DeleteUnit();
     public abstract void ChangeUnitPosition();
-    public abstract bool IsCellOccupied(Vector3 position);
+    public abstract bool IsCellOccupied(int x, int y);
 }

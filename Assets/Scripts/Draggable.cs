@@ -28,13 +28,13 @@ public class Draggable : MonoBehaviour
 
     public void OnDragging()
     {
-        Vector3 currentPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition) + dragOffset;
+        Vector3 currentPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        currentPosition.z = 0;
 
         EventManager.SendDraggedUnitChangedPosition(currentPosition);
 
-        currentPosition.z = 0;
-        transform.position = currentPosition;
         currentPosition += dragOffset;
+        transform.position = currentPosition;
     }
 
     public void OnEndDrag()
