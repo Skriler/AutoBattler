@@ -41,14 +41,21 @@ namespace AutoBattler.UnitBoxes
             units[freeCellIndex] = newUnit;
         }
 
-        public override void AddUnit(int x, int y)
+        public override void AddUnit(BaseUnit unit, Vector2Int index)
         {
-            
+            units[index.x] = unit;
         }
 
-        public override void DeleteUnit()
+        public override void DeleteUnit(BaseUnit unit)
         {
+            for (int i = 0; i < units.Length; ++i)
+            {
+                if (units[i]?.Id != unit.Id)
+                    continue;
 
+                units[i] = null;
+                return;
+            }
         }
 
         public override void ChangeUnitPosition()
@@ -56,9 +63,20 @@ namespace AutoBattler.UnitBoxes
            
         }
 
-        public override bool IsCellOccupied(int x, int y)
+        public override bool IsCellOccupied(Vector2Int index)
         {
-            return units[x] != null;
+            return units[index.x] != null;
+        }
+
+        public override bool Contains(BaseUnit unit)
+        {
+            for (int i = 0; i < units.Length; ++i)
+            {
+                if (units[i]?.Id == unit.Id)
+                    return true;
+            }
+
+            return false;
         }
 
         private bool IsFull()

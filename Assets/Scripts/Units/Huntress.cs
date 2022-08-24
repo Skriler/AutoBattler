@@ -4,13 +4,5 @@ using UnityEngine;
 
 class Huntress : BaseUnit
 {
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
 }

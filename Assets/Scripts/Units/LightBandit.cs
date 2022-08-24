@@ -4,13 +4,5 @@ using UnityEngine;
 
 class LightBandit : BaseUnit
 {
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using AutoBattler.UnitBoxes.Enums;
@@ -15,14 +16,24 @@ namespace AutoBattler.UnitBoxes
             units = new BaseUnit[gridManager.GetWidth(), gridManager.GetHeight()];
         }
 
-        public override void AddUnit(int x, int y)
+        public override void AddUnit(BaseUnit unit, Vector2Int index)
         {
-
+            units[index.x, index.y] = unit;
         }
 
-        public override void DeleteUnit()
+        public override void DeleteUnit(BaseUnit unit)
         {
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j]?.Id != unit.Id)
+                        continue;
 
+                    units[i, j] = null;
+                    return;
+                }
+            }
         }
 
         public override void ChangeUnitPosition()
@@ -30,9 +41,23 @@ namespace AutoBattler.UnitBoxes
 
         }
 
-        public override bool IsCellOccupied(int x, int y)
+        public override bool IsCellOccupied(Vector2Int index)
         {
-            return units[x, y] != null;
+            return units[index.x, index.y] != null;
+        }
+
+        public override bool Contains(BaseUnit unit)
+        {
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j]?.Id == unit.Id)
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 }

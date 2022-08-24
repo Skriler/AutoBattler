@@ -4,13 +4,5 @@ using UnityEngine;
 
 class Skeleton : BaseUnit
 {
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
 }

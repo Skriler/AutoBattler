@@ -4,13 +4,5 @@ using UnityEngine;
 
 class Goblin : BaseUnit
 {
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
 }

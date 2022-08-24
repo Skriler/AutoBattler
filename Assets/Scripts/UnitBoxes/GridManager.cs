@@ -17,14 +17,16 @@ namespace AutoBattler.UnitBoxes
 
         private void OnEnable()
         {
-            EventManager.OnDraggedUnitChangedPosition += ChangeTileSprite;
-            EventManager.OnUnitEndDrag += ChangeUnitPosition;
+            UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileSprite;
+            UnitsEventManager.OnUnitEndDrag += ChangeUnitPosition;
+            UnitsEventManager.OnUnitChangedPosition += DeleteUnit;
         }
 
         private void OnDestroy()
         {
-            EventManager.OnDraggedUnitChangedPosition -= ChangeTileSprite;
-            EventManager.OnUnitEndDrag -= ChangeUnitPosition;
+            UnitsEventManager.OnDraggedUnitChangedPosition -= ChangeTileSprite;
+            UnitsEventManager.OnUnitEndDrag -= ChangeUnitPosition;
+            UnitsEventManager.OnUnitChangedPosition -= DeleteUnit;
         }
 
         private void Start()
@@ -62,7 +64,7 @@ namespace AutoBattler.UnitBoxes
             }
         }
 
-        private Tile GetTileAtPosition(Vector3 position, out int x, out int y)
+        private Tile GetTileAtPosition(Vector3 position, out Vector2Int index)
         {
             position.x = (float)Math.Round(Convert.ToDouble(position.x));
             position.y = (float)Math.Round(Convert.ToDouble(position.y));
@@ -75,14 +77,12 @@ namespace AutoBattler.UnitBoxes
                     if (tiles[i, j].transform.position != position)
                         continue;
 
-                    x = i;
-                    y = j;
+                    index = new Vector2Int(i, j);
                     return tiles[i, j];
                 }
             }
 
-            x = -1;
-            y = -1;
+            index = new Vector2Int(-1, -1);
             return null;
         }
 
@@ -90,14 +90,14 @@ namespace AutoBattler.UnitBoxes
         {
             StandardizeLastChangedCell();
 
-            Tile currentTile = GetTileAtPosition(position, out int x, out int y);
+            Tile currentTile = GetTileAtPosition(position, out Vector2Int index);
 
             if (currentTile == null)
                 return;
 
             TileStatus tileStatus;
 
-            if (unitBoxManager.IsCellOccupied(x, y))
+            if (unitBoxManager.IsCellOccupied(index))
                 tileStatus = TileStatus.Occupied;
             else
                 tileStatus = TileStatus.Free;
@@ -115,19 +115,30 @@ namespace AutoBattler.UnitBoxes
             previousTile = null;
         }
 
-        private void ChangeUnitPosition(Vector3 position)
+        private void ChangeUnitPosition(BaseUnit unit, Vector3 worldPosition)
         {
             StandardizeLastChangedCell();
 
-            Tile currentTile = GetTileAtPosition(position, out int x, out int y);
+            Tile currentTile = GetTileAtPosition(worldPosition, out Vector2Int index);
 
             if (currentTile == null)
                 return;
 
-            if (unitBoxManager.IsCellOccupied(x, y))
+            if (unitBoxManager.IsCellOccupied(index))
                 return;
 
-            unitBoxManager.AddUnit();
+            UnitsEventManager.SendUnitChangedPosition(unit);
+
+            unitBoxManager.AddUnit(unit, index);
+            unit.transform.position = currentTile.transform.position;
+        }
+
+        private void DeleteUnit(BaseUnit unit)
+        {
+            if (!unitBoxManager.Contains(unit))
+                return;
+
+            unitBoxManager.DeleteUnit(unit);
         }
     }
 }

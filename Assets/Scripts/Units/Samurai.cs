@@ -4,13 +4,5 @@ using UnityEngine;
 
 class Samurai : BaseUnit
 {
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
 }

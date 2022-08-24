@@ -4,13 +4,5 @@ using UnityEngine;
 
 class HeavyBandit : BaseUnit
 {
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
 }

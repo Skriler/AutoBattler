@@ -4,13 +4,5 @@ using UnityEngine;
 
 class Gargoyle : BaseUnit
 {
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
 }

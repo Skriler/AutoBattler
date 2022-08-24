@@ -4,13 +4,5 @@ using UnityEngine;
 
 class FireWizard : BaseUnit
 {
-    void Start()
-    {
 
-    }
-
-    void Update()
-    {
-
-    }
 }
