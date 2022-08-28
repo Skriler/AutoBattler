@@ -1,32 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UITrashCan : MonoBehaviour
+namespace AutoBattler.UI
 {
-    private void OnEnable()
+    public class UITrashCan : MonoBehaviour
     {
-        UnitsEventManager.OnUnitEndDrag += SellUnit;
-    }
+        private EventSystem eventSystem;
 
-    private void OnDestroy()
-    {
-        UnitsEventManager.OnUnitEndDrag -= SellUnit;
-    }
+        private void OnEnable()
+        {
+            UnitsEventManager.OnUnitEndDrag += SellUnit;
+        }
 
-    private void Start()
-    {
-        
-    }
+        private void OnDestroy()
+        {
+            UnitsEventManager.OnUnitEndDrag -= SellUnit;
+        }
 
+        private void Start()
+        {
+            eventSystem = EventSystem.current;
+        }
 
-    private void Update()
-    {
-        
-    }
+        private void SellUnit(BaseUnit unit, Vector3 position)
+        {
+            //if (!EventSystem.current.IsPointerOverGameObject())
+            //    return;
 
-    private void SellUnit(BaseUnit unit, Vector3 position)
-    {
-        
+            //if (EventSystem.current.currentSelectedGameObject.CompareTag(gameObject.tag))
+            //    return;
+
+            //if (eventSystem.IsPointerOverGameObject() &&
+            //    eventSystem.currentSelectedGameObject != null &&
+            //    eventSystem.currentSelectedGameObject.CompareTag(tag))
+            //{
+            //    Debug.Log("sell unit");
+            //}
+        }
     }
 }
