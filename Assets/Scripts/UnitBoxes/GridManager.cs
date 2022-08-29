@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.UnitBoxes.Enums;
 
@@ -20,6 +19,7 @@ namespace AutoBattler.UnitBoxes
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileSprite;
             UnitsEventManager.OnUnitEndDrag += ChangeUnitPosition;
             UnitsEventManager.OnUnitChangedPosition += DeleteUnit;
+            UnitsEventManager.OnUnitSold += DeleteUnit;
         }
 
         private void OnDestroy()
@@ -27,6 +27,7 @@ namespace AutoBattler.UnitBoxes
             UnitsEventManager.OnDraggedUnitChangedPosition -= ChangeTileSprite;
             UnitsEventManager.OnUnitEndDrag -= ChangeUnitPosition;
             UnitsEventManager.OnUnitChangedPosition -= DeleteUnit;
+            UnitsEventManager.OnUnitSold -= DeleteUnit;
         }
 
         private void Start()

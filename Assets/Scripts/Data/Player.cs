@@ -12,6 +12,16 @@ public class Player : MonoBehaviour
     public int Health { get; private set; }
     public int Gold { get; private set; }
 
+    private void OnEnable()
+    {
+        UnitsEventManager.OnUnitSold += SellUnit;
+    }
+
+    private void OnDestroy()
+    {
+        UnitsEventManager.OnUnitSold -= SellUnit;
+    }
+
     private void Start()
     {
         Health = startHealth;
@@ -22,6 +32,7 @@ public class Player : MonoBehaviour
     }
 
     public bool IsEnoughGoldForAction(int actionCost) => Gold >= actionCost;
+
     public void SpendGold(int actionCost)
     {
         if (Gold - actionCost < 0)
@@ -31,6 +42,12 @@ public class Player : MonoBehaviour
         }
 
         Gold -= actionCost;
+        UIEventManager.SendGoldAmountChanged(Gold);
+    }
+
+    public void SellUnit(BaseUnit unit)
+    {
+        Gold += unit.Cost;
         UIEventManager.SendGoldAmountChanged(Gold);
     }
 }

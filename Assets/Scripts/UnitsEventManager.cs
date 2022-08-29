@@ -9,6 +9,8 @@ public static class UnitsEventManager
 
     public static UnityAction<BaseUnit> OnUnitChangedPosition;
 
+    public static UnityAction<BaseUnit> OnUnitSold;
+
     public static void SendDraggedUnitChangedPosition(Vector3 position)
         => OnDraggedUnitChangedPosition.Invoke(position);
 
@@ -17,4 +19,7 @@ public static class UnitsEventManager
 
     public static void SendUnitChangedPosition(BaseUnit unit)
         => OnUnitChangedPosition.Invoke(unit);
+
+    public static void SendUnitSold(BaseUnit unit)
+        => OnUnitSold.Invoke(unit);
 }

@@ -147,6 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee59674fe408e54fb7f3d4e6018f7fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barPrefab: {fileID: 16294054681551812, guid: d0bc2cac1821b024e93f73156d5621af, type: 3}
+  maxHealth: 100
+  attackDamage: 10
+  attackSpeed: 5
+  attackTime: 0
 --- !u!114 &1273386353172517222
 MonoBehaviour:
   m_ObjectHideFlags: 0

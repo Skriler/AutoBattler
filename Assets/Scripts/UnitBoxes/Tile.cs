@@ -7,9 +7,9 @@ namespace AutoBattler.UnitBoxes
 {
     public class Tile : MonoBehaviour
     {
-        [SerializeField] private Sprite standartCell;
-        [SerializeField] private Sprite occupiedCell;
-        [SerializeField] private Sprite freeCell;
+        [SerializeField] protected Sprite standartCell;
+        [SerializeField] protected Sprite occupiedCell;
+        [SerializeField] protected Sprite freeCell;
 
         private SpriteRenderer spriteRenderer;
 
