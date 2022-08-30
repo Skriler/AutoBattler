@@ -10,10 +10,11 @@ public class BaseUnit : MonoBehaviour
     [SerializeField] private float attackDamage = 10;
     [SerializeField] private float attackSpeed = 5;
     [SerializeField] private float attackTime;
+    [SerializeField] private float Health;
 
     public string Id { get; protected set; }
     public int Cost { get; protected set; } = 1;
-    public float Health { get; protected set; }
+    //public float Health { get; protected set; }
 
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
@@ -31,7 +32,7 @@ public class BaseUnit : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.N))
             TakeDamage(17);
     }
 
