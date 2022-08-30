@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1024661443148458581}
   - component: {fileID: 1024661443148458570}
-  - component: {fileID: 1024661443148458571}
+  - component: {fileID: 7954734925489394313}
   - component: {fileID: 1024661443148458568}
   m_Layer: 0
   m_Name: TrashCan
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1800324324, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 247413406ccdb01409fbec01fe057a93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1024661443148458571
+--- !u!61 &7954734925489394313
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,18 +99,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.026055574, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.7066667, y: 1.7066667}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3039842, y: 1.7066667}
   m_EdgeRadius: 0
 --- !u!114 &1024661443148458568
 MonoBehaviour:
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a02654f006ba148bae20543dfac2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standartCell: {fileID: -1800324324, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
-  occupiedCell: {fileID: -1800324324, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
-  freeCell: {fileID: 1645388507, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
+  standartCell: {fileID: 21300000, guid: 247413406ccdb01409fbec01fe057a93, type: 3}
+  occupiedCell: {fileID: 21300000, guid: 247413406ccdb01409fbec01fe057a93, type: 3}
+  freeCell: {fileID: 21300000, guid: 160993a3ccdb23f4c968c11b82ea3780, type: 3}

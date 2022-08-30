@@ -6,6 +6,8 @@ namespace AutoBattler.UnitBoxes
 {
     public class TrashCanTile : Tile
     {
+        private Vector3 tilePosition;
+
         private void OnEnable()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileStatus;
@@ -16,6 +18,15 @@ namespace AutoBattler.UnitBoxes
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileStatus;
             UnitsEventManager.OnUnitEndDrag -= SellUnit;
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            tilePosition = transform.position;
+            tilePosition.x = (float)Math.Round(Convert.ToDouble(tilePosition.x));
+            tilePosition.y = (float)Math.Round(Convert.ToDouble(tilePosition.y));
+            tilePosition.z = 0;
         }
 
         private void ChangeTileStatus(Vector3 position)
@@ -45,7 +56,7 @@ namespace AutoBattler.UnitBoxes
             position.y = (float)Math.Round(Convert.ToDouble(position.y));
             position.z = 0;
 
-            return gameObject.transform.position == position;
+            return tilePosition == position;
         }
     }
 }

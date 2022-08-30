@@ -18,6 +18,13 @@ namespace AutoBattler.UI
         private Sprite[] unitSprites;
         private int spriteIndex = 0;
 
+        public Image backgroundImage { get; private set; }
+
+        private void Start()
+        {
+            backgroundImage = transform.Find("Background").GetComponent<Image>();
+        }
+
         public void Setup(ShopDatabase.ShopUnit shopUnit)
         {
             if (IsInvoking("SwapSprite"))

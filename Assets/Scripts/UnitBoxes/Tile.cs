@@ -13,7 +13,7 @@ namespace AutoBattler.UnitBoxes
 
         private SpriteRenderer spriteRenderer;
 
-        private void Start()
+        protected virtual void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
