@@ -9,7 +9,7 @@ public class ShopDatabase : ScriptableObject
     public struct ShopUnit
     {
         public BaseUnit prefab;
-        //public Sprite[] sprites;
+        public Sprite[] sprites;
         public string title;
         public int cost;
     }

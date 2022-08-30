@@ -12,7 +12,7 @@ namespace AutoBattler.UI
         [SerializeField] private TextMeshProUGUI textTitle;
         [SerializeField] private TextMeshProUGUI textCost;
         [SerializeField] private Image unitImage;
-        [SerializeField] private float swapSpeed = 0.2f;
+        [SerializeField] private float swapSpeed = 0.4f;
 
         private ShopDatabase.ShopUnit shopUnit;
         private Sprite[] unitSprites;
@@ -20,12 +20,18 @@ namespace AutoBattler.UI
 
         public void Setup(ShopDatabase.ShopUnit shopUnit)
         {
+            if (IsInvoking("SwapSprite"))
+                CancelInvoke("SwapSprite");
+
+            spriteIndex = 0;
             textTitle.text = shopUnit.title;
             textCost.text = shopUnit.cost.ToString();
-            //unitImage.sprite = unitSprites[spriteIndex];
+            unitSprites = shopUnit.sprites;
+
+            unitImage.sprite = unitSprites[spriteIndex];
             this.shopUnit = shopUnit;
 
-            //InvokeRepeating("SwapSprite", swapSpeed, swapSpeed);
+            InvokeRepeating("SwapSprite", swapSpeed, swapSpeed);
         }
 
         public void OnClick()
@@ -33,11 +39,11 @@ namespace AutoBattler.UI
             OnCardClick.Invoke(this, shopUnit);
         }
 
-        //private void SwapSprite()
-        //{
-        //    spriteIndex = (spriteIndex < unitSprites.Length) ? spriteIndex : 0;
-        //    unitImage.sprite = unitSprites[spriteIndex];
-        //    spriteIndex++;
-        //}
+        private void SwapSprite()
+        {
+            spriteIndex = (spriteIndex < unitSprites.Length) ? spriteIndex : 0;
+            unitImage.sprite = unitSprites[spriteIndex];
+            spriteIndex++;
+        }
     }
 }
