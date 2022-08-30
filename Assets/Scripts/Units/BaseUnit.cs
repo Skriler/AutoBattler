@@ -20,8 +20,14 @@ public class BaseUnit : MonoBehaviour
     protected Animator animator;
     protected HealthBar healthBar;
 
+    protected bool isAttacking = false;
+    protected float waitBetweenAttack;
+
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+
         Id = Guid.NewGuid().ToString("N");
 
         Health = maxHealth;
@@ -42,5 +48,29 @@ public class BaseUnit : MonoBehaviour
     {
         Health -= damageAmount;
         healthBar.UpdateBar(Health);
+    }
+
+    protected void FindTarget(BaseUnit[,] units)
+    {
+
+    }
+
+    public void Attack()
+    {
+        if (isAttacking)
+            return;
+
+        animator.SetTrigger("attackTrigger");
+        waitBetweenAttack = 1 / attackSpeed;
+        StartCoroutine(WaitCoroutine());
+    }
+
+    private IEnumerator WaitCoroutine()
+    {
+        isAttacking = true;
+        yield return null;
+        animator.ResetTrigger("attackTrigger");
+        yield return new WaitForSeconds(waitBetweenAttack);
+        isAttacking = false;
     }
 }

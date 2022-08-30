@@ -59,5 +59,23 @@ namespace AutoBattler.UnitBoxes
 
             return false;
         }
+
+        public int GetUnitsAmount()
+        {
+            int unitsAmount = 0;
+
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j] == null)
+                        continue;
+
+                    unitsAmount++;
+                }
+            }
+
+            return unitsAmount;
+        }
     }
 }

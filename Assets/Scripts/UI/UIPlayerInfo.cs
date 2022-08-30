@@ -24,12 +24,12 @@ namespace AutoBattler.UI
 
         private void SetGold(int gold)
         {
-            textGold.text = "Gold: " + gold.ToString();
+            textGold.text = gold.ToString();
         }
 
         private void SetHealth(int health)
         {
-            textHealth.text = "Health: " + health.ToString();
+            textHealth.text = health.ToString();
         }
     }
 }
