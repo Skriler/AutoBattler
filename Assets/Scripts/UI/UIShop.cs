@@ -26,9 +26,11 @@ namespace AutoBattler.UI
 
         public void OnCardClick(UICard card, ShopDatabase.ShopUnit shopUnit)
         {
-            if (!player.IsEnoughGoldForAction(shopUnit.cost))
+            if (player.Storage.IsFull())
                 return;
 
+            if (!player.IsEnoughGoldForAction(shopUnit.cost))
+                return;
 
             player.SpendGold(shopUnit.cost);
             card.gameObject.SetActive(false);

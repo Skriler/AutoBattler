@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using AutoBattler.UnitBoxes;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int startHealth = 50; 
-    [SerializeField] private int startGold = 0; 
+    [SerializeField] private int startHealth = 50;
+    [SerializeField] private int startGold = 0;
 
-    public Army Field { get; private set; }
-    public Storage Storage { get; private set; }
+    public StorageManager Storage { get; private set; }
+    public FieldManager Field { get; private set; }
     public int Health { get; private set; }
     public int Gold { get; private set; }
 
@@ -26,6 +25,8 @@ public class Player : MonoBehaviour
     {
         Health = startHealth;
         Gold = startGold;
+        Storage = transform.GetComponentInChildren<StorageManager>();
+        Field = transform.GetComponentInChildren<FieldManager>();
 
         UIEventManager.SendGoldAmountChanged(Gold);
         UIEventManager.SendHealthAmountChanged(Health);

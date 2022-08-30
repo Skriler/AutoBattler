@@ -12,31 +12,32 @@ namespace AutoBattler.UI
         [SerializeField] private TextMeshProUGUI textTitle;
         [SerializeField] private TextMeshProUGUI textCost;
         [SerializeField] private Image unitImage;
-        //public GameObject prefab;
-        //public GameObject unitCard;
+        [SerializeField] private float swapSpeed = 0.2f;
 
         private ShopDatabase.ShopUnit shopUnit;
+        private Sprite[] unitSprites;
+        private int spriteIndex = 0;
 
         public void Setup(ShopDatabase.ShopUnit shopUnit)
         {
             textTitle.text = shopUnit.title;
             textCost.text = shopUnit.cost.ToString();
-            unitImage.sprite = shopUnit.image;
-
+            //unitImage.sprite = unitSprites[spriteIndex];
             this.shopUnit = shopUnit;
 
-            //shopUnit.prefab.transform.position = prefab.transform.position;
-            //prefab = shopUnit.prefab;
-
-            //GameObject unit = Instantiate(prefab, prefab.transform.position, Quaternion.identity);
-            //unit.transform.SetParent(unitCard.transform);
-            //unit.transform.localScale = new Vector2(120, 120);
-            //unit.transform.SetAsLastSibling();
+            //InvokeRepeating("SwapSprite", swapSpeed, swapSpeed);
         }
 
         public void OnClick()
         {
             OnCardClick.Invoke(this, shopUnit);
         }
+
+        //private void SwapSprite()
+        //{
+        //    spriteIndex = (spriteIndex < unitSprites.Length) ? spriteIndex : 0;
+        //    unitImage.sprite = unitSprites[spriteIndex];
+        //    spriteIndex++;
+        //}
     }
 }

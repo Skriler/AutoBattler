@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using AutoBattler.UnitBoxes.Enums;
 
 namespace AutoBattler.UnitBoxes
 {
@@ -79,7 +75,7 @@ namespace AutoBattler.UnitBoxes
             return false;
         }
 
-        private bool IsFull()
+        public bool IsFull()
         {
             for (int i = 0; i < units.Length; ++i)
             {
