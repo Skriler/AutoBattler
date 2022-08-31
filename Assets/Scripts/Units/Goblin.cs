@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class Goblin : BaseUnit
+namespace AutoBattler.Units
 {
+    class Goblin : BaseUnit
+    {
 
+    }
 }

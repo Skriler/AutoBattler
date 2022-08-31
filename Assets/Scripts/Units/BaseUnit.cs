@@ -3,74 +3,92 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseUnit : MonoBehaviour
+namespace AutoBattler.Units
 {
-    [SerializeField] private HealthBar barPrefab;
-    [SerializeField] private float maxHealth = 100;
-    [SerializeField] private float attackDamage = 10;
-    [SerializeField] private float attackSpeed = 5;
-    [SerializeField] private float attackTime;
-    [SerializeField] private float Health;
-
-    public string Id { get; protected set; }
-    public int Cost { get; protected set; } = 1;
-    //public float Health { get; protected set; }
-
-    protected SpriteRenderer spriteRenderer;
-    protected Animator animator;
-    protected HealthBar healthBar;
-
-    protected bool isAttacking = false;
-    protected float waitBetweenAttack;
-
-    private void Start()
+    public class BaseUnit : MonoBehaviour
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        [SerializeField] private HealthBar barPrefab;
+        [SerializeField] private float maxHealth = 100;
+        [SerializeField] private float attackDamage = 10;
+        [SerializeField] private float attackSpeed = 3f;
+        [SerializeField] private float attackTime;
 
-        Id = Guid.NewGuid().ToString("N");
+        public string Id { get; protected set; }
+        public int Cost { get; protected set; } = 1;
+        public float Health { get; protected set; }
 
-        Health = maxHealth;
+        protected SpriteRenderer spriteRenderer;
+        protected Animator animator;
+        protected HealthBar healthBar;
 
-        healthBar = Instantiate(barPrefab, this.transform);
-        healthBar.Setup(this.transform, maxHealth);
-    }
+        protected bool isAttacking = false;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.N))
-            TakeDamage(17);
-    }
+        private void Start()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            animator = GetComponent<Animator>();
 
-    public bool IsAlive() => Health > 0;
+            Id = Guid.NewGuid().ToString("N");
 
-    public void TakeDamage(int damageAmount)
-    {
-        Health -= damageAmount;
-        healthBar.UpdateBar(Health);
-    }
+            Health = maxHealth;
 
-    protected void FindTarget(BaseUnit[,] units)
-    {
+            healthBar = Instantiate(barPrefab, this.transform);
+            healthBar.Setup(this.transform, maxHealth);
+        }
 
-    }
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.N))
+                TakeDamage(17);
 
-    public void Attack()
-    {
-        if (isAttacking)
-            return;
+            if (Input.GetKeyDown(KeyCode.K))
+                Attack();
 
-        animator.SetTrigger("attackTrigger");
-        waitBetweenAttack = 1 / attackSpeed;
-        StartCoroutine(WaitCoroutine());
-    }
+            if (Input.GetKeyDown(KeyCode.F))
+                Death();
 
-    private IEnumerator WaitCoroutine()
-    {
-        isAttacking = true;
-        yield return null;
-        animator.ResetTrigger("attackTrigger");
-        yield return new WaitForSeconds(waitBetweenAttack);
-        isAttacking = false;
+            if (Input.GetKeyDown(KeyCode.R))
+                Resurrect();
+        }
+
+        public bool IsAlive() => Health > 0;
+
+        public void TakeDamage(int damageAmount)
+        {
+            Health -= damageAmount;
+            healthBar.UpdateBar(Health);
+        }
+
+        protected void FindTarget(BaseUnit[,] units)
+        {
+
+        }
+
+        public void Attack()
+        {
+            if (isAttacking)
+                return;
+
+            animator.SetTrigger("attackTrigger");
+            StartCoroutine(WaitCoroutine());
+        }
+
+        private IEnumerator WaitCoroutine()
+        {
+            isAttacking = true;
+            yield return new WaitForSeconds(attackSpeed);
+            isAttacking = false;
+        }
+
+        public void Death()
+        {
+            animator.SetTrigger("deathTrigger");
+        }
+
+        public void Resurrect()
+        {
+            animator.SetTrigger("idleTrigger");
+            Health = maxHealth;
+        }
     }
 }

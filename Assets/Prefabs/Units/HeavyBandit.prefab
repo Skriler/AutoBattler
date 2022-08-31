@@ -150,7 +150,7 @@ MonoBehaviour:
   barPrefab: {fileID: 16294054681551812, guid: d0bc2cac1821b024e93f73156d5621af, type: 3}
   maxHealth: 100
   attackDamage: 10
-  attackSpeed: 5
+  attackSpeed: 3
   attackTime: 0
 --- !u!114 &1273386353172517222
 MonoBehaviour:

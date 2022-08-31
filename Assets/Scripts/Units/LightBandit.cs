@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class LightBandit : BaseUnit
+namespace AutoBattler.Units
 {
+    class LightBandit : BaseUnit
+    {
 
+    }
 }

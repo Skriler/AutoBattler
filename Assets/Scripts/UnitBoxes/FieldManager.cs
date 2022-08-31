@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using AutoBattler.UnitBoxes.Enums;
+using AutoBattler.Units;
 
 namespace AutoBattler.UnitBoxes
 {

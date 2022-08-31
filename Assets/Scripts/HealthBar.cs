@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AutoBattler.EventManagers;
 
 public class HealthBar : MonoBehaviour
 {
@@ -13,13 +14,11 @@ public class HealthBar : MonoBehaviour
     private void OnEnable()
     {
         UnitsEventManager.OnDraggedUnitChangedPosition += ChangeBarPosition;
-        //UnitsEventManager.OnUnitEndDrag += ChangeUnitPosition;
     }
 
     private void OnDestroy()
     {
         UnitsEventManager.OnDraggedUnitChangedPosition -= ChangeBarPosition;
-        //UnitsEventManager.OnUnitEndDrag -= ChangeUnitPosition;
     }
 
     public void Setup(Transform target, float maxHealthAmount)

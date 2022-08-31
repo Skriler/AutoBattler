@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class FireWizard : BaseUnit
+namespace AutoBattler.Units
 {
+    class FireWizard : BaseUnit
+    {
 
+    }
 }

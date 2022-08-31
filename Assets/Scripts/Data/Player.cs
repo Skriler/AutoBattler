@@ -1,5 +1,7 @@
 using UnityEngine;
 using AutoBattler.UnitBoxes;
+using AutoBattler.Units;
+using AutoBattler.EventManagers;
 
 public class Player : MonoBehaviour
 {

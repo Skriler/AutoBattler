@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
+using AutoBattler.EventManagers;
 
 namespace AutoBattler.UI
 {

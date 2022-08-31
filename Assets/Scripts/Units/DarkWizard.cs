@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DarkWizard : BaseUnit
+namespace AutoBattler.Units
 {
+    public class DarkWizard : BaseUnit
+    {
 
+    }
 }

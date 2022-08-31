@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class Huntress : BaseUnit
+namespace AutoBattler.Units
 {
+    class Huntress : BaseUnit
+    {
 
+    }
 }

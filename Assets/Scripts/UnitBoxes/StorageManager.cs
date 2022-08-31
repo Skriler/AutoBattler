@@ -1,4 +1,5 @@
 using UnityEngine;
+using AutoBattler.Units;
 
 namespace AutoBattler.UnitBoxes
 {

@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class Samurai : BaseUnit
+namespace AutoBattler.Units
 {
+    class Samurai : BaseUnit
+    {
 
+    }
 }

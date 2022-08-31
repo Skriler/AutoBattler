@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-class Gargoyle : BaseUnit
+namespace AutoBattler.Units
 {
+    class Gargoyle : BaseUnit
+    {
 
+    }
 }
