@@ -33,8 +33,10 @@ namespace AutoBattler.UI
                 return;
 
             player.SpendGold(shopUnit.cost);
-            card.gameObject.SetActive(false);
             OnUnitBought.Invoke(shopUnit);
+
+            UICardTooltip.Hide();
+            card.gameObject.SetActive(false);
         }
 
         public void OnRefreshClick()

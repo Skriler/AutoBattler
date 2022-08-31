@@ -87,12 +87,15 @@ namespace AutoBattler.Units
         public void Death()
         {
             animator.SetTrigger("deathTrigger");
+            healthBar.Hide();
         }
 
         public void Resurrect()
         {
             animator.SetTrigger("idleTrigger");
             Health = maxHealth;
+            healthBar.Show();
+            healthBar.UpdateBar(Health);
         }
 
         public void FlipOnX()

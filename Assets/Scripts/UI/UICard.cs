@@ -43,12 +43,12 @@ namespace AutoBattler.UI
 
         public void MouseOver()
         {
-            UICardTooltip.ShowTooltip();
+            UICardTooltip.Show();
         }
 
         public void MouseExit()
         {
-            UICardTooltip.HideTooltip();
+            UICardTooltip.Hide();
         }
 
         private void SwapSprite()

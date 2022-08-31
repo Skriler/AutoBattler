@@ -37,6 +37,9 @@ public class HealthBar : MonoBehaviour
         health.transform.localScale = scaleVector;
     }
 
+    public void Hide() => gameObject.SetActive(false);
+    public void Show() => gameObject.SetActive(true);
+
     private void ChangeBarPosition(Vector3 position)
     {
         if (target == null)
