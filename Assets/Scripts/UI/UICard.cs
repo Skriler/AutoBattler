@@ -20,11 +20,6 @@ namespace AutoBattler.UI
 
         public Image backgroundImage { get; private set; }
 
-        private void Start()
-        {
-            backgroundImage = transform.Find("Background").GetComponent<Image>();
-        }
-
         public void Setup(ShopDatabase.ShopUnit shopUnit)
         {
             if (IsInvoking("SwapSprite"))
@@ -44,6 +39,16 @@ namespace AutoBattler.UI
         public void OnClick()
         {
             OnCardClick.Invoke(this, shopUnit);
+        }
+
+        public void MouseOver()
+        {
+            UICardTooltip.ShowTooltip();
+        }
+
+        public void MouseExit()
+        {
+            UICardTooltip.HideTooltip();
         }
 
         private void SwapSprite()

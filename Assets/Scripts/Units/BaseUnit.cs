@@ -14,7 +14,7 @@ namespace AutoBattler.Units
         [SerializeField] private float attackTime;
 
         public string Id { get; protected set; }
-        public int Cost { get; protected set; } = 1;
+        public int Cost { get; protected set; }
         public float Health { get; protected set; }
 
         protected SpriteRenderer spriteRenderer;
@@ -23,6 +23,7 @@ namespace AutoBattler.Units
 
         protected bool isAttacking = false;
 
+ 
         private void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
