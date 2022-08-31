@@ -23,9 +23,13 @@ namespace AutoBattler.Units
 
         protected bool isAttacking = false;
 
-        private void Start()
+        private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Start()
+        {
             animator = GetComponent<Animator>();
 
             Id = Guid.NewGuid().ToString("N");
@@ -89,6 +93,11 @@ namespace AutoBattler.Units
         {
             animator.SetTrigger("idleTrigger");
             Health = maxHealth;
+        }
+
+        public void FlipOnX()
+        {
+            spriteRenderer.flipX = !spriteRenderer.flipX;
         }
     }
 }
