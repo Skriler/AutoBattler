@@ -20,7 +20,7 @@ namespace AutoBattler.UI
         private void Start()
         {
             gameObject.SetActive(isOpen);
-            shopDb = GameManager.Instance.shopDatabase;
+            shopDb = GameManager.Instance.GetShopDb();
             GenerateUnitCards();
         }
 

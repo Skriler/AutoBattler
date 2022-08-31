@@ -14,7 +14,7 @@ namespace AutoBattler.Units
         [SerializeField] private float attackTime;
 
         public string Id { get; protected set; }
-        public int Cost { get; protected set; }
+        public int Cost { get; protected set; } = 1;
         public float Health { get; protected set; }
 
         protected SpriteRenderer spriteRenderer;
@@ -23,10 +23,13 @@ namespace AutoBattler.Units
 
         protected bool isAttacking = false;
 
- 
-        private void Start()
+        private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Start()
+        {
             animator = GetComponent<Animator>();
 
             Id = Guid.NewGuid().ToString("N");
@@ -90,6 +93,11 @@ namespace AutoBattler.Units
         {
             animator.SetTrigger("idleTrigger");
             Health = maxHealth;
+        }
+
+        public void FlipOnX()
+        {
+            spriteRenderer.flipX = !spriteRenderer.flipX;
         }
     }
 }

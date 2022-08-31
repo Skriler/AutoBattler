@@ -5,13 +5,15 @@ namespace AutoBattler.UnitBoxes
 {
     public class StorageManager : UnitBoxManager
     {
+        private GameObject unitsContainer;
         private GridManager gridManager;
         private BaseUnit[] units;
 
         private void Start()
         {
+            unitsContainer = transform.Find("Units").gameObject;
             gridManager = GetComponent<GridManager>();
-            units = new BaseUnit[gridManager.GetWidth()];
+            units = new BaseUnit[gridManager.GetActiveWidth()];
         }
 
         public void AddUnit(ShopDatabase.ShopUnit shopUnit)
@@ -30,7 +32,7 @@ namespace AutoBattler.UnitBoxes
                 return;
             }
 
-            BaseUnit newUnit = Instantiate(shopUnit.prefab);
+            BaseUnit newUnit = Instantiate(shopUnit.prefab, unitsContainer.transform);
             newUnit.gameObject.name = shopUnit.title;
             newUnit.transform.position = 
                 gridManager.GetTilePositionByIndex(freeCellIndex, 0);
@@ -41,6 +43,7 @@ namespace AutoBattler.UnitBoxes
         public override void AddUnit(BaseUnit unit, Vector2Int index)
         {
             units[index.x] = unit;
+            unit.transform.SetParent(unitsContainer.transform);
         }
 
         public override void DeleteUnit(BaseUnit unit)
