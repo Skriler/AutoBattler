@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
 using TMPro;
 using AutoBattler.EventManagers;
 
@@ -10,17 +8,20 @@ namespace AutoBattler.UI
     {
         [SerializeField] private TextMeshProUGUI textGold;
         [SerializeField] private TextMeshProUGUI textHealth;
+        [SerializeField] private TextMeshProUGUI textTavernTier;
 
         private void OnEnable()
         {
             UIEventManager.OnGoldAmountChanged += SetGold;
             UIEventManager.OnHealthAmountChanged += SetHealth;
+            UIEventManager.OnTavernTierChanged += SetTavernTier;
         }
 
         private void OnDestroy()
         {
             UIEventManager.OnGoldAmountChanged -= SetGold;
             UIEventManager.OnHealthAmountChanged -= SetHealth;
+            UIEventManager.OnTavernTierChanged -= SetTavernTier;
         }
 
         private void SetGold(int gold)
@@ -31,6 +32,11 @@ namespace AutoBattler.UI
         private void SetHealth(int health)
         {
             textHealth.text = health.ToString();
+        }
+
+        private void SetTavernTier(int tavernTier)
+        {
+            textTavernTier.text = tavernTier.ToString();
         }
     }
 }

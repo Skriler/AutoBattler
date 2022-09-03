@@ -1,4 +1,4 @@
-﻿namespace AutoBattler.UnitBoxes.Enums
+﻿namespace AutoBattler.UnitsContainers.Enums
 {
     public enum TileStatus
     {

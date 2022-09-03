@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Units;
@@ -13,6 +14,7 @@ public class ShopDatabase : ScriptableObject
         public Sprite[] sprites;
         public string title;
         public int cost;
+        public int tavernTier;
     }
 
     [SerializeField] private List<ShopUnit> shopUnits;
@@ -22,8 +24,10 @@ public class ShopDatabase : ScriptableObject
         return shopUnits;
     }
 
-    public int GetUnitsAmount()
+    public List<ShopUnit> GetUnitsAtTavernTier(int playerTavernTier)
     {
-        return shopUnits.Count;
+        return shopUnits
+            .Where(u => u.tavernTier <= playerTavernTier)
+            .ToList();
     }
 }

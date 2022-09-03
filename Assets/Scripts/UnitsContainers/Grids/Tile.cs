@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using AutoBattler.UnitBoxes.Enums;
+using AutoBattler.UnitsContainers.Enums;
 
-namespace AutoBattler.UnitBoxes
+namespace AutoBattler.UnitsContainers.Grids
 {
     public class Tile : MonoBehaviour
     {

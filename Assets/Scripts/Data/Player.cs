@@ -1,5 +1,5 @@
 using UnityEngine;
-using AutoBattler.UnitBoxes;
+using AutoBattler.UnitsContainers.Containers;
 using AutoBattler.Units;
 using AutoBattler.EventManagers;
 
@@ -7,11 +7,15 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int startHealth = 50;
     [SerializeField] private int startGold = 0;
+    [SerializeField] private int startTavernTier = 1;
+    [SerializeField] private int maxTavernTier = 5;
+    [SerializeField] private int levelUpTavernTierCost = 5;
 
-    public StorageManager Storage { get; private set; }
-    public FieldManager Field { get; private set; }
+    public StorageContainer Storage { get; private set; }
+    public FieldContainer Field { get; private set; }
     public int Health { get; private set; }
     public int Gold { get; private set; }
+    public int TavernTier { get; private set; }
 
     private void OnEnable()
     {
@@ -27,14 +31,19 @@ public class Player : MonoBehaviour
     {
         Health = startHealth;
         Gold = startGold;
-        Storage = transform.GetComponentInChildren<StorageManager>();
-        Field = transform.GetComponentInChildren<FieldManager>();
+        TavernTier = startTavernTier;
+
+        Storage = transform.GetComponentInChildren<StorageContainer>();
+        Field = transform.GetComponentInChildren<FieldContainer>();
 
         UIEventManager.SendGoldAmountChanged(Gold);
         UIEventManager.SendHealthAmountChanged(Health);
+        UIEventManager.SendTavernTierChanged(TavernTier);
     }
 
     public bool IsEnoughGoldForAction(int actionCost) => Gold >= actionCost;
+
+    public bool IsMaxTavernTier() => TavernTier >= maxTavernTier;
 
     public void SpendGold(int actionCost)
     {
@@ -52,5 +61,18 @@ public class Player : MonoBehaviour
     {
         Gold += unit.Cost;
         UIEventManager.SendGoldAmountChanged(Gold);
+    }
+
+    public void LevelUpTavernTier()
+    {
+        if (TavernTier >= maxTavernTier)
+            return;
+
+        if (!IsEnoughGoldForAction(levelUpTavernTierCost))
+            return;
+
+        SpendGold(levelUpTavernTierCost);
+        ++TavernTier;
+        UIEventManager.OnTavernTierChanged(TavernTier);
     }
 }

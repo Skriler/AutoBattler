@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using TMPro;
 
 namespace AutoBattler.UI
@@ -9,10 +10,12 @@ namespace AutoBattler.UI
     {
         [SerializeField] private UnityEvent<ShopDatabase.ShopUnit> OnUnitBought;
 
-        [SerializeField] private int rerollCost = 1;
-        [SerializeField] private List<UICard> unitCards;
-        [SerializeField] private Player player;
+        [SerializeField] private Button levelUpButton;
         [SerializeField] private TextMeshProUGUI btnShowShopText;
+
+        [SerializeField] private List<UICard> unitCards;
+        [SerializeField] private int rerollCost = 1;
+        [SerializeField] private Player player;
 
         private ShopDatabase shopDb;
         private bool isOpen;
@@ -49,6 +52,15 @@ namespace AutoBattler.UI
             GenerateUnitCards();
         }
 
+
+        public void OnLevelUpClick()
+        {
+            player.LevelUpTavernTier();
+
+            if (player.IsMaxTavernTier())
+                levelUpButton.gameObject.SetActive(false);
+        }
+
         public void OnShowShopClick()
         {
             isOpen = !isOpen;
@@ -62,8 +74,8 @@ namespace AutoBattler.UI
 
         private void GenerateUnitCards()
         {
-            List<ShopDatabase.ShopUnit> shopUnits = shopDb.GetUnits();
-            int unitsAmount = shopDb.GetUnitsAmount();
+            List<ShopDatabase.ShopUnit> shopUnits = shopDb.GetUnitsAtTavernTier(player.TavernTier);
+            int unitsAmount = shopUnits.Count;
 
             for (int i = 0; i < unitCards.Count; ++i)
             {

@@ -25,13 +25,7 @@ public class UICardTooltip : MonoBehaviour
         transform.localPosition = localPoint;
     }
 
-    public static void Show()
-    {
-        Instance.gameObject.SetActive(true);
-    }
+    public static void Show() => Instance.gameObject.SetActive(true);
 
-    public static void Hide()
-    {
-        Instance.gameObject.SetActive(false);
-    }
+    public static void Hide() => Instance.gameObject.SetActive(false);
 }

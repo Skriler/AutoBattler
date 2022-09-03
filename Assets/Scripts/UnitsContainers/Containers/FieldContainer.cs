@@ -1,25 +1,27 @@
-using System;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using AutoBattler.UnitBoxes.Enums;
+using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Units;
 
-namespace AutoBattler.UnitBoxes
+namespace AutoBattler.UnitsContainers.Containers
 {
-    public class FieldManager : UnitBoxManager
+    public class FieldContainer : UnitsContainer
     {
         private GameObject unitsContainer;
         private GameObject secondArmyUnitsContainer;
-        private GridManager gridManager;
+        private FieldGridManager gridManager;
         private BaseUnit[,] units;
 
         private void Start()
         {
             unitsContainer = transform.Find("Units").gameObject;
             secondArmyUnitsContainer = transform.Find("SecondArmyUnits").gameObject;
-            gridManager = GetComponent<GridManager>();
+            gridManager = GetComponent<FieldGridManager>();
             units = new BaseUnit[gridManager.GetActiveWidth(), gridManager.GetActiveHeight()];
         }
+
+        public BaseUnit[,] GetArmy() => units;
+
+        public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;
 
         public override void AddUnit(BaseUnit unit, Vector2Int index)
         {
@@ -45,11 +47,6 @@ namespace AutoBattler.UnitBoxes
         public override void ChangeUnitPosition()
         {
 
-        }
-
-        public override bool IsCellOccupied(Vector2Int index)
-        {
-            return units[index.x, index.y] != null;
         }
 
         public override bool Contains(BaseUnit unit)
@@ -84,7 +81,6 @@ namespace AutoBattler.UnitBoxes
             return unitsAmount;
         }
 
-        public BaseUnit[,] GetArmy() => units;
         public void SpawnSecondArmy(BaseUnit[,] army)
         {
             gridManager.SpawnSecondArmy(army, secondArmyUnitsContainer.transform);

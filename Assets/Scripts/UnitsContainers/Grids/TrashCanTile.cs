@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
-using AutoBattler.UnitBoxes.Enums;
+using AutoBattler.UnitsContainers.Enums;
 using AutoBattler.Units;
 using AutoBattler.EventManagers;
 
-namespace AutoBattler.UnitBoxes
+namespace AutoBattler.UnitsContainers.Grids
 {
     public class TrashCanTile : Tile
     {

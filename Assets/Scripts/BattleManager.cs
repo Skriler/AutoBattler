@@ -2,27 +2,26 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Units;
-using AutoBattler.UnitBoxes;
+using AutoBattler.UnitsContainers.Containers;
 
 public class BattleManager
 {
-    private FieldManager firstArmyField;
+    private FieldContainer fieldContainer;
     private ShopDatabase shopDb;
 
     private BaseUnit[,] firstArmy;
     private BaseUnit[,] secondArmy;
 
-    public BattleManager(FieldManager firstArmyField, ShopDatabase shopDb)
+    public BattleManager(FieldContainer fieldContainer, ShopDatabase shopDb)
     {
-        this.firstArmyField = firstArmyField;
+        this.fieldContainer = fieldContainer;
         this.shopDb = shopDb;
 
-        firstArmy = firstArmyField.GetArmy();
+        firstArmy = fieldContainer.GetArmy();
         secondArmy = new BaseUnit[firstArmy.GetLength(0), firstArmy.GetLength(1)];
 
         GenerateSecondArmy();
-        firstArmyField.SpawnSecondArmy(secondArmy);
-        FlipSecondArmyUnitsSpritesOnX();
+        fieldContainer.SpawnSecondArmy(secondArmy);
     }
 
     private void StartBattle()
@@ -47,8 +46,8 @@ public class BattleManager
     private void GenerateSecondArmy()
     {
         List<ShopDatabase.ShopUnit> shopUnits = shopDb.GetUnits();
-        int shopUnitsAmount = shopDb.GetUnitsAmount();
-        int unitsAmount = firstArmyField.GetUnitsAmount();
+        int shopUnitsAmount = shopUnits.Count;
+        int unitsAmount = fieldContainer.GetUnitsAmount();
 
         for (int i = 0; i < firstArmy.GetLength(0); ++i)
         {
@@ -58,20 +57,6 @@ public class BattleManager
                     continue;
 
                 secondArmy[i, j] = shopUnits[UnityEngine.Random.Range(0, shopUnitsAmount)].prefab;
-            }
-        }
-    }
-
-    private void FlipSecondArmyUnitsSpritesOnX()
-    {
-        for (int i = 0; i < firstArmy.GetLength(0); ++i)
-        {
-            for (int j = 0; j < firstArmy.GetLength(1); ++j)
-            {
-                if (secondArmy[i, j] == null)
-                    continue;
-
-                secondArmy[i, j].FlipOnX();
             }
         }
     }

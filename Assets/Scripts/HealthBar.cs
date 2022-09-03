@@ -21,6 +21,9 @@ public class HealthBar : MonoBehaviour
         UnitsEventManager.OnDraggedUnitChangedPosition -= ChangeBarPosition;
     }
 
+    public void Hide() => gameObject.SetActive(false);
+    public void Show() => gameObject.SetActive(true);
+
     public void Setup(Transform target, float maxHealthAmount)
     {
         this.maxHealthAmount = maxHealthAmount;
@@ -36,9 +39,6 @@ public class HealthBar : MonoBehaviour
         scaleVector.x = scale;
         health.transform.localScale = scaleVector;
     }
-
-    public void Hide() => gameObject.SetActive(false);
-    public void Show() => gameObject.SetActive(true);
 
     private void ChangeBarPosition(Vector3 position)
     {

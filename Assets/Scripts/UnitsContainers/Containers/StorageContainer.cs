@@ -1,9 +1,10 @@
 using UnityEngine;
 using AutoBattler.Units;
+using AutoBattler.UnitsContainers.Grids;
 
-namespace AutoBattler.UnitBoxes
+namespace AutoBattler.UnitsContainers.Containers
 {
-    public class StorageManager : UnitBoxManager
+    public class StorageContainer : UnitsContainer
     {
         private GameObject unitsContainer;
         private GridManager gridManager;
@@ -13,7 +14,7 @@ namespace AutoBattler.UnitBoxes
         {
             unitsContainer = transform.Find("Units").gameObject;
             gridManager = GetComponent<GridManager>();
-            units = new BaseUnit[gridManager.GetActiveWidth()];
+            units = new BaseUnit[gridManager.GetWidth()];
         }
 
         public void AddUnit(ShopDatabase.ShopUnit shopUnit)
