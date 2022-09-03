@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Units;
 using AutoBattler.UnitsContainers.Containers;
+using AutoBattler.Data.ScriptableObjects;
 
 public class BattleManager
 {

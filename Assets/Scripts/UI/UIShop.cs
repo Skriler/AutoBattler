@@ -3,16 +3,20 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
+using AutoBattler.Data.ScriptableObjects;
 
 namespace AutoBattler.UI
 {
     public class UIShop : MonoBehaviour
     {
+        [Header("Events")]
         [SerializeField] private UnityEvent<ShopDatabase.ShopUnit> OnUnitBought;
 
+        [Header("UI Elements")]
         [SerializeField] private Button levelUpButton;
         [SerializeField] private TextMeshProUGUI btnShowShopText;
 
+        [Header("Data")]
         [SerializeField] private List<UICard> unitCards;
         [SerializeField] private int rerollCost = 1;
         [SerializeField] private Player player;
@@ -22,9 +26,9 @@ namespace AutoBattler.UI
 
         private void Start()
         {
-            gameObject.SetActive(isOpen);
-            shopDb = GameManager.Instance.GetShopDb();
+            shopDb = GameManager.Instance.ShopDb;
             GenerateUnitCards();
+            gameObject.SetActive(isOpen);
         }
 
         public void OnCardClick(UICard card, ShopDatabase.ShopUnit shopUnit)
@@ -32,13 +36,13 @@ namespace AutoBattler.UI
             if (player.Storage.IsFull())
                 return;
 
-            if (!player.IsEnoughGoldForAction(shopUnit.cost))
+            if (!player.IsEnoughGoldForAction(shopUnit.characteristics.Cost))
                 return;
 
-            player.SpendGold(shopUnit.cost);
+            player.SpendGold(shopUnit.characteristics.Cost);
             OnUnitBought.Invoke(shopUnit);
 
-            UICardTooltip.Hide();
+            UICardTooltip.Instance.Hide();
             card.gameObject.SetActive(false);
         }
 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using AutoBattler.Units;
 using AutoBattler.UnitsContainers.Grids;
+using AutoBattler.Data.ScriptableObjects;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
@@ -14,7 +15,7 @@ namespace AutoBattler.UnitsContainers.Containers
         {
             unitsContainer = transform.Find("Units").gameObject;
             gridManager = GetComponent<GridManager>();
-            units = new BaseUnit[gridManager.GetWidth()];
+            units = new BaseUnit[gridManager.Width];
         }
 
         public void AddUnit(ShopDatabase.ShopUnit shopUnit)
@@ -34,7 +35,7 @@ namespace AutoBattler.UnitsContainers.Containers
             }
 
             BaseUnit newUnit = Instantiate(shopUnit.prefab, unitsContainer.transform);
-            newUnit.gameObject.name = shopUnit.title;
+            newUnit.gameObject.name = shopUnit.characteristics.Title;
             newUnit.transform.position = 
                 gridManager.GetTilePositionByIndex(freeCellIndex, 0);
 

@@ -16,7 +16,7 @@ namespace AutoBattler.UnitsContainers.Containers
             unitsContainer = transform.Find("Units").gameObject;
             secondArmyUnitsContainer = transform.Find("SecondArmyUnits").gameObject;
             gridManager = GetComponent<FieldGridManager>();
-            units = new BaseUnit[gridManager.GetActiveWidth(), gridManager.GetActiveHeight()];
+            units = new BaseUnit[gridManager.ActiveWidth, gridManager.ActiveHeight];
         }
 
         public BaseUnit[,] GetArmy() => units;

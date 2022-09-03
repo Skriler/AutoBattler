@@ -41,8 +41,8 @@ namespace AutoBattler.UnitsContainers.Grids
             GenerateGrid();
         }
 
-        public int GetWidth() => width;
-        public int GetHeight() => height;
+        public int Width => width;
+        public int Height => height;
 
         public Vector3 GetTilePositionByIndex(int x, int y) => tiles[x, y].transform.position;
 

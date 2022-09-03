@@ -1,11 +1,12 @@
 using UnityEngine;
+using AutoBattler.Data.ScriptableObjects;
 
 public class GameManager : Manager<GameManager>
 {
     [SerializeField] private Player player;
     [SerializeField] private ShopDatabase shopDb;
 
-    public ShopDatabase GetShopDb() => shopDb;
+    public ShopDatabase ShopDb => shopDb;
 
     public void StartBattle()
     {

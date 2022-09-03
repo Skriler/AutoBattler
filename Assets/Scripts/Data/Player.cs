@@ -2,14 +2,11 @@ using UnityEngine;
 using AutoBattler.UnitsContainers.Containers;
 using AutoBattler.Units;
 using AutoBattler.EventManagers;
+using AutoBattler.Data.ScriptableObjects;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int startHealth = 50;
-    [SerializeField] private int startGold = 0;
-    [SerializeField] private int startTavernTier = 1;
-    [SerializeField] private int maxTavernTier = 5;
-    [SerializeField] private int levelUpTavernTierCost = 5;
+    [SerializeField] private PlayerCharacteristics characteristics;
 
     public StorageContainer Storage { get; private set; }
     public FieldContainer Field { get; private set; }
@@ -29,9 +26,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        Health = startHealth;
-        Gold = startGold;
-        TavernTier = startTavernTier;
+        Health = characteristics.StartHealth;
+        Gold = characteristics.StartGold;
+        TavernTier = characteristics.StartTavernTier;
 
         Storage = transform.GetComponentInChildren<StorageContainer>();
         Field = transform.GetComponentInChildren<FieldContainer>();
@@ -43,7 +40,7 @@ public class Player : MonoBehaviour
 
     public bool IsEnoughGoldForAction(int actionCost) => Gold >= actionCost;
 
-    public bool IsMaxTavernTier() => TavernTier >= maxTavernTier;
+    public bool IsMaxTavernTier() => TavernTier >= characteristics.MaxTavernTier;
 
     public void SpendGold(int actionCost)
     {
@@ -65,13 +62,13 @@ public class Player : MonoBehaviour
 
     public void LevelUpTavernTier()
     {
-        if (TavernTier >= maxTavernTier)
+        if (TavernTier >= characteristics.MaxTavernTier)
             return;
 
-        if (!IsEnoughGoldForAction(levelUpTavernTierCost))
+        if (!IsEnoughGoldForAction(characteristics.LevelUpTavernTierCost))
             return;
 
-        SpendGold(levelUpTavernTierCost);
+        SpendGold(characteristics.LevelUpTavernTierCost);
         ++TavernTier;
         UIEventManager.OnTavernTierChanged(TavernTier);
     }

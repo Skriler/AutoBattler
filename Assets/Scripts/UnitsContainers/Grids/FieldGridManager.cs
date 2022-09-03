@@ -9,8 +9,8 @@ namespace AutoBattler.UnitsContainers.Grids
         [SerializeField] private int activeWidth, activeHeight;
         [SerializeField] private Tile activeCellTile;
 
-        public int GetActiveWidth() => activeWidth;
-        public int GetActiveHeight() => activeHeight;
+        public int ActiveWidth => activeWidth;
+        public int ActiveHeight => activeHeight;
 
         public void SpawnSecondArmy(BaseUnit[,] army, Transform unitsParent)
         {

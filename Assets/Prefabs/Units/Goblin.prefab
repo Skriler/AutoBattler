@@ -148,11 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barPrefab: {fileID: 16294054681551812, guid: d0bc2cac1821b024e93f73156d5621af, type: 3}
-  baseCost: 1
-  maxHealth: 100
-  attackDamage: 10
-  attackSpeed: 3
-  attackTime: 0
+  characteristics: {fileID: 11400000, guid: 760b41428bd80144c87bf1b1a046e7b1, type: 2}
 --- !u!114 &4074819830470619821
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,16 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AutoBattler.Data.ScriptableObjects;
 
 namespace AutoBattler.Units
 {
     public class BaseUnit : MonoBehaviour
     {
         [SerializeField] private HealthBar barPrefab;
-        [SerializeField] private float maxHealth = 100;
-        [SerializeField] private float attackDamage = 10;
-        [SerializeField] private float attackSpeed = 3f;
-        [SerializeField] private float attackTime;
+        [SerializeField] private UnitCharacteristics characteristics;
 
         public string Id { get; protected set; }
         public int Cost { get; protected set; } = 1;
@@ -34,10 +32,10 @@ namespace AutoBattler.Units
 
             Id = Guid.NewGuid().ToString("N");
 
-            Health = maxHealth;
+            Health = characteristics.MaxHealth;
 
             healthBar = Instantiate(barPrefab, this.transform);
-            healthBar.Setup(this.transform, maxHealth);
+            healthBar.Setup(this.transform, characteristics.MaxHealth);
         }
 
         private void Update()
@@ -80,7 +78,7 @@ namespace AutoBattler.Units
         private IEnumerator WaitCoroutine()
         {
             isAttacking = true;
-            yield return new WaitForSeconds(attackSpeed);
+            yield return new WaitForSeconds(characteristics.AttackSpeed);
             isAttacking = false;
         }
 
@@ -93,7 +91,7 @@ namespace AutoBattler.Units
         public void Resurrect()
         {
             animator.SetTrigger("idleTrigger");
-            Health = maxHealth;
+            Health = characteristics.MaxHealth;
             healthBar.Show();
             healthBar.UpdateBar(Health);
         }
