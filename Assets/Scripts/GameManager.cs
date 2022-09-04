@@ -1,5 +1,6 @@
 using UnityEngine;
 using AutoBattler.Data.ScriptableObjects;
+using AutoBattler.Data.Players;
 
 public class GameManager : Manager<GameManager>
 {

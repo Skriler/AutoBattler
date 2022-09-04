@@ -1,5 +1,5 @@
 using UnityEngine;
-using AutoBattler.Units;
+using AutoBattler.Data.Units;
 
 namespace AutoBattler.UnitsContainers.Containers
 {

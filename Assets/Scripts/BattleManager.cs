@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using AutoBattler.Units;
+using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Containers;
 using AutoBattler.Data.ScriptableObjects;
 

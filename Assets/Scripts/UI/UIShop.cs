@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
 using AutoBattler.Data.ScriptableObjects;
+using AutoBattler.Data.Players;
 
 namespace AutoBattler.UI
 {

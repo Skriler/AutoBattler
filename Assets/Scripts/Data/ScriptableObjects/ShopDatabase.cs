@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using AutoBattler.Units;
+using AutoBattler.Data.Units;
 
 namespace AutoBattler.Data.ScriptableObjects
 {

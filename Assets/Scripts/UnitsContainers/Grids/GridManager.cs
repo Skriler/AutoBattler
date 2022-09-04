@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using AutoBattler.UnitsContainers.Enums;
 using AutoBattler.UnitsContainers.Containers;
-using AutoBattler.Units;
+using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 
 namespace AutoBattler.UnitsContainers.Grids

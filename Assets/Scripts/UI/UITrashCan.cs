@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using AutoBattler.Units;
+using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 
 namespace AutoBattler.UI
