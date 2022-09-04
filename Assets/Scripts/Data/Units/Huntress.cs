@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AutoBattler.Data.Units
 {
-    class Huntress : BaseUnit
+    public class Huntress : BaseUnit
     {
 
     }

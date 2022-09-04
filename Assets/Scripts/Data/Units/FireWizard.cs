@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AutoBattler.Data.Units
 {
-    class FireWizard : BaseUnit
+    public class FireWizard : BaseUnit
     {
 
     }

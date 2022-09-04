@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AutoBattler.Data.Units
 {
-    class Goblin : BaseUnit
+    public class Goblin : BaseUnit
     {
 
     }

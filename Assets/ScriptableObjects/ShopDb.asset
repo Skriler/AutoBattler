@@ -13,6 +13,38 @@ MonoBehaviour:
   m_Name: ShopDb
   m_EditorClassIdentifier: 
   shopUnits:
+  - prefab: {fileID: 2632153202910365915, guid: b0bff002eff9bc046a200a0e0648a89c, type: 3}
+    sprites:
+    - {fileID: 966441215, guid: 10383abdbe15c2146b6a946d1f9ba9a3, type: 3}
+    - {fileID: 1467976246, guid: 10383abdbe15c2146b6a946d1f9ba9a3, type: 3}
+    - {fileID: 1488115580, guid: 10383abdbe15c2146b6a946d1f9ba9a3, type: 3}
+    - {fileID: -167106901, guid: 10383abdbe15c2146b6a946d1f9ba9a3, type: 3}
+    characteristics: {fileID: 11400000, guid: 07456346a06a5fe4bbbf7a711109ec12, type: 2}
+  - prefab: {fileID: 8374093531091826159, guid: 9db58f13aa1877646978c95a4077b751, type: 3}
+    sprites:
+    - {fileID: 4723107735738678597, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: -7385789195546760866, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: 3234629978573100161, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: 6373048116405451881, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: 7264182050183361747, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: -2834552850196481573, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: 3278449094680734212, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: 3384493420599841878, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: -2331352242086191015, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: -3914248031228685145, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    - {fileID: 7132915409514813599, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
+    characteristics: {fileID: 11400000, guid: 6454bd20e03efc8478c8226162ed58ef, type: 2}
+  - prefab: {fileID: 1848265461344530, guid: e382bac12e4ff25479815a965dc02728, type: 3}
+    sprites:
+    - {fileID: -252024823, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    - {fileID: 1289659360, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    - {fileID: -383360196, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    - {fileID: 1407601609, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    - {fileID: -1442200160, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    - {fileID: 1498389700, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    - {fileID: -2096509315, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    - {fileID: -1145426230, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
+    characteristics: {fileID: 11400000, guid: f4292cc5761ce424db4de35a2ebb0981, type: 2}
   - prefab: {fileID: 9003593576820251052, guid: 56df41792776b5e4eb4a5f95112f6103, type: 3}
     sprites:
     - {fileID: 1749333562, guid: c3d20be621f92d044ba7ce2b01fc3f7f, type: 3}
@@ -44,6 +76,20 @@ MonoBehaviour:
     - {fileID: 5066340549283584134, guid: bb5f76f12f19aff448ed50a38b3c4fdd, type: 3}
     - {fileID: 7784096630628774620, guid: bb5f76f12f19aff448ed50a38b3c4fdd, type: 3}
     characteristics: {fileID: 11400000, guid: e445d6b92e9395b4e910ac7d63d86894, type: 2}
+  - prefab: {fileID: 1738413245807282944, guid: 01dc60d8d84915d49a61557285239935, type: 3}
+    sprites:
+    - {fileID: 4723107735738678597, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: -7385789195546760866, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: 3234629978573100161, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: 6373048116405451881, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: 7264182050183361747, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: -2834552850196481573, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: 3278449094680734212, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: 3384493420599841878, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: -2331352242086191015, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: -3914248031228685145, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    - {fileID: 7132915409514813599, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+    characteristics: {fileID: 11400000, guid: 0917f303b23df6946a7698bb87d2d030, type: 2}
   - prefab: {fileID: 1892099914438007101, guid: 2904324e46bd6c646ae12145b5c39df2, type: 3}
     sprites:
     - {fileID: 4723107735738678597, guid: 21845a84999d38941afb7a1481b892e9, type: 3}
@@ -89,6 +135,37 @@ MonoBehaviour:
     - {fileID: 21300004, guid: 881f4223a9bccbb4d81f8c99c5a88ea1, type: 3}
     - {fileID: 21300006, guid: 881f4223a9bccbb4d81f8c99c5a88ea1, type: 3}
     characteristics: {fileID: 11400000, guid: ccf3e8722829411489a3a8968f24181a, type: 2}
+  - prefab: {fileID: 8775531214802292067, guid: 817065f6effee504588092015e60ad02, type: 3}
+    sprites:
+    - {fileID: 4723107735738678597, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+    - {fileID: -7385789195546760866, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+    - {fileID: 3234629978573100161, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+    - {fileID: 6373048116405451881, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+    - {fileID: 7264182050183361747, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+    - {fileID: -2834552850196481573, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+    - {fileID: 3278449094680734212, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+    - {fileID: 3384493420599841878, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
+    characteristics: {fileID: 11400000, guid: 761b0c64faf06284994eba6f63eb4a86, type: 2}
+  - prefab: {fileID: 8484849594982333516, guid: 83329c412a1468541bd610b2f78a3165, type: 3}
+    sprites:
+    - {fileID: 152136079, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
+    - {fileID: -165412501, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
+    - {fileID: -461029509, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
+    - {fileID: -836237870, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
+    - {fileID: -9210638, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
+    - {fileID: -664616112, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
+    - {fileID: 1889104671, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
+    - {fileID: -1342214980, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
+    characteristics: {fileID: 11400000, guid: 8e71a89c095cc964aa92ba0322a1d99d, type: 2}
+  - prefab: {fileID: 7234212490075698693, guid: e65866f924bc536479d47c3fc1cfcb16, type: 3}
+    sprites:
+    - {fileID: 4723107735738678597, guid: 77ba605bbd83f4448bc8683510c3155e, type: 3}
+    - {fileID: -7385789195546760866, guid: 77ba605bbd83f4448bc8683510c3155e, type: 3}
+    - {fileID: 3234629978573100161, guid: 77ba605bbd83f4448bc8683510c3155e, type: 3}
+    - {fileID: 6373048116405451881, guid: 77ba605bbd83f4448bc8683510c3155e, type: 3}
+    - {fileID: 7264182050183361747, guid: 77ba605bbd83f4448bc8683510c3155e, type: 3}
+    - {fileID: -2834552850196481573, guid: 77ba605bbd83f4448bc8683510c3155e, type: 3}
+    characteristics: {fileID: 11400000, guid: f15185ec700230b419b4cdf512bd16ff, type: 2}
   - prefab: {fileID: 7315566695364362712, guid: e64f8eecb10e2db4a9facbbf16f2cd50, type: 3}
     sprites:
     - {fileID: 4723107735738678597, guid: b1e975ca895ea054799f7d2b9d841dad, type: 3}

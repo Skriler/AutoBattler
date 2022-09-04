@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AutoBattler.Data.Units
 {
-    class Samurai : BaseUnit
+    public class Samurai : BaseUnit
     {
 
     }

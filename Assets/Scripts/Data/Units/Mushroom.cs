@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AutoBattler.Data.Units
 {
-    class Mushroom : BaseUnit
+    public class Mushroom : BaseUnit
     {
 
     }
