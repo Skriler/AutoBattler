@@ -1,6 +1,6 @@
 namespace AutoBattler.Data.Enums
 {
-    public enum UnitRaces
+    public enum UnitRace
     {
         Human,
         Undead,

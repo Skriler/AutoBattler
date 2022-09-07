@@ -4,7 +4,7 @@ using UnityEngine;
 using AutoBattler.Data.ScriptableObjects;
 using AutoBattler.UnitsComponents;
 
-    namespace AutoBattler.Data.Units
+namespace AutoBattler.Data.Units
 {
     public class BaseUnit : MonoBehaviour
     {

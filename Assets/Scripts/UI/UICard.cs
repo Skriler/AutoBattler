@@ -16,9 +16,6 @@ namespace AutoBattler.UI
         [SerializeField] private TextMeshProUGUI textCost;
         [SerializeField] private Image unitImage;
 
-        [Header("Parameters")]
-        [SerializeField] private float swapSpeed = 0.4f;
-
         private ShopDatabase.ShopUnit shopUnit;
         private Sprite[] unitSprites;
         private int currentSpriteIndex = 0;
@@ -45,9 +42,12 @@ namespace AutoBattler.UI
             unitSprites = shopUnit.sprites;
             this.shopUnit = shopUnit;
 
+            int yAngle = shopUnit.isFlipOnX ? 180 : 0;
+            unitImage.transform.rotation = Quaternion.Euler(0, yAngle, 0); 
+
             currentSpriteIndex = 0;
             unitImage.sprite = unitSprites[currentSpriteIndex];
-            InvokeRepeating("SwapSprite", swapSpeed, swapSpeed);
+            InvokeRepeating("SwapSprite", shopUnit.swapSpeed, shopUnit.swapSpeed);
         }
 
         private void SwapSprite()

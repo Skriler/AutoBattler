@@ -167,12 +167,12 @@ TextureImporter:
       name: Attack_0
       rect:
         serializedVersion: 2
-        x: 59
+        x: 8
         y: 50
-        width: 81
-        height: 49
+        width: 132
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -185,15 +185,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_4
+      name: Attack_1
       rect:
         serializedVersion: 2
-        x: 209
+        x: 159
         y: 49
-        width: 80
-        height: 50
+        width: 130
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -206,15 +206,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_5
+      name: Attack_2
       rect:
         serializedVersion: 2
-        x: 359
+        x: 311
         y: 49
-        width: 78
-        height: 50
+        width: 126
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -227,15 +227,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_7
+      name: Attack_3
       rect:
         serializedVersion: 2
-        x: 509
+        x: 463
         y: 49
-        width: 76
-        height: 50
+        width: 122
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -248,15 +248,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_8
+      name: Attack_4
       rect:
         serializedVersion: 2
-        x: 659
+        x: 608
         y: 50
-        width: 81
-        height: 49
+        width: 132
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -269,15 +269,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_12
+      name: Attack_5
       rect:
         serializedVersion: 2
-        x: 809
+        x: 759
         y: 49
-        width: 80
-        height: 50
+        width: 130
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -290,15 +290,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_13
+      name: Attack_6
       rect:
         serializedVersion: 2
-        x: 959
+        x: 911
         y: 49
-        width: 78
-        height: 50
+        width: 126
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -311,15 +311,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack_15
+      name: Attack_7
       rect:
         serializedVersion: 2
-        x: 1109
+        x: 1063
         y: 49
-        width: 76
-        height: 50
+        width: 122
+        height: 58
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -343,33 +343,29 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Attack_11: -1004843899
-      Attack_13: 1844764926
-      Attack_15: 1808323298
-      Attack_5: 221524225039350300
+      Attack_5: -1787953994
       Attack_22: 1888556268
       Attack_24: -837858455
       Attack_21: -1707502882
       Attack_0: -7008412969330441016
       Attack_9: -1978721746
-      Attack_7: 4780903288873104255
-      Attack_12: -1787953994
+      Attack_7: 1808323298
       Attack_14: -1168331531
-      Attack_8: -486698368
-      Attack_17: -1763760920
-      Attack_4: -910092549403018386
       Attack_19: -472288171
+      Attack_17: -1763760920
       Attack_20: -808972829
+      Attack_26: -1884607334
       Attack_25: -146507281
+      Attack_4: -486698368
       Attack_23: -779995191
-      Attack_2: 302641331129538988
-      Attack_1: -7763475090823894447
+      Attack_2: 221524225039350300
+      Attack_1: -910092549403018386
       Attack_16: 1686170493
-      Attack_3: -6329420634031446844
+      Attack_3: 4780903288873104255
       Attack_10: 573895264
       Attack_18: -1323972190
       Attack_27: 1015081751
-      Attack_26: -1884607334
-      Attack_6: 1290532464073988732
+      Attack_6: 1844764926
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -107,12 +107,12 @@ TextureImporter:
       name: Attack1_0
       rect:
         serializedVersion: 2
-        x: 54
-        y: 49
-        width: 75
-        height: 120
-      alignment: 9
-      pivot: {x: 0.6, y: 0.42}
+        x: 0
+        y: 0
+        width: 231
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,12 +128,12 @@ TextureImporter:
       name: Attack1_1
       rect:
         serializedVersion: 2
-        x: 275
-        y: 49
-        width: 75
-        height: 120
-      alignment: 9
-      pivot: {x: 0.72, y: 0.41}
+        x: 231
+        y: 0
+        width: 231
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,12 +149,12 @@ TextureImporter:
       name: Attack1_2
       rect:
         serializedVersion: 2
-        x: 516
-        y: 49
-        width: 75
-        height: 120
-      alignment: 9
-      pivot: {x: 0.64, y: 0.41}
+        x: 462
+        y: 0
+        width: 231
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,12 +170,12 @@ TextureImporter:
       name: Attack1_3
       rect:
         serializedVersion: 2
-        x: 774
-        y: 49
-        width: 93
-        height: 136
-      alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+        x: 693
+        y: 0
+        width: 231
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,12 +191,12 @@ TextureImporter:
       name: Attack1_4
       rect:
         serializedVersion: 2
-        x: 1012
-        y: 49
-        width: 103
-        height: 103
-      alignment: 9
-      pivot: {x: 0.4, y: 0.38}
+        x: 924
+        y: 0
+        width: 231
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: Attack1_5
       rect:
         serializedVersion: 2
-        x: 1243
-        y: 49
-        width: 108
-        height: 108
-      alignment: 9
-      pivot: {x: 0.38, y: 0.37}
+        x: 1155
+        y: 0
+        width: 231
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -233,12 +233,12 @@ TextureImporter:
       name: Attack1_6
       rect:
         serializedVersion: 2
-        x: 1472
-        y: 49
-        width: 116
-        height: 115
-      alignment: 9
-      pivot: {x: 0.28, y: 0.37}
+        x: 1386
+        y: 0
+        width: 231
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -251,22 +251,22 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack1_12
+      name: Attack1_7
       rect:
         serializedVersion: 2
-        x: 1703
-        y: 49
-        width: 125
-        height: 124
-      alignment: 9
-      pivot: {x: 0.26, y: 0.35}
+        x: 1617
+        y: 0
+        width: 231
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 649b96408803e954786d143701b51639
-      internalID: 1807682725
+      spriteID: 2ff4712e6f9081246ba5ce018155e1a7
+      internalID: 1880412651
       vertices: []
       indices: 
       edges: []
@@ -282,21 +282,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Attack1_8: -2020025822
       Attack1_5: 292679386
-      Attack1_14: 838521987
       Attack1_6: -1615915037
       Attack1_7: 1880412651
-      Attack1_13: 1001249934
       Attack1_0: -2099307714
-      Attack1_10: -622221471
       Attack1_3: 573467433
       Attack1_2: -1795254851
       Attack1_4: 1656526848
       Attack1_1: -1294705575
-      Attack1_9: 118085699
-      Attack1_11: -2061496081
-      Attack1_12: 1807682725
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

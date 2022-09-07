@@ -1,6 +1,6 @@
 namespace AutoBattler.Data.Enums
 {
-    public enum StatusEffects
+    public enum DamageType
     {
         Scorched,
         Saturated,

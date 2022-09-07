@@ -215,12 +215,12 @@ TextureImporter:
       name: HeavyBandit_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 210
-        width: 26
-        height: 38
+        x: 4
+        y: 208
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -236,12 +236,12 @@ TextureImporter:
       name: HeavyBandit_1
       rect:
         serializedVersion: 2
-        x: 62
-        y: 210
-        width: 26
-        height: 38
+        x: 52
+        y: 208
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -257,12 +257,12 @@ TextureImporter:
       name: HeavyBandit_2
       rect:
         serializedVersion: 2
-        x: 110
-        y: 210
-        width: 26
-        height: 37
+        x: 100
+        y: 208
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -278,12 +278,12 @@ TextureImporter:
       name: HeavyBandit_3
       rect:
         serializedVersion: 2
-        x: 158
-        y: 210
-        width: 26
-        height: 37
+        x: 148
+        y: 208
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -299,12 +299,12 @@ TextureImporter:
       name: HeavyBandit_4
       rect:
         serializedVersion: 2
-        x: 198
-        y: 210
-        width: 33
-        height: 36
+        x: 196
+        y: 208
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -320,12 +320,12 @@ TextureImporter:
       name: HeavyBandit_5
       rect:
         serializedVersion: 2
-        x: 246
-        y: 210
-        width: 33
-        height: 36
+        x: 244
+        y: 208
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -341,12 +341,12 @@ TextureImporter:
       name: HeavyBandit_6
       rect:
         serializedVersion: 2
-        x: 294
-        y: 210
-        width: 33
-        height: 35
+        x: 292
+        y: 208
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -362,12 +362,12 @@ TextureImporter:
       name: HeavyBandit_7
       rect:
         serializedVersion: 2
-        x: 342
-        y: 210
-        width: 33
-        height: 35
+        x: 340
+        y: 208
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -383,12 +383,12 @@ TextureImporter:
       name: HeavyBandit_8
       rect:
         serializedVersion: 2
-        x: 14
-        y: 162
-        width: 25
-        height: 34
+        x: 4
+        y: 160
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -404,12 +404,12 @@ TextureImporter:
       name: HeavyBandit_9
       rect:
         serializedVersion: 2
-        x: 58
-        y: 163
-        width: 29
-        height: 34
+        x: 52
+        y: 160
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -425,12 +425,12 @@ TextureImporter:
       name: HeavyBandit_10
       rect:
         serializedVersion: 2
-        x: 105
-        y: 162
-        width: 31
-        height: 36
+        x: 100
+        y: 160
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -446,12 +446,12 @@ TextureImporter:
       name: HeavyBandit_11
       rect:
         serializedVersion: 2
-        x: 158
-        y: 161
-        width: 25
-        height: 36
+        x: 148
+        y: 160
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -467,12 +467,12 @@ TextureImporter:
       name: HeavyBandit_12
       rect:
         serializedVersion: 2
-        x: 208
-        y: 162
-        width: 21
-        height: 34
+        x: 196
+        y: 160
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -488,12 +488,12 @@ TextureImporter:
       name: HeavyBandit_13
       rect:
         serializedVersion: 2
-        x: 247
-        y: 164
-        width: 31
-        height: 33
+        x: 244
+        y: 160
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -509,12 +509,12 @@ TextureImporter:
       name: HeavyBandit_14
       rect:
         serializedVersion: 2
-        x: 294
-        y: 162
-        width: 31
-        height: 36
+        x: 292
+        y: 160
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -530,12 +530,12 @@ TextureImporter:
       name: HeavyBandit_15
       rect:
         serializedVersion: 2
-        x: 343
-        y: 162
-        width: 31
-        height: 36
+        x: 340
+        y: 160
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -551,12 +551,12 @@ TextureImporter:
       name: HeavyBandit_16
       rect:
         serializedVersion: 2
-        x: 12
-        y: 114
-        width: 24
-        height: 46
+        x: 4
+        y: 106
+        width: 42
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -572,12 +572,12 @@ TextureImporter:
       name: HeavyBandit_17
       rect:
         serializedVersion: 2
-        x: 59
-        y: 114
-        width: 25
-        height: 45
+        x: 52
+        y: 106
+        width: 42
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -593,12 +593,12 @@ TextureImporter:
       name: HeavyBandit_18
       rect:
         serializedVersion: 2
-        x: 107
-        y: 114
-        width: 25
-        height: 45
+        x: 100
+        y: 106
+        width: 42
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -614,12 +614,12 @@ TextureImporter:
       name: HeavyBandit_19
       rect:
         serializedVersion: 2
-        x: 155
-        y: 114
-        width: 24
-        height: 45
+        x: 148
+        y: 106
+        width: 42
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -636,11 +636,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 114
-        width: 38
-        height: 44
+        y: 106
+        width: 50
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -657,11 +657,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 242
-        y: 114
-        width: 36
-        height: 44
+        y: 106
+        width: 46
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -677,12 +677,12 @@ TextureImporter:
       name: HeavyBandit_22
       rect:
         serializedVersion: 2
-        x: 293
-        y: 114
-        width: 33
-        height: 44
+        x: 292
+        y: 106
+        width: 42
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -698,12 +698,12 @@ TextureImporter:
       name: HeavyBandit_23
       rect:
         serializedVersion: 2
-        x: 350
-        y: 114
-        width: 24
-        height: 44
+        x: 340
+        y: 106
+        width: 42
+        height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -719,12 +719,12 @@ TextureImporter:
       name: HeavyBandit_24
       rect:
         serializedVersion: 2
-        x: 5
-        y: 66
-        width: 40
-        height: 13
+        x: 4
+        y: 64
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -740,12 +740,12 @@ TextureImporter:
       name: HeavyBandit_25
       rect:
         serializedVersion: 2
-        x: 55
-        y: 66
-        width: 37
-        height: 22
+        x: 52
+        y: 64
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -761,12 +761,12 @@ TextureImporter:
       name: HeavyBandit_26
       rect:
         serializedVersion: 2
-        x: 107
-        y: 66
-        width: 27
-        height: 31
+        x: 100
+        y: 64
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -782,12 +782,12 @@ TextureImporter:
       name: HeavyBandit_27
       rect:
         serializedVersion: 2
-        x: 156
-        y: 66
-        width: 26
-        height: 31
+        x: 148
+        y: 64
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -803,12 +803,12 @@ TextureImporter:
       name: HeavyBandit_28
       rect:
         serializedVersion: 2
-        x: 204
-        y: 66
-        width: 26
-        height: 31
+        x: 196
+        y: 64
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -824,12 +824,12 @@ TextureImporter:
       name: HeavyBandit_29
       rect:
         serializedVersion: 2
-        x: 252
-        y: 66
-        width: 26
-        height: 31
+        x: 244
+        y: 64
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -845,12 +845,12 @@ TextureImporter:
       name: HeavyBandit_30
       rect:
         serializedVersion: 2
-        x: 300
-        y: 66
-        width: 26
-        height: 31
+        x: 292
+        y: 64
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -866,12 +866,12 @@ TextureImporter:
       name: HeavyBandit_31
       rect:
         serializedVersion: 2
-        x: 350
-        y: 66
-        width: 23
-        height: 34
+        x: 340
+        y: 64
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -887,12 +887,12 @@ TextureImporter:
       name: HeavyBandit_32
       rect:
         serializedVersion: 2
-        x: 14
-        y: 18
-        width: 26
-        height: 35
+        x: 4
+        y: 16
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -908,12 +908,12 @@ TextureImporter:
       name: HeavyBandit_33
       rect:
         serializedVersion: 2
-        x: 62
-        y: 18
-        width: 26
-        height: 35
+        x: 52
+        y: 16
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -929,12 +929,12 @@ TextureImporter:
       name: HeavyBandit_34
       rect:
         serializedVersion: 2
-        x: 110
-        y: 18
-        width: 24
-        height: 38
+        x: 100
+        y: 16
+        width: 42
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -951,11 +951,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 145
-        y: 18
-        width: 44
-        height: 9
+        y: 16
+        width: 49
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -978,9 +978,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HeavyBandit_25: 21300050
-      HeavyBandit_22: 21300044
+      HeavyBandit_8: 21300016
       HeavyBandit_2: 21300004
+      HeavyBandit_19: 21300038
       HeavyBandit_16: 21300032
       HeavyBandit_1: 21300002
       HeavyBandit_12: 21300024
@@ -1012,8 +1012,8 @@ TextureImporter:
       HeavyBandit_5: 21300010
       HeavyBandit_3: 21300006
       HeavyBandit_30: 21300060
-      HeavyBandit_8: 21300016
-      HeavyBandit_19: 21300038
+      HeavyBandit_22: 21300044
+      HeavyBandit_25: 21300050
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

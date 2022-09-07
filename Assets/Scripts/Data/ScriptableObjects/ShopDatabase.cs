@@ -12,9 +12,14 @@ namespace AutoBattler.Data.ScriptableObjects
         [Serializable]
         public struct ShopUnit
         {
+            [Header("Unit Parameters")]
             public BaseUnit prefab;
-            public Sprite[] sprites;
             public UnitCharacteristics characteristics;
+
+            [Header("Shop Parameters")]
+            public Sprite[] sprites;
+            public float swapSpeed;
+            public bool isFlipOnX;
         }
 
         [SerializeField] private List<ShopUnit> shopUnits;
