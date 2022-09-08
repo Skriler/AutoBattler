@@ -41,15 +41,15 @@ MonoBehaviour:
   - prefab: {fileID: 1848265461344530, guid: e382bac12e4ff25479815a965dc02728, type: 3}
     characteristics: {fileID: 11400000, guid: f4292cc5761ce424db4de35a2ebb0981, type: 2}
     sprites:
-    - {fileID: -252024823, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: 1289659360, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: -383360196, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: 1407601609, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: -1442200160, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: 1498389700, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: -2096509315, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    - {fileID: -1145426230, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
-    swapSpeed: 0.2
+    - {fileID: 1046793900, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
+    - {fileID: 984306815, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
+    - {fileID: -1681616279, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
+    - {fileID: 2012229589, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
+    - {fileID: -1782053945, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
+    - {fileID: -1539789722, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
+    - {fileID: 364030957, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
+    - {fileID: 1480395550, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
+    swapSpeed: 0.08
     isFlipOnX: 1
   - prefab: {fileID: 9003593576820251052, guid: 56df41792776b5e4eb4a5f95112f6103, type: 3}
     characteristics: {fileID: 11400000, guid: bb2c99b8c99da87438ce33b011534ace, type: 2}
@@ -86,7 +86,7 @@ MonoBehaviour:
     - {fileID: -4262185617143388622, guid: bb5f76f12f19aff448ed50a38b3c4fdd, type: 3}
     - {fileID: 5066340549283584134, guid: bb5f76f12f19aff448ed50a38b3c4fdd, type: 3}
     - {fileID: 7784096630628774620, guid: bb5f76f12f19aff448ed50a38b3c4fdd, type: 3}
-    swapSpeed: 0.2
+    swapSpeed: 0.09
     isFlipOnX: 0
   - prefab: {fileID: 1738413245807282944, guid: 01dc60d8d84915d49a61557285239935, type: 3}
     characteristics: {fileID: 11400000, guid: 0917f303b23df6946a7698bb87d2d030, type: 2}
@@ -111,7 +111,7 @@ MonoBehaviour:
     - {fileID: -7385789195546760866, guid: 21845a84999d38941afb7a1481b892e9, type: 3}
     - {fileID: 3234629978573100161, guid: 21845a84999d38941afb7a1481b892e9, type: 3}
     - {fileID: 6373048116405451881, guid: 21845a84999d38941afb7a1481b892e9, type: 3}
-    swapSpeed: 0.2
+    swapSpeed: 0.14
     isFlipOnX: 0
   - prefab: {fileID: 7358428183084925548, guid: 0b9089e262f85f147ac06fa746dbbd1f, type: 3}
     characteristics: {fileID: 11400000, guid: 259a1870b5df4424fb7a6ea88fd27054, type: 2}
@@ -135,7 +135,7 @@ MonoBehaviour:
     - {fileID: -1639796775, guid: 78e1141719314354fb33c07df63525ff, type: 3}
     - {fileID: -1728149277, guid: 78e1141719314354fb33c07df63525ff, type: 3}
     - {fileID: -1714810639, guid: 78e1141719314354fb33c07df63525ff, type: 3}
-    swapSpeed: 0.2
+    swapSpeed: 0.08
     isFlipOnX: 0
   - prefab: {fileID: 8465192854784038228, guid: aa9bae761d074894f897dd5282b9e762, type: 3}
     characteristics: {fileID: 11400000, guid: fc1a2a92463b4d34aba8c57add73aa28, type: 2}
@@ -203,7 +203,7 @@ MonoBehaviour:
     - {fileID: -7385789195546760866, guid: b1e975ca895ea054799f7d2b9d841dad, type: 3}
     - {fileID: 3234629978573100161, guid: b1e975ca895ea054799f7d2b9d841dad, type: 3}
     - {fileID: 6373048116405451881, guid: b1e975ca895ea054799f7d2b9d841dad, type: 3}
-    swapSpeed: 0.2
+    swapSpeed: 0.13
     isFlipOnX: 0
   - prefab: {fileID: 5459603388553350485, guid: 8a3eba4e2deb7cd4daeded16f412c593, type: 3}
     characteristics: {fileID: 11400000, guid: 895265209e968434883b5b6bd4f5a27e, type: 2}
@@ -225,5 +225,5 @@ MonoBehaviour:
     - {fileID: -7385789195546760866, guid: d4cf0a24b75ce6348a53d72b3a4a9ea5, type: 3}
     - {fileID: 3234629978573100161, guid: d4cf0a24b75ce6348a53d72b3a4a9ea5, type: 3}
     - {fileID: 6373048116405451881, guid: d4cf0a24b75ce6348a53d72b3a4a9ea5, type: 3}
-    swapSpeed: 0.2
+    swapSpeed: 0.15
     isFlipOnX: 0

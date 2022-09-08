@@ -155,10 +155,10 @@ TextureImporter:
       name: Take Hit_0
       rect:
         serializedVersion: 2
-        x: 58
-        y: 49
-        width: 33
-        height: 36
+        x: 51
+        y: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,10 +176,10 @@ TextureImporter:
       name: Take Hit_1
       rect:
         serializedVersion: 2
-        x: 208
-        y: 49
-        width: 33
-        height: 36
+        x: 201
+        y: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: Take Hit_3
       rect:
         serializedVersion: 2
-        x: 354
-        y: 49
-        width: 42
-        height: 37
+        x: 501
+        y: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,13 +215,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Take Hit_5
+      name: Take Hit_2
       rect:
         serializedVersion: 2
-        x: 504
-        y: 49
-        width: 39
-        height: 37
+        x: 351
+        y: 44
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7d8ccbfb11f5054f82f195c43516f26
-      internalID: 321894506
+      spriteID: 820c5168abfd2dc4ca8842657774a5f2
+      internalID: -3088938797480143695
       vertices: []
       indices: 
       edges: []
@@ -246,11 +246,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Take Hit_5: 321894506
       Take Hit_2: -3088938797480143695
       Take Hit_1: -889859373511162655
       Take Hit_0: -7500690451134026123
-      Take Hit_4: -1156049772
       Take Hit_3: -9206091644520726168
   spritePackingTag: 
   pSDRemoveMatte: 0

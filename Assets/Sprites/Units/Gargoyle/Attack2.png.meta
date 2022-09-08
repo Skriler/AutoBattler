@@ -167,10 +167,10 @@ TextureImporter:
       name: Attack2_0
       rect:
         serializedVersion: 2
-        x: 812
-        y: 56
-        width: 41
-        height: 45
+        x: 0
+        y: 0
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       name: Attack2_4
       rect:
         serializedVersion: 2
-        x: 57
-        y: 58
-        width: 41
-        height: 31
+        x: 600
+        y: 0
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,10 +209,10 @@ TextureImporter:
       name: Attack2_5
       rect:
         serializedVersion: 2
-        x: 217
-        y: 67
-        width: 24
-        height: 20
+        x: 750
+        y: 0
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,10 +230,10 @@ TextureImporter:
       name: Attack2_6
       rect:
         serializedVersion: 2
-        x: 371
-        y: 70
-        width: 23
-        height: 17
+        x: 900
+        y: 0
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,10 +251,10 @@ TextureImporter:
       name: Attack2_7
       rect:
         serializedVersion: 2
-        x: 524
-        y: 71
-        width: 22
-        height: 16
+        x: 1050
+        y: 0
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -269,13 +269,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack2_8
+      name: Attack2_1
       rect:
         serializedVersion: 2
-        x: 673
-        y: 69
-        width: 19
-        height: 18
+        x: 150
+        y: 0
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -283,20 +283,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddc603c87e19a22408f5d2cbfd660e06
-      internalID: 619675985
+      spriteID: f497f4ddf61b8d8448877cc155f0605b
+      internalID: 8288915215451595207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack2_9
+      name: Attack2_2
       rect:
         serializedVersion: 2
-        x: 968
-        y: 59
-        width: 31
-        height: 38
+        x: 300
+        y: 0
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -304,20 +304,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2986646900a5e364496093323f6589eb
-      internalID: -2111704691
+      spriteID: 10f4e562a1054dd40ab428ff34527cc4
+      internalID: 4668938655123782945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Attack2_12
+      name: Attack2_3
       rect:
         serializedVersion: 2
-        x: 1121
-        y: 56
-        width: 33
-        height: 45
+        x: 450
+        y: 0
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,8 +325,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b20ae5494e2d81f48a04f241bf946250
-      internalID: -160468032
+      spriteID: a4a0038f39c4f604990048991660cd7b
+      internalID: 5683539909772271658
       vertices: []
       indices: 
       edges: []
@@ -344,12 +344,7 @@ TextureImporter:
     nameFileIdTable:
       Attack2_5: -1191510351576865934
       Attack2_6: -8937499057154260928
-      Attack2_11: 1975871056
-      Attack2_10: -2108270187
       Attack2_4: 5764228812365489207
-      Attack2_9: -2111704691
-      Attack2_8: 619675985
-      Attack2_12: -160468032
       Attack2_2: 4668938655123782945
       Attack2_7: 5293088307283036655
       Attack2_1: 8288915215451595207
