@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using AutoBattler.Data.Units;
+using AutoBattler.Data.ScriptableObjects.Databases;
 
 namespace AutoBattler.EventManagers
 {
@@ -12,6 +13,8 @@ namespace AutoBattler.EventManagers
 
         public static UnityAction<BaseUnit> OnUnitChangedPosition;
 
+        public static UnityAction<ShopUnitEntity> OnUnitBought;
+
         public static UnityAction<BaseUnit> OnUnitSold;
 
         public static void SendDraggedUnitChangedPosition(Vector3 position)
@@ -22,6 +25,9 @@ namespace AutoBattler.EventManagers
 
         public static void SendUnitChangedPosition(BaseUnit unit)
             => OnUnitChangedPosition.Invoke(unit);
+
+        public static void SendUnitBought(ShopUnitEntity unit)
+            => OnUnitBought.Invoke(unit);
 
         public static void SendUnitSold(BaseUnit unit)
             => OnUnitSold.Invoke(unit);

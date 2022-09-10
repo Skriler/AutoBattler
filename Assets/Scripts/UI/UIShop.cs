@@ -1,18 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using TMPro;
-using AutoBattler.Data.ScriptableObjects;
+using AutoBattler.EventManagers;
 using AutoBattler.Data.Players;
+using AutoBattler.Data.ScriptableObjects.Databases;
 
 namespace AutoBattler.UI
 {
     public class UIShop : MonoBehaviour
     {
-        [Header("Events")]
-        [SerializeField] private UnityEvent<ShopDatabase.ShopUnit> OnUnitBought;
-
         [Header("UI Elements")]
         [SerializeField] private Button levelUpButton;
         [SerializeField] private TextMeshProUGUI btnShowShopText;
@@ -32,7 +29,7 @@ namespace AutoBattler.UI
             gameObject.SetActive(isOpen);
         }
 
-        public void OnCardClick(UICard card, ShopDatabase.ShopUnit shopUnit)
+        public void OnCardClick(UICard card, ShopUnitEntity shopUnit)
         {
             if (player.Storage.IsFull())
                 return;
@@ -41,7 +38,7 @@ namespace AutoBattler.UI
                 return;
 
             player.SpendGold(shopUnit.characteristics.Cost);
-            OnUnitBought.Invoke(shopUnit);
+            UnitsEventManager.OnUnitBought(shopUnit);
 
             UICardTooltip.Instance.Hide();
             card.gameObject.SetActive(false);
@@ -79,7 +76,7 @@ namespace AutoBattler.UI
 
         private void GenerateUnitCards()
         {
-            List<ShopDatabase.ShopUnit> shopUnits = shopDb.GetUnitsAtTavernTier(player.TavernTier);
+            List<ShopUnitEntity> shopUnits = shopDb.GetUnitsAtTavernTier(player.TavernTier);
             int unitsAmount = shopUnits.Count;
 
             for (int i = 0; i < unitCards.Count; ++i)

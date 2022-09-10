@@ -1,7 +1,7 @@
 using UnityEngine;
 using AutoBattler.Data.Enums;
 
-namespace AutoBattler.Data.ScriptableObjects
+namespace AutoBattler.Data.ScriptableObjects.Characteristics
 {
     [CreateAssetMenu(fileName = "Unit Characteristics", menuName = "Custom/UnitCharacteristics")]
     public class UnitCharacteristics : ScriptableObject

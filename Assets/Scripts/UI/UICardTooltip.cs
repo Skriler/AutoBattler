@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using AutoBattler.Data.ScriptableObjects;
+using AutoBattler.Data.ScriptableObjects.Characteristics;
 
 public class UICardTooltip : Manager<UICardTooltip>
 {

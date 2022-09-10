@@ -15,6 +15,8 @@ MonoBehaviour:
   title: Skeleton
   cost: 2
   tavernTier: 1
+  race: 1
+  specification: 0
   maxHealth: 100
   attackDamage: 10
   attackSpeed: 3

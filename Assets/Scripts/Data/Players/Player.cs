@@ -2,7 +2,8 @@ using UnityEngine;
 using AutoBattler.UnitsContainers.Containers;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
-using AutoBattler.Data.ScriptableObjects;
+using AutoBattler.Data.ScriptableObjects.Characteristics;
+using AutoBattler.Data.Buffs;
 
 namespace AutoBattler.Data.Players
 {
@@ -12,6 +13,7 @@ namespace AutoBattler.Data.Players
 
         public StorageContainer Storage { get; private set; }
         public FieldContainer Field { get; private set; }
+        public BuffContainer Buffs { get; private set; }
         public int Health { get; private set; }
         public int Gold { get; private set; }
         public int TavernTier { get; private set; }
@@ -34,6 +36,7 @@ namespace AutoBattler.Data.Players
 
             Storage = transform.GetComponentInChildren<StorageContainer>();
             Field = transform.GetComponentInChildren<FieldContainer>();
+            Buffs = new BuffContainer();
 
             UIEventManager.SendGoldAmountChanged(Gold);
             UIEventManager.SendHealthAmountChanged(Health);

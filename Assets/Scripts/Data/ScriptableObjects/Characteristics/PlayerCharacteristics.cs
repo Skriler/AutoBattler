@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AutoBattler.Data.ScriptableObjects
+namespace AutoBattler.Data.ScriptableObjects.Characteristics
 {
     [CreateAssetMenu(fileName = "Player Characteristics", menuName = "Custom/PlayerCharacteristics")]
     public class PlayerCharacteristics : ScriptableObject

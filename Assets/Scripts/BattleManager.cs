@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Containers;
-using AutoBattler.Data.ScriptableObjects;
+using AutoBattler.Data.ScriptableObjects.Databases;
 
 public class BattleManager
 {
@@ -46,7 +44,7 @@ public class BattleManager
 
     private void GenerateSecondArmy()
     {
-        List<ShopDatabase.ShopUnit> shopUnits = shopDb.GetUnits();
+        List<ShopUnitEntity> shopUnits = shopDb.GetUnits();
         int shopUnitsAmount = shopUnits.Count;
         int unitsAmount = fieldContainer.GetUnitsAmount();
 

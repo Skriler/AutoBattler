@@ -15,6 +15,8 @@ MonoBehaviour:
   title: Huntress
   cost: 4
   tavernTier: 3
+  race: 2
+  specification: 1
   maxHealth: 100
   attackDamage: 10
   attackSpeed: 3

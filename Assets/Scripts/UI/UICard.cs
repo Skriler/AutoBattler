@@ -2,21 +2,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
-using AutoBattler.Data.ScriptableObjects;
+using AutoBattler.Data.ScriptableObjects.Databases;
 
 namespace AutoBattler.UI
 {
     public class UICard : MonoBehaviour
     {
         [Header("Events")]
-        [SerializeField] private UnityEvent<UICard, ShopDatabase.ShopUnit> OnCardClick;
+        [SerializeField] private UnityEvent<UICard, ShopUnitEntity> OnCardClick;
 
         [Header("UI Elements")]
         [SerializeField] private TextMeshProUGUI textTitle;
         [SerializeField] private TextMeshProUGUI textCost;
         [SerializeField] private Image unitImage;
 
-        private ShopDatabase.ShopUnit shopUnit;
+        private ShopUnitEntity shopUnit;
         private Sprite[] unitSprites;
         private int currentSpriteIndex = 0;
 
@@ -32,7 +32,7 @@ namespace AutoBattler.UI
             UICardTooltip.Instance.Setup(shopUnit.characteristics);
         }
 
-        public void Setup(ShopDatabase.ShopUnit shopUnit)
+        public void Setup(ShopUnitEntity shopUnit)
         {
             if (IsInvoking("SwapSprite"))
                 CancelInvoke("SwapSprite");

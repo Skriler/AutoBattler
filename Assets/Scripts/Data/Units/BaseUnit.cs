@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using AutoBattler.Data.ScriptableObjects;
+using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.UnitsComponents;
 
 namespace AutoBattler.Data.Units

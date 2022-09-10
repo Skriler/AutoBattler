@@ -1,7 +1,8 @@
 using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Grids;
-using AutoBattler.Data.ScriptableObjects;
+using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.EventManagers;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
@@ -11,6 +12,16 @@ namespace AutoBattler.UnitsContainers.Containers
         private GridManager gridManager;
         private BaseUnit[] units;
 
+        private void OnEnable()
+        {
+            UnitsEventManager.OnUnitBought += AddUnit;
+        }
+
+        private void OnDestroy()
+        {
+            UnitsEventManager.OnUnitBought -= AddUnit;
+        }
+
         private void Start()
         {
             unitsContainer = transform.Find("Units").gameObject;
@@ -18,7 +29,7 @@ namespace AutoBattler.UnitsContainers.Containers
             units = new BaseUnit[gridManager.Width];
         }
 
-        public void AddUnit(ShopDatabase.ShopUnit shopUnit)
+        public void AddUnit(ShopUnitEntity shopUnit)
         {
             if (IsFull())
             {

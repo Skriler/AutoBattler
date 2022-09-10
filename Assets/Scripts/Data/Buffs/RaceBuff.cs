@@ -1,12 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 using AutoBattler.Data.Enums;
+using UnityEngine;
 
 namespace AutoBattler.Data.Buffs
 {
+    [Serializable]
     public class RaceBuff : BaseBuff
     {
-        public UnitRace Race { get; private set; }
+        [SerializeField] private UnitRace race;
+
+        public UnitRace Race => race;
     }
 }
