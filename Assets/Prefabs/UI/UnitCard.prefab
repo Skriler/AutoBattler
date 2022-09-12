@@ -341,7 +341,6 @@ MonoBehaviour:
   textTitle: {fileID: 5366996910845016544}
   textCost: {fileID: 5366996911021372995}
   unitImage: {fileID: 7865469563762200095}
-  swapSpeed: 0.05
 --- !u!114 &3322634586157381459
 MonoBehaviour:
   m_ObjectHideFlags: 0

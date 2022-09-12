@@ -5,6 +5,7 @@ using TMPro;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Players;
 using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.UI.Tooltips;
 
 namespace AutoBattler.UI
 {
@@ -40,7 +41,7 @@ namespace AutoBattler.UI
             player.SpendGold(shopUnit.characteristics.Cost);
             UnitsEventManager.OnUnitBought(shopUnit);
 
-            UICardTooltip.Instance.Hide();
+            UIShopUnitTooltip.Instance.Hide();
             card.gameObject.SetActive(false);
         }
 

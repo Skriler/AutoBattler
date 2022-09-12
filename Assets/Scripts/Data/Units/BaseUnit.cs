@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.UnitsComponents;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Data.Units
 {
@@ -12,8 +13,10 @@ namespace AutoBattler.Data.Units
         [SerializeField] private UnitCharacteristics characteristics;
 
         public string Id { get; protected set; }
-        public int Cost { get; protected set; } = 1;
+        public int Cost { get; protected set; }
         public float Health { get; protected set; }
+        public UnitRace Race { get; protected set; }
+        public UnitSpecification Specification { get; protected set; }
 
         protected SpriteRenderer spriteRenderer;
         protected Animator animator;
@@ -32,7 +35,10 @@ namespace AutoBattler.Data.Units
 
             Id = Guid.NewGuid().ToString("N");
 
+            Cost = characteristics.Cost;
             Health = characteristics.MaxHealth;
+            Race = characteristics.Race;
+            Specification = characteristics.Specification;
 
             healthBar = Instantiate(barPrefab, this.transform);
             healthBar.Setup(this.transform, characteristics.MaxHealth);

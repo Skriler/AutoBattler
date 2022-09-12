@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.UI.Tooltips;
 
 namespace AutoBattler.UI
 {
@@ -24,12 +25,12 @@ namespace AutoBattler.UI
 
         public void OnClick() => OnCardClick.Invoke(this, shopUnit);
 
-        public void MouseExit() => UICardTooltip.Instance.Hide();
+        public void MouseExit() => UIShopUnitTooltip.Instance.Hide();
 
         public void MouseOver()
         {
-            UICardTooltip.Instance.Show();
-            UICardTooltip.Instance.Setup(shopUnit.characteristics);
+            UIShopUnitTooltip.Instance.Show();
+            UIShopUnitTooltip.Instance.Setup(shopUnit.characteristics);
         }
 
         public void Setup(ShopUnitEntity shopUnit)

@@ -22,16 +22,16 @@ namespace AutoBattler.UnitsContainers.Grids
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileSprite;
             UnitsEventManager.OnUnitEndDrag += ChangeUnitPosition;
-            UnitsEventManager.OnUnitChangedPosition += DeleteUnit;
-            UnitsEventManager.OnUnitSold += DeleteUnit;
+            UnitsEventManager.OnUnitChangedPosition += RemoveUnit;
+            UnitsEventManager.OnUnitSold += RemoveUnit;
         }
 
         private void OnDestroy()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition -= ChangeTileSprite;
             UnitsEventManager.OnUnitEndDrag -= ChangeUnitPosition;
-            UnitsEventManager.OnUnitChangedPosition -= DeleteUnit;
-            UnitsEventManager.OnUnitSold -= DeleteUnit;
+            UnitsEventManager.OnUnitChangedPosition -= RemoveUnit;
+            UnitsEventManager.OnUnitSold -= RemoveUnit;
         }
 
         private void Start()
@@ -72,12 +72,12 @@ namespace AutoBattler.UnitsContainers.Grids
             return null;
         }
 
-        protected void DeleteUnit(BaseUnit unit)
+        protected void RemoveUnit(BaseUnit unit)
         {
             if (!unitsContainer.Contains(unit))
                 return;
 
-            unitsContainer.DeleteUnit(unit);
+            unitsContainer.RemoveUnit(unit);
         }
 
         private void GenerateGrid()

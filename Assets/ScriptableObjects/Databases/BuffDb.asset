@@ -13,16 +13,46 @@ MonoBehaviour:
   m_Name: BuffDb
   m_EditorClassIdentifier: 
   specificationBuffs:
-  - title: 
-    maxLevel: 0
-    unitPerBuffLevel: 0
-    targetCharacteristic: 0
-    statsAmount: 0
+  - title: Warrior Buff
+    maxLevel: 3
+    unitPerBuffLevel: 3
+    targetCharacteristic: 2
+    statsAmount: 50
     specification: 0
-  raceBuffs:
-  - title: 
-    maxLevel: 0
-    unitPerBuffLevel: 0
+  - title: Archer Buff
+    maxLevel: 2
+    unitPerBuffLevel: 2
+    targetCharacteristic: 1
+    statsAmount: 3
+    specification: 1
+  - title: Mage Buff
+    maxLevel: 2
+    unitPerBuffLevel: 3
     targetCharacteristic: 0
-    statsAmount: 0
+    statsAmount: 40
+    specification: 2
+  raceBuffs:
+  - title: Human Buff
+    maxLevel: 4
+    unitPerBuffLevel: 3
+    targetCharacteristic: 0
+    statsAmount: 30
     race: 0
+  - title: Undead Buff
+    maxLevel: 2
+    unitPerBuffLevel: 3
+    targetCharacteristic: 2
+    statsAmount: 40
+    race: 1
+  - title: Elf Buff
+    maxLevel: 2
+    unitPerBuffLevel: 2
+    targetCharacteristic: 1
+    statsAmount: 2
+    race: 2
+  - title: Creature Buff
+    maxLevel: 3
+    unitPerBuffLevel: 3
+    targetCharacteristic: 0
+    statsAmount: 20
+    race: 3

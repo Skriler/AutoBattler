@@ -1,11 +1,14 @@
 using UnityEngine;
 using AutoBattler.Data.Enums;
-using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.Data.Units;
 
 namespace AutoBattler.Data.Buffs
 {
     public abstract class BaseBuff
     {
+        private static int minLevel = 0;
+        private static int startUnitsAmount = 0;
+
         [SerializeField] protected string title;
         [SerializeField] protected int maxLevel;
         [SerializeField] protected int unitPerBuffLevel;
@@ -18,22 +21,51 @@ namespace AutoBattler.Data.Buffs
         public UnitCharacteristic TargetCharacteristic => targetCharacteristic;
         public float StatsAmount => statsAmount;
 
-        public bool IsActive { get; protected set; }
-        public int CurrentLevel { get; protected set; }
-        public int CurrentUnitsAmount { get; protected set; }
+        public bool IsActive { get; protected set; } = false;
+        public int CurrentLevel { get; protected set; } = minLevel;
+        public int CurrentUnitsAmount { get; protected set; } = startUnitsAmount;
 
-        public void AddUnitsAmount()
+        public abstract bool IsUnitPassCheck(BaseUnit unit);
+
+        public void ResetBuff()
         {
+            CurrentUnitsAmount = 0;
+            CurrentLevel = 0;
+            IsActive = false;
+        }
+
+        public virtual void AddBuff(BaseUnit unit)
+        {
+            if (!IsUnitPassCheck(unit))
+                return;
+
             ++CurrentUnitsAmount;
 
             if (CurrentLevel == MaxLevel)
                 return;
 
-            if (CurrentUnitsAmount < unitPerBuffLevel)
+            if (CurrentUnitsAmount % UnitPerBuffLevel == 0)
+                ++CurrentLevel;
+
+            if (CurrentLevel > minLevel)
+                IsActive = true;
+        }
+
+        public virtual void RemoveBuff(BaseUnit unit)
+        {
+            if (!IsUnitPassCheck(unit))
                 return;
 
-            ++CurrentLevel;
-            CurrentUnitsAmount = 0;
+            if (CurrentUnitsAmount == startUnitsAmount)
+                return;
+
+            if (CurrentUnitsAmount % UnitPerBuffLevel == 0)
+                --CurrentLevel;
+
+            --CurrentUnitsAmount;
+
+            if (CurrentLevel == minLevel)
+                IsActive = false;
         }
     }
 }

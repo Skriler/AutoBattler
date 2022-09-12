@@ -1,6 +1,7 @@
 using UnityEngine;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Units;
+using AutoBattler.EventManagers;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
@@ -27,10 +28,15 @@ namespace AutoBattler.UnitsContainers.Containers
         {
             units[index.x, index.y] = unit;
             unit.transform.SetParent(unitsContainer.transform);
+
+            UnitsEventManager.OnUnitAddedOnField(unit);
         }
 
-        public override void DeleteUnit(BaseUnit unit)
+        public override void RemoveUnit(BaseUnit unit)
         {
+            if (!Contains(unit))
+                return;
+
             for (int i = 0; i < units.GetLength(0); ++i)
             {
                 for (int j = 0; j < units.GetLength(1); ++j)
@@ -39,6 +45,7 @@ namespace AutoBattler.UnitsContainers.Containers
                         continue;
 
                     units[i, j] = null;
+                    UnitsEventManager.OnUnitRemovedFromField(unit);
                     return;
                 }
             }

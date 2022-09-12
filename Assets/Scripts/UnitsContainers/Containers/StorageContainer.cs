@@ -59,7 +59,7 @@ namespace AutoBattler.UnitsContainers.Containers
             unit.transform.SetParent(unitsContainer.transform);
         }
 
-        public override void DeleteUnit(BaseUnit unit)
+        public override void RemoveUnit(BaseUnit unit)
         {
             for (int i = 0; i < units.Length; ++i)
             {

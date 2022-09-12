@@ -17,6 +17,10 @@ namespace AutoBattler.EventManagers
 
         public static UnityAction<BaseUnit> OnUnitSold;
 
+        public static UnityAction<BaseUnit> OnUnitAddedOnField;
+
+        public static UnityAction<BaseUnit> OnUnitRemovedFromField;
+
         public static void SendDraggedUnitChangedPosition(Vector3 position)
             => OnDraggedUnitChangedPosition.Invoke(position);
 
@@ -31,5 +35,11 @@ namespace AutoBattler.EventManagers
 
         public static void SendUnitSold(BaseUnit unit)
             => OnUnitSold.Invoke(unit);
+
+        public static void SendUnitAddedOnField(BaseUnit unit)
+            => OnUnitAddedOnField.Invoke(unit);
+
+        public static void SendUnitRemovedFromField(BaseUnit unit)
+            => OnUnitRemovedFromField.Invoke(unit);
     }
 }

@@ -1,46 +1,58 @@
 ﻿using System.Collections.Generic;
 using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 
 namespace AutoBattler.Data.Buffs
 {
     public class BuffContainer
     {
-        public List<RaceBuff> RaceBuffs;
-        public List<SpecificationBuff> SpecificationBuffs;
+        private List<BaseBuff> allBuffs;
+
+        private BuffDatabase buffDb;
 
         public BuffContainer()
         {
-            UnitsEventManager.OnUnitBought += AddBuffs;
+            UnitsEventManager.OnUnitAddedOnField += AddUnitBuffs;
+            UnitsEventManager.OnUnitRemovedFromField += RemoveUnitBuffs;
 
-            BuffDatabase buffDb = GameManager.Instance.BuffDb;
-
-            SpecificationBuffs = buffDb.GetSpecificationBuffs();
-            RaceBuffs = buffDb.GetRaceBuffs();
+            buffDb = GameManager.Instance.BuffDb;
+            allBuffs = buffDb.GetAllBuffs();
+            ResetBuffs();
         }
 
         ~BuffContainer()
         {
-            UnitsEventManager.OnUnitBought -= AddBuffs;
+            UnitsEventManager.OnUnitAddedOnField -= AddUnitBuffs;
+            UnitsEventManager.OnUnitRemovedFromField -= RemoveUnitBuffs;
         }
 
-        public void AddBuffs(ShopUnitEntity unit)
+        public void ResetBuffs()
         {
-            foreach(SpecificationBuff buff in SpecificationBuffs)
+            foreach (BaseBuff buff in allBuffs)
             {
-                if (buff.Specification != unit.characteristics.Specification)
-                    continue;
+                buff.ResetBuff();
+            }
+        }
 
-                buff.AddUnitsAmount();
+        public void AddUnitBuffs(BaseUnit unit)
+        {
+            foreach (BaseBuff buff in allBuffs)
+            {
+                buff.AddBuff(unit);
             }
 
-            foreach (RaceBuff buff in RaceBuffs)
-            {
-                if (buff.Race != unit.characteristics.Race)
-                    continue;
+            //player.DebugBuffs();
+        }
 
-                buff.AddUnitsAmount();
+        public void RemoveUnitBuffs(BaseUnit unit)
+        {
+            foreach (BaseBuff buff in allBuffs)
+            {
+                buff.RemoveBuff(unit);
             }
+
+            //player.DebugBuffs();
         }
     }
 }

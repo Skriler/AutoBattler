@@ -11,6 +11,15 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
         [SerializeField] private List<SpecificationBuff> specificationBuffs;
         [SerializeField] private List<RaceBuff> raceBuffs;
 
+        public List<BaseBuff> GetAllBuffs()
+        {
+            List<BaseBuff> allBuffs = new List<BaseBuff>();
+            allBuffs.AddRange(specificationBuffs);
+            allBuffs.AddRange(raceBuffs);
+
+            return allBuffs;
+        }
+
         public List<SpecificationBuff> GetSpecificationBuffs()
         {
             return new List<SpecificationBuff>(specificationBuffs);
@@ -19,15 +28,6 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
         public List<RaceBuff> GetRaceBuffs()
         {
             return new List<RaceBuff>(raceBuffs);
-        }
-
-        public List<BaseBuff> GetAllBuffs()
-        {
-            List<BaseBuff> allBuffs = new List<BaseBuff>();
-            allBuffs.AddRange(specificationBuffs);
-            allBuffs.AddRange(raceBuffs);
-
-            return allBuffs;
         }
     }
 }

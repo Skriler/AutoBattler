@@ -30,17 +30,22 @@ namespace AutoBattler.Data.Players
 
         private void Start()
         {
-            Health = characteristics.StartHealth;
-            Gold = characteristics.StartGold;
-            TavernTier = characteristics.StartTavernTier;
-
             Storage = transform.GetComponentInChildren<StorageContainer>();
             Field = transform.GetComponentInChildren<FieldContainer>();
             Buffs = new BuffContainer();
 
+            SetStartPlayerCharacteristics();
+
             UIEventManager.SendGoldAmountChanged(Gold);
             UIEventManager.SendHealthAmountChanged(Health);
             UIEventManager.SendTavernTierChanged(TavernTier);
+        }
+
+        private void SetStartPlayerCharacteristics()
+        {
+            Health = characteristics.StartHealth;
+            Gold = characteristics.StartGold;
+            TavernTier = characteristics.StartTavernTier;
         }
 
         public bool IsEnoughGoldForAction(int actionCost) => Gold >= actionCost;
