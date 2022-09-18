@@ -15,6 +15,8 @@ MonoBehaviour:
   title: Medieval Warrior
   cost: 2
   tavernTier: 1
-  maxHealth: 100
-  attackDamage: 10
-  attackSpeed: 3
+  race: 0
+  specification: 0
+  maxHealth: 170
+  attackDamage: 12.5
+  attackSpeed: 17.2

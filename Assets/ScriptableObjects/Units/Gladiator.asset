@@ -15,6 +15,8 @@ MonoBehaviour:
   title: Gladiator
   cost: 2
   tavernTier: 2
-  maxHealth: 100
-  attackDamage: 10
-  attackSpeed: 3
+  race: 0
+  specification: 0
+  maxHealth: 150
+  attackDamage: 9.9
+  attackSpeed: 12.2

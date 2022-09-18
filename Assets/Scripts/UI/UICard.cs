@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using TMPro;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.UI.Tooltips;
+using AutoBattler.Managers;
 
 namespace AutoBattler.UI
 {
@@ -27,7 +28,7 @@ namespace AutoBattler.UI
 
         public void MouseExit() => UIShopUnitTooltip.Instance.Hide();
 
-        public void MouseOver()
+        public void MouseEnter()
         {
             UIShopUnitTooltip.Instance.Show();
             UIShopUnitTooltip.Instance.Setup(shopUnit.characteristics);

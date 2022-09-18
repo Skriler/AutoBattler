@@ -1,4 +1,4 @@
-namespace AutoBattler.Data.Enums
+﻿namespace AutoBattler.Data.Enums
 {
     public enum UnitSpecification
     {

@@ -126,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6, y: 0.8}
+    oldSize: {x: 0.6857143, y: 0.9142857}
     newSize: {x: 0.31, y: 0.54}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -215,6 +215,38 @@ MonoBehaviour:
         - m_Target: {fileID: 8775531214802292092}
           m_TargetAssemblyTypeName: AutoBattler.UnitsComponents.Draggable, Assembly-CSharp
           m_MethodName: OnEndDrag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8775531214802292067}
+          m_TargetAssemblyTypeName: AutoBattler.Data.Units.BaseUnit, Assembly-CSharp
+          m_MethodName: MouseEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8775531214802292067}
+          m_TargetAssemblyTypeName: AutoBattler.Data.Units.BaseUnit, Assembly-CSharp
+          m_MethodName: MouseExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

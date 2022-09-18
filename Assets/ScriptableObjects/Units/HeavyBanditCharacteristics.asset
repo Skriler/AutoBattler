@@ -18,5 +18,5 @@ MonoBehaviour:
   race: 1
   specification: 0
   maxHealth: 100
-  attackDamage: 10
-  attackSpeed: 3
+  attackDamage: 9.1
+  attackSpeed: 5.5

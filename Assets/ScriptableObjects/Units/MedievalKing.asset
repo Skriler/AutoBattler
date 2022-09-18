@@ -15,6 +15,8 @@ MonoBehaviour:
   title: Medieval King
   cost: 7
   tavernTier: 5
-  maxHealth: 100
-  attackDamage: 10
-  attackSpeed: 3
+  race: 0
+  specification: 0
+  maxHealth: 250
+  attackDamage: 18.6
+  attackSpeed: 9.9

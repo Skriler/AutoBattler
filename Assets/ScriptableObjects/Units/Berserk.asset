@@ -15,6 +15,8 @@ MonoBehaviour:
   title: Berserk
   cost: 6
   tavernTier: 4
-  maxHealth: 100
-  attackDamage: 10
-  attackSpeed: 3
+  race: 0
+  specification: 0
+  maxHealth: 150
+  attackDamage: 25.7
+  attackSpeed: 10.1

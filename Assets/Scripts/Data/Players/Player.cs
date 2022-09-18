@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.UnitsContainers.Containers;
 using AutoBattler.Data.Units;
@@ -10,6 +11,7 @@ namespace AutoBattler.Data.Players
     public class Player : MonoBehaviour
     {
         [SerializeField] private PlayerCharacteristics characteristics;
+        [SerializeField] private List<Buff> buffs;
 
         public StorageContainer Storage { get; private set; }
         public FieldContainer Field { get; private set; }
@@ -32,7 +34,7 @@ namespace AutoBattler.Data.Players
         {
             Storage = transform.GetComponentInChildren<StorageContainer>();
             Field = transform.GetComponentInChildren<FieldContainer>();
-            Buffs = new BuffContainer();
+            Buffs = transform.GetComponentInChildren<BuffContainer>();
 
             SetStartPlayerCharacteristics();
 

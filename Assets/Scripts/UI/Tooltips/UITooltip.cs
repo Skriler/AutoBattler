@@ -2,7 +2,7 @@
 
 namespace AutoBattler.UI.Tooltips
 {
-    public abstract class UITooltip : Manager<UITooltip>
+    public abstract class UITooltip : MonoBehaviour
     {
         [Header("Parameters")]
         [SerializeField] protected Vector2 offset = new Vector2(160, -160);
@@ -29,7 +29,7 @@ namespace AutoBattler.UI.Tooltips
             transform.localPosition = localPoint + offset;
         }
 
-        public abstract void Setup(ScriptableObject data);
+        public abstract void Setup(Object data);
 
         public void Show() => gameObject.SetActive(true);
 

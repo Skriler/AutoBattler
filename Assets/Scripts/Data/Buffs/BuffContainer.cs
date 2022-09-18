@@ -1,27 +1,21 @@
 ﻿using System.Collections.Generic;
-using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.Units;
+using UnityEngine;
 using AutoBattler.EventManagers;
 
 namespace AutoBattler.Data.Buffs
 {
-    public class BuffContainer
+    public class BuffContainer : MonoBehaviour
     {
-        private List<BaseBuff> allBuffs;
+        [SerializeField] private List<Buff> buffs;
 
-        private BuffDatabase buffDb;
-
-        public BuffContainer()
+        private void OnEnable()
         {
             UnitsEventManager.OnUnitAddedOnField += AddUnitBuffs;
             UnitsEventManager.OnUnitRemovedFromField += RemoveUnitBuffs;
-
-            buffDb = GameManager.Instance.BuffDb;
-            allBuffs = buffDb.GetAllBuffs();
-            ResetBuffs();
         }
 
-        ~BuffContainer()
+        private void OnDestroy()
         {
             UnitsEventManager.OnUnitAddedOnField -= AddUnitBuffs;
             UnitsEventManager.OnUnitRemovedFromField -= RemoveUnitBuffs;
@@ -29,30 +23,30 @@ namespace AutoBattler.Data.Buffs
 
         public void ResetBuffs()
         {
-            foreach (BaseBuff buff in allBuffs)
-            {
-                buff.ResetBuff();
-            }
+            foreach (Buff buff in buffs)
+                buff.ResetProgress();
         }
 
         public void AddUnitBuffs(BaseUnit unit)
         {
-            foreach (BaseBuff buff in allBuffs)
+            foreach (Buff buff in buffs)
             {
+                if (!buff.IsUnitPassCheck(unit))
+                    continue;
+
                 buff.AddBuff(unit);
             }
-
-            //player.DebugBuffs();
         }
 
         public void RemoveUnitBuffs(BaseUnit unit)
         {
-            foreach (BaseBuff buff in allBuffs)
+            foreach (Buff buff in buffs)
             {
+                if (!buff.IsUnitPassCheck(unit))
+                    continue;
+
                 buff.RemoveBuff(unit);
             }
-
-            //player.DebugBuffs();
         }
     }
 }

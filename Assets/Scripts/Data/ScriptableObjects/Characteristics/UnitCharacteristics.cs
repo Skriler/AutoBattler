@@ -6,7 +6,7 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
     [CreateAssetMenu(fileName = "Unit Characteristics", menuName = "Custom/UnitCharacteristics")]
     public class UnitCharacteristics : ScriptableObject
     {
-        [Header("Shop Stats")]
+        [Header("Shop Characteristics")]
         [SerializeField] private string title;
         [SerializeField] private int cost;
         [SerializeField] private int tavernTier;
@@ -15,7 +15,7 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         [SerializeField] private UnitRace race;
         [SerializeField] private UnitSpecification specification;
 
-        [Header("Fight Stats")]
+        [Header("Fight Characteristics")]
         [SerializeField] private float maxHealth = 100;
         [SerializeField] private float attackDamage = 10;
         [SerializeField] private float attackSpeed = 3f;

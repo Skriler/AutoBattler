@@ -15,6 +15,8 @@ MonoBehaviour:
   title: Knight
   cost: 3
   tavernTier: 3
-  maxHealth: 100
-  attackDamage: 10
-  attackSpeed: 3
+  race: 0
+  specification: 0
+  maxHealth: 130
+  attackDamage: 12.2
+  attackSpeed: 7.2

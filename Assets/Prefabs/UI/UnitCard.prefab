@@ -360,7 +360,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 5366996910950438776}
           m_TargetAssemblyTypeName: AutoBattler.UI.UICard, Assembly-CSharp
-          m_MethodName: MouseOver
+          m_MethodName: MouseEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

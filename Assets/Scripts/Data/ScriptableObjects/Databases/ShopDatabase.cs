@@ -10,10 +10,7 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
     {
         [SerializeField] private List<ShopUnitEntity> shopUnits;
 
-        public List<ShopUnitEntity> GetUnits()
-        {
-            return shopUnits;
-        }
+        public List<ShopUnitEntity> GetUnits() => shopUnits;
 
         public List<ShopUnitEntity> GetUnitsAtTavernTier(int playerTavernTier)
         {

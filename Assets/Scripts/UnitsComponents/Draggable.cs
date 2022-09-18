@@ -1,6 +1,7 @@
 using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
+using AutoBattler.UI.Tooltips;
 
 namespace AutoBattler.UnitsComponents
 {
@@ -28,6 +29,8 @@ namespace AutoBattler.UnitsComponents
             startPosition = transform.position;
             startSortingOrder = spriteRenderer.sortingOrder;
             spriteRenderer.sortingOrder = dragSortingOrder;
+
+            UIUnitTooltip.Instance.Hide();
         }
 
         public void OnDragging()
@@ -39,6 +42,8 @@ namespace AutoBattler.UnitsComponents
 
             currentPosition += dragOffset;
             transform.position = currentPosition;
+
+            UIUnitTooltip.Instance.Hide();
         }
 
         public void OnEndDrag()

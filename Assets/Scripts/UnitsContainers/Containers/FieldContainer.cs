@@ -2,6 +2,7 @@ using UnityEngine;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
+using AutoBattler.Data.Buffs;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
@@ -11,6 +12,18 @@ namespace AutoBattler.UnitsContainers.Containers
         private GameObject secondArmyUnitsContainer;
         private FieldGridManager gridManager;
         private BaseUnit[,] units;
+
+        private void OnEnable()
+        {
+            BuffsEventManager.OnBuffLevelIncreased += AddBuffEffect;
+            BuffsEventManager.OnBuffLevelDecreased += RemoveBuffEffect;
+        }
+
+        private void OnDestroy()
+        {
+            BuffsEventManager.OnBuffLevelIncreased -= AddBuffEffect;
+            BuffsEventManager.OnBuffLevelDecreased -= RemoveBuffEffect;
+        }
 
         private void Start()
         {
@@ -86,6 +99,19 @@ namespace AutoBattler.UnitsContainers.Containers
             }
 
             return unitsAmount;
+        }
+
+        public void AddBuffEffect(Buff buff)
+        {
+            if (!buff.IsActive())
+                return;
+
+            Debug.Log(buff.Title + " added, level: " + buff.CurrentLevel);
+        }
+
+        public void RemoveBuffEffect(Buff buff)
+        {
+            Debug.Log(buff.Title + " removed, level: " + buff.CurrentLevel);
         }
 
         public void SpawnSecondArmy(BaseUnit[,] army)

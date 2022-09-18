@@ -1,10 +1,11 @@
 using UnityEngine;
 using TMPro;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
+using AutoBattler.Managers;
 
 namespace AutoBattler.UI.Tooltips
 {
-    public class UIShopUnitTooltip : UITooltip
+    public class UIShopUnitTooltip : UITooltipManager<UIShopUnitTooltip>
     {
         [Header("UI Elements")]
         [SerializeField] private TextMeshProUGUI textTitle;
@@ -14,7 +15,7 @@ namespace AutoBattler.UI.Tooltips
         [SerializeField] private TextMeshProUGUI textAttackDamage;
         [SerializeField] private TextMeshProUGUI textAttackSpeed;
 
-        public override void Setup(ScriptableObject data)
+        public override void Setup(Object data)
         {
             if (!(data is UnitCharacteristics))
                 return;
