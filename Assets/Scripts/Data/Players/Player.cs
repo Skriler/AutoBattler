@@ -68,7 +68,7 @@ namespace AutoBattler.Data.Players
 
         public void SellUnit(BaseUnit unit)
         {
-            Gold += unit.Cost;
+            ++Gold;
             UIEventManager.SendGoldAmountChanged(Gold);
         }
 

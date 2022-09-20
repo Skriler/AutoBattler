@@ -17,6 +17,8 @@ namespace AutoBattler.UnitsComponents
         private Vector3 startPosition;
         private int startSortingOrder;
 
+        public bool IsActive { get; set; } = true;
+
         private void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
@@ -26,6 +28,9 @@ namespace AutoBattler.UnitsComponents
 
         public void OnStartDrag()
         {
+            if (!IsActive)
+                return;
+
             startPosition = transform.position;
             startSortingOrder = spriteRenderer.sortingOrder;
             spriteRenderer.sortingOrder = dragSortingOrder;
@@ -35,6 +40,9 @@ namespace AutoBattler.UnitsComponents
 
         public void OnDragging()
         {
+            if (!IsActive)
+                return;
+
             Vector3 currentPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             currentPosition.z = 0;
 
@@ -48,6 +56,9 @@ namespace AutoBattler.UnitsComponents
 
         public void OnEndDrag()
         {
+            if (!IsActive)
+                return;
+
             Vector3 currentPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
             transform.position = startPosition;

@@ -11,33 +11,46 @@ public class BattleManager
     private BaseUnit[,] firstArmy;
     private BaseUnit[,] secondArmy;
 
+    private int ArmyWidth;
+    private int ArmyHeight;
+
     public BattleManager(FieldContainer fieldContainer, ShopDatabase shopDb)
     {
         this.fieldContainer = fieldContainer;
         this.shopDb = shopDb;
 
+        ArmyWidth = fieldContainer.GetArmyWidth();
+        ArmyHeight = fieldContainer.GetArmyHeight();
+
         firstArmy = fieldContainer.GetArmy();
-        secondArmy = new BaseUnit[firstArmy.GetLength(0), firstArmy.GetLength(1)];
+        secondArmy = new BaseUnit[ArmyWidth, ArmyHeight];
 
         GenerateSecondArmy();
-        fieldContainer.SpawnSecondArmy(secondArmy);
+        fieldContainer.SpawnEnemyUnits(secondArmy);
     }
 
-    private void StartBattle()
-    {
-        for (int i = 0; i < firstArmy.GetLength(0); ++i)
-        {
-            for (int j = 0; j < firstArmy.GetLength(1); ++j)
-            {
-                if (firstArmy[i, j] != null)
-                {
-                    firstArmy[i, j].Attack();
-                }
+    public BaseUnit[,] GetSecondArmy() => secondArmy;
 
-                if (secondArmy[i, j] != null)
-                {
-                    secondArmy[i, j].Attack();
-                }
+    public void StartBattle()
+    {
+        for (int i = 0; i < ArmyWidth; ++i)
+        {
+            for (int j = 0; j < ArmyHeight; ++j)
+            {
+                firstArmy[i, j]?.EnterFightMode(secondArmy);
+                secondArmy[i, j]?.EnterFightMode(firstArmy);
+            }
+        }
+    }
+
+    public void EndBattle()
+    {
+        for (int i = 0; i < ArmyWidth; ++i)
+        {
+            for (int j = 0; j < ArmyHeight; ++j)
+            {
+                firstArmy[i, j]?.ExitFightMode();
+                secondArmy[i, j]?.ExitFightMode();
             }
         }
     }
@@ -48,15 +61,34 @@ public class BattleManager
         int shopUnitsAmount = shopUnits.Count;
         int unitsAmount = fieldContainer.GetUnitsAmount();
 
-        for (int i = 0; i < firstArmy.GetLength(0); ++i)
+        for (int i = 0; i < ArmyWidth; ++i)
         {
-            for (int j = 0; j < firstArmy.GetLength(1); ++j)
+            for (int j = 0; j < ArmyHeight; ++j)
             {
-                if (i * firstArmy.GetLength(1) + j >= unitsAmount)
+                if (i * ArmyHeight + j >= unitsAmount)
                     continue;
 
                 secondArmy[i, j] = shopUnits[UnityEngine.Random.Range(0, shopUnitsAmount)].prefab;
             }
         }
+    }
+
+    public bool IsFirstArmyAlive() => fieldContainer.IsAtLeastOneAliveUnit();
+
+    public bool IsSecondArmyAlive()
+    {
+        for (int i = 0; i < secondArmy.GetLength(0); ++i)
+        {
+            for (int j = 0; j < secondArmy.GetLength(1); ++j)
+            {
+                if (secondArmy[i, j] == null)
+                    continue;
+
+                if (secondArmy[i, j].IsAlive())
+                    return true;
+            }
+        }
+
+        return false;
     }
 }

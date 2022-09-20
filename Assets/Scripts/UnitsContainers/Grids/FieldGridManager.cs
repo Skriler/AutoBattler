@@ -12,9 +12,9 @@ namespace AutoBattler.UnitsContainers.Grids
         public int ActiveWidth => activeWidth;
         public int ActiveHeight => activeHeight;
 
-        public void SpawnSecondArmy(BaseUnit[,] army, Transform unitsParent)
+        public void SpawnEnemyUnits(BaseUnit[,] army, Transform enemyUnitsContainer)
         {
-            int freeTileIndex = 0;
+            int firstFreeTileIndex = 0;
 
             for (int i = 0; i < army.GetLength(0); ++i)
             {
@@ -23,17 +23,20 @@ namespace AutoBattler.UnitsContainers.Grids
                     if (army[i, j] == null)
                         continue;
 
-                    Vector3 newUnitPosition = GetEmptyTilePositionForSecondArmy(freeTileIndex);
+                    Vector3 newUnitPosition = GetEmptyTilePositionForSecondArmy(firstFreeTileIndex);
+
                     BaseUnit newUnit = Instantiate(army[i, j], newUnitPosition, Quaternion.identity);
-                    newUnit.transform.SetParent(unitsParent);
+                    newUnit.transform.SetParent(enemyUnitsContainer);
                     newUnit.FlipOnX();
+                    newUnit.ShowHealthBar();
                     army[i, j] = newUnit;
-                    ++freeTileIndex;
+
+                    ++firstFreeTileIndex;
                 }
             }
         }
 
-        private Vector3 GetEmptyTilePositionForSecondArmy(int freeTileIndex)
+        private Vector3 GetEmptyTilePositionForSecondArmy(int firstFreeTileIndex)
         {
             int currentTileIndex = 0;
 
@@ -41,7 +44,7 @@ namespace AutoBattler.UnitsContainers.Grids
             {
                 for (int j = 0; j < tiles.GetLength(1); ++j)
                 {
-                    if (currentTileIndex < freeTileIndex)
+                    if (currentTileIndex < firstFreeTileIndex)
                     {
                         ++currentTileIndex;
                         continue;

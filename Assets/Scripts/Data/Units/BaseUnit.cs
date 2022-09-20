@@ -25,25 +25,30 @@ namespace AutoBattler.Data.Units
 
         protected SpriteRenderer spriteRenderer;
         protected Animator animator;
+        protected Draggable draggable;
         protected HealthBar healthBar;
 
+        protected bool isFightMode = false;
         protected bool isAttacking = false;
+        protected BaseUnit[,] enemyUnits;
+
+        protected abstract void FindTarget(BaseUnit[,] enemyUnits);
+        protected abstract bool HasTargetedEnemy();
+        protected abstract void DealDamageToTargetedEnemy();
+        protected abstract void CheckTargetedEnemy();
 
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-
-        private void Start()
-        {
             animator = GetComponent<Animator>();
+            draggable = GetComponent<Draggable>();
 
             Id = Guid.NewGuid().ToString("N");
-
             SetÑharacteristics();
 
             healthBar = Instantiate(barPrefab, this.transform);
             healthBar.Setup(this.transform, characteristics.MaxHealth);
+            healthBar.Hide();
         }
 
         private void Update()
@@ -54,11 +59,23 @@ namespace AutoBattler.Data.Units
             if (Input.GetKeyDown(KeyCode.K))
                 Attack();
 
-            if (Input.GetKeyDown(KeyCode.F))
-                Death();
-
             if (Input.GetKeyDown(KeyCode.R))
                 Resurrect();
+
+            if (!isFightMode)
+                return;
+
+            CheckTargetedEnemy();
+
+            if (!HasTargetedEnemy())
+            {
+                FindTarget(enemyUnits);
+            }
+
+            if (!isAttacking && HasTargetedEnemy())
+            {
+                Attack();
+            }
         }
 
         public void MouseExit() => UIUnitTooltip.Instance.Hide();
@@ -82,29 +99,36 @@ namespace AutoBattler.Data.Units
             Specification = characteristics.Specification;
         }
 
+        public void HideHealthBar() => healthBar.Hide();
+        public void ShowHealthBar() => healthBar.Show();
+
         public bool IsAlive() => Health > 0;
 
-        public void TakeDamage(int damageAmount)
+        public void TakeDamage(float damageAmount)
         {
+            if (Health == 0)
+                return;
+
             Health -= damageAmount;
+            Health = Health < 0 ? 0 : Health;
+
             healthBar.UpdateBar(Health);
-        }
 
-        protected void FindTarget(BaseUnit[,] units)
-        {
-
+            if (!IsAlive())
+                Death();
         }
 
         public void Attack()
         {
-            if (isAttacking)
+            if (isAttacking || !HasTargetedEnemy())
                 return;
 
+            DealDamageToTargetedEnemy();
             animator.SetTrigger("attackTrigger");
-            StartCoroutine(WaitCoroutine());
+            StartCoroutine(AttackCoroutine());
         }
 
-        private IEnumerator WaitCoroutine()
+        private IEnumerator AttackCoroutine()
         {
             isAttacking = true;
             yield return new WaitForSeconds(characteristics.AttackSpeed);
@@ -128,6 +152,22 @@ namespace AutoBattler.Data.Units
         public void FlipOnX()
         {
             spriteRenderer.flipX = !spriteRenderer.flipX;
+        }
+
+        public void EnterFightMode(BaseUnit[,] enemyUnits)
+        {
+            draggable.IsActive = false;
+            isFightMode = true;
+
+            this.enemyUnits = enemyUnits;
+        }
+
+        public void ExitFightMode()
+        {
+            draggable.IsActive = true;
+            isFightMode = false;
+
+            Resurrect();
         }
     }
 }

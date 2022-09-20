@@ -9,7 +9,8 @@ namespace AutoBattler.UnitsContainers.Containers
     public class FieldContainer : UnitsContainer
     {
         private GameObject unitsContainer;
-        private GameObject secondArmyUnitsContainer;
+        private GameObject enemyUnitsContainer;
+
         private FieldGridManager gridManager;
         private BaseUnit[,] units;
 
@@ -28,12 +29,18 @@ namespace AutoBattler.UnitsContainers.Containers
         private void Start()
         {
             unitsContainer = transform.Find("Units").gameObject;
-            secondArmyUnitsContainer = transform.Find("SecondArmyUnits").gameObject;
+            enemyUnitsContainer = transform.Find("EnemyUnits").gameObject;
+
             gridManager = GetComponent<FieldGridManager>();
+
             units = new BaseUnit[gridManager.ActiveWidth, gridManager.ActiveHeight];
         }
 
         public BaseUnit[,] GetArmy() => units;
+
+        public int GetArmyWidth() => units.GetLength(0);
+
+        public int GetArmyHeight() => units.GetLength(1);
 
         public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;
 
@@ -41,6 +48,7 @@ namespace AutoBattler.UnitsContainers.Containers
         {
             units[index.x, index.y] = unit;
             unit.transform.SetParent(unitsContainer.transform);
+            unit.ShowHealthBar();
 
             UnitsEventManager.OnUnitAddedOnField(unit);
         }
@@ -58,6 +66,8 @@ namespace AutoBattler.UnitsContainers.Containers
                         continue;
 
                     units[i, j] = null;
+
+                    unit.HideHealthBar();
                     UnitsEventManager.OnUnitRemovedFromField(unit);
                     return;
                 }
@@ -76,6 +86,23 @@ namespace AutoBattler.UnitsContainers.Containers
                 for (int j = 0; j < units.GetLength(1); ++j)
                 {
                     if (units[i, j]?.Id == unit.Id)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsAtLeastOneAliveUnit()
+        {
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j] == null)
+                        continue;
+
+                    if (units[i, j].IsAlive())
                         return true;
                 }
             }
@@ -114,9 +141,9 @@ namespace AutoBattler.UnitsContainers.Containers
             Debug.Log(buff.Title + " removed, level: " + buff.CurrentLevel);
         }
 
-        public void SpawnSecondArmy(BaseUnit[,] army)
+        public void SpawnEnemyUnits(BaseUnit[,] army)
         {
-            gridManager.SpawnSecondArmy(army, secondArmyUnitsContainer.transform);
+            gridManager.SpawnEnemyUnits(army, enemyUnitsContainer.transform);
         }
     }
 }
