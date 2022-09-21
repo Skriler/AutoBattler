@@ -10,8 +10,13 @@ namespace AutoBattler.Data.Units
 {
     public abstract class BaseUnit : MonoBehaviour
     {
+        [Header("Components")]
         [SerializeField] private HealthBar barPrefab;
         [SerializeField] protected UnitCharacteristics characteristics;
+
+        [Header("Parameters")]
+        [SerializeField] protected float staminaRegenInterval = 0.05f;
+        [SerializeField] protected float dealDamageInterval = 0.4f;
 
         public string Id { get; protected set; }
         public string Title { get; protected set; }
@@ -20,16 +25,19 @@ namespace AutoBattler.Data.Units
         public float Health { get; protected set; }
         public float AttackDamage { get; protected set; }
         public float AttackSpeed { get; protected set; }
+        public float Stamina { get; protected set; }
         public UnitRace Race { get; protected set; }
         public UnitSpecification Specification { get; protected set; }
 
         protected SpriteRenderer spriteRenderer;
         protected Animator animator;
         protected Draggable draggable;
+
         protected HealthBar healthBar;
+        protected WaitForSeconds staminaRegenTick;
+        protected Coroutine regenStamina;
 
         protected bool isFightMode = false;
-        protected bool isAttacking = false;
         protected BaseUnit[,] enemyUnits;
 
         protected abstract void FindTarget(BaseUnit[,] enemyUnits);
@@ -42,12 +50,13 @@ namespace AutoBattler.Data.Units
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
             draggable = GetComponent<Draggable>();
+            staminaRegenTick = new WaitForSeconds(staminaRegenInterval);
 
             Id = Guid.NewGuid().ToString("N");
             SetÑharacteristics();
 
             healthBar = Instantiate(barPrefab, this.transform);
-            healthBar.Setup(this.transform, characteristics.MaxHealth);
+            healthBar.Setup(this.transform, characteristics.MaxHealth, characteristics.AttackSpeed);
             healthBar.Hide();
         }
 
@@ -62,7 +71,7 @@ namespace AutoBattler.Data.Units
             if (Input.GetKeyDown(KeyCode.R))
                 Resurrect();
 
-            if (!isFightMode)
+            if (!isFightMode || !IsAlive())
                 return;
 
             CheckTargetedEnemy();
@@ -72,7 +81,10 @@ namespace AutoBattler.Data.Units
                 FindTarget(enemyUnits);
             }
 
-            if (!isAttacking && HasTargetedEnemy())
+            if (!HasEnoughStamina() && regenStamina == null)
+                regenStamina = StartCoroutine(RegenStaminaCoroutine());
+
+            if (HasEnoughStamina() && HasTargetedEnemy())
             {
                 Attack();
             }
@@ -94,12 +106,16 @@ namespace AutoBattler.Data.Units
             Health = characteristics.MaxHealth;
             AttackDamage = characteristics.AttackDamage;
             AttackSpeed = characteristics.AttackSpeed;
+            Stamina = 0;
 
             Race = characteristics.Race;
             Specification = characteristics.Specification;
         }
 
+        public bool HasEnoughStamina() => Stamina >= AttackSpeed;
+
         public void HideHealthBar() => healthBar.Hide();
+
         public void ShowHealthBar() => healthBar.Show();
 
         public bool IsAlive() => Health > 0;
@@ -109,10 +125,13 @@ namespace AutoBattler.Data.Units
             if (Health == 0)
                 return;
 
+            damageAmount = (float)Math.Round(damageAmount, 1);
+
             Health -= damageAmount;
             Health = Health < 0 ? 0 : Health;
 
-            healthBar.UpdateBar(Health);
+            healthBar.UpdateHealth(Health);
+            UIUnitTooltip.Instance.Setup(this);
 
             if (!IsAlive())
                 Death();
@@ -120,19 +139,35 @@ namespace AutoBattler.Data.Units
 
         public void Attack()
         {
-            if (isAttacking || !HasTargetedEnemy())
+            if (!HasEnoughStamina() || !HasTargetedEnemy())
                 return;
 
-            DealDamageToTargetedEnemy();
+            Stamina = 0;
             animator.SetTrigger("attackTrigger");
-            StartCoroutine(AttackCoroutine());
+            StartCoroutine(DealDamageCoroutine());
+
+            if (regenStamina != null)
+                StopCoroutine(regenStamina);
+
+            regenStamina = StartCoroutine(RegenStaminaCoroutine());
         }
 
-        private IEnumerator AttackCoroutine()
+        private IEnumerator DealDamageCoroutine()
         {
-            isAttacking = true;
-            yield return new WaitForSeconds(characteristics.AttackSpeed);
-            isAttacking = false;
+            yield return new WaitForSeconds(dealDamageInterval);
+            DealDamageToTargetedEnemy();
+        }
+
+        private IEnumerator RegenStaminaCoroutine()
+        {
+            while (Stamina < AttackSpeed)
+            {
+                Stamina += staminaRegenInterval;
+                healthBar.UpdateStamina(Stamina);
+                yield return staminaRegenTick;
+            }
+
+            regenStamina = null;
         }
 
         public void Death()
@@ -143,10 +178,14 @@ namespace AutoBattler.Data.Units
 
         public void Resurrect()
         {
-            animator.SetTrigger("idleTrigger");
             Health = MaxHealth;
+            Stamina = 0;
+
+            animator.SetTrigger("idleTrigger");
+
             healthBar.Show();
-            healthBar.UpdateBar(Health);
+            healthBar.UpdateHealth(Health);
+            healthBar.UpdateStamina(Stamina);
         }
 
         public void FlipOnX()

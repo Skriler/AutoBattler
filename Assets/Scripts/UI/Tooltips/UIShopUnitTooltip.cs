@@ -23,11 +23,11 @@ namespace AutoBattler.UI.Tooltips
             UnitCharacteristics characteristics = data as UnitCharacteristics;
 
             textTitle.text = characteristics.Title;
-            textCost.text = "Cost: " + characteristics.Cost.ToString();
-            textTavernTier.text = "Tier: " + characteristics.TavernTier.ToString();
-            textHealth.text = "Health: " + characteristics.MaxHealth.ToString();
-            textAttackDamage.text = "Damage: " + characteristics.AttackDamage.ToString();
-            textAttackSpeed.text = "Speed: " + characteristics.AttackSpeed.ToString();
+            textCost.text = "Cost: " + characteristics.Cost;
+            textTavernTier.text = "Tier: " + characteristics.TavernTier;
+            textHealth.text = "Health: " + characteristics.MaxHealth;
+            textAttackDamage.text = "Damage: " + characteristics.AttackDamage;
+            textAttackSpeed.text = "Speed: " + characteristics.AttackSpeed;
         }
     }
 }

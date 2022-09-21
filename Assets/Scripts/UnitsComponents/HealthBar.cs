@@ -5,11 +5,18 @@ namespace AutoBattler.UnitsComponents
 {
     public class HealthBar : MonoBehaviour
     {
+        [Header("Components")]
         [SerializeField] private Transform health;
+        [SerializeField] private Transform lostHealth;
+        [SerializeField] private Transform stamina;
+
+        [Header("Parameters")]
         [SerializeField] private Vector3 offset;
 
         private Transform target;
         private float maxHealthAmount;
+        private float maxStaminaAmount;
+        private float previousHealthAmount;
 
         private void OnEnable()
         {
@@ -24,20 +31,49 @@ namespace AutoBattler.UnitsComponents
         public void Hide() => gameObject.SetActive(false);
         public void Show() => gameObject.SetActive(true);
 
-        public void Setup(Transform target, float maxHealthAmount)
+        public void Setup(Transform target, float maxHealthAmount, float maxStaminaAmount)
         {
-            this.maxHealthAmount = maxHealthAmount;
             this.target = target;
             transform.position = target.position + offset;
+
+            this.maxHealthAmount = maxHealthAmount;
+            previousHealthAmount = maxHealthAmount;
+            this.maxStaminaAmount = maxStaminaAmount;
+
+            UpdateHealth(maxHealthAmount);
+            UpdateStamina(0);
         }
 
-        public void UpdateBar(float healthAmount)
+        public void UpdateHealth(float healthAmount)
         {
             healthAmount = (healthAmount > 0) ? healthAmount : 0;
+            UpdateLostHealth(healthAmount);
+
             float scale = healthAmount / maxHealthAmount;
             Vector3 scaleVector = health.transform.localScale;
             scaleVector.x = scale;
             health.transform.localScale = scaleVector;
+        }
+
+        public void UpdateStamina(float staminaAmount)
+        {
+            staminaAmount = (staminaAmount > maxStaminaAmount) ? maxStaminaAmount : staminaAmount;
+
+            float scale = staminaAmount / maxStaminaAmount;
+            Vector3 scaleVector = stamina.transform.localScale;
+            scaleVector.x = scale;
+            stamina.transform.localScale = scaleVector;
+        }
+
+        private void UpdateLostHealth(float healthAmount)
+        {
+            float scale = previousHealthAmount / maxHealthAmount;
+            Vector3 scaleVector = lostHealth.transform.localScale;
+
+            scaleVector.x = scale;
+            lostHealth.transform.localScale = scaleVector;
+
+            previousHealthAmount = healthAmount;
         }
 
         private void ChangeBarPosition(Vector3 position)

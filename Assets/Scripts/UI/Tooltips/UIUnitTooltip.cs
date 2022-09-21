@@ -21,9 +21,9 @@ namespace AutoBattler.UI.Tooltips
             BaseUnit unit = data as BaseUnit;
 
             textTitle.text = unit.Title;
-            textHealth.text = "Health: " + unit.Health.ToString() + " / " + unit.MaxHealth.ToString();
-            textAttackDamage.text = "Damage: " + unit.AttackDamage.ToString();
-            textAttackSpeed.text = "Speed: " + unit.AttackSpeed.ToString();
+            textHealth.text = "Health: " + unit.Health + " / " + unit.MaxHealth;
+            textAttackDamage.text = "Damage: " + unit.AttackDamage;
+            textAttackSpeed.text = "Speed: " + unit.AttackSpeed;
         }
     }
 }

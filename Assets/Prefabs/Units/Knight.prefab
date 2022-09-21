@@ -149,6 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barPrefab: {fileID: 16294054681551812, guid: d0bc2cac1821b024e93f73156d5621af, type: 3}
   characteristics: {fileID: 11400000, guid: fc1a2a92463b4d34aba8c57add73aa28, type: 2}
+  staminaRegenInterval: 0.05
+  dealDamageInterval: 0.4
 --- !u!114 &2940989068539924669
 MonoBehaviour:
   m_ObjectHideFlags: 0

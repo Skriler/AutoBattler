@@ -25,12 +25,12 @@ namespace AutoBattler.UI.Tooltips
             Buff buff = data as Buff;
 
             textTitle.text = buff.Title;
-            textType.text = buff.Type.ToString();
+            textType.text = "Type: " + buff.Type.ToString();
             textCharacteristic.text = "Characteristic: " + buff.TargetCharacteristic.ToString();
-            textAmount.text = "Amount: " + buff.StatsAmount.ToString();
-            textLevel.text = "Level: " + buff.CurrentLevel.ToString() + " / " + buff.MaxLevel.ToString();
-            textUnitsAmountOnLevel.text = "Units amount on level: " + buff.UnitsAmountOnCurrentLevel.ToString();
-            textUnitPerLevel.text = "Units per level: " + buff.UnitsPerLevel.ToString();
+            textAmount.text = "Amount: " + buff.StatsAmount;
+            textLevel.text = "Level: " + buff.CurrentLevel + " / " + buff.MaxLevel;
+            textUnitsAmountOnLevel.text = "Units amount on level: " + buff.UnitsAmountOnCurrentLevel;
+            textUnitPerLevel.text = "Units per level: " + buff.UnitsPerLevel;
         }
     }
 }

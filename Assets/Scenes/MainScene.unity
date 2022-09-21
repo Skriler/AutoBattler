@@ -3969,6 +3969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1171161683}
   shopDb: {fileID: 11400000, guid: 604c1065a490eb04ca21bdfa9cb7ed18, type: 2}
+  endBattleWaitTime: 3
 --- !u!4 &1137222316
 Transform:
   m_ObjectHideFlags: 0
