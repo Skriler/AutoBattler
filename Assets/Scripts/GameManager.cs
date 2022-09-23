@@ -38,7 +38,7 @@ public class GameManager : Manager<GameManager>
     {
         isFightMode = true;
 
-        battleManager = new BattleManager(player.Field, shopDb);
+        battleManager = new BattleManager(player.Field, player.EnemyField, shopDb);
         battleManager.StartBattle();
     }
 

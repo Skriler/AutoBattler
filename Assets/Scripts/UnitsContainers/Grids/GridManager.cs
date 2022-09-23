@@ -9,8 +9,12 @@ namespace AutoBattler.UnitsContainers.Grids
 {
     public class GridManager : MonoBehaviour
     {
+        [Header("Spawn parameters")]
         [SerializeField] protected Vector2 spawnPosition;
         [SerializeField] protected int width, height;
+        [SerializeField] protected float cellWidthSpacing, cellHeightSpacing;
+
+        [Header("Tile parameters")]
         [SerializeField] protected Tile cellTile;
 
         protected GameObject tilesContainer;
@@ -52,15 +56,11 @@ namespace AutoBattler.UnitsContainers.Grids
 
         protected Tile GetTileAtPosition(Vector3 position, out Vector2Int index)
         {
-            position.x = (float)Math.Round(Convert.ToDouble(position.x));
-            position.y = (float)Math.Round(Convert.ToDouble(position.y));
-            position.z = 0;
-
             for (int i = 0; i < tiles.GetLength(0); ++i)
             {
                 for (int j = 0; j < tiles.GetLength(1); ++j)
                 {
-                    if (tiles[i, j].transform.position != position)
+                    if (!tiles[i, j].IsPositionInTile(position))
                         continue;
 
                     index = new Vector2Int(i, j);
@@ -82,16 +82,27 @@ namespace AutoBattler.UnitsContainers.Grids
 
         private void GenerateGrid()
         {
+            Tile currentTile;
+            Tile spawnedTile;
+            Vector3 tileSpawnPosition;
+
             tiles = new Tile[width, height];
 
             for (int x = 0; x < width; ++x)
             {
                 for (int y = 0; y < height; ++y)
                 {
-                    Tile currentTile = GetCurrentTile(new Vector2Int(x, y));
-                    Vector3 tileSpawnPosition = new Vector3(x + spawnPosition.x, y + spawnPosition.y);
+                    currentTile = GetCurrentTile(new Vector2Int(x, y));
 
-                    Tile spawnedTile = Instantiate(currentTile, tileSpawnPosition, Quaternion.identity);
+                    if (currentTile == null)
+                        continue;
+
+                    tileSpawnPosition = new Vector3(
+                        x + spawnPosition.x + x * cellWidthSpacing, 
+                        y + spawnPosition.y + y * cellHeightSpacing
+                        );
+
+                    spawnedTile = Instantiate(currentTile, tileSpawnPosition, Quaternion.identity);
                     spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.transform.SetParent(tilesContainer.transform);
 

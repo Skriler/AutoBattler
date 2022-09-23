@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Unit
   - UITrashCan
+  - Tile
   layers:
   - Default
   - TransparentFX

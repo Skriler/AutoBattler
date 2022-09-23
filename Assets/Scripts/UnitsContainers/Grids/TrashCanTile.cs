@@ -8,8 +8,6 @@ namespace AutoBattler.UnitsContainers.Grids
 {
     public class TrashCanTile : Tile
     {
-        private Vector3 tilePosition;
-
         private void OnEnable()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileStatus;
@@ -22,43 +20,25 @@ namespace AutoBattler.UnitsContainers.Grids
             UnitsEventManager.OnUnitEndDrag -= SellUnit;
         }
 
-        protected override void Start()
-        {
-            base.Start();
-            tilePosition = transform.position;
-            tilePosition.x = (float)Math.Round(Convert.ToDouble(tilePosition.x));
-            tilePosition.y = (float)Math.Round(Convert.ToDouble(tilePosition.y));
-            tilePosition.z = 0;
-        }
-
-        private void ChangeTileStatus(Vector3 position)
+        private void ChangeTileStatus(Vector3 positon)
         {
             TileStatus currentStatus = TileStatus.Standart;
 
-            if (IsPositionInTile(position))
+            if (IsPositionInTile(positon))
                 currentStatus = TileStatus.Free;
 
             SetTileSprite(currentStatus);
         }
 
-        private void SellUnit(BaseUnit unit, Vector3 position)
+        private void SellUnit(BaseUnit unit, Vector3 positon)
         {
             SetTileSprite(TileStatus.Standart);
 
-            if (!IsPositionInTile(position))
+            if (!IsPositionInTile(positon))
                 return;
 
             Destroy(unit.gameObject);
             UnitsEventManager.OnUnitSold(unit);
-        }
-
-        private bool IsPositionInTile(Vector3 position)
-        {
-            position.x = (float)Math.Round(Convert.ToDouble(position.x));
-            position.y = (float)Math.Round(Convert.ToDouble(position.y));
-            position.z = 0;
-
-            return tilePosition == position;
         }
     }
 }

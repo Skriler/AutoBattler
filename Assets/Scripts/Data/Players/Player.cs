@@ -15,6 +15,7 @@ namespace AutoBattler.Data.Players
 
         public StorageContainer Storage { get; private set; }
         public FieldContainer Field { get; private set; }
+        public FieldContainer EnemyField { get; private set; }
         public BuffContainer Buffs { get; private set; }
         public int Health { get; private set; }
         public int Gold { get; private set; }
@@ -33,7 +34,8 @@ namespace AutoBattler.Data.Players
         private void Start()
         {
             Storage = transform.GetComponentInChildren<StorageContainer>();
-            Field = transform.GetComponentInChildren<FieldContainer>();
+            Field = transform.Find("Field").GetComponent<FieldContainer>();
+            EnemyField = transform.Find("EnemyField").GetComponent<FieldContainer>();
             Buffs = transform.GetComponentInChildren<BuffContainer>();
 
             SetStartPlayerCharacteristics();

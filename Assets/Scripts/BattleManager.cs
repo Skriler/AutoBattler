@@ -6,6 +6,7 @@ using AutoBattler.Data.ScriptableObjects.Databases;
 public class BattleManager
 {
     private FieldContainer fieldContainer;
+    private FieldContainer enemyFieldContainer;
     private ShopDatabase shopDb;
 
     private BaseUnit[,] firstArmy;
@@ -14,19 +15,20 @@ public class BattleManager
     private int ArmyWidth;
     private int ArmyHeight;
 
-    public BattleManager(FieldContainer fieldContainer, ShopDatabase shopDb)
+    public BattleManager(FieldContainer fieldContainer, FieldContainer enemyFieldContainer, ShopDatabase shopDb)
     {
         this.fieldContainer = fieldContainer;
+        this.enemyFieldContainer = enemyFieldContainer;
         this.shopDb = shopDb;
 
-        ArmyWidth = fieldContainer.GetArmyWidth();
-        ArmyHeight = fieldContainer.GetArmyHeight();
-
         firstArmy = fieldContainer.GetArmy();
-        secondArmy = new BaseUnit[ArmyWidth, ArmyHeight];
+        secondArmy = enemyFieldContainer.GetArmy();
+
+        ArmyWidth = firstArmy.GetLength(0);
+        ArmyHeight = firstArmy.GetLength(1);
 
         GenerateSecondArmy();
-        fieldContainer.SpawnEnemyUnits(secondArmy);
+        enemyFieldContainer.SpawnUnits(secondArmy);
     }
 
     public BaseUnit[,] GetSecondArmy() => secondArmy;

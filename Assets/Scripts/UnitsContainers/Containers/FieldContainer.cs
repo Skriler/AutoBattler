@@ -9,7 +9,6 @@ namespace AutoBattler.UnitsContainers.Containers
     public class FieldContainer : UnitsContainer
     {
         private GameObject unitsContainer;
-        private GameObject enemyUnitsContainer;
 
         private FieldGridManager gridManager;
         private BaseUnit[,] units;
@@ -29,11 +28,10 @@ namespace AutoBattler.UnitsContainers.Containers
         private void Start()
         {
             unitsContainer = transform.Find("Units").gameObject;
-            enemyUnitsContainer = transform.Find("EnemyUnits").gameObject;
 
             gridManager = GetComponent<FieldGridManager>();
 
-            units = new BaseUnit[gridManager.ActiveWidth, gridManager.ActiveHeight];
+            units = new BaseUnit[gridManager.Width, gridManager.Height];
         }
 
         public BaseUnit[,] GetArmy() => units;
@@ -141,9 +139,9 @@ namespace AutoBattler.UnitsContainers.Containers
             Debug.Log(buff.Title + " removed, level: " + buff.CurrentLevel);
         }
 
-        public void SpawnEnemyUnits(BaseUnit[,] army)
+        public void SpawnUnits(BaseUnit[,] army)
         {
-            gridManager.SpawnEnemyUnits(army, enemyUnitsContainer.transform);
+            gridManager.SpawnUnits(army, unitsContainer.transform);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using AutoBattler.UnitsContainers.Enums;
 
@@ -9,11 +10,15 @@ namespace AutoBattler.UnitsContainers.Grids
         [SerializeField] protected Sprite occupiedCell;
         [SerializeField] protected Sprite freeCell;
 
-        private SpriteRenderer spriteRenderer;
+        protected SpriteRenderer spriteRenderer;
+        protected Vector3 tilePosition;
+        protected Vector3 tileSize;
 
-        protected virtual void Start()
+        private void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+            tileSize = spriteRenderer.bounds.size;
+            tilePosition = transform.position;
         }
 
         public void SetTileSprite(TileStatus tileStatus)
@@ -26,6 +31,23 @@ namespace AutoBattler.UnitsContainers.Grids
             };
 
             spriteRenderer.sprite = requiredTileSprite;
+        }
+
+        public bool IsPositionInTile(Vector3 position)
+        {
+            if (position.x < tilePosition.x - tileSize.x / 2)
+                return false;
+
+            if (position.x > tilePosition.x + tileSize.x / 2)
+                return false;
+
+            if (position.y < tilePosition.y - tileSize.y / 2)
+                return false;
+
+            if (position.y > tilePosition.y + tileSize.y / 2)
+                return false;
+
+            return true;
         }
     }
 }
