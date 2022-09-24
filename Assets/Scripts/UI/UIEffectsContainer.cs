@@ -10,7 +10,7 @@ namespace AutoBattler.UI
     {
         [SerializeField] private UITakenDamageText takenDamagePrefab;
 
-        private Camera mainCamera;
+        private Camera currentCamera;
 
         private void OnEnable()
         {
@@ -24,16 +24,15 @@ namespace AutoBattler.UI
 
         private void Start()
         {
-            mainCamera = Camera.main;
+            currentCamera = Camera.current;
         }
 
         public void InstantiateTakenDamageText(BaseUnit unit, float healthAmount)
         {
             UITakenDamageText takenDamageText = Instantiate(takenDamagePrefab);
-            takenDamageText.Setup(healthAmount);
 
-            takenDamageText.transform.position = mainCamera.WorldToScreenPoint(unit.transform.position);
             takenDamageText.transform.SetParent(gameObject.transform, false);
+            takenDamageText.Setup(healthAmount, unit.transform.position);
         }
     }
 }

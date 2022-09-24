@@ -15,21 +15,14 @@ namespace AutoBattler.UI
         [Header("Parameters")]
         [SerializeField] private float lifetime = 150f;
         [SerializeField] private float minDistance = 0.1f;
-        [SerializeField] private float maxDistance = 0.3f;
+        [SerializeField] private float maxDistance = 0.7f;
 
         private Vector3 startPosition;
         private Vector3 targetPosition;
-        private float time;
+        private float timer = 0;
 
         private void Start()
         {
-            //Vector3 screenPosition = Camera.current.WorldToScreenPoint(transform.position);
-
-            //float x = screenPosition.x - (Screen.width / 2);
-            //float y = screenPosition.y - (Screen.height / 2);
-            //float scaleFactor = canvas.scaleFactor;
-            //textDamage.rectTransform.anchoredPosition = new Vector2(x, y) / scaleFactor;
-
             startPosition = transform.position;
 
             float distance = Random.Range(minDistance, maxDistance);
@@ -38,18 +31,21 @@ namespace AutoBattler.UI
             StartCoroutine(RemoveTextCoroutine());
         }
 
-        //private void Update()
-        //{
-        //    time = Mathf.Sin(Time.deltaTime / lifetime);
+        private void Update()
+        {
+            timer += Time.deltaTime;
 
-        //    transform.position = Vector3.Lerp(startPosition, targetPosition, time);
-        //    transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, time);
-        //}
+            transform.position = Vector3.Lerp(startPosition, targetPosition, timer / lifetime);
+            transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, timer / lifetime);
+        }
 
-        public void Setup(float damage)
+        public void Setup(float damage, Vector3 position)
         {
             textDamage.text = damage.ToString();
             textDamage.color = startColor;
+            transform.position = RectTransformUtility.WorldToScreenPoint(
+                Camera.current,
+                position);
         }
 
         private IEnumerator RemoveTextCoroutine()
