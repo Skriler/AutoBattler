@@ -1,5 +1,6 @@
 using UnityEngine;
 using AutoBattler.EventManagers;
+using AutoBattler.UI;
 
 namespace AutoBattler.UnitsComponents
 {

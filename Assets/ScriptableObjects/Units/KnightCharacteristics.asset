@@ -19,4 +19,4 @@ MonoBehaviour:
   specification: 0
   maxHealth: 130
   attackDamage: 12.2
-  attackSpeed: 7.2
+  attackSpeed: 4.2

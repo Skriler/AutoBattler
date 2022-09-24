@@ -5,6 +5,7 @@ using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.UnitsComponents;
 using AutoBattler.Data.Enums;
 using AutoBattler.UI.Tooltips;
+using AutoBattler.EventManagers;
 
 namespace AutoBattler.Data.Units
 {
@@ -131,6 +132,8 @@ namespace AutoBattler.Data.Units
             Health = Health < 0 ? 0 : Health;
 
             healthBar.UpdateHealth(Health);
+
+            UnitsEventManager.OnUnitTookDamage(this, damageAmount);
             UIUnitTooltip.Instance.Setup(this);
 
             if (!IsAlive())

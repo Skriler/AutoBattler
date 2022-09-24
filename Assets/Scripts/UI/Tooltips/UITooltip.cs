@@ -8,12 +8,12 @@ namespace AutoBattler.UI.Tooltips
         [SerializeField] protected Vector2 offset = new Vector2(160, -160);
 
         protected RectTransform backgroundRectTransform;
-        protected Camera camera;
+        protected Camera currentCamera;
 
         protected void Start()
         {
             backgroundRectTransform = transform.Find("Background").GetComponent<RectTransform>();
-            camera = Camera.current;
+            currentCamera = Camera.current;
             gameObject.SetActive(false);
         }
 
@@ -23,7 +23,7 @@ namespace AutoBattler.UI.Tooltips
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 transform.parent.GetComponent<RectTransform>(),
                 Input.mousePosition,
-                camera,
+                currentCamera,
                 out localPoint);
 
             transform.localPosition = localPoint + offset;

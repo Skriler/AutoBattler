@@ -304,6 +304,7 @@ MonoBehaviour:
   health: {fileID: 5671039640572367193}
   lostHealth: {fileID: 2080246087}
   stamina: {fileID: 2037561423}
+  takenDamagePrefab: {fileID: 8397956573105394263, guid: 7d82882dbcce15142a6575b7721641fc, type: 3}
   offset: {x: 0.05, y: 0.45, z: 0}
 --- !u!1 &4848569839111119776
 GameObject:

@@ -15,6 +15,8 @@ public class GameManager : Manager<GameManager>
 
     private bool isFightMode = false;
 
+    public bool IsCameraMovementActive { get; private set; } = true;
+
     public ShopDatabase ShopDb => shopDb;
 
     private void Update()
@@ -33,6 +35,10 @@ public class GameManager : Manager<GameManager>
             StartCoroutine(EndBattleCoroutine());
         }
     }
+
+    public void DisableCameraMovement() => IsCameraMovementActive = false;
+
+    public void EnableCameraMovement() => IsCameraMovementActive = true;
 
     public void StartBattle()
     {
@@ -53,6 +59,5 @@ public class GameManager : Manager<GameManager>
         isFightMode = false;
 
         battleManager.EndBattle();
-    }
-        
+    }   
 }
