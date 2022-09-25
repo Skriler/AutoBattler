@@ -3,6 +3,7 @@ using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Buffs;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
@@ -132,6 +133,38 @@ namespace AutoBattler.UnitsContainers.Containers
                 return;
 
             Debug.Log(buff.Title + " added, level: " + buff.CurrentLevel);
+
+            float statsAmount = buff.StatsAmount;
+
+            switch(buff.Type)
+            {
+                case (BuffType.Human):
+
+                    break;
+                case (BuffType.Undead):
+
+                    break;
+                case (BuffType.Elf):
+
+                    break;
+                case (BuffType.Creature):
+
+                    break;
+                case (BuffType.Warrior):
+
+                    break;
+                case (BuffType.Archer):
+
+                    break;
+                case (BuffType.Mage):
+
+                    break;
+            }
+        }
+
+        public void ApplyStat(UnitCharacteristic targetCharacteristic)
+        {
+
         }
 
         public void RemoveBuffEffect(Buff buff)

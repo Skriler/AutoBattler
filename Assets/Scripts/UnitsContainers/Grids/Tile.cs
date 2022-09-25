@@ -4,20 +4,19 @@ using AutoBattler.UnitsContainers.Enums;
 
 namespace AutoBattler.UnitsContainers.Grids
 {
-    public class Tile : MonoBehaviour
+    public class Tile : MonoBehaviour, IClickable
     {
+        [SerializeField] protected SpriteRenderer cellSpriteRenderer;
         [SerializeField] protected Sprite standartCell;
         [SerializeField] protected Sprite occupiedCell;
         [SerializeField] protected Sprite freeCell;
 
-        protected SpriteRenderer spriteRenderer;
         protected Vector3 tilePosition;
         protected Vector3 tileSize;
 
         private void Start()
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            tileSize = spriteRenderer.bounds.size;
+            tileSize = cellSpriteRenderer.bounds.size;
             tilePosition = transform.position;
         }
 
@@ -30,7 +29,7 @@ namespace AutoBattler.UnitsContainers.Grids
                 _ => standartCell,
             };
 
-            spriteRenderer.sprite = requiredTileSprite;
+            cellSpriteRenderer.sprite = requiredTileSprite;
         }
 
         public bool IsPositionInTile(Vector3 position)
@@ -49,5 +48,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
             return true;
         }
+
+        public void Click() { }
     }
 }

@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1a02654f006ba148bae20543dfac2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cellSpriteRenderer: {fileID: 1024661443148458570}
   standartCell: {fileID: 21300000, guid: 247413406ccdb01409fbec01fe057a93, type: 3}
   occupiedCell: {fileID: 21300000, guid: 247413406ccdb01409fbec01fe057a93, type: 3}
   freeCell: {fileID: 21300000, guid: 160993a3ccdb23f4c968c11b82ea3780, type: 3}

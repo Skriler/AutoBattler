@@ -9,7 +9,7 @@ using AutoBattler.EventManagers;
 
 namespace AutoBattler.Data.Units
 {
-    public abstract class BaseUnit : MonoBehaviour
+    public abstract class BaseUnit : MonoBehaviour, IClickable
     {
         [Header("Components")]
         [SerializeField] private HealthBar barPrefab;
@@ -129,7 +129,7 @@ namespace AutoBattler.Data.Units
             damageAmount = (float)Math.Round(damageAmount, 1);
 
             Health -= damageAmount;
-            Health = Health < 0 ? 0 : Health;
+            Health = Health < 0 ? 0 : (float)Math.Round(Health, 1);
 
             healthBar.UpdateHealth(Health);
 
@@ -211,5 +211,7 @@ namespace AutoBattler.Data.Units
 
             Resurrect();
         }
+
+        public void Click() { }
     }
 }

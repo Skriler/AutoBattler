@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AutoBattler.Managers;
 
-public class CameraMovement : MonoBehaviour
+public class CameraMovement : Manager<CameraMovement>
 {
     [Header("Components")]
     [SerializeField] private SpriteRenderer backgroundSpriteRenderer;
@@ -17,8 +18,11 @@ public class CameraMovement : MonoBehaviour
     private float backgroundMinX, backgroundMaxX;
     private float backgroundMinY, backgroundMaxY;
 
-    private void Awake()
+    public bool IsActive { get; set; } = false;
+
+    protected override void Awake()
     {
+        base.Awake();
         CalculateBackgroundParameters();
     }
 
@@ -29,7 +33,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.IsCameraMovementActive)
+        if (!IsActive)
             return;
 
         PanCamera();

@@ -17,4 +17,4 @@ MonoBehaviour:
   targetCharacteristic: 3
   statsAmount: 50
   maxLevel: 3
-  unitsPerLevel: 4
+  unitsPerLevel: 3

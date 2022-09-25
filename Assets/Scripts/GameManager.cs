@@ -15,7 +15,7 @@ public class GameManager : Manager<GameManager>
 
     private bool isFightMode = false;
 
-    public bool IsCameraMovementActive { get; private set; } = true;
+    //public bool IsCameraMovementActive { get; private set; } = true;
 
     public ShopDatabase ShopDb => shopDb;
 
@@ -36,9 +36,9 @@ public class GameManager : Manager<GameManager>
         }
     }
 
-    public void DisableCameraMovement() => IsCameraMovementActive = false;
+    //public void DisableCameraMovement() => IsCameraMovementActive = false;
 
-    public void EnableCameraMovement() => IsCameraMovementActive = true;
+    //public void EnableCameraMovement() => IsCameraMovementActive = true;
 
     public void StartBattle()
     {

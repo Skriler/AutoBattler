@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using AutoBattler.Data.Units;
 using AutoBattler.Data.Enums;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
@@ -11,8 +12,14 @@ namespace AutoBattler.Data.Buffs
     {
         private static int MIN_LEVEL = 0;
         private static int START_UNITS_AMOUNT_ON_LEVEL = 0;
+        private static float MAX_COLOR_VALUE = 255;
 
+        [Header("Components")]
+        [SerializeField] private Image buffImage;
+
+        [Header("Parameters")]
         [SerializeField] private BuffCharacteristics characteristics;
+        [SerializeField] private float minColorValue = 75;
 
         public string Title { get; protected set; }
         public BuffType Type { get; protected set; }
@@ -23,9 +30,14 @@ namespace AutoBattler.Data.Buffs
         public int CurrentLevel { get; protected set; }
         public int UnitsAmountOnCurrentLevel { get; protected set; }
 
+        private float minColor—oefficient;
+
         private void Start()
         {
             Set—haracteristics();
+            
+            minColor—oefficient = minColorValue / MAX_COLOR_VALUE;
+            ChangeBuffImageColor();
         }
 
         public void MouseExit() => UIBuffTooltip.Instance.Hide();
@@ -71,6 +83,7 @@ namespace AutoBattler.Data.Buffs
                 ++CurrentLevel;
                 UnitsAmountOnCurrentLevel = START_UNITS_AMOUNT_ON_LEVEL;
 
+                ChangeBuffImageColor();
                 BuffsEventManager.OnBuffLevelIncreased(this);
             }
         }
@@ -85,6 +98,7 @@ namespace AutoBattler.Data.Buffs
                 --CurrentLevel;
                 UnitsAmountOnCurrentLevel = UnitsPerLevel;
 
+                ChangeBuffImageColor();
                 BuffsEventManager.OnBuffLevelDecreased(this);
             }
 
@@ -95,6 +109,16 @@ namespace AutoBattler.Data.Buffs
         {
             return unit.Race.ToString() == Type.ToString() ||
                 unit.Specification.ToString() == Type.ToString();
+        }
+
+        public void ChangeBuffImageColor()
+        {
+            float level—oefficient = (float)CurrentLevel / MaxLevel;
+
+            float color—oefficient = level—oefficient * (1 - minColor—oefficient);
+            color—oefficient += minColor—oefficient;
+
+            buffImage.color = new Color(color—oefficient, color—oefficient, color—oefficient);
         }
     }
 }

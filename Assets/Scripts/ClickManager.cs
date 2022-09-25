@@ -6,12 +6,12 @@ public class ClickManager : MonoBehaviour
 {
     private Camera mainCamera;
 
-    void Start()
+    private void Start()
     {
         mainCamera = Camera.main;
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {

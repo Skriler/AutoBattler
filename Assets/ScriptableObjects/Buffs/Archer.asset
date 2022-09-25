@@ -15,6 +15,6 @@ MonoBehaviour:
   title: Archer Buff
   type: 6
   targetCharacteristic: 2
-  statsAmount: 3
+  statsAmount: 1.5
   maxLevel: 2
   unitsPerLevel: 2

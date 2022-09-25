@@ -13,9 +13,9 @@ namespace AutoBattler.UI
         [SerializeField] private Color fadedColor;
 
         [Header("Parameters")]
-        [SerializeField] private float lifetime = 150f;
-        [SerializeField] private float minDistance = 0.1f;
-        [SerializeField] private float maxDistance = 0.7f;
+        [SerializeField] private float lifetime = 2.5f;
+        [SerializeField] private float minDistance = -200f;
+        [SerializeField] private float maxDistance = 200f;
 
         private Vector3 startPosition;
         private Vector3 targetPosition;
@@ -43,9 +43,7 @@ namespace AutoBattler.UI
         {
             textDamage.text = damage.ToString();
             textDamage.color = startColor;
-            transform.position = RectTransformUtility.WorldToScreenPoint(
-                Camera.current,
-                position);
+            transform.position = position;
         }
 
         private IEnumerator RemoveTextCoroutine()

@@ -30,9 +30,10 @@ namespace AutoBattler.UI
         public void InstantiateTakenDamageText(BaseUnit unit, float healthAmount)
         {
             UITakenDamageText takenDamageText = Instantiate(takenDamagePrefab);
-
             takenDamageText.transform.SetParent(gameObject.transform, false);
-            takenDamageText.Setup(healthAmount, unit.transform.position);
+
+            Vector3 canvasPosition = RectTransformUtility.WorldToScreenPoint(Camera.current, unit.transform.position);
+            takenDamageText.Setup(healthAmount, canvasPosition);
         }
     }
 }
