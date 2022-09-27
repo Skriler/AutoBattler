@@ -15,6 +15,6 @@ MonoBehaviour:
   title: Warrior Buff
   type: 5
   targetCharacteristic: 3
-  statsAmount: 50
+  addedPointsAmount: 25
   maxLevel: 3
   unitsPerLevel: 3

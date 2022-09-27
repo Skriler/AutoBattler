@@ -27,7 +27,7 @@ namespace AutoBattler.UI.Tooltips
             textTitle.text = buff.Title;
             textType.text = "Type: " + buff.Type.ToString();
             textCharacteristic.text = "Characteristic: " + buff.TargetCharacteristic.ToString();
-            textAmount.text = "Amount: " + buff.StatsAmount;
+            textAmount.text = "Amount: " + buff.AddedPointsAmount;
             textLevel.text = "Level: " + buff.CurrentLevel + " / " + buff.MaxLevel;
             textUnitsAmountOnLevel.text = "Units amount on level: " + buff.UnitsAmountOnCurrentLevel;
             textUnitPerLevel.text = "Units per level: " + buff.UnitsPerLevel;

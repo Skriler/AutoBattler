@@ -11,13 +11,17 @@ namespace AutoBattler.Data.Buffs
 
         private void OnEnable()
         {
+            UnitsEventManager.OnUnitAddedOnField += ApplyBuffsForUnit;
             UnitsEventManager.OnUnitAddedOnField += AddUnitBuffs;
+            UnitsEventManager.OnUnitRemovedFromField += RemoveBuffsFromUnit;
             UnitsEventManager.OnUnitRemovedFromField += RemoveUnitBuffs;
         }
 
         private void OnDestroy()
         {
+            UnitsEventManager.OnUnitAddedOnField -= ApplyBuffsForUnit;
             UnitsEventManager.OnUnitAddedOnField -= AddUnitBuffs;
+            UnitsEventManager.OnUnitRemovedFromField -= RemoveBuffsFromUnit;
             UnitsEventManager.OnUnitRemovedFromField -= RemoveUnitBuffs;
         }
 
@@ -46,6 +50,30 @@ namespace AutoBattler.Data.Buffs
                     continue;
 
                 buff.RemoveBuff(unit);
+            }
+        }
+
+        public void ApplyBuffsForUnit(BaseUnit unit)
+        {
+            foreach (Buff buff in buffs)
+            {
+                if (!buff.IsActive())
+                    continue;
+
+                float addedPointsAmount = buff.AddedPointsAmount * buff.CurrentLevel;
+                unit.ApplyCharacteristicBonus(buff.TargetCharacteristic, addedPointsAmount);
+            }
+        }
+
+        public void RemoveBuffsFromUnit(BaseUnit unit)
+        {
+            foreach (Buff buff in buffs)
+            {
+                if (!buff.IsActive())
+                    continue;
+
+                float removedPointsAmount = -buff.AddedPointsAmount * buff.CurrentLevel;
+                unit.ApplyCharacteristicBonus(buff.TargetCharacteristic, removedPointsAmount);
             }
         }
     }

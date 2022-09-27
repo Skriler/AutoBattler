@@ -15,6 +15,6 @@ MonoBehaviour:
   title: Creature Buff
   type: 4
   targetCharacteristic: 1
-  statsAmount: 20
+  addedPointsAmount: 10.3
   maxLevel: 3
   unitsPerLevel: 3

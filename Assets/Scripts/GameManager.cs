@@ -7,8 +7,11 @@ using System.Collections;
 
 public class GameManager : Manager<GameManager>
 {
+    [Header("Components")]
     [SerializeField] private Player player;
     [SerializeField] private ShopDatabase shopDb;
+
+    [Header("Parameters")]
     [SerializeField] private float endBattleWaitTime = 3;
 
     private BattleManager battleManager;

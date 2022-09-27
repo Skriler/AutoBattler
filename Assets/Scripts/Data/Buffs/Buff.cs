@@ -26,7 +26,7 @@ namespace AutoBattler.Data.Buffs
         public int MaxLevel { get; protected set; }
         public int UnitsPerLevel { get; protected set; }
         public UnitCharacteristic TargetCharacteristic { get; protected set; }
-        public float StatsAmount { get; protected set; }
+        public float AddedPointsAmount { get; protected set; }
         public int CurrentLevel { get; protected set; }
         public int UnitsAmountOnCurrentLevel { get; protected set; }
 
@@ -55,7 +55,7 @@ namespace AutoBattler.Data.Buffs
             MaxLevel = characteristics.MaxLevel;
             UnitsPerLevel = characteristics.UnitsPerLevel;
             TargetCharacteristic = characteristics.TargetCharacteristic;
-            StatsAmount = characteristics.StatsAmount;
+            AddedPointsAmount = characteristics.AddedPointsAmount;
 
             ResetProgress();
         }

@@ -140,6 +140,26 @@ namespace AutoBattler.Data.Units
                 Death();
         }
 
+        public void ApplyCharacteristicBonus(UnitCharacteristic characteristic, float addedPointsAmount)
+        {
+            switch (characteristic)
+            {
+                case (UnitCharacteristic.AttackDamage):
+                    AttackDamage += addedPointsAmount;
+                    AttackDamage = (float)Math.Round(AttackDamage, 1);
+                    break;
+                case (UnitCharacteristic.AttackSpeed):
+                    AttackSpeed -= addedPointsAmount;
+                    AttackSpeed = (float)Math.Round(AttackSpeed, 1);
+                    break;
+                case (UnitCharacteristic.Health):
+                    MaxHealth += addedPointsAmount;
+                    MaxHealth = (float)Math.Round(MaxHealth, 1);
+                    Health = MaxHealth;
+                    break;
+            }
+        }
+
         public void Attack()
         {
             if (!HasEnoughStamina() || !HasTargetedEnemy())

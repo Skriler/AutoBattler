@@ -13,7 +13,6 @@ namespace AutoBattler.UI
     {
         [Header("UI Elements")]
         [SerializeField] private Button levelUpButton;
-        [SerializeField] private TextMeshProUGUI btnShowShopText;
 
         [Header("Data")]
         [SerializeField] private List<UICard> unitCards;
@@ -45,7 +44,7 @@ namespace AutoBattler.UI
             card.gameObject.SetActive(false);
         }
 
-        public void OnRefreshClick()
+        public void RefreshShop()
         {
             if (!player.IsEnoughGoldForAction(rerollCost))
                 return;
@@ -55,8 +54,7 @@ namespace AutoBattler.UI
             GenerateUnitCards();
         }
 
-
-        public void OnLevelUpClick()
+        public void LevelUp()
         {
             player.LevelUpTavernTier();
 
@@ -64,15 +62,10 @@ namespace AutoBattler.UI
                 levelUpButton.gameObject.SetActive(false);
         }
 
-        public void OnShowShopClick()
+        public void ShowShop()
         {
             isOpen = !isOpen;
             gameObject.SetActive(isOpen);
-
-            if (isOpen)
-                btnShowShopText.text = "Close Shop";
-            else
-                btnShowShopText.text = "Open Shop";
         }
 
         private void GenerateUnitCards()

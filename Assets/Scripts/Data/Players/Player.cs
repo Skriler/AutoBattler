@@ -71,6 +71,8 @@ namespace AutoBattler.Data.Players
         public void SellUnit(BaseUnit unit)
         {
             ++Gold;
+            Gold = Gold > characteristics.MaxGold ? characteristics.MaxGold : Gold;
+
             UIEventManager.SendGoldAmountChanged(Gold);
         }
 
