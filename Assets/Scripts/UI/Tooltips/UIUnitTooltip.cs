@@ -13,17 +13,19 @@ namespace AutoBattler.UI.Tooltips
         [SerializeField] private TextMeshProUGUI textAttackDamage;
         [SerializeField] private TextMeshProUGUI textAttackSpeed;
 
+        public BaseUnit CurrentUnit { get; private set; }
+
         public override void Setup(Object data)
         {
             if (!(data is BaseUnit))
                 return;
 
-            BaseUnit unit = data as BaseUnit;
+            CurrentUnit = data as BaseUnit;
 
-            textTitle.text = unit.Title;
-            textHealth.text = "Health: " + unit.Health + " / " + unit.MaxHealth;
-            textAttackDamage.text = "Damage: " + unit.AttackDamage;
-            textAttackSpeed.text = "Speed: " + unit.AttackSpeed;
+            textTitle.text = CurrentUnit.Title;
+            textHealth.text = "Health: " + CurrentUnit.Health + " / " + CurrentUnit.MaxHealth;
+            textAttackDamage.text = "Damage: " + CurrentUnit.AttackDamage;
+            textAttackSpeed.text = "Speed: " + CurrentUnit.AttackSpeed;
         }
     }
 }

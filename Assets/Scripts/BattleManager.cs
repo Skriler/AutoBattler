@@ -5,33 +5,33 @@ using AutoBattler.Data.ScriptableObjects.Databases;
 
 public class BattleManager
 {
-    private FieldContainer fieldContainer;
-    private FieldContainer enemyFieldContainer;
+    private PlayerFieldContainer playerFieldContainer;
+    private EnemyFieldContainer enemyFieldContainer;
     private ShopDatabase shopDb;
 
-    private BaseUnit[,] firstArmy;
-    private BaseUnit[,] secondArmy;
+    private BaseUnit[,] playerArmy;
+    private BaseUnit[,] enemyArmy;
 
     private int ArmyWidth;
     private int ArmyHeight;
 
-    public BattleManager(FieldContainer fieldContainer, FieldContainer enemyFieldContainer, ShopDatabase shopDb)
+    public BattleManager(PlayerFieldContainer playerFieldContainer, EnemyFieldContainer enemyFieldContainer, ShopDatabase shopDb)
     {
-        this.fieldContainer = fieldContainer;
+        this.playerFieldContainer = playerFieldContainer;
         this.enemyFieldContainer = enemyFieldContainer;
         this.shopDb = shopDb;
 
-        firstArmy = fieldContainer.GetArmy();
-        secondArmy = enemyFieldContainer.GetArmy();
+        playerArmy = playerFieldContainer.GetArmy();
+        enemyArmy = enemyFieldContainer.GetArmy();
 
-        ArmyWidth = firstArmy.GetLength(0);
-        ArmyHeight = firstArmy.GetLength(1);
+        ArmyWidth = playerArmy.GetLength(0);
+        ArmyHeight = enemyArmy.GetLength(1);
 
         GenerateSecondArmy();
-        enemyFieldContainer.SpawnUnits(secondArmy);
+        enemyFieldContainer.SpawnUnits(enemyArmy);
     }
 
-    public BaseUnit[,] GetSecondArmy() => secondArmy;
+    public BaseUnit[,] GetSecondArmy() => enemyArmy;
 
     public void StartBattle()
     {
@@ -39,8 +39,8 @@ public class BattleManager
         {
             for (int j = 0; j < ArmyHeight; ++j)
             {
-                firstArmy[i, j]?.EnterFightMode(secondArmy);
-                secondArmy[i, j]?.EnterFightMode(firstArmy);
+                playerArmy[i, j]?.EnterFightMode(enemyArmy);
+                enemyArmy[i, j]?.EnterFightMode(playerArmy);
             }
         }
     }
@@ -51,17 +51,19 @@ public class BattleManager
         {
             for (int j = 0; j < ArmyHeight; ++j)
             {
-                firstArmy[i, j]?.ExitFightMode();
-                secondArmy[i, j]?.ExitFightMode();
+                playerArmy[i, j]?.ExitFightMode();
+                enemyArmy[i, j]?.ExitFightMode();
             }
         }
+
+        enemyFieldContainer.ClearField();
     }
 
     private void GenerateSecondArmy()
     {
         List<ShopUnitEntity> shopUnits = shopDb.GetUnits();
         int shopUnitsAmount = shopUnits.Count;
-        int unitsAmount = fieldContainer.GetUnitsAmount();
+        int unitsAmount = playerFieldContainer.GetUnitsAmount();
 
         for (int i = 0; i < ArmyWidth; ++i)
         {
@@ -70,23 +72,23 @@ public class BattleManager
                 if (i * ArmyHeight + j >= unitsAmount)
                     continue;
 
-                secondArmy[i, j] = shopUnits[UnityEngine.Random.Range(0, shopUnitsAmount)].prefab;
+                enemyArmy[i, j] = shopUnits[UnityEngine.Random.Range(0, shopUnitsAmount)].prefab;
             }
         }
     }
 
-    public bool IsFirstArmyAlive() => fieldContainer.IsAtLeastOneAliveUnit();
+    public bool IsFirstArmyAlive() => playerFieldContainer.IsAtLeastOneAliveUnit();
 
     public bool IsSecondArmyAlive()
     {
-        for (int i = 0; i < secondArmy.GetLength(0); ++i)
+        for (int i = 0; i < enemyArmy.GetLength(0); ++i)
         {
-            for (int j = 0; j < secondArmy.GetLength(1); ++j)
+            for (int j = 0; j < enemyArmy.GetLength(1); ++j)
             {
-                if (secondArmy[i, j] == null)
+                if (enemyArmy[i, j] == null)
                     continue;
 
-                if (secondArmy[i, j].IsAlive())
+                if (enemyArmy[i, j].IsAlive())
                     return true;
             }
         }

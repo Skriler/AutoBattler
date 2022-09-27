@@ -134,7 +134,9 @@ namespace AutoBattler.Data.Units
             healthBar.UpdateHealth(Health);
 
             UnitsEventManager.OnUnitTookDamage(this, damageAmount);
-            UIUnitTooltip.Instance.Setup(this);
+
+            if (UIUnitTooltip.Instance.CurrentUnit == this)
+                UIUnitTooltip.Instance.Setup(this);
 
             if (!IsAlive())
                 Death();
@@ -158,6 +160,8 @@ namespace AutoBattler.Data.Units
                     Health = MaxHealth;
                     break;
             }
+            
+            healthBar.Setup(this.transform, MaxHealth, AttackSpeed);
         }
 
         public void Attack()

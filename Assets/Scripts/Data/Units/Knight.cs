@@ -26,6 +26,9 @@ namespace AutoBattler.Data.Units
 
         protected override void DealDamageToTargetedEnemy()
         {
+            if (currentTarget == null)
+                return;
+
             float damage = AttackDamage;
 
             currentTarget.TakeDamage(damage);

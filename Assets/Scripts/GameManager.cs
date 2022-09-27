@@ -16,7 +16,7 @@ public class GameManager : Manager<GameManager>
 
     private BattleManager battleManager;
 
-    private bool isFightMode = false;
+    public bool IsFightMode { get; private set; } = false;
 
     //public bool IsCameraMovementActive { get; private set; } = true;
 
@@ -24,17 +24,19 @@ public class GameManager : Manager<GameManager>
 
     private void Update()
     {
-        if (!isFightMode)
+        if (!IsFightMode)
             return;
 
         if (!battleManager.IsFirstArmyAlive())
         {
             Debug.Log("Player lost!");
+            IsFightMode = false;
             StartCoroutine(EndBattleCoroutine());
         }
         else if (!battleManager.IsSecondArmyAlive())
         {
             Debug.Log("Player won!");
+            IsFightMode = false;
             StartCoroutine(EndBattleCoroutine());
         }
     }
@@ -45,7 +47,7 @@ public class GameManager : Manager<GameManager>
 
     public void StartBattle()
     {
-        isFightMode = true;
+        IsFightMode = true;
 
         battleManager = new BattleManager(player.Field, player.EnemyField, shopDb);
         battleManager.StartBattle();
@@ -59,8 +61,6 @@ public class GameManager : Manager<GameManager>
 
     public void EndBattle()
     {
-        isFightMode = false;
-
         battleManager.EndBattle();
     }   
 }

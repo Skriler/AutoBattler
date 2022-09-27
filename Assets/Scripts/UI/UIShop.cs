@@ -20,13 +20,14 @@ namespace AutoBattler.UI
         [SerializeField] private Player player;
 
         private ShopDatabase shopDb;
-        private bool isOpen;
+
+        public bool IsOpen { get; private set; }
 
         private void Start()
         {
             shopDb = GameManager.Instance.ShopDb;
             GenerateUnitCards();
-            gameObject.SetActive(isOpen);
+            gameObject.SetActive(IsOpen);
         }
 
         public void OnCardClick(UICard card, ShopUnitEntity shopUnit)
@@ -64,8 +65,8 @@ namespace AutoBattler.UI
 
         public void ShowShop()
         {
-            isOpen = !isOpen;
-            gameObject.SetActive(isOpen);
+            IsOpen = !IsOpen;
+            gameObject.SetActive(IsOpen);
         }
 
         private void GenerateUnitCards()

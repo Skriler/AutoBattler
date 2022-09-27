@@ -2162,27 +2162,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1354466807}
-  - component: {fileID: 1354466806}
-  - component: {fileID: 1354466808}
+  - component: {fileID: 1354466809}
+  - component: {fileID: 1354466810}
   m_Layer: 0
-  m_Name: Field
+  m_Name: PlayerField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1354466806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354466805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 525b841a80b26454594bbc4e7b883d1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1354466807
 Transform:
   m_ObjectHideFlags: 0
@@ -2200,7 +2188,7 @@ Transform:
   m_Father: {fileID: 1171161684}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1354466808
+--- !u!114 &1354466809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2209,15 +2197,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1354466805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 660422f16823317469fd4715464ee17b, type: 3}
+  m_Script: {fileID: 11500000, guid: 34889a4856715d945a998cc4bd8a5fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {x: -2, y: -0.5}
+--- !u!114 &1354466810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354466805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097852f1f2ddf104f8ffa3d6c0f41e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPosition: {x: -4, y: -0.5}
   width: 2
   height: 5
   cellWidthSpacing: 0.3
   cellHeightSpacing: 0.2
-  cellTile: {fileID: 2509428545182182855, guid: 9cea67fdf8c21ca4e9ecf56936a69b26, type: 3}
+  cellTile: {fileID: 6130125328861552170, guid: a2d7794a596806b4dbe2bb3d81814f9a, type: 3}
   activeWidth: 2
   activeHeight: 5
   activeCellTile: {fileID: 2509428545182182855, guid: 9cea67fdf8c21ca4e9ecf56936a69b26, type: 3}
@@ -3664,7 +3664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2004032877}
   - component: {fileID: 2004032879}
-  - component: {fileID: 2004032878}
+  - component: {fileID: 2004032880}
   m_Layer: 0
   m_Name: EnemyField
   m_TagString: Untagged
@@ -3689,27 +3689,6 @@ Transform:
   m_Father: {fileID: 1171161684}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2004032878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004032876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 660422f16823317469fd4715464ee17b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPosition: {x: 4, y: -0.5}
-  width: 2
-  height: 5
-  cellWidthSpacing: 0.3
-  cellHeightSpacing: 0.2
-  cellTile: {fileID: 6130125328861552170, guid: a2d7794a596806b4dbe2bb3d81814f9a, type: 3}
-  activeWidth: 0
-  activeHeight: 0
-  activeCellTile: {fileID: 2509428545182182855, guid: 9cea67fdf8c21ca4e9ecf56936a69b26, type: 3}
 --- !u!114 &2004032879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3719,9 +3698,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 2004032876}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 525b841a80b26454594bbc4e7b883d1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0aa5ab26807faea499d3b280a5923f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2004032880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004032876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f931bd65fa934184fbe65e199255d432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPosition: {x: 4, y: -0.5}
+  width: 2
+  height: 5
+  cellWidthSpacing: 0.3
+  cellHeightSpacing: 0.2
+  cellTile: {fileID: 6130125328861552170, guid: a2d7794a596806b4dbe2bb3d81814f9a, type: 3}
 --- !u!1 &2011757774
 GameObject:
   m_ObjectHideFlags: 0

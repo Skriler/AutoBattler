@@ -2,35 +2,21 @@ using UnityEngine;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
-using AutoBattler.Data.Buffs;
-using AutoBattler.Data.Enums;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
     public class FieldContainer : UnitsContainer
     {
-        private GameObject unitsContainer;
+        protected GameObject unitsContainer;
 
-        private FieldGridManager gridManager;
-        private BaseUnit[,] units;
+        protected GridManager gridManager;
+        protected BaseUnit[,] units;
 
-        private void OnEnable()
-        {
-            BuffsEventManager.OnBuffLevelIncreased += AddBuffEffect;
-            BuffsEventManager.OnBuffLevelDecreased += RemoveBuffEffect;
-        }
-
-        private void OnDestroy()
-        {
-            BuffsEventManager.OnBuffLevelIncreased -= AddBuffEffect;
-            BuffsEventManager.OnBuffLevelDecreased -= RemoveBuffEffect;
-        }
-
-        private void Start()
+        protected virtual void Start()
         {
             unitsContainer = transform.Find("Units").gameObject;
 
-            gridManager = GetComponent<FieldGridManager>();
+            gridManager = GetComponent<GridManager>();
 
             units = new BaseUnit[gridManager.Width, gridManager.Height];
         }
@@ -43,19 +29,21 @@ namespace AutoBattler.UnitsContainers.Containers
 
         public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;
 
-        public override void AddUnit(BaseUnit unit, Vector2Int index)
+        public override bool AddUnit(BaseUnit unit, Vector2Int index)
         {
+            if (IsCellOccupied(index))
+                return false;
+
             units[index.x, index.y] = unit;
             unit.transform.SetParent(unitsContainer.transform);
             unit.ShowHealthBar();
-
-            UnitsEventManager.OnUnitAddedOnField(unit);
+            return true;
         }
 
-        public override void RemoveUnit(BaseUnit unit)
+        public override bool RemoveUnit(BaseUnit unit)
         {
             if (!Contains(unit))
-                return;
+                return false;
 
             for (int i = 0; i < units.GetLength(0); ++i)
             {
@@ -65,12 +53,12 @@ namespace AutoBattler.UnitsContainers.Containers
                         continue;
 
                     units[i, j] = null;
-
                     unit.HideHealthBar();
-                    UnitsEventManager.OnUnitRemovedFromField(unit);
-                    return;
+                    return true;
                 }
             }
+
+            return false;
         }
 
         public override void ChangeUnitPosition()
@@ -125,40 +113,6 @@ namespace AutoBattler.UnitsContainers.Containers
             }
 
             return unitsAmount;
-        }
-
-        public void AddBuffEffect(Buff buff)
-        {
-            if (!buff.IsActive())
-                return;
-
-            Debug.Log(buff.Title + " added, level: " + buff.CurrentLevel);
-
-            ApplyCharacteristicBonus(buff.TargetCharacteristic, buff.AddedPointsAmount);
-        }
-
-        public void RemoveBuffEffect(Buff buff)
-        {
-            Debug.Log(buff.Title + " removed, level: " + buff.CurrentLevel);
-
-            float removedPointsAmount = -buff.AddedPointsAmount;
-            ApplyCharacteristicBonus(buff.TargetCharacteristic, removedPointsAmount);
-        }
-
-        public void ApplyCharacteristicBonus(UnitCharacteristic characteristic, float addedPointsAmount)
-        {
-            for (int i = 0; i < units.GetLength(0); ++i)
-            {
-                for (int j = 0; j < units.GetLength(1); ++j)
-                {
-                    units[i, j]?.ApplyCharacteristicBonus(characteristic, addedPointsAmount);
-                }
-            }
-        }
-
-        public void SpawnUnits(BaseUnit[,] army)
-        {
-            gridManager.SpawnUnits(army, unitsContainer.transform);
         }
     }
 }

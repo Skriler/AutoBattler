@@ -14,8 +14,8 @@ namespace AutoBattler.Data.Players
         [SerializeField] private List<Buff> buffs;
 
         public StorageContainer Storage { get; private set; }
-        public FieldContainer Field { get; private set; }
-        public FieldContainer EnemyField { get; private set; }
+        public PlayerFieldContainer Field { get; private set; }
+        public EnemyFieldContainer EnemyField { get; private set; }
         public BuffContainer Buffs { get; private set; }
         public int Health { get; private set; }
         public int Gold { get; private set; }
@@ -34,8 +34,8 @@ namespace AutoBattler.Data.Players
         private void Start()
         {
             Storage = transform.GetComponentInChildren<StorageContainer>();
-            Field = transform.Find("Field").GetComponent<FieldContainer>();
-            EnemyField = transform.Find("EnemyField").GetComponent<FieldContainer>();
+            Field = transform.Find("PlayerField").GetComponent<PlayerFieldContainer>();
+            EnemyField = transform.Find("EnemyField").GetComponent<EnemyFieldContainer>();
             Buffs = transform.GetComponentInChildren<BuffContainer>();
 
             SetStartPlayerCharacteristics();

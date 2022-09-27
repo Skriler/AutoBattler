@@ -53,13 +53,17 @@ namespace AutoBattler.UnitsContainers.Containers
             units[freeCellIndex] = newUnit;
         }
 
-        public override void AddUnit(BaseUnit unit, Vector2Int index)
+        public override bool AddUnit(BaseUnit unit, Vector2Int index)
         {
+            if (IsCellOccupied(index))
+                return false;
+
             units[index.x] = unit;
             unit.transform.SetParent(unitsContainer.transform);
+            return true;
         }
 
-        public override void RemoveUnit(BaseUnit unit)
+        public override bool RemoveUnit(BaseUnit unit)
         {
             for (int i = 0; i < units.Length; ++i)
             {
@@ -67,8 +71,9 @@ namespace AutoBattler.UnitsContainers.Containers
                     continue;
 
                 units[i] = null;
-                return;
+                return true;
             }
+            return false;
         }
 
         public override void ChangeUnitPosition()
