@@ -4,9 +4,8 @@ using UnityEngine.Events;
 using TMPro;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.UI.Tooltips;
-using AutoBattler.Managers;
 
-namespace AutoBattler.UI
+namespace AutoBattler.UI.Shop
 {
     public class UICard : MonoBehaviour
     {

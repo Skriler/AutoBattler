@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using AutoBattler.EventManagers;
 
-namespace AutoBattler.UI
+namespace AutoBattler.UI.PlayerInfo
 {
     public class UIPlayerInfo : MonoBehaviour
     {

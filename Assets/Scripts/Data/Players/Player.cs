@@ -31,6 +31,11 @@ namespace AutoBattler.Data.Players
             UnitsEventManager.OnUnitSold -= SellUnit;
         }
 
+        private void Awake()
+        {
+            SetStartPlayerCharacteristics();
+        }
+
         private void Start()
         {
             Storage = transform.GetComponentInChildren<StorageContainer>();
@@ -38,7 +43,6 @@ namespace AutoBattler.Data.Players
             EnemyField = transform.Find("EnemyField").GetComponent<EnemyFieldContainer>();
             Buffs = transform.GetComponentInChildren<BuffContainer>();
 
-            SetStartPlayerCharacteristics();
 
             UIEventManager.SendGoldAmountChanged(Gold);
             UIEventManager.SendHealthAmountChanged(Health);

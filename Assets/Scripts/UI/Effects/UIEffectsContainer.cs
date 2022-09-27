@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Units;
 
-namespace AutoBattler.UI
+namespace AutoBattler.UI.Effects
 {
     public class UIEffectsContainer : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &854347215817599168
+--- !u!1 &1242182167979373537
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,60 +8,60 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 854347215817599169}
-  - component: {fileID: 1160181819150239242}
-  - component: {fileID: 1322661383665702403}
+  - component: {fileID: 3204276799470117253}
+  - component: {fileID: 6000253772871450038}
+  - component: {fileID: 4992770083580071736}
   m_Layer: 5
-  m_Name: Human Buff
+  m_Name: ArcherBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &854347215817599169
+--- !u!224 &3204276799470117253
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854347215817599168}
+  m_GameObject: {fileID: 1242182167979373537}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 854347216492042060}
-  - {fileID: 3290620777808828849}
+  - {fileID: 5496861674818870307}
+  - {fileID: 3058396511354185060}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: 25}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -25, y: -25}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1160181819150239242
+--- !u!114 &6000253772871450038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854347215817599168}
+  m_GameObject: {fileID: 1242182167979373537}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16ccdac92a4dfcd43b5a0fe4b9f60b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffImage: {fileID: 854347216492042061}
-  characteristics: {fileID: 11400000, guid: a9897b30f1c84844f91b0fa3211dc17e, type: 2}
+  buffImage: {fileID: 666555592302098760}
+  characteristics: {fileID: 11400000, guid: 490017e932c879141906894b1f1aaa15, type: 2}
   minColorValue: 75
---- !u!114 &1322661383665702403
+--- !u!114 &4992770083580071736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854347215817599168}
+  m_GameObject: {fileID: 1242182167979373537}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
@@ -72,7 +72,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1160181819150239242}
+        - m_Target: {fileID: 6000253772871450038}
           m_TargetAssemblyTypeName: AutoBattler.Data.Buffs.Buff, Assembly-CSharp
           m_MethodName: MouseEnter
           m_Mode: 1
@@ -88,7 +88,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1160181819150239242}
+        - m_Target: {fileID: 6000253772871450038}
           m_TargetAssemblyTypeName: AutoBattler.Data.Buffs.Buff, Assembly-CSharp
           m_MethodName: MouseExit
           m_Mode: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!1 &854347216492042099
+--- !u!1 &1536154621222842971
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,29 +108,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 854347216492042060}
-  - component: {fileID: 854347216492042062}
-  - component: {fileID: 854347216492042061}
+  - component: {fileID: 5496861674818870307}
+  - component: {fileID: 5396042785846863486}
+  - component: {fileID: 666555592302098760}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &854347216492042060
+--- !u!224 &5496861674818870307
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854347216492042099}
+  m_GameObject: {fileID: 1536154621222842971}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 854347215817599169}
+  m_Father: {fileID: 3204276799470117253}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -138,21 +138,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &854347216492042062
+--- !u!222 &5396042785846863486
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854347216492042099}
+  m_GameObject: {fileID: 1536154621222842971}
   m_CullTransparentMesh: 1
---- !u!114 &854347216492042061
+--- !u!114 &666555592302098760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 854347216492042099}
+  m_GameObject: {fileID: 1536154621222842971}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &7644825207202055971
+--- !u!1 &8596847429265694412
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,9 +184,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3290620777808828849}
-  - component: {fileID: 7102828101588308456}
-  - component: {fileID: 6887715569814475651}
+  - component: {fileID: 3058396511354185060}
+  - component: {fileID: 5755205354057696527}
+  - component: {fileID: 6090356370816872808}
   m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
@@ -194,19 +194,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3290620777808828849
+--- !u!224 &3058396511354185060
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7644825207202055971}
+  m_GameObject: {fileID: 8596847429265694412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 854347215817599169}
+  m_Father: {fileID: 3204276799470117253}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -214,21 +214,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7102828101588308456
+--- !u!222 &5755205354057696527
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7644825207202055971}
+  m_GameObject: {fileID: 8596847429265694412}
   m_CullTransparentMesh: 1
---- !u!114 &6887715569814475651
+--- !u!114 &6090356370816872808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7644825207202055971}
+  m_GameObject: {fileID: 8596847429265694412}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}

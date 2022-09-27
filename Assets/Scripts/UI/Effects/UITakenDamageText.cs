@@ -1,9 +1,8 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace AutoBattler.UI
+namespace AutoBattler.UI.Effects
 {
     public class UITakenDamageText : MonoBehaviour
     {

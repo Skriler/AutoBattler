@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Players;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.UI.Tooltips;
+using AutoBattler.Managers;
 
-namespace AutoBattler.UI
+namespace AutoBattler.UI.Shop
 {
     public class UIShop : MonoBehaviour
     {
@@ -43,6 +43,11 @@ namespace AutoBattler.UI
 
             UIShopUnitTooltip.Instance.Hide();
             card.gameObject.SetActive(false);
+        }
+
+        public void FreezeUnits()
+        {
+            
         }
 
         public void RefreshShop()
