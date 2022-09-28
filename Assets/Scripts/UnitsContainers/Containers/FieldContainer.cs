@@ -5,7 +5,7 @@ using AutoBattler.EventManagers;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
-    public class FieldContainer : UnitsContainer
+    public abstract class FieldContainer : UnitsContainer
     {
         protected GameObject unitsContainer;
 
@@ -26,8 +26,6 @@ namespace AutoBattler.UnitsContainers.Containers
         public int GetArmyWidth() => units.GetLength(0);
 
         public int GetArmyHeight() => units.GetLength(1);
-
-        public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;
 
         public override bool AddUnit(BaseUnit unit, Vector2Int index)
         {

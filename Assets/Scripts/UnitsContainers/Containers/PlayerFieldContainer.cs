@@ -20,6 +20,8 @@ namespace AutoBattler.UnitsContainers.Containers
             BuffsEventManager.OnBuffLevelDecreased -= RemoveBuffEffect;
         }
 
+        public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;
+
         public override bool AddUnit(BaseUnit unit, Vector2Int index)
         {
             bool result = base.AddUnit(unit, index);

@@ -1,3 +1,4 @@
+using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Grids;
 
@@ -13,6 +14,8 @@ namespace AutoBattler.UnitsContainers.Containers
 
             enemyFieldGridManager = GetComponent<EnemyFieldGridManager>();
         }
+
+        public override bool IsCellOccupied(Vector2Int index) => true;
 
         public void SpawnUnits(BaseUnit[,] army)
         {

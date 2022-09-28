@@ -8,8 +8,6 @@ namespace AutoBattler.UI.Effects
     {
         [SerializeField] private UITakenDamageText takenDamagePrefab;
 
-        private Camera currentCamera;
-
         private void OnEnable()
         {
             UnitsEventManager.OnUnitTookDamage += InstantiateTakenDamageText;
@@ -18,11 +16,6 @@ namespace AutoBattler.UI.Effects
         private void OnDestroy()
         {
             UnitsEventManager.OnUnitTookDamage -= InstantiateTakenDamageText;
-        }
-
-        private void Start()
-        {
-            currentCamera = Camera.current;
         }
 
         public void InstantiateTakenDamageText(BaseUnit unit, float healthAmount)
