@@ -537,6 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 298469496}
   - component: {fileID: 298469497}
+  - component: {fileID: 298469498}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -588,6 +589,51 @@ MonoBehaviour:
   - {fileID: 331449036}
   rerollCost: 1
   player: {fileID: 1171161683}
+--- !u!114 &298469498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298469495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 298469497}
+          m_TargetAssemblyTypeName: AutoBattler.UI.Shop.UIShop, Assembly-CSharp
+          m_MethodName: MouseEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 298469497}
+          m_TargetAssemblyTypeName: AutoBattler.UI.Shop.UIShop, Assembly-CSharp
+          m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!224 &311649690 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4574079420842480786, guid: 65cf8da3a54748d49a9da2d3c63b7fae, type: 3}
@@ -2682,6 +2728,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1250790848}
+  - component: {fileID: 1250790850}
+  - component: {fileID: 1250790849}
   m_Layer: 5
   m_Name: SidePanelContent
   m_TagString: Untagged
@@ -2712,6 +2760,63 @@ RectTransform:
   m_AnchoredPosition: {x: -105, y: 0}
   m_SizeDelta: {x: 210, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1250790849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250790847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1250790850}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIPanel, Assembly-CSharp
+          m_MethodName: MouseEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1250790850}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIPanel, Assembly-CSharp
+          m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1250790850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250790847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78b52d78b3da164490aa71df75b0f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1260156257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3069,8 +3174,8 @@ MonoBehaviour:
   spawnPosition: {x: -4, y: -0.5}
   width: 2
   height: 5
-  cellWidthSpacing: 0.3
-  cellHeightSpacing: 0.2
+  cellWidthSpacing: 0.8
+  cellHeightSpacing: 0.6
   cellTile: {fileID: 6130125328861552170, guid: a2d7794a596806b4dbe2bb3d81814f9a, type: 3}
   activeWidth: 2
   activeHeight: 5
@@ -3248,6 +3353,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1411873983}
+  - component: {fileID: 1411873985}
+  - component: {fileID: 1411873984}
   m_Layer: 5
   m_Name: UpperPanelContent
   m_TagString: Untagged
@@ -3279,6 +3386,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1411873984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411873982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1411873985}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIPanel, Assembly-CSharp
+          m_MethodName: MouseEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1411873985}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIPanel, Assembly-CSharp
+          m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1411873985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411873982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78b52d78b3da164490aa71df75b0f3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1426427631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1637055356630301949, guid: 58cb2795c05caa74e953f77c16e806d5, type: 3}
@@ -3529,9 +3693,9 @@ GameObject:
   - component: {fileID: 1768516111}
   - component: {fileID: 1768516112}
   - component: {fileID: 1768516113}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: Background
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3544,7 +3708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768516110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 2.5, z: 0}
+  m_LocalPosition: {x: 3.5, y: 2.5, z: 10}
   m_LocalScale: {x: 35, y: 30, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4038,8 +4202,8 @@ MonoBehaviour:
   spawnPosition: {x: 4, y: -0.5}
   width: 2
   height: 5
-  cellWidthSpacing: 0.3
-  cellHeightSpacing: 0.2
+  cellWidthSpacing: 0.8
+  cellHeightSpacing: 0.6
   cellTile: {fileID: 6130125328861552170, guid: a2d7794a596806b4dbe2bb3d81814f9a, type: 3}
 --- !u!1 &2011757774
 GameObject:

@@ -17,7 +17,8 @@ namespace AutoBattler.Managers
         private float backgroundMinX, backgroundMaxX;
         private float backgroundMinY, backgroundMaxY;
 
-        public bool IsActive { get; set; } = false;
+        public bool IsActive { get; set; } = true;
+        public bool IsOnUI { get; set; } = false;
 
         protected override void Awake()
         {
@@ -32,7 +33,7 @@ namespace AutoBattler.Managers
 
         private void Update()
         {
-            if (!IsActive)
+            if (IsOnUI)
                 return;
 
             PanCamera();
@@ -68,9 +69,19 @@ namespace AutoBattler.Managers
         private void PanCamera()
         {
             if (Input.GetMouseButtonDown(0))
+            {
                 startPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D hit = Physics2D.Raycast(startPosition, Vector2.one);
 
-            if (Input.GetMouseButton(0))
+                if (hit.collider.tag != "Background")
+                {
+                    IsActive = false;
+                    return;
+                }
+                IsActive = true;
+            }
+
+            if (Input.GetMouseButton(0) && IsActive)
             {
                 Vector3 difference = startPosition - mainCamera.ScreenToWorldPoint(Input.mousePosition);
 

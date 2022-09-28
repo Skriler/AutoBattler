@@ -9,6 +9,7 @@ TagManager:
   - Tile
   - Canvas
   - UIEffectsContainer
+  - Background
   layers:
   - Default
   - TransparentFX
