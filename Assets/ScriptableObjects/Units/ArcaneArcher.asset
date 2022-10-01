@@ -13,10 +13,20 @@ MonoBehaviour:
   m_Name: ArcaneArcher
   m_EditorClassIdentifier: 
   title: Arcane Archer
-  cost: 5
+  cost: 4
   tavernTier: 4
   race: 3
   specification: 1
-  maxHealth: 80
-  attackDamage: 15.2
-  attackSpeed: 2.8
+  maxHealth: 130
+  damageType: 2
+  attackDamage: 22.3
+  attackSpeed: 2.7
+  damageTypesProtectionPercentage:
+  - damageType: 0
+    protectionPercentage: 17
+  - damageType: 1
+    protectionPercentage: 19
+  - damageType: 2
+    protectionPercentage: 33
+  - damageType: 3
+    protectionPercentage: 12

@@ -2,10 +2,9 @@ namespace AutoBattler.Data.Enums
 {
     public enum DamageType
     {
-        Scorched,
-        Saturated,
-        Electrified,
-        Purified,
-        Corrupted
+        Fire,
+        Ice,
+        Chaos,
+        Purify,
     }
 }

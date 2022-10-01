@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using AutoBattler.UI.Tooltips;
 
 namespace AutoBattler.UI.Effects
 {
@@ -37,6 +38,10 @@ namespace AutoBattler.UI.Effects
             transform.position = Vector3.Lerp(startPosition, targetPosition, timer / lifetime);
             transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, timer / lifetime);
         }
+
+        public void MouseExit() => UIUnitTooltip.Instance.Hide();
+
+        public void MouseEnter() => UIUnitTooltip.Instance.Show();
 
         public void Setup(float damage, Vector3 position)
         {

@@ -11,6 +11,7 @@ namespace AutoBattler.Managers
         [SerializeField] private float zoomStep = 0.5f;
         [SerializeField] private float minCameraSize = 2;
         [SerializeField] private float maxCameraSize = 6;
+        [SerializeField] private string backgroundTag = "Background";
 
         private Camera mainCamera;
         private Vector3 startPosition;
@@ -73,7 +74,7 @@ namespace AutoBattler.Managers
                 startPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(startPosition, Vector2.one);
 
-                if (hit.collider.tag != "Background")
+                if (hit.collider.tag != backgroundTag)
                 {
                     IsActive = false;
                     return;

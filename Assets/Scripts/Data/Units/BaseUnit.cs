@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.UnitsComponents;
@@ -9,7 +10,7 @@ using AutoBattler.EventManagers;
 
 namespace AutoBattler.Data.Units
 {
-    public abstract class BaseUnit : MonoBehaviour, IClickable
+    public abstract class BaseUnit : MonoBehaviour
     {
         [Header("Components")]
         [SerializeField] private HealthBar barPrefab;
@@ -22,13 +23,16 @@ namespace AutoBattler.Data.Units
         public string Id { get; protected set; }
         public string Title { get; protected set; }
         public int Cost { get; protected set; }
+        public UnitRace Race { get; protected set; }
+        public UnitSpecification Specification { get; protected set; }
         public float MaxHealth { get; protected set; }
         public float Health { get; protected set; }
+        public DamageType DamageType { get; protected set; }
         public float AttackDamage { get; protected set; }
         public float AttackSpeed { get; protected set; }
         public float Stamina { get; protected set; }
-        public UnitRace Race { get; protected set; }
-        public UnitSpecification Specification { get; protected set; }
+
+        protected Dictionary<DamageType, int> damageTypesProtectionPercentage;
 
         protected SpriteRenderer spriteRenderer;
         protected Animator animator;
@@ -103,14 +107,25 @@ namespace AutoBattler.Data.Units
         {
             Title = characteristics.Title;
             Cost = characteristics.Cost;
+
+            Race = characteristics.Race;
+            Specification = characteristics.Specification;
+
             MaxHealth = characteristics.MaxHealth;
             Health = characteristics.MaxHealth;
+            DamageType = characteristics.DamageType;
             AttackDamage = characteristics.AttackDamage;
             AttackSpeed = characteristics.AttackSpeed;
             Stamina = 0;
 
-            Race = characteristics.Race;
-            Specification = characteristics.Specification;
+            damageTypesProtectionPercentage = new Dictionary<DamageType, int>();
+            DamageTypeProtection[] damageTypeProtection = characteristics.DamageTypesProtectionPercentage;
+
+            for (int i = 0; i < damageTypeProtection.Length; ++i)
+            {
+                DamageTypeProtection currentDamageTypeProtection = damageTypeProtection[i];
+                damageTypesProtectionPercentage.Add(currentDamageTypeProtection.damageType, currentDamageTypeProtection.protectionPercentage);
+            }
         }
 
         public bool HasEnoughStamina() => Stamina >= AttackSpeed;
@@ -140,6 +155,16 @@ namespace AutoBattler.Data.Units
 
             if (!IsAlive())
                 Death();
+        }
+
+        public float GetDamageTypeProtection(DamageType damageType)
+        {
+            if (damageTypesProtectionPercentage == null)
+                return 0;
+
+            damageTypesProtectionPercentage.TryGetValue(damageType, out int protectionPointsAmount);
+
+            return protectionPointsAmount;
         }
 
         public void ApplyCharacteristicBonus(UnitCharacteristic characteristic, float addedPointsAmount)

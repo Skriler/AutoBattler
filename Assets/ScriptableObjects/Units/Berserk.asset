@@ -13,10 +13,20 @@ MonoBehaviour:
   m_Name: Berserk
   m_EditorClassIdentifier: 
   title: Berserk
-  cost: 6
+  cost: 5
   tavernTier: 4
   race: 0
   specification: 0
   maxHealth: 150
-  attackDamage: 25.7
-  attackSpeed: 3.2
+  damageType: 3
+  attackDamage: 30.7
+  attackSpeed: 3.8
+  damageTypesProtectionPercentage:
+  - damageType: 0
+    protectionPercentage: 21
+  - damageType: 1
+    protectionPercentage: 22
+  - damageType: 2
+    protectionPercentage: 15
+  - damageType: 3
+    protectionPercentage: 35

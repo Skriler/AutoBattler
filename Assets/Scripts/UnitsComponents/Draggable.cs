@@ -35,7 +35,6 @@ namespace AutoBattler.UnitsComponents
             startSortingOrder = spriteRenderer.sortingOrder;
             spriteRenderer.sortingOrder = dragSortingOrder;
 
-            //GameManager.Instance.DisableCameraMovement();
             UIUnitTooltip.Instance.Hide();
         }
 
@@ -65,7 +64,6 @@ namespace AutoBattler.UnitsComponents
             transform.position = startPosition;
             spriteRenderer.sortingOrder = startSortingOrder;
 
-            //GameManager.Instance.EnableCameraMovement();
             UnitsEventManager.SendUnitEndDrag(unit, currentPosition);
         }
     }

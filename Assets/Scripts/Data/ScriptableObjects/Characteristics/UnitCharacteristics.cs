@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Data.Enums;
 
@@ -16,9 +17,11 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         [SerializeField] private UnitSpecification specification;
 
         [Header("Fight Characteristics")]
-        [SerializeField] private float maxHealth = 100;
-        [SerializeField] private float attackDamage = 10;
-        [SerializeField] private float attackSpeed = 3f;
+        [SerializeField] private float maxHealth = 100f;
+        [SerializeField] private DamageType damageType;
+        [SerializeField] private float attackDamage = 10f;
+        [SerializeField] private float attackSpeed = 5f;
+        [SerializeField] private DamageTypeProtection[] damageTypesProtectionPercentage;
 
         public string Title => title;
         public int Cost => cost;
@@ -28,7 +31,9 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         public UnitSpecification Specification => specification;
 
         public float MaxHealth => maxHealth;
+        public DamageType DamageType => damageType;
         public float AttackDamage => attackDamage;
         public float AttackSpeed => attackSpeed;
+        public DamageTypeProtection[] DamageTypesProtectionPercentage => damageTypesProtectionPercentage;
     }
 }

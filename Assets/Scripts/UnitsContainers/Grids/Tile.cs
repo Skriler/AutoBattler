@@ -4,7 +4,7 @@ using AutoBattler.UnitsContainers.Enums;
 
 namespace AutoBattler.UnitsContainers.Grids
 {
-    public class Tile : MonoBehaviour, IClickable
+    public class Tile : MonoBehaviour
     {
         [SerializeField] protected SpriteRenderer cellSpriteRenderer;
         [SerializeField] protected Sprite standartCell;

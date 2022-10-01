@@ -5,6 +5,6 @@
         None,
         AttackDamage,
         AttackSpeed,
-        Health
+        Health,
     }
 }

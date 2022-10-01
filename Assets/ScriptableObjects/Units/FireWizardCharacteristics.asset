@@ -13,10 +13,20 @@ MonoBehaviour:
   m_Name: FireWizardCharacteristics
   m_EditorClassIdentifier: 
   title: Fire Wizard
-  cost: 8
+  cost: 7
   tavernTier: 5
   race: 0
   specification: 2
-  maxHealth: 200
-  attackDamage: 12.7
-  attackSpeed: 4.4
+  maxHealth: 175
+  damageType: 0
+  attackDamage: 34.3
+  attackSpeed: 3
+  damageTypesProtectionPercentage:
+  - damageType: 0
+    protectionPercentage: 35
+  - damageType: 1
+    protectionPercentage: 12
+  - damageType: 2
+    protectionPercentage: 19
+  - damageType: 3
+    protectionPercentage: 19

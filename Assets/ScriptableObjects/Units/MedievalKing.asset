@@ -13,10 +13,20 @@ MonoBehaviour:
   m_Name: MedievalKing
   m_EditorClassIdentifier: 
   title: Medieval King
-  cost: 7
+  cost: 6
   tavernTier: 5
   race: 0
   specification: 0
-  maxHealth: 250
-  attackDamage: 18.6
+  maxHealth: 180
+  damageType: 1
+  attackDamage: 31.5
   attackSpeed: 2.9
+  damageTypesProtectionPercentage:
+  - damageType: 0
+    protectionPercentage: 14
+  - damageType: 1
+    protectionPercentage: 40
+  - damageType: 2
+    protectionPercentage: 22
+  - damageType: 3
+    protectionPercentage: 24

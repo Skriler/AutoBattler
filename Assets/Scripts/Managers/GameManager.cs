@@ -18,8 +18,6 @@ namespace AutoBattler.Managers
 
         public bool IsFightMode { get; private set; } = false;
 
-        //public bool IsCameraMovementActive { get; private set; } = true;
-
         public ShopDatabase ShopDb => shopDb;
 
         private void Update()
@@ -40,10 +38,6 @@ namespace AutoBattler.Managers
                 StartCoroutine(EndBattleCoroutine());
             }
         }
-
-        //public void DisableCameraMovement() => IsCameraMovementActive = false;
-
-        //public void EnableCameraMovement() => IsCameraMovementActive = true;
 
         public void StartBattle()
         {

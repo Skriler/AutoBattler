@@ -17,6 +17,16 @@ MonoBehaviour:
   tavernTier: 1
   race: 0
   specification: 0
-  maxHealth: 100
-  attackDamage: 12.2
-  attackSpeed: 3.3
+  maxHealth: 60
+  damageType: 3
+  attackDamage: 8.7
+  attackSpeed: 4.1
+  damageTypesProtectionPercentage:
+  - damageType: 0
+    protectionPercentage: 9
+  - damageType: 1
+    protectionPercentage: 7
+  - damageType: 2
+    protectionPercentage: 5
+  - damageType: 3
+    protectionPercentage: 20
