@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.UnitsContainers.Containers;
 using AutoBattler.Data.Units;

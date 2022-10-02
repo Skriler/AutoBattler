@@ -29,9 +29,7 @@ namespace AutoBattler.Data.Units
             if (currentTarget == null)
                 return;
 
-            float damage = AttackDamage;
-
-            currentTarget.TakeDamage(damage);
+            currentTarget.TakeDamage(AttackDamage, DamageType);
 
             CheckTargetedEnemy();
         }

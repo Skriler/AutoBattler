@@ -69,7 +69,7 @@ namespace AutoBattler.Data.Units
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.N))
-                TakeDamage(17);
+                TakeDamage(17, DamageType.Fire);
 
             if (Input.GetKeyDown(KeyCode.K))
                 Attack();
@@ -139,25 +139,43 @@ namespace AutoBattler.Data.Units
 
         public bool IsAlive() => Health > 0;
 
-        public void TakeDamage(float damageAmount)
+        public void TakeDamage(float damage, DamageType damageType)
         {
             if (Health == 0)
                 return;
 
-            damageAmount = (float)Math.Round(damageAmount, 1);
+            CalculateTakenDamage(ref damage, damageType);
+            damage = (float)Math.Round(damage, 1);
 
-            Health -= damageAmount;
+            Health -= damage;
             Health = Health < 0 ? 0 : (float)Math.Round(Health, 1);
 
             healthBar.UpdateHealth(Health);
 
-            UnitsEventManager.OnUnitTookDamage(this, damageAmount);
+            UnitsEventManager.OnUnitTookDamage(this, damage);
 
             if (UIUnitTooltip.Instance.CurrentUnit == this)
                 UIUnitTooltip.Instance.Setup(this);
 
             if (!IsAlive())
                 Death();
+        }
+
+        private void CalculateTakenDamage(ref float damage, DamageType damageType)
+        {
+            float damageProtection—oefficient = damageType switch
+            {
+                DamageType.Fire => GetDamageTypeProtection(DamageType.Fire),
+                DamageType.Ice => GetDamageTypeProtection(DamageType.Ice),
+                DamageType.Chaos => GetDamageTypeProtection(DamageType.Chaos),
+                DamageType.Purify => GetDamageTypeProtection(DamageType.Purify),
+                _ => 0,
+            };
+
+            damageProtection—oefficient /= 100;
+            float takenDamage—oefficient = 1 - damageProtection—oefficient;
+
+            damage *= takenDamage—oefficient;
         }
 
         public void ApplyCharacteristicBonus(UnitCharacteristic characteristic, float addedPointsAmount)
