@@ -22,7 +22,7 @@ namespace AutoBattler.UnitsContainers.Grids
         protected Tile[,] tiles;
         private Tile previousTile;
 
-        private void OnEnable()
+        private void Awake()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileSprite;
             UnitsEventManager.OnUnitEndDrag += ChangeUnitPosition;

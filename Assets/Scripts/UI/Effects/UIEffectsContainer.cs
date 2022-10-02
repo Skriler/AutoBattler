@@ -8,7 +8,7 @@ namespace AutoBattler.UI.Effects
     {
         [SerializeField] private UITakenDamageText takenDamagePrefab;
 
-        private void OnEnable()
+        private void Awake()
         {
             UnitsEventManager.OnUnitTookDamage += InstantiateTakenDamageText;
         }

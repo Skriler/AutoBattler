@@ -17,7 +17,7 @@ namespace AutoBattler.UI.PlayerInfo
 
         public bool IsOpened { get; private set; } = false;
 
-        private void OnEnable()
+        private void Awake()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += CheckUnitPosition;
             UnitsEventManager.OnUnitEndDrag += SellUnit;

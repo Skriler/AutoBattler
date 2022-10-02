@@ -8,7 +8,7 @@ namespace AutoBattler.UnitsContainers.Grids
 {
     public class TrashCanTile : Tile
     {
-        private void OnEnable()
+        private void Awake()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileStatus;
             UnitsEventManager.OnUnitEndDrag += SellUnit;

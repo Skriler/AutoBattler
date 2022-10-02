@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b30ee527bfc5a644954670a85b5eb6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 225, y: -20}
+  offset: {x: 235, y: 30}
   textTitle: {fileID: 7875864487246829386}
   textHealthValue: {fileID: 7875864486784741150}
   textAttackDamageValue: {fileID: 7875864487011320528}

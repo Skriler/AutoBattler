@@ -9,6 +9,8 @@ namespace AutoBattler.UI.Shop
 {
     public class UICard : MonoBehaviour
     {
+        private static float MAX_COLOR_VALUE = 255;
+
         [Header("Events")]
         [SerializeField] private UnityEvent<UICard, ShopUnitEntity> OnCardClick;
 
@@ -17,11 +19,16 @@ namespace AutoBattler.UI.Shop
         [SerializeField] private TextMeshProUGUI textCost;
         [SerializeField] private Image unitImage;
 
+        [Header("Parameters")]
+        [SerializeField] private int freezeColorR = 100;
+        [SerializeField] private int freezeColorG = 170;
+        [SerializeField] private int freezeColorB = 250;
+
         private ShopUnitEntity shopUnit;
         private Sprite[] unitSprites;
         private int currentSpriteIndex = 0;
 
-        public Image backgroundImage { get; private set; }
+        public bool IsFreezed { get; private set; }
 
         public void OnClick() => OnCardClick.Invoke(this, shopUnit);
 
@@ -49,6 +56,22 @@ namespace AutoBattler.UI.Shop
             currentSpriteIndex = 0;
             unitImage.sprite = unitSprites[currentSpriteIndex];
             InvokeRepeating("SwapSprite", shopUnit.swapSpeed, shopUnit.swapSpeed);
+        }
+
+        public void Freeze()
+        {
+            Color cardColor = Color.white;
+
+            if (!IsFreezed)
+            {
+                cardColor.r = freezeColorR / MAX_COLOR_VALUE;
+                cardColor.g = freezeColorG / MAX_COLOR_VALUE;
+                cardColor.b = freezeColorB / MAX_COLOR_VALUE;
+            }
+
+            unitImage.color = cardColor;
+
+            IsFreezed = !IsFreezed;
         }
 
         private void SwapSprite()

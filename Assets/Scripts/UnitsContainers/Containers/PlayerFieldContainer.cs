@@ -8,7 +8,7 @@ namespace AutoBattler.UnitsContainers.Containers
 {
     public class PlayerFieldContainer : FieldContainer
     {
-        private void OnEnable()
+        private void Awake()
         {
             BuffsEventManager.OnBuffLevelIncreased += AddBuffEffect;
             BuffsEventManager.OnBuffLevelDecreased += RemoveBuffEffect;

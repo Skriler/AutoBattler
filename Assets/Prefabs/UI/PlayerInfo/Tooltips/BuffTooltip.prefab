@@ -920,7 +920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f122f9e5a9804442875b6fe3078cf5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 260, y: -130}
+  offset: {x: 270, y: -130}
   textTitle: {fileID: 4569850890284498726}
   textTypeValue: {fileID: 1773159807004978589}
   textBonus: {fileID: 4569850891221607627}

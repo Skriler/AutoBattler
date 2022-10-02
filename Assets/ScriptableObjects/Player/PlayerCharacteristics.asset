@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a3e14ed2966c8478fd4593a9319156, type: 3}
   m_Name: PlayerCharacteristics
   m_EditorClassIdentifier: 
-  startHealth: 50
-  startGold: 99
+  startHealth: 10
+  startGold: 60
   startTavernTier: 1
+  maxHealth: 10
+  maxGold: 99
   maxTavernTier: 5
   levelUpTavernTierCost: 5

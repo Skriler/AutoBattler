@@ -19,7 +19,7 @@ namespace AutoBattler.UnitsComponents
         private float maxStaminaAmount;
         private float previousHealthAmount;
 
-        private void OnEnable()
+        private void Awake()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeBarPosition;
         }

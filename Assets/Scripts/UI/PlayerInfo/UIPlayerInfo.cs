@@ -16,7 +16,7 @@ namespace AutoBattler.UI.PlayerInfo
         [SerializeField] private Button shopButton;
         [SerializeField] private Button startBattleButton;
 
-        private void OnEnable()
+        private void Awake()
         {
             UIEventManager.OnGoldAmountChanged += SetGold;
             UIEventManager.OnHealthAmountChanged += SetHealth;

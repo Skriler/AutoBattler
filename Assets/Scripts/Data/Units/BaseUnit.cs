@@ -68,15 +68,6 @@ namespace AutoBattler.Data.Units
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.N))
-                TakeDamage(17, DamageType.Fire);
-
-            if (Input.GetKeyDown(KeyCode.K))
-                Attack();
-
-            if (Input.GetKeyDown(KeyCode.R))
-                Resurrect();
-
             if (!isFightMode || !IsAlive())
                 return;
 

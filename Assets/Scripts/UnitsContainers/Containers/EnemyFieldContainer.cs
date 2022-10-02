@@ -9,7 +9,7 @@ namespace AutoBattler.UnitsContainers.Containers
     {
         protected EnemyFieldGridManager enemyFieldGridManager;
 
-        protected void OnEnable()
+        protected void Awake()
         {
             FightEventManager.OnFightEnded += ClearField;
         }

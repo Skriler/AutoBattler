@@ -16,12 +16,27 @@ namespace AutoBattler.UI.Shop
 
         [Header("Data")]
         [SerializeField] private List<UICard> unitCards;
-        [SerializeField] private int rerollCost = 1;
         [SerializeField] private Player player;
+
+        [Header("Parameters")]
+        [SerializeField] private int rerollCost = 1;
 
         private ShopDatabase shopDb;
 
-        public bool IsOpen { get; private set; }
+        public bool IsOpen { get; private set; } = false;
+        public bool IsFreezed { get; private set; } = false;
+
+        protected void Awake()
+        {
+            FightEventManager.OnFightStarted += EndRound;
+            FightEventManager.OnFightEnded += StartRound;
+        }
+
+        protected void OnDestroy()
+        {
+            FightEventManager.OnFightStarted -= EndRound;
+            FightEventManager.OnFightEnded -= StartRound;
+        }
 
         private void Start()
         {
@@ -51,7 +66,10 @@ namespace AutoBattler.UI.Shop
 
         public void FreezeUnits()
         {
-            
+            foreach(UICard card in unitCards)
+                card.Freeze();
+
+            IsFreezed = !IsFreezed;
         }
 
         public void RefreshShop()
@@ -76,6 +94,23 @@ namespace AutoBattler.UI.Shop
         {
             IsOpen = !IsOpen;
             gameObject.SetActive(IsOpen);
+        }
+
+        private void StartRound()
+        {
+            if (IsFreezed)
+                FreezeUnits();
+            else
+                RefreshShop();
+        }
+
+        private void EndRound()
+        {
+            if (IsOpen)
+            {
+                gameObject.SetActive(false);
+                IsOpen = false;
+            }
         }
 
         private void GenerateUnitCards()

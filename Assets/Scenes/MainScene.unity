@@ -6084,6 +6084,10 @@ PrefabInstance:
       propertyPath: OnCardClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 298469497}
+    - target: {fileID: 2543668263880141440, guid: c1c922ad46edb4449a4617e0a1109b78, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2966513453966207833, guid: c1c922ad46edb4449a4617e0a1109b78, type: 3}
       propertyPath: m_Name
       value: UnitCard

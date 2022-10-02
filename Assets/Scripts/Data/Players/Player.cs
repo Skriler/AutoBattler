@@ -19,19 +19,16 @@ namespace AutoBattler.Data.Players
         public int Gold { get; private set; }
         public int TavernTier { get; private set; }
 
-        private void OnEnable()
+        private void Awake()
         {
             UnitsEventManager.OnUnitSold += SellUnit;
+
+            SetStartPlayerCharacteristics();
         }
 
         private void OnDestroy()
         {
             UnitsEventManager.OnUnitSold -= SellUnit;
-        }
-
-        private void Awake()
-        {
-            SetStartPlayerCharacteristics();
         }
 
         private void Start()
@@ -58,6 +55,8 @@ namespace AutoBattler.Data.Players
 
         public bool IsMaxTavernTier() => TavernTier >= characteristics.MaxTavernTier;
 
+        public bool IsAlive() => Health > 0;
+
         public void SpendGold(int actionCost)
         {
             if (Gold - actionCost < 0)
@@ -72,10 +71,26 @@ namespace AutoBattler.Data.Players
 
         public void SellUnit(BaseUnit unit)
         {
-            ++Gold;
+            GainGold(1);
+        }
+
+        public void GainGold(int gold)
+        {
+            Gold += gold;
             Gold = Gold > characteristics.MaxGold ? characteristics.MaxGold : Gold;
 
             UIEventManager.SendGoldAmountChanged(Gold);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+            Health = Health < 0 ? 0 : Health;
+
+            UIEventManager.OnHealthAmountChanged(Health);
+
+            if (!IsAlive())
+                Death();
         }
 
         public void LevelUpTavernTier()
@@ -89,6 +104,11 @@ namespace AutoBattler.Data.Players
             SpendGold(characteristics.LevelUpTavernTierCost);
             ++TavernTier;
             UIEventManager.OnTavernTierChanged(TavernTier);
+        }
+
+        public void Death()
+        {
+            Destroy(this.gameObject);
         }
     }
 }

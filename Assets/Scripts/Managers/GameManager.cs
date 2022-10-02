@@ -14,10 +14,13 @@ namespace AutoBattler.Managers
 
         [Header("Parameters")]
         [SerializeField] private float endBattleWaitTime = 3;
+        [SerializeField] private int maxGainGoldPerRound = 10;
+        [SerializeField] private int damageForLose = 1;
 
         private BattleManager battleManager;
 
         public bool IsFightMode { get; private set; } = false;
+        public int CurrentRound { get; private set; } = 1;
 
         public ShopDatabase ShopDb => shopDb;
 
@@ -29,13 +32,12 @@ namespace AutoBattler.Managers
             if (!battleManager.IsFirstArmyAlive())
             {
                 Debug.Log("Player lost!");
-                IsFightMode = false;
+                player.TakeDamage(damageForLose);
                 StartCoroutine(EndBattleCoroutine());
             }
             else if (!battleManager.IsSecondArmyAlive())
             {
                 Debug.Log("Player won!");
-                IsFightMode = false;
                 StartCoroutine(EndBattleCoroutine());
             }
         }
@@ -51,14 +53,22 @@ namespace AutoBattler.Managers
 
         private IEnumerator EndBattleCoroutine()
         {
-            yield return new WaitForSeconds(endBattleWaitTime);
-            EndBattle();
-        }
+            ++CurrentRound;
+            IsFightMode = false;
 
-        public void EndBattle()
-        {
+            yield return new WaitForSeconds(endBattleWaitTime);
+
             battleManager.EndBattle();
             FightEventManager.SendFightEnded();
+
+            RewardPlayer();
+        }
+
+        private void RewardPlayer()
+        {
+            int goldAmount = CurrentRound;
+            goldAmount = goldAmount <= maxGainGoldPerRound ? goldAmount : maxGainGoldPerRound;
+            player.GainGold(goldAmount);
         }
     }
 }

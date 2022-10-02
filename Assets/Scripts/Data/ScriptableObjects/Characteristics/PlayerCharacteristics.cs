@@ -5,7 +5,7 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
     [CreateAssetMenu(fileName = "Player Characteristics", menuName = "Custom/PlayerCharacteristics")]
     public class PlayerCharacteristics : ScriptableObject
     {
-        [SerializeField] private int startHealth = 50;
+        [SerializeField] private int startHealth = 10;
         [SerializeField] private int startGold = 0;
         [SerializeField] private int startTavernTier = 1;
         [SerializeField] private int maxHealth = 99;

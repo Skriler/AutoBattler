@@ -12,7 +12,7 @@ namespace AutoBattler.UnitsContainers.Containers
         private GridManager gridManager;
         private BaseUnit[] units;
 
-        private void OnEnable()
+        private void Awake()
         {
             UnitsEventManager.OnUnitBought += AddUnit;
         }

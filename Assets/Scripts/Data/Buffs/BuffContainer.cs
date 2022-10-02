@@ -9,7 +9,7 @@ namespace AutoBattler.Data.Buffs
     {
         [SerializeField] private List<Buff> buffs;
 
-        private void OnEnable()
+        private void Awake()
         {
             UnitsEventManager.OnUnitAddedOnField += ApplyBuffsForUnit;
             UnitsEventManager.OnUnitAddedOnField += AddUnitBuffs;
