@@ -49,14 +49,14 @@ namespace AutoBattler.UnitsContainers.Containers
 
             Debug.Log(buff.Title + " added, level: " + buff.CurrentLevel);
 
-            ApplyCharacteristicBonus(buff.TargetCharacteristic, buff.AddedPointsAmount);
+            ApplyCharacteristicBonus(buff.TargetCharacteristic, buff.Bonus);
         }
 
         public void RemoveBuffEffect(Buff buff)
         {
             Debug.Log(buff.Title + " removed, level: " + buff.CurrentLevel);
 
-            float removedPointsAmount = -buff.AddedPointsAmount;
+            float removedPointsAmount = -buff.Bonus;
             ApplyCharacteristicBonus(buff.TargetCharacteristic, removedPointsAmount);
         }
 

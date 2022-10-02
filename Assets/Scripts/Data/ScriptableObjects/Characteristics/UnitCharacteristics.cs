@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Data.Enums;
+using AutoBattler.Data.ScriptableObjects.Structs;
 
 namespace AutoBattler.Data.ScriptableObjects.Characteristics
 {

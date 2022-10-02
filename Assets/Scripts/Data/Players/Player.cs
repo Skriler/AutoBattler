@@ -11,7 +11,6 @@ namespace AutoBattler.Data.Players
     public class Player : MonoBehaviour
     {
         [SerializeField] private PlayerCharacteristics characteristics;
-        [SerializeField] private List<Buff> buffs;
 
         public StorageContainer Storage { get; private set; }
         public PlayerFieldContainer Field { get; private set; }

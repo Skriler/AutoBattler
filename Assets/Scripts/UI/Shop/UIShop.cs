@@ -30,15 +30,9 @@ namespace AutoBattler.UI.Shop
             gameObject.SetActive(IsOpen);
         }
 
-        public void MouseEnter()
-        {
-            CameraMovement.Instance.IsOnUI = true;
-        }
+        public void MouseEnter() => CameraMovement.Instance.IsOnUI = true;
 
-        public void MouseExit()
-        {
-            CameraMovement.Instance.IsOnUI = false;
-        }
+        public void MouseExit() => CameraMovement.Instance.IsOnUI = false;
 
         public void OnCardClick(UICard card, ShopUnitEntity shopUnit)
         {

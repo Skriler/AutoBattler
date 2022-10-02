@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
+using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UnitsComponents;
 using AutoBattler.Data.Enums;
 using AutoBattler.UI.Tooltips;
@@ -128,6 +129,8 @@ namespace AutoBattler.Data.Units
             }
         }
 
+        public float GetDamageTypeProtection(DamageType damageType) => damageTypesProtectionPercentage[damageType];
+
         public bool HasEnoughStamina() => Stamina >= AttackSpeed;
 
         public void HideHealthBar() => healthBar.Hide();
@@ -155,16 +158,6 @@ namespace AutoBattler.Data.Units
 
             if (!IsAlive())
                 Death();
-        }
-
-        public float GetDamageTypeProtection(DamageType damageType)
-        {
-            if (damageTypesProtectionPercentage == null)
-                return 0;
-
-            damageTypesProtectionPercentage.TryGetValue(damageType, out int protectionPointsAmount);
-
-            return protectionPointsAmount;
         }
 
         public void ApplyCharacteristicBonus(UnitCharacteristic characteristic, float addedPointsAmount)

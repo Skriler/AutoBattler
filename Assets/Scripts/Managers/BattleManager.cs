@@ -57,8 +57,6 @@ namespace AutoBattler.Managers
                     enemyArmy[i, j]?.ExitFightMode();
                 }
             }
-
-            enemyFieldContainer.ClearField();
         }
 
         private void GenerateSecondArmy()

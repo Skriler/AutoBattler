@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Warrior Buff
   type: 5
-  targetCharacteristic: 3
-  addedPointsAmount: 25
+  targetCharacteristic: 2
+  bonus: 20
   maxLevel: 3
   unitsPerLevel: 3

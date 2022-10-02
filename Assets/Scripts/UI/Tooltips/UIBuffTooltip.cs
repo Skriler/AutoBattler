@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-using AutoBattler.Data.Units;
+using AutoBattler.Data.Enums;
 using AutoBattler.Managers;
 using AutoBattler.Data.Buffs;
 
@@ -8,14 +8,13 @@ namespace AutoBattler.UI.Tooltips
 {
     public class UIBuffTooltip : UITooltipManager<UIBuffTooltip>
     {
-        [Header("UI Elements")]
+        [Header("Base Characteristics")]
         [SerializeField] private TextMeshProUGUI textTitle;
-        [SerializeField] private TextMeshProUGUI textType;
-        [SerializeField] private TextMeshProUGUI textCharacteristic;
-        [SerializeField] private TextMeshProUGUI textAmount;
-        [SerializeField] private TextMeshProUGUI textLevel;
-        [SerializeField] private TextMeshProUGUI textUnitsAmountOnLevel;
-        [SerializeField] private TextMeshProUGUI textUnitPerLevel;
+        [SerializeField] private TextMeshProUGUI textTypeValue;
+        [SerializeField] private TextMeshProUGUI textBonus;
+        [SerializeField] private TextMeshProUGUI textBonusValue;
+        [SerializeField] private TextMeshProUGUI textLevelValue;
+        [SerializeField] private TextMeshProUGUI textUnitsAmountValue;
 
         public override void Setup(Object data)
         {
@@ -24,13 +23,32 @@ namespace AutoBattler.UI.Tooltips
 
             Buff buff = data as Buff;
 
+            SetBaseCharacteristics(buff);
+        }
+
+        private void SetBaseCharacteristics(Buff buff)
+        {
             textTitle.text = buff.Title;
-            textType.text = "Type: " + buff.Type.ToString();
-            textCharacteristic.text = "Characteristic: " + buff.TargetCharacteristic.ToString();
-            textAmount.text = "Amount: " + buff.AddedPointsAmount;
-            textLevel.text = "Level: " + buff.CurrentLevel + " / " + buff.MaxLevel;
-            textUnitsAmountOnLevel.text = "Units amount on level: " + buff.UnitsAmountOnCurrentLevel;
-            textUnitPerLevel.text = "Units per level: " + buff.UnitsPerLevel;
+            textTypeValue.text = buff.Type.ToString();
+            textLevelValue.text = buff.CurrentLevel + "/" + buff.MaxLevel;
+            textUnitsAmountValue.text = buff.UnitsAmountOnCurrentLevel + "/" + buff.UnitsPerLevel;
+
+            SetDescription(buff);
+        }
+
+        private void SetDescription(Buff buff)
+        {
+            string strBonus = buff.TargetCharacteristic switch
+            {
+                UnitCharacteristic.AttackDamage => "Damage",
+                UnitCharacteristic.AttackSpeed => "Speed",
+                UnitCharacteristic.Health => "Health",
+                _ => "",
+            };
+            strBonus += " bonus:";
+
+            textBonus.text = strBonus;
+            textBonusValue.text = buff.Bonus.ToString();
         }
     }
 }

@@ -2,7 +2,6 @@
 {
     public enum UnitCharacteristic
     {
-        None,
         AttackDamage,
         AttackSpeed,
         Health,

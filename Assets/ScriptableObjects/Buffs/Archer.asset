@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Archer Buff
   type: 6
-  targetCharacteristic: 2
-  addedPointsAmount: 1.2
+  targetCharacteristic: 1
+  bonus: 0.3
   maxLevel: 2
-  unitsPerLevel: 2
+  unitsPerLevel: 3

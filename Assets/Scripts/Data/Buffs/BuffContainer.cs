@@ -60,7 +60,7 @@ namespace AutoBattler.Data.Buffs
                 if (!buff.IsActive())
                     continue;
 
-                float addedPointsAmount = buff.AddedPointsAmount * buff.CurrentLevel;
+                float addedPointsAmount = buff.Bonus * buff.CurrentLevel;
                 unit.ApplyCharacteristicBonus(buff.TargetCharacteristic, addedPointsAmount);
             }
         }
@@ -72,7 +72,7 @@ namespace AutoBattler.Data.Buffs
                 if (!buff.IsActive())
                     continue;
 
-                float removedPointsAmount = -buff.AddedPointsAmount * buff.CurrentLevel;
+                float removedPointsAmount = -buff.Bonus * buff.CurrentLevel;
                 unit.ApplyCharacteristicBonus(buff.TargetCharacteristic, removedPointsAmount);
             }
         }

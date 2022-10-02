@@ -10,14 +10,14 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         [SerializeField] private string title;
         [SerializeField] private BuffType type;
         [SerializeField] private UnitCharacteristic targetCharacteristic;
-        [SerializeField] private float addedPointsAmount;
+        [SerializeField] private float bonus;
         [SerializeField] private int maxLevel;
         [SerializeField] private int unitsPerLevel;
 
         public string Title => title;
         public BuffType Type => type;
         public UnitCharacteristic TargetCharacteristic => targetCharacteristic;
-        public float AddedPointsAmount => addedPointsAmount;
+        public float Bonus => bonus;
         public int MaxLevel => maxLevel;
         public int UnitsPerLevel => unitsPerLevel;
     }

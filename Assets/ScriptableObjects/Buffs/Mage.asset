@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Mage Buff
   type: 7
-  targetCharacteristic: 1
-  addedPointsAmount: 20.5
+  targetCharacteristic: 0
+  bonus: 12.7
   maxLevel: 2
   unitsPerLevel: 3

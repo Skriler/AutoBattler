@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Creature Buff
   type: 4
-  targetCharacteristic: 1
-  addedPointsAmount: 10.3
+  targetCharacteristic: 0
+  bonus: 8.6
   maxLevel: 3
   unitsPerLevel: 3

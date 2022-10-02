@@ -9,6 +9,7 @@ namespace AutoBattler.Managers
 
         [Header("Parameters")]
         [SerializeField] private float zoomStep = 0.5f;
+        [SerializeField] private float wheelStep = 0.2f;
         [SerializeField] private float minCameraSize = 2;
         [SerializeField] private float maxCameraSize = 6;
         [SerializeField] private string backgroundTag = "Background";
@@ -34,26 +35,26 @@ namespace AutoBattler.Managers
 
         private void Update()
         {
+            if (Input.GetMouseButtonUp(0) && IsActive)
+                IsActive = false;
+
             if (IsOnUI)
                 return;
 
+            CalculateWheelZoom();
             PanCamera();
         }
 
         public void ZoomIn()
         {
             float newCameraSize = mainCamera.orthographicSize - zoomStep;
-            mainCamera.orthographicSize = Mathf.Clamp(newCameraSize, minCameraSize, maxCameraSize);
-
-            mainCamera.transform.position = ClampCamera(mainCamera.transform.position);
+            SetNewCameraSize(newCameraSize);
         }
 
         public void ZoomOut()
         {
             float newCameraSize = mainCamera.orthographicSize + zoomStep;
-            mainCamera.orthographicSize = Mathf.Clamp(newCameraSize, minCameraSize, maxCameraSize);
-
-            mainCamera.transform.position = ClampCamera(mainCamera.transform.position);
+            SetNewCameraSize(newCameraSize);
         }
 
         private void CalculateBackgroundParameters()
@@ -65,6 +66,23 @@ namespace AutoBattler.Managers
             backgroundMaxX = position.x + size.x / 2f;
             backgroundMinY = position.y - size.y / 2f;
             backgroundMaxY = position.y + size.y / 2f;
+        }
+
+        private void CalculateWheelZoom()
+        {
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+            if (scroll == 0)
+                return;
+
+            float newCameraSize = mainCamera.orthographicSize - scroll * wheelStep;
+            SetNewCameraSize(newCameraSize);
+        }
+
+        private void SetNewCameraSize(float newCameraSize)
+        {
+            mainCamera.orthographicSize = Mathf.Clamp(newCameraSize, minCameraSize, maxCameraSize);
+            mainCamera.transform.position = ClampCamera(mainCamera.transform.position);
         }
 
         private void PanCamera()

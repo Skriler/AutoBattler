@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.Players;
-using System.Collections;
+using AutoBattler.EventManagers;
 
 namespace AutoBattler.Managers
 {
@@ -45,6 +46,7 @@ namespace AutoBattler.Managers
 
             battleManager = new BattleManager(player.Field, player.EnemyField, shopDb);
             battleManager.StartBattle();
+            FightEventManager.SendFightStarted();
         }
 
         private IEnumerator EndBattleCoroutine()
@@ -56,6 +58,7 @@ namespace AutoBattler.Managers
         public void EndBattle()
         {
             battleManager.EndBattle();
+            FightEventManager.SendFightEnded();
         }
     }
 }

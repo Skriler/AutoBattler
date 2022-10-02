@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Elf Buff
   type: 3
-  targetCharacteristic: 2
-  addedPointsAmount: 1.3
+  targetCharacteristic: 1
+  bonus: 0.2
   maxLevel: 2
   unitsPerLevel: 3

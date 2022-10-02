@@ -1,12 +1,23 @@
 using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Grids;
+using AutoBattler.EventManagers;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
     public class EnemyFieldContainer : FieldContainer
     {
         protected EnemyFieldGridManager enemyFieldGridManager;
+
+        protected void OnEnable()
+        {
+            FightEventManager.OnFightEnded += ClearField;
+        }
+
+        protected void OnDestroy()
+        {
+            FightEventManager.OnFightEnded -= ClearField;
+        }
 
         protected override void Start()
         {
