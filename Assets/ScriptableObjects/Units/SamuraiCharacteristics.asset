@@ -16,7 +16,7 @@ MonoBehaviour:
   cost: 6
   tavernTier: 5
   race: 1
-  specification: 0
+  specification: 3
   maxHealth: 200
   damageType: 3
   attackDamage: 35.8

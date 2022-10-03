@@ -172,7 +172,7 @@ MonoBehaviour:
     - {fileID: 3384493420599841878, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
     swapSpeed: 0.12
     isFlipOnX: 0
-  - prefab: {fileID: 8484849594982333516, guid: 83329c412a1468541bd610b2f78a3165, type: 3}
+  - prefab: {fileID: 618620137749664239, guid: c7ab0538a33cd184cb2439f09cae49fd, type: 3}
     characteristics: {fileID: 11400000, guid: 8e71a89c095cc964aa92ba0322a1d99d, type: 2}
     sprites:
     - {fileID: 152136079, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}

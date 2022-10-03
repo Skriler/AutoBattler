@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Dark Wizard
   cost: 5
   tavernTier: 4
-  race: 0
+  race: 2
   specification: 2
   maxHealth: 140
   damageType: 1

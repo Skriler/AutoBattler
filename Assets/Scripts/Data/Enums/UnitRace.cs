@@ -5,6 +5,6 @@
         Human,
         Undead,
         Elf,
-        Creature
+        Savage,
     }
 }

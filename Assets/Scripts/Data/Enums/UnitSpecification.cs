@@ -2,8 +2,11 @@
 {
     public enum UnitSpecification
     {
-        Warrior,
+        Swordsman,
         Archer,
-        Mage
+        Mage,
+        Assassin,
+        Knight,
+        Brute,
     }
 }

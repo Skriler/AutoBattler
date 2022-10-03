@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab2b8ed1c192e140b434dff70d41ecb, type: 3}
+  m_Name: ChampionCharacteristics
+  m_EditorClassIdentifier: 
+  title: Champion
+  cost: 5
+  tavernTier: 3
+  race: 1
+  specification: 4
+  maxHealth: 130
+  damageType: 2
+  attackDamage: 29.2
+  attackSpeed: 4.4
+  damageTypesProtectionPercentage:
+  - damageType: 0
+    protectionPercentage: 22
+  - damageType: 1
+    protectionPercentage: 20
+  - damageType: 2
+    protectionPercentage: 35
+  - damageType: 3
+    protectionPercentage: 15
