@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using AutoBattler.Data.Units;
+using AutoBattler.Data.Enums;
 using AutoBattler.Data.ScriptableObjects.Databases;
 
 namespace AutoBattler.EventManagers
@@ -21,7 +22,7 @@ namespace AutoBattler.EventManagers
 
         public static UnityAction<BaseUnit> OnUnitRemovedFromField;
 
-        public static UnityAction<BaseUnit, float> OnUnitTookDamage;
+        public static UnityAction<BaseUnit, float, DamageType> OnUnitTookDamage;
 
         public static void SendDraggedUnitChangedPosition(Vector3 position)
             => OnDraggedUnitChangedPosition.Invoke(position);
@@ -44,7 +45,7 @@ namespace AutoBattler.EventManagers
         public static void SendUnitRemovedFromField(BaseUnit unit)
             => OnUnitRemovedFromField.Invoke(unit);
 
-        public static void SendUnitTookDamage(BaseUnit unit, float damageAmount)
-            => OnUnitTookDamage.Invoke(unit, damageAmount);
+        public static void SendUnitTookDamage(BaseUnit unit, float damageAmount, DamageType damageType)
+            => OnUnitTookDamage.Invoke(unit, damageAmount, damageType);
     }
 }

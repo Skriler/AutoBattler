@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using AutoBattler.UI.Tooltips;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.UI.Effects
 {
@@ -9,16 +10,31 @@ namespace AutoBattler.UI.Effects
     {
         [Header("Components")]
         [SerializeField] private TextMeshProUGUI textDamage;
-        [SerializeField] private Color startColor;
-        [SerializeField] private Color fadedColor;
 
         [Header("Parameters")]
         [SerializeField] private float lifetime = 2.5f;
         [SerializeField] private float minDistance = -200f;
         [SerializeField] private float maxDistance = 200f;
 
+        [Header("Fire Colors")]
+        [SerializeField] private Color startFireColor;
+        [SerializeField] private Color fadedFireColor;
+
+        [Header("Ice Colors")]
+        [SerializeField] private Color startIceColor;
+        [SerializeField] private Color fadedIceColor;
+
+        [Header("Chao Colors")]
+        [SerializeField] private Color startChaosColor;
+        [SerializeField] private Color fadedChaosColor;
+
+        [Header("Purify Colors")]
+        [SerializeField] private Color startPurifyColor;
+        [SerializeField] private Color fadedPurifyColor;
+
         private Vector3 startPosition;
         private Vector3 targetPosition;
+        private DamageType currentDamageType;
         private float timer = 0;
 
         private void Start()
@@ -43,17 +59,34 @@ namespace AutoBattler.UI.Effects
 
         public void MouseEnter() => UIUnitTooltip.Instance.Show();
 
-        public void Setup(float damage, Vector3 position)
+        public void Setup(float damage, Vector3 position, DamageType damageType)
         {
             textDamage.text = damage.ToString();
-            textDamage.color = startColor;
             transform.position = position;
+
+            textDamage.color = damageType switch
+            {
+                DamageType.Fire => startFireColor,
+                DamageType.Ice => startIceColor,
+                DamageType.Chaos => startChaosColor,
+                DamageType.Purify => startPurifyColor,
+                _ => new Color(),
+            };
+            currentDamageType = damageType;
         }
 
         private IEnumerator RemoveTextCoroutine()
         {
             yield return new WaitForSeconds(lifetime / 2);
-            textDamage.color = fadedColor;
+
+            textDamage.color = currentDamageType switch
+            {
+                DamageType.Fire => fadedFireColor,
+                DamageType.Ice => fadedIceColor,
+                DamageType.Chaos => fadedChaosColor,
+                DamageType.Purify => fadedPurifyColor,
+                _ => new Color(),
+            };
 
             yield return new WaitForSeconds(lifetime / 2);
             Destroy(gameObject);

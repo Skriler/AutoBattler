@@ -77,8 +77,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190292
-  m_fontColor: {r: 0.8301887, g: 0, b: 0, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -150,11 +150,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textDamage: {fileID: 2447657559865683843}
-  startColor: {r: 0.83137256, g: 0, b: 0, a: 1}
-  fadedColor: {r: 0.5943396, g: 0, b: 0, a: 1}
   lifetime: 2.5
   minDistance: -200
   maxDistance: 200
+  startFireColor: {r: 1, g: 0, b: 0, a: 1}
+  fadedFireColor: {r: 0.6666667, g: 0, b: 0, a: 1}
+  startIceColor: {r: 0, g: 1, b: 0.99999976, a: 1}
+  fadedIceColor: {r: 0, g: 0.54901963, b: 0.54901963, a: 1}
+  startChaosColor: {r: 0.78431374, g: 0, b: 1, a: 1}
+  fadedChaosColor: {r: 0.47058824, g: 0, b: 0.6862745, a: 1}
+  startPurifyColor: {r: 0, g: 1, b: 0.49019608, a: 1}
+  fadedPurifyColor: {r: 0, g: 0.47058824, b: 0.23529412, a: 1}
 --- !u!114 &7886903651169295286
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Units;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.UI.Effects
 {
@@ -18,13 +19,13 @@ namespace AutoBattler.UI.Effects
             UnitsEventManager.OnUnitTookDamage -= InstantiateTakenDamageText;
         }
 
-        public void InstantiateTakenDamageText(BaseUnit unit, float healthAmount)
+        public void InstantiateTakenDamageText(BaseUnit unit, float healthAmount, DamageType damageType)
         {
             UITakenDamageText takenDamageText = Instantiate(takenDamagePrefab);
             takenDamageText.transform.SetParent(gameObject.transform, false);
 
             Vector3 canvasPosition = RectTransformUtility.WorldToScreenPoint(Camera.current, unit.transform.position);
-            takenDamageText.Setup(healthAmount, canvasPosition);
+            takenDamageText.Setup(healthAmount, canvasPosition, damageType);
         }
     }
 }
