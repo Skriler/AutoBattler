@@ -1,7 +1,7 @@
 using UnityEngine;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Units;
-using AutoBattler.EventManagers;
+using AutoBattler.Data.Buffs;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
@@ -14,9 +14,9 @@ namespace AutoBattler.UnitsContainers.Containers
 
         protected virtual void Start()
         {
-            unitsContainer = transform.Find("Units").gameObject;
-
             gridManager = GetComponent<GridManager>();
+
+            unitsContainer = transform.Find("Units").gameObject;
 
             units = new BaseUnit[gridManager.Width, gridManager.Height];
         }

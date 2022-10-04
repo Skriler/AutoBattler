@@ -8,6 +8,8 @@ namespace AutoBattler.UnitsContainers.Containers
 {
     public class PlayerFieldContainer : FieldContainer
     {
+        public BuffContainer Buffs { get; private set; }
+
         private void Awake()
         {
             BuffsEventManager.OnBuffLevelIncreased += AddBuffEffect;
@@ -18,6 +20,13 @@ namespace AutoBattler.UnitsContainers.Containers
         {
             BuffsEventManager.OnBuffLevelIncreased -= AddBuffEffect;
             BuffsEventManager.OnBuffLevelDecreased -= RemoveBuffEffect;
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+
+            Buffs = transform.GetComponentInChildren<BuffContainer>();
         }
 
         public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;

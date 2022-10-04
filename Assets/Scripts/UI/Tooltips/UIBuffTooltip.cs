@@ -29,11 +29,23 @@ namespace AutoBattler.UI.Tooltips
         private void SetBaseCharacteristics(Buff buff)
         {
             textTitle.text = buff.Title;
-            textTypeValue.text = buff.Type.ToString();
             textLevelValue.text = buff.CurrentLevel + "/" + buff.MaxLevel;
             textUnitsAmountValue.text = buff.UnitsAmountOnCurrentLevel + "/" + buff.UnitsPerLevel;
 
+            SetType(buff);
             SetDescription(buff);
+        }
+
+        private void SetType(Buff buff)
+        {
+            string strType = "";
+
+            if (buff is RaceBuff)
+                strType = (buff as RaceBuff).Race.ToString();
+            else if (buff is SpecificationBuff)
+                strType = (buff as SpecificationBuff).Specification.ToString();
+
+            textTypeValue.text = strType;
         }
 
         private void SetDescription(Buff buff)

@@ -1,28 +1,19 @@
 using UnityEngine;
-using UnityEngine.UI;
 using AutoBattler.Data.Units;
 using AutoBattler.Data.Enums;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
-using AutoBattler.UI.Tooltips;
 using AutoBattler.EventManagers;
 
 namespace AutoBattler.Data.Buffs
 {
-    public class Buff : MonoBehaviour
+    public abstract class Buff : MonoBehaviour
     {
         private static int MIN_LEVEL = 0;
         private static int START_UNITS_AMOUNT_ON_LEVEL = 0;
-        private static float MAX_COLOR_VALUE = 255;
 
-        [Header("Components")]
-        [SerializeField] private Image buffImage;
-
-        [Header("Parameters")]
         [SerializeField] private BuffCharacteristics characteristics;
-        [SerializeField] private float minColorValue = 75;
 
         public string Title { get; protected set; }
-        public BuffType Type { get; protected set; }
         public int MaxLevel { get; protected set; }
         public int UnitsPerLevel { get; protected set; }
         public UnitCharacteristic TargetCharacteristic { get; protected set; }
@@ -30,28 +21,16 @@ namespace AutoBattler.Data.Buffs
         public int CurrentLevel { get; protected set; }
         public int UnitsAmountOnCurrentLevel { get; protected set; }
 
-        private float minColor—oefficient;
-
-        private void Start()
+        private void Awake()
         {
             Set—haracteristics();
-            
-            minColor—oefficient = minColorValue / MAX_COLOR_VALUE;
-            ChangeBuffImageColor();
         }
 
-        public void MouseExit() => UIBuffTooltip.Instance.Hide();
-
-        public void MouseEnter()
-        {
-            UIBuffTooltip.Instance.Show();
-            UIBuffTooltip.Instance.Setup(this);
-        }
+        public abstract bool IsUnitPassCheck(BaseUnit unit);
 
         private void Set—haracteristics()
         {
             Title = characteristics.Title;
-            Type = characteristics.Type;
             MaxLevel = characteristics.MaxLevel;
             UnitsPerLevel = characteristics.UnitsPerLevel;
             TargetCharacteristic = characteristics.TargetCharacteristic;
@@ -83,7 +62,6 @@ namespace AutoBattler.Data.Buffs
                 ++CurrentLevel;
                 UnitsAmountOnCurrentLevel = START_UNITS_AMOUNT_ON_LEVEL;
 
-                ChangeBuffImageColor();
                 BuffsEventManager.OnBuffLevelIncreased(this);
             }
         }
@@ -98,27 +76,10 @@ namespace AutoBattler.Data.Buffs
                 --CurrentLevel;
                 UnitsAmountOnCurrentLevel = UnitsPerLevel;
 
-                ChangeBuffImageColor();
                 BuffsEventManager.OnBuffLevelDecreased(this);
             }
 
             --UnitsAmountOnCurrentLevel;
-        }
-
-        public bool IsUnitPassCheck(BaseUnit unit)
-        {
-            return unit.Race.ToString() == Type.ToString() ||
-                unit.Specification.ToString() == Type.ToString();
-        }
-
-        public void ChangeBuffImageColor()
-        {
-            float level—oefficient = (float)CurrentLevel / MaxLevel;
-
-            float color—oefficient = level—oefficient * (1 - minColor—oefficient);
-            color—oefficient += minColor—oefficient;
-
-            buffImage.color = new Color(color—oefficient, color—oefficient, color—oefficient);
         }
     }
 }
