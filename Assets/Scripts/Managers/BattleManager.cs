@@ -65,16 +65,27 @@ namespace AutoBattler.Managers
             int shopUnitsAmount = shopUnits.Count;
             int unitsAmount = playerFieldContainer.GetUnitsAmount();
 
-            for (int i = 0; i < ArmyWidth; ++i)
-            {
-                for (int j = 0; j < ArmyHeight; ++j)
-                {
-                    if (i * ArmyHeight + j >= unitsAmount)
-                        continue;
+            //for (int i = 0; i < ArmyWidth; ++i)
+            //{
+            //    for (int j = 0; j < ArmyHeight; ++j)
+            //    {
+            //        if (i * ArmyHeight + j >= unitsAmount)
+            //            continue;
 
-                    enemyArmy[i, j] = shopUnits[UnityEngine.Random.Range(0, shopUnitsAmount)].prefab;
-                }
-            }
+            //        enemyArmy[i, j] = shopUnits[UnityEngine.Random.Range(0, shopUnitsAmount)].prefab;
+            //    }
+            //}
+
+            enemyArmy[0, 0] = shopUnits[8].prefab;
+            enemyArmy[0, 1] = null;
+            enemyArmy[0, 2] = shopUnits[8].prefab;
+            enemyArmy[0, 3] = null;
+            enemyArmy[0, 4] = null;
+            enemyArmy[1, 0] = shopUnits[11].prefab;
+            enemyArmy[1, 1] = null;
+            enemyArmy[1, 2] = null;
+            enemyArmy[1, 3] = shopUnits[7].prefab;
+            enemyArmy[1, 4] = null;
         }
 
         public bool IsFirstArmyAlive() => playerFieldContainer.IsAtLeastOneAliveUnit();

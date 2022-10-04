@@ -8,6 +8,9 @@ namespace AutoBattler.Data.Units
 
         protected override void FindTarget(BaseUnit[,] enemyUnits)
         {
+            if (enemyUnits == null)
+                return;
+
             for (int i = enemyUnits.GetLength(0) - 1; i >= 0; --i)
             {
                 for (int j = 0; j < enemyUnits.GetLength(1); ++j)

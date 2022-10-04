@@ -47,7 +47,5 @@ namespace AutoBattler.UnitsContainers.Grids
 
             return true;
         }
-
-        public void Click() { }
     }
 }

@@ -21,7 +21,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
                     newUnit = Instantiate(army[i, j], newUnitPosition, Quaternion.identity);
                     newUnit.transform.SetParent(unitsContainer);
-                    newUnit.FlipOnX();
+                    newUnit.EnterEnemyMode();
                     newUnit.ShowHealthBar();
 
                     army[i, j] = newUnit;

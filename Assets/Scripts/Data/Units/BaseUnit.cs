@@ -20,6 +20,8 @@ namespace AutoBattler.Data.Units
         [Header("Parameters")]
         [SerializeField] protected float staminaRegenInterval = 0.05f;
         [SerializeField] protected float dealDamageInterval = 0.4f;
+        [SerializeField] protected float findTargetInterval = 0.1f;
+        [SerializeField] protected float lowHealth—oefficient = 0.3f;
 
         public string Id { get; protected set; }
         public string Title { get; protected set; }
@@ -33,6 +35,9 @@ namespace AutoBattler.Data.Units
         public float AttackSpeed { get; protected set; }
         public float Stamina { get; protected set; }
 
+        public bool IsFightMode { get; protected set; } = false;
+        public bool IsEnemyMode { get; protected set; } = false;
+
         protected Dictionary<DamageType, int> damageTypesProtectionPercentage;
 
         protected SpriteRenderer spriteRenderer;
@@ -42,8 +47,8 @@ namespace AutoBattler.Data.Units
         protected HealthBar healthBar;
         protected WaitForSeconds staminaRegenTick;
         protected Coroutine regenStamina;
+        protected Coroutine fintTarget;
 
-        protected bool isFightMode = false;
         protected BaseUnit[,] enemyUnits;
 
         protected abstract void FindTarget(BaseUnit[,] enemyUnits);
@@ -68,23 +73,19 @@ namespace AutoBattler.Data.Units
 
         private void Update()
         {
-            if (!isFightMode || !IsAlive())
+            if (!IsFightMode || !IsAlive())
                 return;
 
             CheckTargetedEnemy();
 
             if (!HasTargetedEnemy())
-            {
                 FindTarget(enemyUnits);
-            }
 
             if (!HasEnoughStamina() && regenStamina == null)
                 regenStamina = StartCoroutine(RegenStaminaCoroutine());
 
             if (HasEnoughStamina() && HasTargetedEnemy())
-            {
                 Attack();
-            }
         }
 
         public void MouseExit() => UIUnitTooltip.Instance.Hide();
@@ -130,6 +131,8 @@ namespace AutoBattler.Data.Units
 
         public bool IsAlive() => Health > 0;
 
+        public bool HasLowHealth() => Health <= MaxHealth * lowHealth—oefficient;
+
         public void TakeDamage(float damage, DamageType damageType)
         {
             if (Health == 0)
@@ -152,7 +155,7 @@ namespace AutoBattler.Data.Units
                 Death();
         }
 
-        private void CalculateTakenDamage(ref float damage, DamageType damageType)
+        protected void CalculateTakenDamage(ref float damage, DamageType damageType)
         {
             float damageProtection—oefficient = damageType switch
             {
@@ -206,13 +209,13 @@ namespace AutoBattler.Data.Units
             regenStamina = StartCoroutine(RegenStaminaCoroutine());
         }
 
-        private IEnumerator DealDamageCoroutine()
+        protected IEnumerator DealDamageCoroutine()
         {
             yield return new WaitForSeconds(dealDamageInterval);
             DealDamageToTargetedEnemy();
         }
 
-        private IEnumerator RegenStaminaCoroutine()
+        protected IEnumerator RegenStaminaCoroutine()
         {
             while (Stamina < AttackSpeed)
             {
@@ -222,6 +225,13 @@ namespace AutoBattler.Data.Units
             }
 
             regenStamina = null;
+        }
+
+        protected IEnumerator FindTargetCoroutine()
+        {
+            yield return new WaitForSeconds(findTargetInterval);
+            fintTarget = null;
+            FindTarget(enemyUnits);
         }
 
         public void Death()
@@ -242,15 +252,28 @@ namespace AutoBattler.Data.Units
             healthBar.UpdateStamina(Stamina);
         }
 
-        public void FlipOnX()
+        public DamageType GetOppositeDamageType()
         {
+            return DamageType switch
+            {
+                DamageType.Fire => DamageType.Ice,
+                DamageType.Ice => DamageType.Fire,
+                DamageType.Chaos => DamageType.Purify,
+                DamageType.Purify => DamageType.Chaos,
+                _ => DamageType.Purify,
+            };
+        }
+
+        public void EnterEnemyMode()
+        {
+            IsEnemyMode = true;
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
 
         public void EnterFightMode(BaseUnit[,] enemyUnits)
         {
             draggable.IsActive = false;
-            isFightMode = true;
+            IsFightMode = true;
 
             this.enemyUnits = enemyUnits;
         }
@@ -258,11 +281,9 @@ namespace AutoBattler.Data.Units
         public void ExitFightMode()
         {
             draggable.IsActive = true;
-            isFightMode = false;
+            IsFightMode = false;
 
             Resurrect();
         }
-
-        public void Click() { }
     }
 }
