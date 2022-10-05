@@ -2,15 +2,18 @@
 using AutoBattler.Data.Units;
 using UnityEngine;
 using AutoBattler.EventManagers;
+using AutoBattler.Managers;
 
 namespace AutoBattler.Data.Buffs
 {
-    public class BuffContainer : MonoBehaviour
+    public class BuffContainer : Manager<BuffContainer>
     {
         [SerializeField] private List<Buff> buffs;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             UnitsEventManager.OnUnitAddedOnField += ApplyBuffsForUnit;
             UnitsEventManager.OnUnitAddedOnField += AddUnitBuffs;
             UnitsEventManager.OnUnitRemovedFromField += RemoveBuffsFromUnit;
@@ -24,6 +27,8 @@ namespace AutoBattler.Data.Buffs
             UnitsEventManager.OnUnitRemovedFromField -= RemoveBuffsFromUnit;
             UnitsEventManager.OnUnitRemovedFromField -= RemoveUnitBuffs;
         }
+
+        public List<Buff> GetBuffs() => buffs;
 
         public void ResetBuffs()
         {

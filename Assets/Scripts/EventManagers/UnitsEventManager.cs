@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using AutoBattler.Data.Units;
 using AutoBattler.Data.Enums;
-using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.Data.ScriptableObjects.Structs;
 
 namespace AutoBattler.EventManagers
 {

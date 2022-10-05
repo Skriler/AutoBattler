@@ -11,7 +11,7 @@ namespace AutoBattler.UnitsContainers.Containers
         // Return true if removed successfully
         public abstract bool RemoveUnit(BaseUnit unit);
 
-        public abstract void ChangeUnitPosition();
+        public abstract void ChangeUnitPosition(BaseUnit unit, Vector2Int index);
 
         public abstract bool IsCellOccupied(Vector2Int index);
 

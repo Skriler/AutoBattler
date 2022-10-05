@@ -7,9 +7,8 @@ namespace AutoBattler.UnitsContainers.Containers
 {
     public abstract class FieldContainer : UnitsContainer
     {
-        protected GameObject unitsContainer;
-
         protected GridManager gridManager;
+        protected GameObject unitsContainer;
         protected BaseUnit[,] units;
 
         protected virtual void Start()
@@ -59,9 +58,20 @@ namespace AutoBattler.UnitsContainers.Containers
             return false;
         }
 
-        public override void ChangeUnitPosition()
+        public override void ChangeUnitPosition(BaseUnit unit, Vector2Int index)
         {
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j]?.Id != unit.Id)
+                        continue;
 
+                    units[i, j] = null;
+                    units[index.x, index.y] = unit;
+                    return;
+                }
+            }
         }
 
         public override bool Contains(BaseUnit unit)

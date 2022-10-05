@@ -1,7 +1,7 @@
 using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Grids;
-using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.EventManagers;
 
 namespace AutoBattler.UnitsContainers.Containers
@@ -76,9 +76,17 @@ namespace AutoBattler.UnitsContainers.Containers
             return false;
         }
 
-        public override void ChangeUnitPosition()
+        public override void ChangeUnitPosition(BaseUnit unit, Vector2Int index)
         {
-           
+            for (int i = 0; i < units.Length; ++i)
+            {
+                if (units[i]?.Id != unit.Id)
+                    continue;
+
+                units[i] = null;
+                units[index.x] = unit;
+                return;
+            }
         }
 
         public override bool IsCellOccupied(Vector2Int index)

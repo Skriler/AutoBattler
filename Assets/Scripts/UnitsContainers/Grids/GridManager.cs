@@ -152,10 +152,17 @@ namespace AutoBattler.UnitsContainers.Grids
             if (!IsFreeTile(index))
                 return;
 
-            UnitsEventManager.SendUnitChangedPosition(unit);
-
-            unitsContainer.AddUnit(unit, index);
             unit.transform.position = currentTile.transform.position;
+
+            if (unitsContainer.Contains(unit))
+            {
+                unitsContainer.ChangeUnitPosition(unit, index);
+            }
+            else
+            {
+                UnitsEventManager.SendUnitChangedPosition(unit);
+                unitsContainer.AddUnit(unit, index);
+            }
         }
     }
 }

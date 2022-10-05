@@ -241,7 +241,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1348943598, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
+  m_Sprite: {fileID: -1902693184, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -822,7 +822,7 @@ Transform:
   m_GameObject: {fileID: 8483662040524887812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8483662038924530047}
@@ -869,6 +869,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellSpriteRenderer: {fileID: 8483662038924530044}
-  standartCell: {fileID: 1348943598, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
+  standartCell: {fileID: -1902693184, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
   occupiedCell: {fileID: -1116169516, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
   freeCell: {fileID: -2077154285, guid: 0dec15463c663aa48acf0110dc414663, type: 3}

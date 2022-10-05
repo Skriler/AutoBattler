@@ -3,7 +3,7 @@ using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 
-namespace AutoBattler.Data.ScriptableObjects.Databases
+namespace AutoBattler.Data.ScriptableObjects.Structs
 {
     [Serializable]
     public struct ShopUnitEntity

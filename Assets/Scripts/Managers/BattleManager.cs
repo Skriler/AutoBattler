@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Containers;
 using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.Data.ScriptableObjects.Structs;
 
 namespace AutoBattler.Managers
 {

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Players;
 using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UI.Tooltips;
 using AutoBattler.Managers;
 

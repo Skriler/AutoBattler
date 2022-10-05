@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
-using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UI.Tooltips;
 
 namespace AutoBattler.UI.Shop
