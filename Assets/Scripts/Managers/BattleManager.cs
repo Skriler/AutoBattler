@@ -80,13 +80,13 @@ namespace AutoBattler.Managers
             enemyArmy[0, 0] = shopUnits[8].prefab;
             enemyArmy[0, 1] = null;
             enemyArmy[0, 2] = shopUnits[8].prefab;
-            enemyArmy[0, 3] = null;
-            enemyArmy[0, 4] = null;
-            enemyArmy[1, 0] = shopUnits[11].prefab;
-            enemyArmy[1, 1] = null;
-            enemyArmy[1, 2] = null;
+            enemyArmy[0, 3] = shopUnits[11].prefab;
+            enemyArmy[0, 4] = shopUnits[11].prefab;
+            enemyArmy[1, 0] = null;
+            enemyArmy[1, 1] = shopUnits[11].prefab;
+            enemyArmy[1, 2] = shopUnits[8].prefab;
             enemyArmy[1, 3] = shopUnits[7].prefab;
-            enemyArmy[1, 4] = null;
+            enemyArmy[1, 4] = shopUnits[11].prefab;
         }
 
         public bool IsFirstArmyAlive() => playerFieldContainer.IsAtLeastOneAliveUnit();

@@ -21,7 +21,7 @@ namespace AutoBattler.Data.Units
         [SerializeField] protected float staminaRegenInterval = 0.05f;
         [SerializeField] protected float dealDamageInterval = 0.4f;
         [SerializeField] protected float findTargetInterval = 0.1f;
-        [SerializeField] protected float lowHealthÑoefficient = 0.3f;
+        [SerializeField] protected float lowHealthÑoefficient = 0.45f;
 
         public string Id { get; protected set; }
         public string Title { get; protected set; }
@@ -47,14 +47,12 @@ namespace AutoBattler.Data.Units
         protected HealthBar healthBar;
         protected WaitForSeconds staminaRegenTick;
         protected Coroutine regenStamina;
-        protected Coroutine fintTarget;
 
         protected BaseUnit[,] enemyUnits;
 
         protected abstract void FindTarget(BaseUnit[,] enemyUnits);
-        protected abstract bool HasTargetedEnemy();
-        protected abstract void DealDamageToTargetedEnemy();
-        protected abstract void CheckTargetedEnemy();
+        protected abstract bool HasTarget();
+        protected abstract void DealDamageToTarget();
 
         private void Awake()
         {
@@ -76,16 +74,14 @@ namespace AutoBattler.Data.Units
             if (!IsFightMode || !IsAlive())
                 return;
 
-            CheckTargetedEnemy();
-
-            if (!HasTargetedEnemy())
-                FindTarget(enemyUnits);
-
             if (!HasEnoughStamina() && regenStamina == null)
                 regenStamina = StartCoroutine(RegenStaminaCoroutine());
 
-            if (HasEnoughStamina() && HasTargetedEnemy())
+            if (HasEnoughStamina())
+            {
+                FindTarget(enemyUnits);
                 Attack();
+            }     
         }
 
         public void MouseExit() => UIUnitTooltip.Instance.Hide();
@@ -196,7 +192,7 @@ namespace AutoBattler.Data.Units
 
         public void Attack()
         {
-            if (!HasEnoughStamina() || !HasTargetedEnemy())
+            if (!HasEnoughStamina() || !HasTarget())
                 return;
 
             Stamina = 0;
@@ -212,7 +208,7 @@ namespace AutoBattler.Data.Units
         protected IEnumerator DealDamageCoroutine()
         {
             yield return new WaitForSeconds(dealDamageInterval);
-            DealDamageToTargetedEnemy();
+            DealDamageToTarget();
         }
 
         protected IEnumerator RegenStaminaCoroutine()
@@ -225,13 +221,6 @@ namespace AutoBattler.Data.Units
             }
 
             regenStamina = null;
-        }
-
-        protected IEnumerator FindTargetCoroutine()
-        {
-            yield return new WaitForSeconds(findTargetInterval);
-            fintTarget = null;
-            FindTarget(enemyUnits);
         }
 
         public void Death()
@@ -262,6 +251,14 @@ namespace AutoBattler.Data.Units
                 DamageType.Purify => DamageType.Chaos,
                 _ => DamageType.Purify,
             };
+        }
+
+        protected bool IsUnitAlive(BaseUnit unit)
+        {
+            if (unit == null)
+                return false;
+
+            return unit.IsAlive();
         }
 
         public void EnterEnemyMode()

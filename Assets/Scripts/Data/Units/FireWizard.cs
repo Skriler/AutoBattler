@@ -1,49 +1,71 @@
-﻿namespace AutoBattler.Data.Units
+﻿using System.Collections.Generic;
+using UnityEngine;
+using AutoBattler.Data.Enums;
+
+namespace AutoBattler.Data.Units
 {
     public class FireWizard : BaseUnit
     {
-        protected BaseUnit currentTarget = null;
+        protected List<BaseUnit> currentTargets;
 
-        protected override bool HasTargetedEnemy() => currentTarget != null;
+        protected void Start()
+        {
+            currentTargets = new List<BaseUnit>();
+        }
+
+        protected override bool HasTarget() => currentTargets.Count != 0;
+
+        protected override void DealDamageToTarget()
+        {
+            if (!HasTarget())
+                return;
+
+            foreach (BaseUnit target in currentTargets)
+                target.TakeDamage(AttackDamage, DamageType);
+        }
 
         protected override void FindTarget(BaseUnit[,] enemyUnits)
         {
             if (enemyUnits == null)
                 return;
 
-            for (int i = enemyUnits.GetLength(0) - 1; i >= 0; --i)
+            List<BaseUnit> evenUnits = new List<BaseUnit>();
+            List<BaseUnit> oddUnits = new List<BaseUnit>();
+
+            for (int i = 0; i < enemyUnits.GetLength(0); ++i)
             {
                 for (int j = 0; j < enemyUnits.GetLength(1); ++j)
                 {
-                    if (enemyUnits[i, j] == null)
+                    if (!IsUnitAlive(enemyUnits[i, j]))
                         continue;
 
-                    if (!enemyUnits[i, j].IsAlive())
-                        continue;
-
-                    currentTarget = enemyUnits[i, j];
-                    return;
+                    if ((i + j) % 2 == 0)
+                        evenUnits.Add(enemyUnits[i, j]);
+                    else
+                        oddUnits.Add(enemyUnits[i, j]);
                 }
             }
+
+            currentTargets.Clear();
+            DetermineOptimalTarget(evenUnits, oddUnits, ref currentTargets);
         }
 
-        protected override void DealDamageToTargetedEnemy()
+        protected void DetermineOptimalTarget(List<BaseUnit> evenUnits, List<BaseUnit> oddUnits, ref List<BaseUnit> targets)
         {
-            if (currentTarget == null)
-                return;
-
-            currentTarget.TakeDamage(AttackDamage, DamageType);
-
-            CheckTargetedEnemy();
-        }
-
-        protected override void CheckTargetedEnemy()
-        {
-            if (currentTarget == null)
-                return;
-
-            if (!currentTarget.IsAlive())
-                currentTarget = null;
+            if (IsEnemyMode)
+            {
+                if (oddUnits.Count < evenUnits.Count)
+                    targets.AddRange(evenUnits);
+                else
+                    targets.AddRange(oddUnits);
+            }
+            else
+            {
+                if (evenUnits.Count < oddUnits.Count)
+                    targets.AddRange(oddUnits);
+                else
+                    targets.AddRange(evenUnits);
+            }
         }
     }
 }

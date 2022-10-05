@@ -21,6 +21,9 @@ namespace AutoBattler.UI.Effects
 
         public void InstantiateTakenDamageText(BaseUnit unit, float healthAmount, DamageType damageType)
         {
+            if (unit == null)
+                return;
+
             UITakenDamageText takenDamageText = Instantiate(takenDamagePrefab);
             takenDamageText.transform.SetParent(gameObject.transform, false);
 

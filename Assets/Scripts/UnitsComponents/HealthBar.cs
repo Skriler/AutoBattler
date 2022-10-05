@@ -47,6 +47,9 @@ namespace AutoBattler.UnitsComponents
 
         public void UpdateHealth(float healthAmount)
         {
+            if (target == null)
+                return;
+
             healthAmount = (healthAmount > 0) ? healthAmount : 0;
             UpdateLostHealth(healthAmount);
 
@@ -58,6 +61,9 @@ namespace AutoBattler.UnitsComponents
 
         public void UpdateStamina(float staminaAmount)
         {
+            if (target == null)
+                return;
+
             staminaAmount = (staminaAmount > maxStaminaAmount) ? maxStaminaAmount : staminaAmount;
 
             float scale = staminaAmount / maxStaminaAmount;
@@ -68,6 +74,9 @@ namespace AutoBattler.UnitsComponents
 
         private void UpdateLostHealth(float healthAmount)
         {
+            if (target == null)
+                return;
+
             float scale = previousHealthAmount / maxHealthAmount;
             Vector3 scaleVector = lostHealth.transform.localScale;
 

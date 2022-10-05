@@ -4,7 +4,15 @@
     {
         protected BaseUnit currentTarget = null;
 
-        protected override bool HasTargetedEnemy() => currentTarget != null;
+        protected override bool HasTarget() => currentTarget != null;
+
+        protected override void DealDamageToTarget()
+        {
+            if (!HasTarget())
+                return;
+
+            currentTarget.TakeDamage(AttackDamage, DamageType);
+        }
 
         protected override void FindTarget(BaseUnit[,] enemyUnits)
         {
@@ -25,25 +33,6 @@
                     return;
                 }
             }
-        }
-
-        protected override void DealDamageToTargetedEnemy()
-        {
-            if (currentTarget == null)
-                return;
-
-            currentTarget.TakeDamage(AttackDamage, DamageType);
-
-            CheckTargetedEnemy();
-        }
-
-        protected override void CheckTargetedEnemy()
-        {
-            if (currentTarget == null)
-                return;
-
-            if (!currentTarget.IsAlive())
-                currentTarget = null;
         }
     }
 }
