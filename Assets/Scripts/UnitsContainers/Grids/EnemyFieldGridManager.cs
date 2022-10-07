@@ -1,10 +1,13 @@
 using UnityEngine;
 using AutoBattler.Data.Units;
+using AutoBattler.UnitsContainers.Enums;
 
 namespace AutoBattler.UnitsContainers.Grids
 {
     public class EnemyFieldGridManager : GridManager
     {
+        protected override TileStatus GetCurrentTileStatus(Vector2Int index) => TileStatus.Closed;
+
         public void SpawnUnits(BaseUnit[,] army, Transform unitsContainer)
         {
             Vector3 newUnitPosition;

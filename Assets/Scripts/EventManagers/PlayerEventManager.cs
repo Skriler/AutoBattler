@@ -2,7 +2,7 @@ using UnityEngine.Events;
 
 namespace AutoBattler.EventManagers
 {
-    public static class UIEventManager
+    public static class PlayerEventManager
     {
         public static UnityAction<int> OnGoldAmountChanged;
 

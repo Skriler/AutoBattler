@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using AutoBattler.Managers;
 using AutoBattler.Data.Enums;
 using AutoBattler.Data.ScriptableObjects.Structs;
 
@@ -18,7 +17,7 @@ namespace AutoBattler.Managers
 
         private void Start()
         {
-            InititalizeStructs();
+            InitializeDictionaries();
         }
 
         public Sprite GetUnitRaceSprite(UnitRace race) => unitRaceSprites[race];
@@ -27,31 +26,20 @@ namespace AutoBattler.Managers
 
         public Sprite GetDamageTypeSprite(DamageType type) => damageTypeSprites[type];
 
-        private void InititalizeStructs()
+        private void InitializeDictionaries()
         {
             unitRaceSprites = new Dictionary<UnitRace, Sprite>();
-           
-            for (int i = 0; i < unitRaceSpritesArray.Length; ++i)
-            {
-                UnitRaceSprite unitRaceSprite = unitRaceSpritesArray[i];
-                unitRaceSprites.Add(unitRaceSprite.unitRace, unitRaceSprite.sprite);
-            }
-
             unitSpecificationSprites = new Dictionary<UnitSpecification, Sprite>();
-
-            for (int i = 0; i < unitSpecificationSpritesArray.Length; ++i)
-            {
-                UnitSpecificationSprite unitSpecificationSprite = unitSpecificationSpritesArray[i];
-                unitSpecificationSprites.Add(unitSpecificationSprite.unitSpecification, unitSpecificationSprite.sprite);
-            }
-
             damageTypeSprites = new Dictionary<DamageType, Sprite>();
 
-            for (int i = 0; i < damageTypeSpritesArray.Length; ++i)
-            {
-                DamageTypeSprite damageTypeSprite = damageTypeSpritesArray[i];
-                damageTypeSprites.Add(damageTypeSprite.damageType, damageTypeSprite.sprite);
-            }
+            foreach (UnitRaceSprite sprite in unitRaceSpritesArray)
+                unitRaceSprites.Add(sprite.unitRace, sprite.sprite);
+
+            foreach (UnitSpecificationSprite sprite in unitSpecificationSpritesArray)
+                unitSpecificationSprites.Add(sprite.unitSpecification, sprite.sprite);
+
+            foreach (DamageTypeSprite sprite in damageTypeSpritesArray)
+                damageTypeSprites.Add(sprite.damageType, sprite.sprite);
         }
     }
 }

@@ -18,18 +18,18 @@ namespace AutoBattler.UI.PlayerInfo
 
         private void Awake()
         {
-            UIEventManager.OnGoldAmountChanged += SetGold;
-            UIEventManager.OnHealthAmountChanged += SetHealth;
-            UIEventManager.OnTavernTierChanged += SetTavernTier;
+            PlayerEventManager.OnGoldAmountChanged += SetGold;
+            PlayerEventManager.OnHealthAmountChanged += SetHealth;
+            PlayerEventManager.OnTavernTierChanged += SetTavernTier;
             FightEventManager.OnFightStarted += DisableButtons;
             FightEventManager.OnFightEnded += EnableButtons;
         }
 
         private void OnDestroy()
         {
-            UIEventManager.OnGoldAmountChanged -= SetGold;
-            UIEventManager.OnHealthAmountChanged -= SetHealth;
-            UIEventManager.OnTavernTierChanged -= SetTavernTier;
+            PlayerEventManager.OnGoldAmountChanged -= SetGold;
+            PlayerEventManager.OnHealthAmountChanged -= SetHealth;
+            PlayerEventManager.OnTavernTierChanged -= SetTavernTier;
             FightEventManager.OnFightStarted -= DisableButtons;
             FightEventManager.OnFightEnded -= EnableButtons;
         }

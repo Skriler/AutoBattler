@@ -869,6 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellSpriteRenderer: {fileID: 8483662038924530044}
-  standartCell: {fileID: -1902693184, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
+  openedCell: {fileID: -1902693184, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
+  closedCell: {fileID: -1149658967, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
   occupiedCell: {fileID: -1116169516, guid: 0dec15463c663aa48acf0110dc414663, type: 3}
   freeCell: {fileID: -2077154285, guid: 0dec15463c663aa48acf0110dc414663, type: 3}

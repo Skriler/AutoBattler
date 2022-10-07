@@ -22,17 +22,17 @@ namespace AutoBattler.UnitsContainers.Grids
 
         private void ChangeTileStatus(Vector3 positon)
         {
-            TileStatus currentStatus = TileStatus.Standart;
+            TileStatus currentStatus = TileStatus.Opened;
 
             if (IsPositionInTile(positon))
                 currentStatus = TileStatus.Free;
 
-            SetTileSprite(currentStatus);
+            SetTileStatus(currentStatus);
         }
 
         private void SellUnit(BaseUnit unit, Vector3 positon)
         {
-            SetTileSprite(TileStatus.Standart);
+            SetTileStatus(TileStatus.Opened);
 
             if (!IsPositionInTile(positon))
                 return;

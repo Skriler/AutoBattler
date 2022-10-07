@@ -4,6 +4,7 @@
     {
         Free,
         Occupied,
-        Standart
+        Opened,
+        Closed,
     }
 }

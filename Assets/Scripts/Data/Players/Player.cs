@@ -36,9 +36,9 @@ namespace AutoBattler.Data.Players
             Field = transform.Find("PlayerField").GetComponent<PlayerFieldContainer>();
             EnemyField = transform.Find("EnemyField").GetComponent<EnemyFieldContainer>();
 
-            UIEventManager.SendGoldAmountChanged(Gold);
-            UIEventManager.SendHealthAmountChanged(Health);
-            UIEventManager.SendTavernTierChanged(TavernTier);
+            PlayerEventManager.SendGoldAmountChanged(Gold);
+            PlayerEventManager.SendHealthAmountChanged(Health);
+            PlayerEventManager.SendTavernTierChanged(TavernTier);
         }
 
         private void SetStartPlayerCharacteristics()
@@ -63,7 +63,7 @@ namespace AutoBattler.Data.Players
             }
 
             Gold -= actionCost;
-            UIEventManager.SendGoldAmountChanged(Gold);
+            PlayerEventManager.SendGoldAmountChanged(Gold);
         }
 
         public void SellUnit(BaseUnit unit)
@@ -76,7 +76,7 @@ namespace AutoBattler.Data.Players
             Gold += gold;
             Gold = Gold > characteristics.MaxGold ? characteristics.MaxGold : Gold;
 
-            UIEventManager.SendGoldAmountChanged(Gold);
+            PlayerEventManager.SendGoldAmountChanged(Gold);
         }
 
         public void TakeDamage(int damage)
@@ -84,7 +84,7 @@ namespace AutoBattler.Data.Players
             Health -= damage;
             Health = Health < 0 ? 0 : Health;
 
-            UIEventManager.OnHealthAmountChanged(Health);
+            PlayerEventManager.OnHealthAmountChanged(Health);
 
             if (!IsAlive())
                 Death();
@@ -100,7 +100,7 @@ namespace AutoBattler.Data.Players
 
             SpendGold(characteristics.LevelUpTavernTierCost);
             ++TavernTier;
-            UIEventManager.OnTavernTierChanged(TavernTier);
+            PlayerEventManager.OnTavernTierChanged(TavernTier);
         }
 
         public void Death()

@@ -20,9 +20,11 @@ namespace AutoBattler.UnitsContainers.Grids
         protected GameObject tilesContainer;
         protected UnitsContainer unitsContainer;
         protected Tile[,] tiles;
-        private Tile previousTile;
 
-        private void Awake()
+        private Tile previousTile;
+        private TileStatus previousTileStatus;
+
+        protected virtual void Awake()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileSprite;
             UnitsEventManager.OnUnitEndDrag += ChangeUnitPosition;
@@ -30,7 +32,7 @@ namespace AutoBattler.UnitsContainers.Grids
             UnitsEventManager.OnUnitSold += RemoveUnit;
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition -= ChangeTileSprite;
             UnitsEventManager.OnUnitEndDrag -= ChangeUnitPosition;
@@ -38,7 +40,7 @@ namespace AutoBattler.UnitsContainers.Grids
             UnitsEventManager.OnUnitSold -= RemoveUnit;
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             tilesContainer = transform.Find("Tiles").gameObject;
             unitsContainer = GetComponent<UnitsContainer>();
@@ -52,7 +54,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
         protected virtual bool IsFreeTile(Vector2Int index) => !unitsContainer.IsCellOccupied(index);
 
-        protected virtual Tile GetCurrentTile(Vector2Int index) => cellTile;
+        protected virtual TileStatus GetCurrentTileStatus(Vector2Int index) => TileStatus.Opened;
 
         protected Tile GetTileAtPosition(Vector3 position, out Vector2Int index)
         {
@@ -82,7 +84,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
         private void GenerateGrid()
         {
-            Tile currentTile;
+            TileStatus currentTileStatus;
             Tile spawnedTile;
             Vector3 tileSpawnPosition;
 
@@ -92,19 +94,17 @@ namespace AutoBattler.UnitsContainers.Grids
             {
                 for (int y = 0; y < height; ++y)
                 {
-                    currentTile = GetCurrentTile(new Vector2Int(x, y));
-
-                    if (currentTile == null)
-                        continue;
-
                     tileSpawnPosition = new Vector3(
                         x + spawnPosition.x + x * cellWidthSpacing, 
                         y + spawnPosition.y + y * cellHeightSpacing
                         );
 
-                    spawnedTile = Instantiate(currentTile, tileSpawnPosition, Quaternion.identity);
+                    spawnedTile = Instantiate(cellTile, tileSpawnPosition, Quaternion.identity);
                     spawnedTile.name = $"Tile {x} {y}";
                     spawnedTile.transform.SetParent(tilesContainer.transform);
+
+                    currentTileStatus = GetCurrentTileStatus(new Vector2Int(x, y));
+                    spawnedTile.SetTileStatus(currentTileStatus);
 
                     tiles[x, y] = spawnedTile;
                 }
@@ -113,7 +113,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
         private void ChangeTileSprite(Vector3 position)
         {
-            StandardizeLastChangedCell();
+            StandardizePreviousChangedCell();
 
             Tile currentTile = GetTileAtPosition(position, out Vector2Int index);
 
@@ -126,23 +126,24 @@ namespace AutoBattler.UnitsContainers.Grids
                 tileStatus = TileStatus.Occupied;
             else
                 tileStatus = TileStatus.Free;
-                    
-            currentTile.SetTileSprite(tileStatus);
+
+            previousTileStatus = currentTile.Status;
             previousTile = currentTile;
+            currentTile.SetTileStatus(tileStatus);
         }
 
-        private void StandardizeLastChangedCell()
+        private void StandardizePreviousChangedCell()
         {
             if (previousTile == null)
                 return;
 
-            previousTile.SetTileSprite(TileStatus.Standart);
+            previousTile.SetTileStatus(previousTileStatus);
             previousTile = null;
         }
 
         private void ChangeUnitPosition(BaseUnit unit, Vector3 worldPosition)
         {
-            StandardizeLastChangedCell();
+            StandardizePreviousChangedCell();
 
             Tile currentTile = GetTileAtPosition(worldPosition, out Vector2Int index);
 
