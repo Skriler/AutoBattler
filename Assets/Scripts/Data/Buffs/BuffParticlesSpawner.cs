@@ -90,6 +90,7 @@ namespace AutoBattler.Data.Buffs
             }
 
         }
+
         private void InstantiateRemoveBuffParticlesForEveryUnit(Buff buff)
         {
             foreach (BaseUnit unit in units)
@@ -103,7 +104,6 @@ namespace AutoBattler.Data.Buffs
                     );
             }
         }
-
 
         private void InstantiateApplyBuffParticles(GameObject buffParticlesPrefab, Vector2 spawnPosition)
         {

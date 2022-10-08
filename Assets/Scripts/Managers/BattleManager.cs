@@ -31,7 +31,7 @@ namespace AutoBattler.Managers
             ArmyHeight = enemyArmy.GetLength(1);
 
             GenerateSecondArmy();
-            enemyFieldContainer.SpawnUnits(enemyArmy);
+            enemyFieldContainer.SpawnUnits();
         }
 
         public BaseUnit[,] GetSecondArmy() => enemyArmy;

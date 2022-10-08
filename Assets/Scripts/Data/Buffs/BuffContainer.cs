@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoBattler.Data.Units;
 using UnityEngine;
-using AutoBattler.EventManagers;
 using AutoBattler.Managers;
 
 namespace AutoBattler.Data.Buffs
@@ -9,24 +8,6 @@ namespace AutoBattler.Data.Buffs
     public class BuffContainer : Manager<BuffContainer>
     {
         [SerializeField] private List<Buff> buffs;
-
-        protected override void Awake()
-        {
-            base.Awake();
-
-            UnitsEventManager.OnUnitAddedOnField += ApplyBuffsForUnit;
-            UnitsEventManager.OnUnitAddedOnField += AddUnitBuffs;
-            UnitsEventManager.OnUnitRemovedFromField += RemoveBuffsFromUnit;
-            UnitsEventManager.OnUnitRemovedFromField += RemoveUnitBuffs;
-        }
-
-        private void OnDestroy()
-        {
-            UnitsEventManager.OnUnitAddedOnField -= ApplyBuffsForUnit;
-            UnitsEventManager.OnUnitAddedOnField -= AddUnitBuffs;
-            UnitsEventManager.OnUnitRemovedFromField -= RemoveBuffsFromUnit;
-            UnitsEventManager.OnUnitRemovedFromField -= RemoveUnitBuffs;
-        }
 
         public List<Buff> GetBuffs() => buffs;
 

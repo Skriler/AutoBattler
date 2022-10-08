@@ -1,6 +1,7 @@
 using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Grids;
+using AutoBattler.Data.Buffs;
 using AutoBattler.EventManagers;
 
 namespace AutoBattler.UnitsContainers.Containers
@@ -8,6 +9,8 @@ namespace AutoBattler.UnitsContainers.Containers
     public class EnemyFieldContainer : FieldContainer
     {
         protected EnemyFieldGridManager enemyFieldGridManager;
+
+        public BuffContainer Buffs { get; private set; }
 
         protected void Awake()
         {
@@ -24,13 +27,18 @@ namespace AutoBattler.UnitsContainers.Containers
             base.Start();
 
             enemyFieldGridManager = GetComponent<EnemyFieldGridManager>();
+            Buffs = transform.GetComponentInChildren<BuffContainer>();
         }
 
         public override bool IsCellOccupied(Vector2Int index) => true;
 
-        public void SpawnUnits(BaseUnit[,] army)
+        public void SpawnUnits()
         {
-            enemyFieldGridManager.SpawnUnits(army, unitsContainer.transform);
+            if (units == null)
+                return;
+
+            enemyFieldGridManager.SpawnUnits(units, unitsContainer.transform);
+            ApplyBuffsForUnits(units);
         }
 
         public void ClearField()
@@ -45,6 +53,27 @@ namespace AutoBattler.UnitsContainers.Containers
                     Destroy(units[i, j].gameObject);
                     units[i, j] = null;
                 }
+            }
+
+            Buffs.ResetBuffs();
+        }
+
+        private void ApplyBuffsForUnits(BaseUnit[,] units)
+        {
+            foreach (BaseUnit unit in units)
+            {
+                if (unit == null)
+                    continue;
+
+                Buffs.AddUnitBuffs(unit);
+            }
+
+            foreach (BaseUnit unit in units)
+            {
+                if (unit == null)
+                    continue;
+
+                Buffs.ApplyBuffsForUnit(unit);
             }
         }
     }
