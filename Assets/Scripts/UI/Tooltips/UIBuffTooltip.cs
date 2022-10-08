@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
-using AutoBattler.Data.Enums;
 using AutoBattler.Managers;
+using AutoBattler.Data.Enums;
 using AutoBattler.Data.Buffs;
 
 namespace AutoBattler.UI.Tooltips

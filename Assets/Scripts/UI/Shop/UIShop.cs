@@ -88,7 +88,10 @@ namespace AutoBattler.UI.Shop
             player.LevelUpTavernTier();
 
             if (player.IsMaxTavernTier())
+            {
                 levelUpButton.gameObject.SetActive(false);
+                UIBaseObjectTooltip.Instance.Hide();
+            }
         }
 
         public void ShowShop()

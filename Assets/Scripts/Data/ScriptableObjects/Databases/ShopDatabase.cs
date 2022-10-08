@@ -6,7 +6,10 @@ using AutoBattler.Data.ScriptableObjects.Structs;
 
 namespace AutoBattler.Data.ScriptableObjects.Databases
 {
-    [CreateAssetMenu(fileName = "Shop Database", menuName = "Custom/ShopDatabase")]
+    [CreateAssetMenu(
+        fileName = "Shop Database",
+        menuName = "Custom/Database/ShopDatabase"
+        )]
     public class ShopDatabase : ScriptableObject
     {
         [SerializeField] private List<ShopUnitEntity> shopUnits;

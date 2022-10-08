@@ -23,12 +23,12 @@ namespace AutoBattler.Data.Buffs
 
         private void Awake()
         {
-            Set—haracteristics();
+            SetCharacteristics();
         }
 
         public abstract bool IsUnitPassCheck(BaseUnit unit);
 
-        private void Set—haracteristics()
+        private void SetCharacteristics()
         {
             Title = characteristics.Title;
             MaxLevel = characteristics.MaxLevel;

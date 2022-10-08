@@ -2,7 +2,10 @@ using UnityEngine;
 
 namespace AutoBattler.Data.ScriptableObjects.Characteristics
 {
-    [CreateAssetMenu(fileName = "Player Characteristics", menuName = "Custom/PlayerCharacteristics")]
+    [CreateAssetMenu(
+        fileName = "Player Characteristics",
+        menuName = "Custom/Characteristics/PlayerCharacteristics"
+        )]
     public class PlayerCharacteristics : ScriptableObject
     {
         [SerializeField] private int startHealth = 10;

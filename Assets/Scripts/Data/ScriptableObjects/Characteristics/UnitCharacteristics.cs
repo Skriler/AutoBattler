@@ -5,7 +5,10 @@ using AutoBattler.Data.ScriptableObjects.Structs;
 
 namespace AutoBattler.Data.ScriptableObjects.Characteristics
 {
-    [CreateAssetMenu(fileName = "Unit Characteristics", menuName = "Custom/UnitCharacteristics")]
+    [CreateAssetMenu(
+        fileName = "Unit Characteristics",
+        menuName = "Custom/Characteristics/UnitCharacteristics"
+        )]
     public class UnitCharacteristics : ScriptableObject
     {
         [Header("Shop Characteristics")]
