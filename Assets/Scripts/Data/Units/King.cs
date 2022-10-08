@@ -1,30 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Data.Units
 {
-    public class King : BaseUnit
+    public class King : MultipleTargetsUnit
     {
-        protected List<BaseUnit> currentTargets;
-
-        protected void Start()
-        {
-            currentTargets = new List<BaseUnit>();
-        }
-
-        protected override bool HasTarget() => currentTargets.Count != 0;
-
-        protected override void DealDamageToTarget()
-        {
-            if (!HasTarget())
-                return;
-
-            foreach (BaseUnit target in currentTargets)
-                target.TakeDamage(AttackDamage, DamageType);
-        }
-
         protected override void FindTarget(BaseUnit[,] enemyUnits)
         {
             if (enemyUnits == null)
@@ -64,7 +45,7 @@ namespace AutoBattler.Data.Units
 
             Vector2Int unitCoords = units.FirstOrDefault(u => u.Value == unitWithMaxNeighbors).Key;
 
-            DetermineCoordsNeighbors(ref targets, units, unitCoords);
+            DetermineTargets(ref targets, units, unitCoords);
         }
 
         protected void DetermineUnitsNeighborsAmount(ref Dictionary<BaseUnit, int> unitsNeighborsAmount, Dictionary<Vector2Int, BaseUnit> units)
@@ -91,7 +72,7 @@ namespace AutoBattler.Data.Units
             }
         }
 
-        protected void DetermineCoordsNeighbors(ref List<BaseUnit> targets, Dictionary<Vector2Int, BaseUnit> units, Vector2Int coords)
+        protected void DetermineTargets(ref List<BaseUnit> targets, Dictionary<Vector2Int, BaseUnit> units, Vector2Int coords)
         {
             for (int x = coords.x - 1; x <= coords.x + 1; ++x)
             {

@@ -3,20 +3,8 @@ using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Data.Units
 {
-    public class Bandit : BaseUnit
+    public class Bandit : SingleTargetUnit
     {
-        protected BaseUnit currentTarget = null;
-
-        protected override bool HasTarget() => currentTarget != null;
-
-        protected override void DealDamageToTarget()
-        {
-            if (!HasTarget())
-                return;
-
-            currentTarget.TakeDamage(AttackDamage, DamageType);
-        }
-
         protected override void FindTarget(BaseUnit[,] enemyUnits)
         {
             if (enemyUnits == null)

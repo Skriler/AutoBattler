@@ -4,28 +4,10 @@ using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Data.Units
 {
-    public class Samurai : BaseUnit
+    public class Samurai : MultipleTargetsUnit
     {
         [Header("Fight Parameters")]
         [SerializeField] protected int maxTargetsAmount = 3;
-
-        protected List<BaseUnit> currentTargets;
-
-        protected void Start()
-        {
-            currentTargets = new List<BaseUnit>();
-        }
-
-        protected override bool HasTarget() => currentTargets.Count != 0;
-
-        protected override void DealDamageToTarget()
-        {
-            if (!HasTarget())
-                return;
-
-            foreach (BaseUnit target in currentTargets)
-                target.TakeDamage(AttackDamage, DamageType);
-        }
 
         protected override void FindTarget(BaseUnit[,] enemyUnits)
         {

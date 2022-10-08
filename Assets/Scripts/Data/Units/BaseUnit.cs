@@ -54,7 +54,7 @@ namespace AutoBattler.Data.Units
         protected abstract bool HasTarget();
         protected abstract void DealDamageToTarget();
 
-        private void Awake()
+        protected virtual void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
@@ -69,7 +69,9 @@ namespace AutoBattler.Data.Units
             healthBar.Hide();
         }
 
-        private void Update()
+        protected virtual void Start() { }
+
+        protected virtual void Update()
         {
             if (!IsFightMode || !IsAlive())
                 return;

@@ -1,29 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
-using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Data.Units
 {
-    public class FireWizard : BaseUnit
+    public class FireWizard : MultipleTargetsUnit
     {
-        protected List<BaseUnit> currentTargets;
-
-        protected void Start()
-        {
-            currentTargets = new List<BaseUnit>();
-        }
-
-        protected override bool HasTarget() => currentTargets.Count != 0;
-
-        protected override void DealDamageToTarget()
-        {
-            if (!HasTarget())
-                return;
-
-            foreach (BaseUnit target in currentTargets)
-                target.TakeDamage(AttackDamage, DamageType);
-        }
-
         protected override void FindTarget(BaseUnit[,] enemyUnits)
         {
             if (enemyUnits == null)

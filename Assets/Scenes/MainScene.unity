@@ -2676,7 +2676,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1027600613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3e8f9e20690c454e966ce9da0598782, type: 3}
+  m_Script: {fileID: 11500000, guid: bd2166bb4a316f04989a35790d361d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buffs:
@@ -5720,7 +5720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1162179268848724064, guid: 7c756f82d69850d4eb9fdc790e567bd1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 314.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1162179268848724064, guid: 7c756f82d69850d4eb9fdc790e567bd1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5728,7 +5728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1162179268848724064, guid: 7c756f82d69850d4eb9fdc790e567bd1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 167.065
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1162179268848724064, guid: 7c756f82d69850d4eb9fdc790e567bd1, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5792,7 +5792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5841308503163462102, guid: 7c756f82d69850d4eb9fdc790e567bd1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 314.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5841308503163462102, guid: 7c756f82d69850d4eb9fdc790e567bd1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5800,7 +5800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5841308503163462102, guid: 7c756f82d69850d4eb9fdc790e567bd1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 167.065
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5841308503163462102, guid: 7c756f82d69850d4eb9fdc790e567bd1, type: 3}
       propertyPath: m_AnchoredPosition.y
