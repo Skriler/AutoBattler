@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using AutoBattler.Managers;
-using AutoBattler.Data.ScriptableObjects.Characteristics;
+using AutoBattler.UI.PlayerInfo;
 
 namespace AutoBattler.UI.Tooltips
 {
@@ -13,13 +13,13 @@ namespace AutoBattler.UI.Tooltips
 
         public override void Setup(Object data)
         {
-            if (!(data is UIBaseObjectCharacteristics))
+            if (!(data is UIBaseObject))
                 return;
 
-            UIBaseObjectCharacteristics characteristics = data as UIBaseObjectCharacteristics;
+            UIBaseObject baseObject = data as UIBaseObject;
 
-            textTitle.text = characteristics.Title;
-            textDescription.text = characteristics.Description; 
+            textTitle.text = baseObject.Title;
+            textDescription.text = baseObject.Description; 
         }
     }
 }

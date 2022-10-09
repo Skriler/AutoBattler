@@ -16,14 +16,14 @@ namespace AutoBattler.UnitsContainers.Grids
         {
             base.Awake();
 
-            PlayerEventManager.OnTavernTierChanged += OpenTiles;
+            PlayerEventManager.OnTavernTierIncreased += OpenTiles;
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
 
-            PlayerEventManager.OnTavernTierChanged -= OpenTiles;
+            PlayerEventManager.OnTavernTierIncreased -= OpenTiles;
         }
 
         public int GetOpenedCellsAmount()

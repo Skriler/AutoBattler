@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RefreshButtonCharacteristics
   m_EditorClassIdentifier: 
   title: Refresh shop
-  description: 'Cost: 1'
+  description: 'Cost: '

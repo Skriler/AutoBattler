@@ -17,7 +17,7 @@ namespace AutoBattler.Data.Players
         public int Health { get; private set; }
         public int Gold { get; private set; }
         public int TavernTier { get; private set; }
-        public int LevelUpTavernTierPrice { get; private set; } = 4;
+        public int LevelUpTavernTierCost { get; private set; } = 4;
 
         private void Awake()
         {
@@ -39,7 +39,7 @@ namespace AutoBattler.Data.Players
 
             PlayerEventManager.SendGoldAmountChanged(Gold);
             PlayerEventManager.SendHealthAmountChanged(Health);
-            PlayerEventManager.SendTavernTierChanged(TavernTier);
+            PlayerEventManager.SendTavernTierIncreased(TavernTier);
         }
 
         private void SetStartPlayerCharacteristics()
@@ -96,14 +96,14 @@ namespace AutoBattler.Data.Players
             if (TavernTier >= characteristics.MaxTavernTier)
                 return;
 
-            if (!IsEnoughGoldForAction(LevelUpTavernTierPrice))
+            if (!IsEnoughGoldForAction(LevelUpTavernTierCost))
                 return;
 
-            SpendGold(LevelUpTavernTierPrice);
+            SpendGold(LevelUpTavernTierCost);
 
             ++TavernTier;
-            PlayerEventManager.OnTavernTierChanged(TavernTier);
-            LevelUpTavernTierPrice = Field.GetOpenedCellsAmount();
+            PlayerEventManager.OnTavernTierIncreased(TavernTier);
+            LevelUpTavernTierCost = Field.GetOpenedCellsAmount();
         }
 
         public void Death()

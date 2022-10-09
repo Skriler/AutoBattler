@@ -13,14 +13,15 @@ namespace AutoBattler.UI.Shop
     public class UIShop : MonoBehaviour
     {
         [Header("UI Elements")]
-        [SerializeField] private Button levelUpButton;
+        [SerializeField] private UILevelUpButton levelUpButton;
+        [SerializeField] private UIRefreshButtonButton refreshButton;
 
         [Header("Data")]
         [SerializeField] private List<UICard> unitCards;
         [SerializeField] private Player player;
 
         [Header("Parameters")]
-        [SerializeField] private int rerollCost = 1;
+        [SerializeField] private int refreshCost = 1;
 
         private ShopDatabase shopDb;
 
@@ -43,6 +44,10 @@ namespace AutoBattler.UI.Shop
         {
             shopDb = GameManager.Instance.ShopDb;
             GenerateUnitCards();
+
+            levelUpButton.UpdateDescription(player.LevelUpTavernTierCost);
+            refreshButton.UpdateDescription(refreshCost);
+
             gameObject.SetActive(IsOpen);
         }
 
@@ -75,10 +80,10 @@ namespace AutoBattler.UI.Shop
 
         public void RefreshShop()
         {
-            if (!player.IsEnoughGoldForAction(rerollCost))
+            if (!player.IsEnoughGoldForAction(refreshCost))
                 return;
 
-            player.SpendGold(rerollCost);
+            player.SpendGold(refreshCost);
             SetActiveUnitCards();
             GenerateUnitCards();
         }
@@ -92,29 +97,16 @@ namespace AutoBattler.UI.Shop
                 levelUpButton.gameObject.SetActive(false);
                 UIBaseObjectTooltip.Instance.Hide();
             }
+            else
+            {
+                levelUpButton.UpdateDescription(player.LevelUpTavernTierCost);
+            }
         }
 
         public void ShowShop()
         {
             IsOpen = !IsOpen;
             gameObject.SetActive(IsOpen);
-        }
-
-        private void StartRound()
-        {
-            if (IsFreezed)
-                FreezeUnits();
-            else
-                RefreshShop();
-        }
-
-        private void EndRound()
-        {
-            if (IsOpen)
-            {
-                gameObject.SetActive(false);
-                IsOpen = false;
-            }
         }
 
         private void GenerateUnitCards()
@@ -134,6 +126,23 @@ namespace AutoBattler.UI.Shop
             {
                 if (!card.gameObject.activeSelf)
                     card.gameObject.SetActive(true);
+            }
+        }
+
+        private void StartRound()
+        {
+            if (IsFreezed)
+                FreezeUnits();
+            else
+                RefreshShop();
+        }
+
+        private void EndRound()
+        {
+            if (IsOpen)
+            {
+                gameObject.SetActive(false);
+                IsOpen = false;
             }
         }
     }

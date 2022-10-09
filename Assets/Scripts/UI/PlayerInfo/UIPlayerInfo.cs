@@ -20,7 +20,7 @@ namespace AutoBattler.UI.PlayerInfo
         {
             PlayerEventManager.OnGoldAmountChanged += SetGold;
             PlayerEventManager.OnHealthAmountChanged += SetHealth;
-            PlayerEventManager.OnTavernTierChanged += SetTavernTier;
+            PlayerEventManager.OnTavernTierIncreased += SetTavernTier;
             FightEventManager.OnFightStarted += DisableButtons;
             FightEventManager.OnFightEnded += EnableButtons;
         }
@@ -29,7 +29,7 @@ namespace AutoBattler.UI.PlayerInfo
         {
             PlayerEventManager.OnGoldAmountChanged -= SetGold;
             PlayerEventManager.OnHealthAmountChanged -= SetHealth;
-            PlayerEventManager.OnTavernTierChanged -= SetTavernTier;
+            PlayerEventManager.OnTavernTierIncreased -= SetTavernTier;
             FightEventManager.OnFightStarted -= DisableButtons;
             FightEventManager.OnFightEnded -= EnableButtons;
         }

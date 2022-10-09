@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TavernUpButtonCharacteristics
   m_EditorClassIdentifier: 
   title: Upgrade tavern
-  description: 'Cost: 5'
+  description: 'Cost: '
