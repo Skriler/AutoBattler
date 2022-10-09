@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DarkWizardCharacteristics
   m_EditorClassIdentifier: 
   title: Dark Wizard
+  description: Attack multiple units
   cost: 5
   tavernTier: 4
   race: 2

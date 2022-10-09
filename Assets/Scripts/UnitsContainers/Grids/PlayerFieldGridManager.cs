@@ -26,6 +26,17 @@ namespace AutoBattler.UnitsContainers.Grids
             PlayerEventManager.OnTavernTierChanged -= OpenTiles;
         }
 
+        public int GetOpenedCellsAmount()
+        {
+            int openedCellsAmount = 0;
+
+            foreach (Tile tile in tiles)
+                if (tile.Status == TileStatus.Opened)
+                    ++openedCellsAmount;
+
+            return openedCellsAmount;
+        }
+
         protected override bool IsFreeTile(Vector2Int index)
         {
             return tiles[index.x, index.y].Status == TileStatus.Opened && 
@@ -46,7 +57,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
                 foreach (Vector2Int tileCoords in tavernTierOpenedTiles.openedTiles)
                 {
-                    if (tileCoords == index)
+                    if (tileCoords == index)    
                         return true;
                 }
             }
@@ -68,7 +79,6 @@ namespace AutoBattler.UnitsContainers.Grids
 
                 foreach (Vector2Int tileCoords in tavernTierOpenedTiles.openedTiles)
                     tiles[tileCoords.x, tileCoords.y].SetTileStatus(TileStatus.Opened);
-
             }
         }
     }

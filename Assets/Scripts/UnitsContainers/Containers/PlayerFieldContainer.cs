@@ -3,11 +3,14 @@ using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Buffs;
 using AutoBattler.Data.Enums;
+using AutoBattler.UnitsContainers.Grids;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
     public class PlayerFieldContainer : FieldContainer
     {
+        protected PlayerFieldGridManager playerFieldGridManager;
+
         public BuffContainer Buffs { get; private set; }
 
         private void Awake()
@@ -26,10 +29,13 @@ namespace AutoBattler.UnitsContainers.Containers
         {
             base.Start();
 
+            playerFieldGridManager = GetComponent<PlayerFieldGridManager>();
             Buffs = transform.GetComponentInChildren<BuffContainer>();
         }
 
         public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;
+
+        public int GetOpenedCellsAmount() => playerFieldGridManager.GetOpenedCellsAmount();
 
         public override bool AddUnit(BaseUnit unit, Vector2Int index)
         {

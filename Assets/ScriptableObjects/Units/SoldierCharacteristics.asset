@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: SoldierCharacteristics
   m_EditorClassIdentifier: 
   title: Soldier
+  description: Attack one unit
   cost: 2
   tavernTier: 1
   race: 0

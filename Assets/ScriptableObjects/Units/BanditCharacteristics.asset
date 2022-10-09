@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BanditCharacteristics
   m_EditorClassIdentifier: 
   title: Bandit
+  description: Attack one unit
   cost: 1
   tavernTier: 1
   race: 0

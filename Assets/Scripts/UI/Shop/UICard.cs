@@ -32,12 +32,17 @@ namespace AutoBattler.UI.Shop
 
         public void OnClick() => OnCardClick.Invoke(this, shopUnit);
 
-        public void MouseExit() => UIShopUnitTooltip.Instance.Hide();
+        public void MouseExit()
+        {
+            UIShopUnitTooltip.Instance.Hide();
+            UIUnitDescription.Instance.Hide();
+        }
 
         public void MouseEnter()
         {
             UIShopUnitTooltip.Instance.Show();
             UIShopUnitTooltip.Instance.Setup(shopUnit.characteristics);
+            UIUnitDescription.Instance.Show(shopUnit.characteristics.Description);
         }
 
         public void Setup(ShopUnitEntity shopUnit)

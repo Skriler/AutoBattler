@@ -13,6 +13,7 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
     {
         [Header("Shop Characteristics")]
         [SerializeField] private string title;
+        [SerializeField] private string description;
         [SerializeField] private int cost;
         [SerializeField] private int tavernTier;
 
@@ -28,6 +29,7 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         [SerializeField] private DamageTypeProtection[] damageTypesProtectionPercentage;
 
         public string Title => title;
+        public string Description => description;
         public int Cost => cost;
         public int TavernTier => tavernTier;
 

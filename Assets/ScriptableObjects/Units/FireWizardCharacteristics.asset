@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FireWizardCharacteristics
   m_EditorClassIdentifier: 
   title: Fire Wizard
+  description: Attack multiple units
   cost: 7
   tavernTier: 5
   race: 0

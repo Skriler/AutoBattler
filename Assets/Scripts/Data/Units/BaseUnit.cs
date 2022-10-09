@@ -25,6 +25,7 @@ namespace AutoBattler.Data.Units
 
         public string Id { get; protected set; }
         public string Title { get; protected set; }
+        public string Description { get; protected set; }
         public int Cost { get; protected set; }
         public UnitRace Race { get; protected set; }
         public UnitSpecification Specification { get; protected set; }
@@ -86,17 +87,23 @@ namespace AutoBattler.Data.Units
             }     
         }
 
-        public void MouseExit() => UIUnitTooltip.Instance.Hide();
+        public void MouseExit()
+        {
+            UIUnitTooltip.Instance.Hide();
+            UIUnitDescription.Instance.Hide();
+        }
 
         public void MouseEnter()
         {
             UIUnitTooltip.Instance.Show();
             UIUnitTooltip.Instance.Setup(this);
+            UIUnitDescription.Instance.Show(Description);
         }
 
         private void Set—haracteristics()
         {
             Title = characteristics.Title;
+            Description = characteristics.Description;
             Cost = characteristics.Cost;
 
             Race = characteristics.Race;

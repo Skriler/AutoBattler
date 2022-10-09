@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: UndeadBanditCharacteristics
   m_EditorClassIdentifier: 
   title: Undead Bandit
+  description: Attack one unit
   cost: 1
   tavernTier: 1
   race: 1

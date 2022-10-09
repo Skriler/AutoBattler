@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.Players;
 using AutoBattler.EventManagers;
@@ -49,6 +50,16 @@ namespace AutoBattler.Managers
             battleManager = new BattleManager(player.Field, player.EnemyField, shopDb);
             battleManager.StartBattle();
             FightEventManager.SendFightStarted();
+        }
+
+        public void OpenMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        public void OpenManual()
+        {
+
         }
 
         private IEnumerator EndBattleCoroutine()
