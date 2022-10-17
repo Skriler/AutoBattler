@@ -3,7 +3,6 @@ using AutoBattler.UnitsContainers.Containers;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
-using AutoBattler.Managers;
 
 namespace AutoBattler.Data.Players
 {

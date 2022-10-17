@@ -9,9 +9,9 @@ namespace AutoBattler.UI.Shop
 
         private string startDescription;
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
 
             startDescription = Description;
         }

@@ -11,7 +11,7 @@ namespace AutoBattler.UI.PlayerInfo
         public string Title { get; protected set; }
         public string Description { get; protected set; }
 
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             Title = characteristics.Title;
             Description = characteristics.Description;
