@@ -6,6 +6,7 @@ namespace AutoBattler.UI.PlayerInfo
 {
     public class UIBaseObject : MonoBehaviour
     {
+        [Header("Parameters")]
         [SerializeField] protected UIBaseObjectCharacteristics characteristics;
 
         public string Title { get; protected set; }

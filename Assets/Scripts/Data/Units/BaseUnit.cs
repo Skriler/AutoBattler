@@ -17,6 +17,9 @@ namespace AutoBattler.Data.Units
         [SerializeField] private HealthBar barPrefab;
         [SerializeField] protected UnitCharacteristics characteristics;
 
+        [Header("Sounds")]
+        [SerializeField] private AudioSource attackSound;
+
         [Header("Parameters")]
         [SerializeField] protected float staminaRegenInterval = 0.05f;
         [SerializeField] protected float dealDamageInterval = 0.4f;
@@ -218,6 +221,7 @@ namespace AutoBattler.Data.Units
         {
             yield return new WaitForSeconds(dealDamageInterval);
             DealDamageToTarget();
+            attackSound?.Play();
         }
 
         protected IEnumerator RegenStaminaCoroutine()

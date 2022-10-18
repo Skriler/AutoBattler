@@ -7,6 +7,7 @@ namespace AutoBattler.UnitsComponents
 {
     public class Draggable : MonoBehaviour
     {
+        [Header("Parameters")]
         [SerializeField] private int dragSortingOrder = 10;
         [SerializeField] private Vector3 dragOffset = new Vector3(-0.1f, -0.1f, 0);
 

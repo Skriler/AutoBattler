@@ -29,6 +29,8 @@ namespace AutoBattler.UnitsContainers.Containers
             units = new BaseUnit[gridManager.Width];
         }
 
+        public bool IsTileOnPosition(Vector3 position) => gridManager.IsTileOnPositon(position);
+
         public void AddUnit(ShopUnitEntity shopUnit)
         {
             if (IsFull())

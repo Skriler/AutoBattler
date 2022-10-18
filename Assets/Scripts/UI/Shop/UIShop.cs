@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Players;
 using AutoBattler.Data.ScriptableObjects.Databases;
@@ -57,13 +56,14 @@ namespace AutoBattler.UI.Shop
 
         public void OnCardClick(UICard card, ShopUnitEntity shopUnit)
         {
-            if (player.Storage.IsFull())
+            if (player.Storage.IsFull() || !player.IsEnoughGoldForAction(shopUnit.characteristics.Cost))
+            {
+                AudioManager.Instance.PlayUnavailableActionSound();
                 return;
-
-            if (!player.IsEnoughGoldForAction(shopUnit.characteristics.Cost))
-                return;
+            }
 
             player.SpendGold(shopUnit.characteristics.Cost);
+            AudioManager.Instance.PlayBuyUnitSound();
             UnitsEventManager.OnUnitBought(shopUnit);
 
             UIShopUnitTooltip.Instance.Hide();
@@ -81,15 +81,30 @@ namespace AutoBattler.UI.Shop
         public void RefreshShop()
         {
             if (!player.IsEnoughGoldForAction(refreshCost))
+            {
+                AudioManager.Instance.PlayUnavailableActionSound();
                 return;
+            }
 
+            refreshButton.PlayClickSound();
             player.SpendGold(refreshCost);
+
             SetActiveUnitCards();
             GenerateUnitCards();
+
+            if (IsFreezed)
+                FreezeUnits();
         }
 
         public void LevelUp()
         {
+            if (player.IsMaxTavernTier() || !player.IsEnoughGoldForAction(player.LevelUpTavernTierCost))
+            {
+                AudioManager.Instance.PlayUnavailableActionSound();
+                return;
+            }
+
+            AudioManager.Instance.PlayLevelUpButtonClickSound();
             player.LevelUpTavernTier();
 
             if (player.IsMaxTavernTier())

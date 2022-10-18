@@ -1,9 +1,6 @@
-﻿using AutoBattler.UI.PlayerInfo;
-using AutoBattler.UI.Tooltips;
-
-namespace AutoBattler.UI.Shop
+﻿namespace AutoBattler.UI.Shop
 {
-    public class UIRefreshButtonButton : UIBaseObject
+    public class UIRefreshButtonButton : UIShopButton
     {
         public int RefreshCost { get; private set; }
 

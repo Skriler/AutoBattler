@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using AutoBattler.UnitsContainers.Enums;
 using AutoBattler.UnitsContainers.Containers;
@@ -55,6 +54,22 @@ namespace AutoBattler.UnitsContainers.Grids
         protected virtual bool IsFreeTile(Vector2Int index) => !unitsContainer.IsCellOccupied(index);
 
         protected virtual TileStatus GetCurrentTileStatus(Vector2Int index) => TileStatus.Opened;
+
+        public bool IsTileOnPositon(Vector3 position)
+        {
+            for (int i = 0; i < tiles.GetLength(0); ++i)
+            {
+                for (int j = 0; j < tiles.GetLength(1); ++j)
+                {
+                    if (!tiles[i, j].IsPositionInTile(position))
+                        continue;
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         protected Tile GetTileAtPosition(Vector3 position, out Vector2Int index)
         {
@@ -147,10 +162,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
             Tile currentTile = GetTileAtPosition(worldPosition, out Vector2Int index);
 
-            if (currentTile == null)
-                return;
-
-            if (!IsFreeTile(index))
+            if (currentTile == null || !IsFreeTile(index))
                 return;
 
             unit.transform.position = currentTile.transform.position;

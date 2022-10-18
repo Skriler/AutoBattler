@@ -2,14 +2,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
+using AutoBattler.Managers;
 
 namespace AutoBattler.UI.PlayerInfo
 {
     public class UITrashCan : MonoBehaviour
     {
+        [Header("Components")]
         [SerializeField] private Image trashCanImage;
         [SerializeField] private Sprite trashCanSprite;
         [SerializeField] private Sprite openedTrashCanSprite;
+
+        [Header("Sounds")]
+        [SerializeField] private AudioSource sellUnitSound;
 
         private Camera mainCamera;
         private Vector3 position;
@@ -48,6 +53,7 @@ namespace AutoBattler.UI.PlayerInfo
             {
                 if (!IsOpened)
                 {
+                    AudioManager.Instance.PlayHoverSound();
                     ChangeImageSprite(openedTrashCanSprite);
                     IsOpened = true;
                 }
@@ -85,6 +91,7 @@ namespace AutoBattler.UI.PlayerInfo
 
             if (IsPositionInTrashCan(canvasPosition))
             {
+                sellUnitSound?.Play();
                 Destroy(unit.gameObject);
                 UnitsEventManager.OnUnitSold(unit);
             }

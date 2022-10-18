@@ -3,6 +3,7 @@ using AutoBattler.UnitsContainers.Containers;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
+using AutoBattler.Managers;
 
 namespace AutoBattler.Data.Players
 {
@@ -21,6 +22,7 @@ namespace AutoBattler.Data.Players
         private void Awake()
         {
             UnitsEventManager.OnUnitSold += SellUnit;
+            UnitsEventManager.OnUnitEndDrag += PlayDragSound;
 
             SetStartPlayerCharacteristics();
         }
@@ -28,6 +30,7 @@ namespace AutoBattler.Data.Players
         private void OnDestroy()
         {
             UnitsEventManager.OnUnitSold -= SellUnit;
+            UnitsEventManager.OnUnitEndDrag -= PlayDragSound;
         }
 
         private void Start()
@@ -92,10 +95,7 @@ namespace AutoBattler.Data.Players
 
         public void LevelUpTavernTier()
         {
-            if (TavernTier >= characteristics.MaxTavernTier)
-                return;
-
-            if (!IsEnoughGoldForAction(LevelUpTavernTierCost))
+            if (IsMaxTavernTier() || !IsEnoughGoldForAction(LevelUpTavernTierCost))
                 return;
 
             SpendGold(LevelUpTavernTierCost);
@@ -108,6 +108,14 @@ namespace AutoBattler.Data.Players
         public void Death()
         {
             Destroy(this.gameObject);
+        }
+
+        private void PlayDragSound(BaseUnit unit, Vector3 worldPosition)
+        {
+            if (Storage.IsTileOnPosition(worldPosition) || Field.IsTileOnPosition(worldPosition))
+                AudioManager.Instance.PlayUnitDragSuccessfulSound();
+            else
+                AudioManager.Instance.PlayUnitDragFailedSound();
         }
     }
 }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Units;
-using AutoBattler.Data.Buffs;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
@@ -25,6 +24,8 @@ namespace AutoBattler.UnitsContainers.Containers
         public int GetArmyWidth() => units.GetLength(0);
 
         public int GetArmyHeight() => units.GetLength(1);
+
+        public bool IsTileOnPosition(Vector3 position) => gridManager.IsTileOnPositon(position);
 
         public override bool AddUnit(BaseUnit unit, Vector2Int index)
         {

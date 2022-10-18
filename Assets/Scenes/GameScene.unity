@@ -5047,6 +5047,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelUpButton
       objectReference: {fileID: 0}
+    - target: {fileID: 383086402176552364, guid: d80023a1b597a4944a5822a24c0ce129, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 407317966}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d80023a1b597a4944a5822a24c0ce129, type: 3}
 --- !u!1001 &388369432207383165
@@ -5351,6 +5355,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 887039302130036647, guid: cb3bf945a845e8c4694aedc7aa873240, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 407317966}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb3bf945a845e8c4694aedc7aa873240, type: 3}
 --- !u!224 &944220900658419846 stripped
@@ -5866,6 +5874,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8670989190681168159, guid: db16371ef36229945a3ee86c09feabd3, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 407317966}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db16371ef36229945a3ee86c09feabd3, type: 3}
 --- !u!1001 &1834848111161803829
@@ -6068,6 +6080,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8105919866309650094, guid: e4902c3db9de00a45a31cea8e687f0ad, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 407317966}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4902c3db9de00a45a31cea8e687f0ad, type: 3}
 --- !u!1001 &2632153201917031437
@@ -6666,10 +6682,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 298469497}
-    - target: {fileID: 3214754989729429275, guid: c5c36621df6714f41ba58c895c5a4484, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 407317966}
     - target: {fileID: 3214754989729429276, guid: c5c36621df6714f41ba58c895c5a4484, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 

@@ -18,4 +18,3 @@ MonoBehaviour:
   maxHealth: 10
   maxGold: 99
   maxTavernTier: 5
-  levelUpTavernTierCost: 5
