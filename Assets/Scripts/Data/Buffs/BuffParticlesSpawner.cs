@@ -3,7 +3,7 @@ using AutoBattler.Data.Units;
 using UnityEngine;
 using AutoBattler.EventManagers;
 using AutoBattler.UnitsContainers.Containers;
-using AutoBattler.Data.Players;
+using AutoBattler.Data.Player;
 
 namespace AutoBattler.Data.Buffs
 {

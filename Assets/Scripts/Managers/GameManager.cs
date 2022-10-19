@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using AutoBattler.Data.ScriptableObjects.Databases;
-using AutoBattler.Data.Players;
+using AutoBattler.Data.Player;
 using AutoBattler.EventManagers;
 
 namespace AutoBattler.Managers

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.EventManagers;
-using AutoBattler.Data.Players;
+using AutoBattler.Data.Player;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UI.Tooltips;

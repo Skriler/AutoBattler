@@ -5,7 +5,7 @@ using AutoBattler.EventManagers;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.Managers;
 
-namespace AutoBattler.Data.Players
+namespace AutoBattler.Data.Player
 {
     public class Player : MonoBehaviour
     {
