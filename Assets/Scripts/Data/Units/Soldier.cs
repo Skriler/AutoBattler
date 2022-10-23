@@ -60,14 +60,6 @@ namespace AutoBattler.Data.Units
             }
         }
 
-        protected bool IsUnitAlive(BaseUnit unit)
-        {
-            if (unit == null)
-                return false;
-
-            return unit.IsAlive();
-        }
-
         protected BaseUnit DetermineOptimalTarget(List<BaseUnit> units)
         {
             if (units == null)

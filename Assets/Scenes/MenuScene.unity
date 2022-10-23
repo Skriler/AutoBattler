@@ -1369,7 +1369,6 @@ MonoBehaviour:
   musicVolumeHandleText: {fileID: 998259645}
   effectsVolumeHandleText: {fileID: 1898041268}
   UIVolumeHandleText: {fileID: 873481013}
-  audioMixer: {fileID: 24100000, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
 --- !u!1 &1326887653
 GameObject:
   m_ObjectHideFlags: 0

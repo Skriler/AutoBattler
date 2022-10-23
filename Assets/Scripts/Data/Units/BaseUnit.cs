@@ -220,6 +220,10 @@ namespace AutoBattler.Data.Units
         protected IEnumerator DealDamageCoroutine()
         {
             yield return new WaitForSeconds(dealDamageInterval);
+
+            if (!IsFightMode)
+                yield break;
+
             DealDamageToTarget();
             attackSound?.Play();
         }
@@ -228,6 +232,9 @@ namespace AutoBattler.Data.Units
         {
             while (Stamina < AttackSpeed)
             {
+                if (!IsFightMode)
+                    yield break;
+
                 Stamina += staminaRegenInterval;
                 healthBar.UpdateStamina(Stamina);
                 yield return staminaRegenTick;
