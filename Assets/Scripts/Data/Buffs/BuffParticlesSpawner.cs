@@ -3,12 +3,14 @@ using AutoBattler.Data.Units;
 using UnityEngine;
 using AutoBattler.EventManagers;
 using AutoBattler.UnitsContainers.Containers;
-using AutoBattler.Data.Player;
 
 namespace AutoBattler.Data.Buffs
 {
     public class BuffParticlesSpawner : MonoBehaviour
     {
+        [Header("Target buffs")]
+        [SerializeField] private List<Buff> buffs;
+
         [Header("Particles")]
         [SerializeField] private GameObject applyBuffParticlesPrefab;
         [SerializeField] private GameObject removeBuffParticlesPrefab;
@@ -19,61 +21,57 @@ namespace AutoBattler.Data.Buffs
         [SerializeField] private Vector3 applyBuffParticlesOffset;
         [SerializeField] private Vector3 removeBuffParticlesOffset;
 
-        private List<Buff> buffs;
         private BaseUnit[,] units;
 
         private void Awake()
         {
-            UnitsEventManager.OnUnitAddedOnField += CheckForApplyBuffParticles;
-            UnitsEventManager.OnUnitRemovedFromField += CheckForRemoveBuffParticles;
-            BuffsEventManager.OnBuffLevelIncreased += InstantiateApplyBuffParticlesForEveryUnit;
-            BuffsEventManager.OnBuffLevelDecreased += InstantiateRemoveBuffParticlesForEveryUnit;
+            BuffsEventManager.OnAppliedBuffsForUnit += InstantiateApplyBuffParticlesOnUnit;
+            BuffsEventManager.OnRemovedBuffsFromUnit += InstantiateRemoveBuffParticlesOnUnit;
+            BuffsEventManager.OnBuffLevelIncreased += InstantiateApplyBuffParticlesOnUnits;
+            BuffsEventManager.OnBuffLevelDecreased += InstantiateRemoveBuffParticlesOnUnits;
         }
 
         private void OnDestroy()
         {
-            UnitsEventManager.OnUnitAddedOnField -= CheckForApplyBuffParticles;
-            UnitsEventManager.OnUnitRemovedFromField -= CheckForRemoveBuffParticles;
-            BuffsEventManager.OnBuffLevelIncreased = InstantiateApplyBuffParticlesForEveryUnit;
-            BuffsEventManager.OnBuffLevelDecreased -= InstantiateRemoveBuffParticlesForEveryUnit;
+            BuffsEventManager.OnAppliedBuffsForUnit -= InstantiateApplyBuffParticlesOnUnit;
+            BuffsEventManager.OnRemovedBuffsFromUnit -= InstantiateRemoveBuffParticlesOnUnit;
+            BuffsEventManager.OnBuffLevelIncreased = InstantiateApplyBuffParticlesOnUnits;
+            BuffsEventManager.OnBuffLevelDecreased -= InstantiateRemoveBuffParticlesOnUnits;
         }
 
-        private void Start()
+        private void InstantiateApplyBuffParticlesOnUnit(BaseUnit unit)
         {
-            buffs = BuffContainer.Instance.GetBuffs();
-        }
-
-        private void CheckForApplyBuffParticles(BaseUnit unit)
-        {
-            foreach (Buff buff in buffs)
-            {
-                if (!buff.IsActive())
-                    continue;
-
-                InstantiateApplyBuffParticles(
-                    applyBuffParticlesPrefab, 
+            InstantiateBuffParticles(
+                    applyBuffParticlesPrefab,
                     unit.transform.position + applyBuffParticlesOffset
                     );
-                return;
-            }
         }
 
-        private void CheckForRemoveBuffParticles(BaseUnit unit)
+        private void InstantiateRemoveBuffParticlesOnUnit(BaseUnit unit)
         {
-            foreach (Buff buff in buffs)
-            {
-                if (!buff.IsActive())
-                    continue;
-
-                InstantiateApplyBuffParticles(
-                    removeBuffParticlesPrefab, 
+            InstantiateBuffParticles(
+                    removeBuffParticlesPrefab,
                     unit.transform.position + removeBuffParticlesOffset
                     );
-                return;
-            }
         }
 
-        private void InstantiateApplyBuffParticlesForEveryUnit(Buff buff)
+        private void InstantiateApplyBuffParticlesOnUnits(Buff buff)
+        {
+            if (!buffs.Contains(buff))
+                return;
+
+            InstantiateBuffParticlesOnUnits(applyBuffParticlesPrefab, applyBuffParticlesOffset);
+        }
+
+        private void InstantiateRemoveBuffParticlesOnUnits(Buff buff)
+        {
+            if (!buffs.Contains(buff))
+                return;
+
+            InstantiateBuffParticlesOnUnits(removeBuffParticlesPrefab, removeBuffParticlesOffset);
+        }
+
+        private void InstantiateBuffParticlesOnUnits(GameObject buffParticlesPrefab, Vector3 spawnPosition)
         {
             if (units == null)
                 units = fieldContainer.GetArmy();
@@ -83,29 +81,14 @@ namespace AutoBattler.Data.Buffs
                 if (unit == null)
                     continue;
 
-                InstantiateApplyBuffParticles(
-                    applyBuffParticlesPrefab,
-                    unit.transform.position + applyBuffParticlesOffset
-                    );
-            }
-
-        }
-
-        private void InstantiateRemoveBuffParticlesForEveryUnit(Buff buff)
-        {
-            foreach (BaseUnit unit in units)
-            {
-                if (unit == null)
-                    continue;
-
-                InstantiateApplyBuffParticles(
-                    removeBuffParticlesPrefab,
-                    unit.transform.position + removeBuffParticlesOffset
+                InstantiateBuffParticles(
+                    buffParticlesPrefab,
+                    unit.transform.position + spawnPosition
                     );
             }
         }
 
-        private void InstantiateApplyBuffParticles(GameObject buffParticlesPrefab, Vector2 spawnPosition)
+        private void InstantiateBuffParticles(GameObject buffParticlesPrefab, Vector2 spawnPosition)
         {
             GameObject buffParticles = Instantiate(
                 buffParticlesPrefab,

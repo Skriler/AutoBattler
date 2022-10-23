@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
-using AutoBattler.Data.Units;
 using UnityEngine;
-using AutoBattler.Managers;
+using AutoBattler.Data.Units;
+using AutoBattler.EventManagers;
 
 namespace AutoBattler.Data.Buffs
 {
-    public class BuffContainer : Manager<BuffContainer>
+    public class BuffContainer : MonoBehaviour
     {
-        [SerializeField] private List<Buff> buffs;
+        [SerializeField] protected List<Buff> buffs;
 
         public List<Buff> GetBuffs() => buffs;
 
@@ -39,7 +39,7 @@ namespace AutoBattler.Data.Buffs
             }
         }
 
-        public void ApplyBuffsForUnit(BaseUnit unit)
+        public virtual void ApplyBuffsForUnit(BaseUnit unit)
         {
             foreach (Buff buff in buffs)
             {
@@ -47,11 +47,11 @@ namespace AutoBattler.Data.Buffs
                     continue;
 
                 float addedPointsAmount = buff.Bonus * buff.CurrentLevel;
-                unit.ApplyCharacteristicBonus(buff.TargetCharacteristic, addedPointsAmount);
+                unit.ApplyCharacteristicBonus(buff.TargetCharacteristic, addedPointsAmount);    
             }
         }
 
-        public void RemoveBuffsFromUnit(BaseUnit unit)
+        public virtual void RemoveBuffsFromUnit(BaseUnit unit)
         {
             foreach (Buff buff in buffs)
             {

@@ -2742,6 +2742,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224212490357ccd4a907376b2e07c8c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffs:
+  - {fileID: 6470075360055849898}
+  - {fileID: 2780197718621778685}
+  - {fileID: 7038393207907899484}
+  - {fileID: 6259231650545423936}
+  - {fileID: 4878967824505498680}
+  - {fileID: 3085334119108489130}
+  - {fileID: 105827304119069372}
+  - {fileID: 4062584137020545156}
+  - {fileID: 8897441237343861274}
+  - {fileID: 4157043880144186181}
   applyBuffParticlesPrefab: {fileID: 3742407160014956829, guid: f37428c0d39923a4a889e7d163e9b59b, type: 3}
   removeBuffParticlesPrefab: {fileID: 5127191185181788441, guid: f0f70fb2872a5fb4fb768d667a139161, type: 3}
   fieldContainer: {fileID: 1354466809}
