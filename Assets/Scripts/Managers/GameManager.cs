@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.Player;
 using AutoBattler.EventManagers;
+using AutoBattler.UI.ResultNotifications;
+using AutoBattler.UI.Effects;
 
 namespace AutoBattler.Managers
 {
@@ -12,6 +14,11 @@ namespace AutoBattler.Managers
         [Header("Components")]
         [SerializeField] private Player player;
         [SerializeField] private ShopDatabase shopDb;
+        [SerializeField] private GameObject UICanvas;
+
+        [Header("Prefabs")]
+        [SerializeField] private RoundResultNotification roundLostNotification;
+        [SerializeField] private RoundResultNotification roundWonNotification;
 
         [Header("Parameters")]
         [SerializeField] private float endBattleWaitTime = 3;
@@ -19,11 +26,13 @@ namespace AutoBattler.Managers
         [SerializeField] private int damageForLose = 1;
 
         private BattleManager battleManager;
+        private RoundResultNotification currentNotification;
 
         public bool IsFightMode { get; private set; } = false;
         public int CurrentRound { get; private set; } = 1;
 
         public ShopDatabase ShopDb => shopDb;
+        public int MaxGainGoldPerRound => maxGainGoldPerRound;
 
         private void Update()
         {
@@ -32,13 +41,22 @@ namespace AutoBattler.Managers
 
             if (!battleManager.IsFirstArmyAlive())
             {
-                Debug.Log("Player lost!");
+                currentNotification = Instantiate(roundLostNotification, UICanvas.transform);
+                (currentNotification as RoundLostNotification).Setup(
+                    player.GetRoundRewardGoldAmount(),
+                    -damageForLose
+                    );
+
                 player.TakeDamage(damageForLose);
                 StartCoroutine(EndBattleCoroutine());
             }
             else if (!battleManager.IsSecondArmyAlive())
             {
-                Debug.Log("Player won!");
+                currentNotification = Instantiate(roundWonNotification, UICanvas.transform);
+                (currentNotification as RoundWonNotification).Setup(
+                    player.GetRoundRewardGoldAmount()
+                    );
+
                 StartCoroutine(EndBattleCoroutine());
             }
         }
@@ -72,14 +90,8 @@ namespace AutoBattler.Managers
             battleManager.EndBattle();
             FightEventManager.SendFightEnded();
 
-            RewardPlayer();
-        }
-
-        private void RewardPlayer()
-        {
-            int goldAmount = CurrentRound;
-            goldAmount = goldAmount <= maxGainGoldPerRound ? goldAmount : maxGainGoldPerRound;
-            player.GainGold(goldAmount);
+            player.GainGold(player.GetRoundRewardGoldAmount());
+            currentNotification.Show();
         }
     }
 }

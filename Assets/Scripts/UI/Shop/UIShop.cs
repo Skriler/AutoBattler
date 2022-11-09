@@ -86,7 +86,9 @@ namespace AutoBattler.UI.Shop
                 return;
             }
 
-            refreshButton.PlayClickSound();
+            if (gameObject.activeSelf)
+                refreshButton.PlayClickSound();
+
             player.SpendGold(refreshCost);
 
             SetActiveUnitCards();

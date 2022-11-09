@@ -19,6 +19,8 @@ namespace AutoBattler.Data.Player
         public int TavernTier { get; private set; }
         public int LevelUpTavernTierCost { get; private set; } = 4;
 
+        private int maxGainGoldPerRound;
+
         private void Awake()
         {
             UnitsEventManager.OnUnitSold += SellUnit;
@@ -38,6 +40,8 @@ namespace AutoBattler.Data.Player
             Storage = transform.GetComponentInChildren<StorageContainer>();
             Field = transform.Find("PlayerField").GetComponent<PlayerFieldContainer>();
             EnemyField = transform.Find("EnemyField").GetComponent<EnemyFieldContainer>();
+
+            maxGainGoldPerRound = GameManager.Instance.MaxGainGoldPerRound;
 
             PlayerEventManager.SendGoldAmountChanged(Gold);
             PlayerEventManager.SendHealthAmountChanged(Health);
@@ -117,5 +121,12 @@ namespace AutoBattler.Data.Player
             else
                 AudioManager.Instance.PlayUnitDragFailedSound();
         }
+
+        public int GetRoundRewardGoldAmount()
+        {
+            int currentRound = GameManager.Instance.CurrentRound;
+
+            return currentRound <= maxGainGoldPerRound ? currentRound : maxGainGoldPerRound;
+        }   
     }
 }

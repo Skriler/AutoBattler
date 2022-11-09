@@ -2460,6 +2460,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1171161683}
   shopDb: {fileID: 11400000, guid: 604c1065a490eb04ca21bdfa9cb7ed18, type: 2}
+  UICanvas: {fileID: 1610310454}
+  roundLostNotification: {fileID: 6460832989934109676, guid: 1ce69aad2c62c5642a5f34a40668cc97, type: 3}
+  roundWonNotification: {fileID: 3246778216354635577, guid: f8ba980578dd5a74e9f8accfe276aabf, type: 3}
   endBattleWaitTime: 3
   maxGainGoldPerRound: 10
   damageForLose: 1
@@ -2471,7 +2474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137222314}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 438.73862, y: 579.4755, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
