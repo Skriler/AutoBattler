@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HuntressCharacteristics
   m_EditorClassIdentifier: 
   title: Huntress
+  attackDescription: Attack one any-line unit.
   cost: 4
   tavernTier: 3
   race: 2

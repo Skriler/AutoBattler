@@ -67,6 +67,7 @@ namespace AutoBattler.UI.Shop
             UnitsEventManager.OnUnitBought(shopUnit);
 
             UIShopUnitTooltip.Instance.Hide();
+            UIUnitDescription.Instance.Hide();
             card.gameObject.SetActive(false);
         }
 

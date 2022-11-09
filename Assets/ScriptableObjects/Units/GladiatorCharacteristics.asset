@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GladiatorCharacteristics
   m_EditorClassIdentifier: 
   title: Gladiator
+  attackDescription: Attack one front-line unit.
   cost: 2
   tavernTier: 2
   race: 2

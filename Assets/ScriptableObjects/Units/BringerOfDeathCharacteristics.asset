@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BringerOfDeathCharacteristics
   m_EditorClassIdentifier: 
   title: Bringer Of Death
+  attackDescription: Attack one back-line unit.
   cost: 3
   tavernTier: 3
   race: 1

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GoblinCharacteristics
   m_EditorClassIdentifier: 
   title: Goblin
+  attackDescription: Attack one back-line unit.
   cost: 2
   tavernTier: 2
   race: 3

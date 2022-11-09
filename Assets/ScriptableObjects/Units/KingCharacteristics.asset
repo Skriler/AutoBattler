@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KingCharacteristics
   m_EditorClassIdentifier: 
   title: King
-  description: Attack multiple units
+  attackDescription: Attack multiple units.
   cost: 6
   tavernTier: 5
   race: 0

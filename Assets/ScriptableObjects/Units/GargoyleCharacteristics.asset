@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: GargoyleCharacteristics
   m_EditorClassIdentifier: 
   title: Gargoyle
+  attackDescription: Attack one front-line unit.
   cost: 3
   tavernTier: 2
   race: 3

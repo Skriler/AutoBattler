@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MushroomCharacteristics
   m_EditorClassIdentifier: 
   title: Mushroom
-  description: Attack one unit
+  attackDescription: Attack one front-line unit.
   cost: 3
   tavernTier: 2
   race: 3

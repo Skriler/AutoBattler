@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SamuraiCharacteristics
   m_EditorClassIdentifier: 
   title: Samurai
-  description: Attack multiple units
+  attackDescription: Attack multiple back-line units.
   cost: 6
   tavernTier: 5
   race: 1

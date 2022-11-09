@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BerserkCharacteristics
   m_EditorClassIdentifier: 
   title: Berserk
-  description: Attack multiple units
+  attackDescription: Attack multiple front-line units.
   cost: 5
   tavernTier: 4
   race: 0

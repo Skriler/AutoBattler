@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: HeroCharacteristics
   m_EditorClassIdentifier: 
   title: Hero
+  attackDescription: Attack one front-line unit.
   cost: 3
   tavernTier: 3
   race: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArcaneArcherCharacteristics
   m_EditorClassIdentifier: 
   title: Arcane Archer
-  description: Attack one unit
+  attackDescription: Attack one front-line and one back-line unit.
   cost: 4
   tavernTier: 4
   race: 3

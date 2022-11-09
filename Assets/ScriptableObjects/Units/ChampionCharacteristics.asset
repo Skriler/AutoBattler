@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ChampionCharacteristics
   m_EditorClassIdentifier: 
   title: Champion
+  attackDescription: Attack one front-line unit.
   cost: 5
   tavernTier: 3
   race: 1

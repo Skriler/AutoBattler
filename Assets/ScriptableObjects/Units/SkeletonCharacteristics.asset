@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonCharacteristics
   m_EditorClassIdentifier: 
   title: Skeleton
-  description: Attack one unit
+  attackDescription: Attack one front-line unit.
   cost: 2
   tavernTier: 1
   race: 1
