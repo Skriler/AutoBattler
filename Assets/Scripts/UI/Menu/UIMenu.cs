@@ -14,8 +14,6 @@ namespace AutoBattler.UI.Menu
         [SerializeField] private GameObject optionsMenu;
         [SerializeField] private TextMeshProUGUI textVersion;
 
-        private bool isOptionsMenuOpened = false;
-
         private void Start()
         {
             textVersion.text += Application.version;
@@ -23,6 +21,8 @@ namespace AutoBattler.UI.Menu
             SaveSystem.LoadSettings();
             SetPlayerSettings();
         }
+
+        public void QuitGame() => Application.Quit();
 
         private void SetPlayerSettings()
         {
@@ -47,15 +47,8 @@ namespace AutoBattler.UI.Menu
 
         public void OpenOptions()
         {
-            isOptionsMenuOpened = !isOptionsMenuOpened;
-
-            mainMenu.SetActive(!isOptionsMenuOpened);
-            optionsMenu.SetActive(isOptionsMenuOpened);
-        }
-
-        public void QuitGame()
-        {
-            Application.Quit();
+            mainMenu.SetActive(optionsMenu.activeSelf);
+            optionsMenu.SetActive(!optionsMenu.activeSelf);
         }
     }
 }

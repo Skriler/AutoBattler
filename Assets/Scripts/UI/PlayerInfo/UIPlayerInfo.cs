@@ -21,8 +21,8 @@ namespace AutoBattler.UI.PlayerInfo
             PlayerEventManager.OnGoldAmountChanged += SetGold;
             PlayerEventManager.OnHealthAmountChanged += SetHealth;
             PlayerEventManager.OnTavernTierIncreased += SetTavernTier;
-            FightEventManager.OnFightStarted += DisableButtons;
-            FightEventManager.OnFightEnded += EnableButtons;
+            FightEventManager.OnFightStarted += HideButtons;
+            FightEventManager.OnFightEnded += ShowButtons;
         }
 
         private void OnDestroy()
@@ -30,8 +30,8 @@ namespace AutoBattler.UI.PlayerInfo
             PlayerEventManager.OnGoldAmountChanged -= SetGold;
             PlayerEventManager.OnHealthAmountChanged -= SetHealth;
             PlayerEventManager.OnTavernTierIncreased -= SetTavernTier;
-            FightEventManager.OnFightStarted -= DisableButtons;
-            FightEventManager.OnFightEnded -= EnableButtons;
+            FightEventManager.OnFightStarted -= HideButtons;
+            FightEventManager.OnFightEnded -= ShowButtons;
         }
 
         private void SetGold(int gold)
@@ -49,13 +49,13 @@ namespace AutoBattler.UI.PlayerInfo
             textTavernTier.text = tavernTier.ToString();
         }
 
-        private void DisableButtons()
+        private void HideButtons()
         {
             shopButton.gameObject.SetActive(false);
             startBattleButton.gameObject.SetActive(false);
         }
 
-        private void EnableButtons()
+        private void ShowButtons()
         {
             shopButton.gameObject.SetActive(true);
             startBattleButton.gameObject.SetActive(true);

@@ -6,6 +6,7 @@ using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UI.Tooltips;
 using AutoBattler.Managers;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 namespace AutoBattler.UI.Shop
 {
@@ -24,7 +25,6 @@ namespace AutoBattler.UI.Shop
 
         private ShopDatabase shopDb;
 
-        public bool IsOpen { get; private set; } = false;
         public bool IsFreezed { get; private set; } = false;
 
         protected void Awake()
@@ -42,17 +42,19 @@ namespace AutoBattler.UI.Shop
         private void Start()
         {
             shopDb = GameManager.Instance.ShopDb;
-            GenerateUnitCards();
+            GenerateUnits();
 
             levelUpButton.UpdateDescription(player.LevelUpTavernTierCost);
             refreshButton.UpdateDescription(refreshCost);
 
-            gameObject.SetActive(IsOpen);
+            gameObject.SetActive(false);
         }
 
         public void MouseEnter() => CameraMovement.Instance.IsOnUI = true;
 
         public void MouseExit() => CameraMovement.Instance.IsOnUI = false;
+
+        public void Show() => gameObject.SetActive(gameObject.activeSelf);
 
         public void OnCardClick(UICard card, ShopUnitEntity shopUnit)
         {
@@ -79,7 +81,7 @@ namespace AutoBattler.UI.Shop
             IsFreezed = !IsFreezed;
         }
 
-        public void RefreshShop()
+        public void RefreshUnits()
         {
             if (!player.IsEnoughGoldForAction(refreshCost))
             {
@@ -93,7 +95,7 @@ namespace AutoBattler.UI.Shop
             player.SpendGold(refreshCost);
 
             SetActiveUnitCards();
-            GenerateUnitCards();
+            GenerateUnits();
 
             if (IsFreezed)
                 FreezeUnits();
@@ -121,13 +123,7 @@ namespace AutoBattler.UI.Shop
             }
         }
 
-        public void ShowShop()
-        {
-            IsOpen = !IsOpen;
-            gameObject.SetActive(IsOpen);
-        }
-
-        private void GenerateUnitCards()
+        private void GenerateUnits()
         {
             List<ShopUnitEntity> shopUnits = shopDb.GetUnitsAtTavernTier(player.TavernTier);
             int unitsAmount = shopUnits.Count;
@@ -152,16 +148,13 @@ namespace AutoBattler.UI.Shop
             if (IsFreezed)
                 FreezeUnits();
             else
-                RefreshShop();
+                RefreshUnits();
         }
 
         private void EndRound()
         {
-            if (IsOpen)
-            {
+            if (gameObject.activeSelf)
                 gameObject.SetActive(false);
-                IsOpen = false;
-            }
         }
     }
 }

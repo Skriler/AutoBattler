@@ -75,11 +75,6 @@ namespace AutoBattler.Managers
             SceneManager.LoadScene(0);
         }
 
-        public void OpenManual()
-        {
-
-        }
-
         private IEnumerator EndBattleCoroutine()
         {
             ++CurrentRound;
