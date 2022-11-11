@@ -15,6 +15,7 @@ namespace AutoBattler.UI.PlayerInfo
         [Header("Buttons")]
         [SerializeField] private Button shopButton;
         [SerializeField] private Button startBattleButton;
+        [SerializeField] private Button manualButton;
 
         private void Awake()
         {
@@ -53,12 +54,14 @@ namespace AutoBattler.UI.PlayerInfo
         {
             shopButton.gameObject.SetActive(false);
             startBattleButton.gameObject.SetActive(false);
+            manualButton.gameObject.SetActive(false);
         }
 
         private void ShowButtons()
         {
             shopButton.gameObject.SetActive(true);
             startBattleButton.gameObject.SetActive(true);
+            manualButton.gameObject.SetActive(true);
         }
     }
 }

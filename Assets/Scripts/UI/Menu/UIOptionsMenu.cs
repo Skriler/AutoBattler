@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using AutoBattler.Data.Player;
-using AutoBattler.FileSystem;
+using AutoBattler.SaveSystem;
 using AutoBattler.Managers;
 
 public class UIOptionsMenu : MonoBehaviour
@@ -37,7 +37,7 @@ public class UIOptionsMenu : MonoBehaviour
 
     private void OnDisable()
     {
-        SaveSystem.SaveSettings();
+        FileSaveSystem.SaveSettings();
     }
 
     private void SetResolutionDropdownItems()

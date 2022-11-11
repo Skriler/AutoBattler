@@ -17,8 +17,10 @@ namespace AutoBattler.UI.ResultNotifications
         protected WaitForSeconds hideNotificationTick;
         protected float hidingNotificationTime;
 
-        protected virtual void Start()
+        protected override void Awake()
         {
+            base.Awake();
+
             canvasGroup = GetComponent<CanvasGroup>();
             hideNotificationTick = new WaitForSeconds(hideNotificationInterval);
 

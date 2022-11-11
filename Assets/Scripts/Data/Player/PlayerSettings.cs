@@ -26,18 +26,19 @@ namespace AutoBattler.Data.Player
         {
             StringBuilder settings = new StringBuilder();
 
-            settings.Append("MasterVolume: ");
-            settings.Append(MasterVolume);
-            settings.Append("\nMusicVolume: ");
-            settings.Append(MusicVolume);
-            settings.Append("\nEffectsVolume: ");
-            settings.Append(EffectsVolume);
-            settings.Append("\nUIVolume: ");
-            settings.Append(UIVolume);
-            settings.Append("\nIsFullScreen: ");
-            settings.Append(IsFullScreen);
-            settings.Append("\nResolution: ");
-            settings.Append(Resolution);
+            settings
+                .Append("MasterVolume: ")
+                .AppendLine(MasterVolume.ToString())
+                .Append("MusicVolume: ")
+                .AppendLine(MusicVolume.ToString())
+                .Append("EffectsVolume: ")
+                .AppendLine(EffectsVolume.ToString())
+                .Append("UIVolume: ")
+                .AppendLine(UIVolume.ToString())
+                .Append("IsFullScreen: ")
+                .AppendLine(IsFullScreen.ToString())
+                .Append("Resolution: ")
+                .AppendLine(Resolution.ToString());
 
             return settings.ToString();
         }

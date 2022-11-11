@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using AutoBattler.FileSystem;
+using AutoBattler.SaveSystem;
 using AutoBattler.Managers;
 using AutoBattler.Data.Player;
 
@@ -18,7 +18,7 @@ namespace AutoBattler.UI.Menu
         {
             textVersion.text += Application.version;
 
-            SaveSystem.LoadSettings();
+            FileSaveSystem.LoadSettings();
             SetPlayerSettings();
         }
 

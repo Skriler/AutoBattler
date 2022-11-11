@@ -4,10 +4,11 @@ using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.Managers;
+using AutoBattler.SaveSystem;
 
 namespace AutoBattler.Data.Player
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IDataPersistence
     {
         [SerializeField] private PlayerCharacteristics characteristics;
 
@@ -127,6 +128,22 @@ namespace AutoBattler.Data.Player
             int currentRound = GameManager.Instance.CurrentRound;
 
             return currentRound <= maxGainGoldPerRound ? currentRound : maxGainGoldPerRound;
-        }   
+        }
+
+        public void LoadData(GameData data)
+        {
+            Health = data.Health;
+            Gold = data.Gold;
+            TavernTier = data.TavernTier;
+            LevelUpTavernTierCost = data.LevelUpTavernTierCost;
+        }
+
+        public void SaveData(GameData data)
+        {
+            data.Health = Health;
+            data.Gold = Gold;
+            data.TavernTier = TavernTier;
+            data.LevelUpTavernTierCost = LevelUpTavernTierCost;
+        }
     }
 }

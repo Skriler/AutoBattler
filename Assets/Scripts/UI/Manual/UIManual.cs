@@ -10,21 +10,15 @@ namespace AutoBattler.UI.Manual
     public class UIManual : UIPanel
     {
         [Header("Components")]
-        [SerializeField] private Button manualButton;
+        [SerializeField] private Button nextPageButton;
+        [SerializeField] private Button previousPageButton;
         [SerializeField] private List<GameObject> pages;
 
         private int currentPageIndex = 0;
 
-        protected void Awake()
+        private void Start()
         {
-            FightEventManager.OnFightStarted += HideManualButton;
-            FightEventManager.OnFightEnded += ShowManualButton;
-        }
-
-        protected void OnDestroy()
-        {
-            FightEventManager.OnFightStarted -= HideManualButton;
-            FightEventManager.OnFightEnded -= ShowManualButton;
+            GoToPage(0);
         }
 
         private void OnEnable()
@@ -38,10 +32,6 @@ namespace AutoBattler.UI.Manual
             Time.timeScale = 1;
             CameraMovement.Instance.IsOnUI = false;
         }
-
-        private void HideManualButton() => manualButton.gameObject.SetActive(false);
-
-        private void ShowManualButton() => manualButton.gameObject.SetActive(true);
 
         public void Show() => gameObject.SetActive(!gameObject.activeSelf);
 
@@ -58,6 +48,11 @@ namespace AutoBattler.UI.Manual
             pages[index].gameObject.SetActive(true);
 
             currentPageIndex = index;
+
+            bool IsNextPageButtonActive = index == pages.Count - 1 ? false : true;
+            bool IsPreviousPageButtonActive = index == 0 ? false : true;
+            nextPageButton.gameObject.SetActive(IsNextPageButtonActive);
+            previousPageButton.gameObject.SetActive(IsPreviousPageButtonActive);
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Data.Enums;
 using AutoBattler.Data.ScriptableObjects.Structs;
+using System.Text;
 
 namespace AutoBattler.Data.ScriptableObjects.Characteristics
 {
@@ -48,8 +49,15 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         {
             if (description == string.Empty)
             {
-                description = Race.ToString() + ". " + Specification.ToString() + ".\n";
-                description += attackDescription;
+                StringBuilder descriptionBuilder = new StringBuilder();
+                descriptionBuilder
+                    .Append(Race.ToString())
+                    .Append(". ")
+                    .Append(Specification.ToString())
+                    .AppendLine(".")
+                    .AppendLine(attackDescription);
+
+                description = descriptionBuilder.ToString();
             }
 
             return description;

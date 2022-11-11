@@ -3,11 +3,25 @@ using System.IO;
 using UnityEngine;
 using AutoBattler.Data.Player;
 
-namespace AutoBattler.FileSystem
+namespace AutoBattler.SaveSystem
 {
-    public static class SaveSystem
+    public static class FileSaveSystem
     {
+        private static string PROGRESS_PATH = Application.persistentDataPath + "/playerProgress.data";
         private static string SETTINGS_PATH = Application.persistentDataPath + "/playerSettings.data";
+
+        public static void SaveProgress(GameData data)
+        {
+            string dataToStore = JsonUtility.ToJson(data, true);
+
+            using (FileStream stream = new FileStream(PROGRESS_PATH, FileMode.Create))
+            {
+                using (TextWriter writer = new StreamWriter(stream))
+                {
+                    writer.Write(dataToStore);
+                }
+            }
+        }
 
         public static void SaveSettings()
         {
@@ -20,29 +34,58 @@ namespace AutoBattler.FileSystem
             }
         }
 
+        public static GameData LoadProgress()
+        {
+            GameData loadedData = null;
+
+            if (!File.Exists(PROGRESS_PATH))
+                return loadedData;
+
+            try
+            {
+                string dataToLoad;
+
+                using (FileStream stream = new FileStream(PROGRESS_PATH, FileMode.Open))
+                {
+                    using (TextReader reader = new StreamReader(stream))
+                    {
+                        dataToLoad = reader.ReadToEnd();
+                    }
+                }
+
+                loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
+            }
+            catch(Exception e)
+            {
+                Debug.LogError("Error while reading progress from file \n" + e);
+            }
+
+            return loadedData;
+        }
+
         public static void LoadSettings()
         {
             if (!File.Exists(SETTINGS_PATH))
                 return;
 
-            using (FileStream stream = new FileStream(SETTINGS_PATH, FileMode.Open))
+            try
             {
-                using (TextReader reader = new StreamReader(stream))
+                using (FileStream stream = new FileStream(SETTINGS_PATH, FileMode.Open))
                 {
-                    string str;
-                    while ((str = reader.ReadLine()) != null)
+                    using (TextReader reader = new StreamReader(stream))
                     {
-                        string[] setting = str.Split(':');
-                        try
+                        string str;
+                        while ((str = reader.ReadLine()) != null)
                         {
+                            string[] setting = str.Split(':');
                             SetSetting(setting[0], setting[1]);
-                        }
-                        catch
-                        {
-                            Debug.LogError("Error while reading a data from a file");
                         }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Error while reading settings from file \n" + e);
             }
         }
 
