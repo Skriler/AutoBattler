@@ -44,10 +44,13 @@ namespace AutoBattler.UI.Shop
             shopDb = GameManager.Instance.ShopDb;
             GenerateUnits();
 
-            levelUpButton.UpdateDescription(player.LevelUpTavernTierCost);
             refreshButton.UpdateDescription(refreshCost);
-
             gameObject.SetActive(false);
+        }
+
+        private void OnEnable()
+        {
+            levelUpButton.UpdateDescription(player.LevelUpTavernTierCost);
         }
 
         public void MouseEnter() => CameraMovement.Instance.IsOnUI = true;

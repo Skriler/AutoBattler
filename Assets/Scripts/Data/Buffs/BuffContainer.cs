@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Data.Units;
-using AutoBattler.EventManagers;
 
 namespace AutoBattler.Data.Buffs
 {
@@ -61,6 +61,13 @@ namespace AutoBattler.Data.Buffs
                 float removedPointsAmount = -buff.Bonus * buff.CurrentLevel;
                 unit.ApplyCharacteristicBonus(buff.TargetCharacteristic, removedPointsAmount);
             }
+        }
+
+        protected Buff GetBuffByTitle(string title)
+        {
+            return buffs
+                .Where(b => b.Title == title)
+                .FirstOrDefault();
         }
     }
 }

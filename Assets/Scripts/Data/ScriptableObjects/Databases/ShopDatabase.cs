@@ -1,8 +1,8 @@
-using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Data.ScriptableObjects.Structs;
+using AutoBattler.Data.ScriptableObjects.Characteristics;
 
 namespace AutoBattler.Data.ScriptableObjects.Databases
 {
@@ -21,6 +21,13 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
             return shopUnits
                 .Where(u => u.characteristics.TavernTier <= playerTavernTier)
                 .ToList();
+        }
+
+        public ShopUnitEntity GetShopUnitEntityByTitle(string title)
+        {
+            return shopUnits
+                .Where(u => u.characteristics.Title == title)
+                .FirstOrDefault();
         }
     }
 }

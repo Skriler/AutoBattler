@@ -132,18 +132,22 @@ namespace AutoBattler.Data.Player
 
         public void LoadData(GameData data)
         {
-            Health = data.Health;
-            Gold = data.Gold;
-            TavernTier = data.TavernTier;
-            LevelUpTavernTierCost = data.LevelUpTavernTierCost;
+            Health = data.health;
+            Gold = data.gold;
+            TavernTier = data.tavernTier;
+            LevelUpTavernTierCost = data.levelUpTavernTierCost;
+
+            PlayerEventManager.SendGoldAmountChanged(Gold);
+            PlayerEventManager.SendHealthAmountChanged(Health);
+            PlayerEventManager.SendTavernTierIncreased(TavernTier);
         }
 
         public void SaveData(GameData data)
         {
-            data.Health = Health;
-            data.Gold = Gold;
-            data.TavernTier = TavernTier;
-            data.LevelUpTavernTierCost = LevelUpTavernTierCost;
+            data.health = Health;
+            data.gold = Gold;
+            data.tavernTier = TavernTier;
+            data.levelUpTavernTierCost = LevelUpTavernTierCost;
         }
     }
 }

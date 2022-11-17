@@ -8,6 +8,7 @@ using AutoBattler.UnitsComponents;
 using AutoBattler.Data.Enums;
 using AutoBattler.UI.Tooltips;
 using AutoBattler.EventManagers;
+using AutoBattler.SaveSystem;
 
 namespace AutoBattler.Data.Units
 {
@@ -127,6 +128,16 @@ namespace AutoBattler.Data.Units
                 DamageTypeProtection currentDamageTypeProtection = damageTypeProtection[i];
                 damageTypesProtectionPercentage.Add(currentDamageTypeProtection.damageType, currentDamageTypeProtection.protectionPercentage);
             }
+        }
+
+        public void SetUnitDataÑharacteristics(UnitData unitData)
+        {
+            MaxHealth = unitData.maxHealth;
+            Health = unitData.health;
+            AttackDamage = unitData.attackDamage;
+            AttackSpeed = unitData.attackSpeed;
+
+            healthBar.Setup(this.transform, MaxHealth, AttackSpeed);
         }
 
         public float GetDamageTypeProtection(DamageType damageType) => damageTypesProtectionPercentage[damageType];

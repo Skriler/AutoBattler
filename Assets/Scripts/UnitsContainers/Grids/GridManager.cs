@@ -23,12 +23,19 @@ namespace AutoBattler.UnitsContainers.Grids
         private Tile previousTile;
         private TileStatus previousTileStatus;
 
+        public int Width => width;
+        public int Height => height;
+
         protected virtual void Awake()
         {
             UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileSprite;
             UnitsEventManager.OnUnitEndDrag += ChangeUnitPosition;
             UnitsEventManager.OnUnitChangedPosition += RemoveUnit;
             UnitsEventManager.OnUnitSold += RemoveUnit;
+
+            tilesContainer = transform.Find("Tiles").gameObject;
+            unitsContainer = GetComponent<UnitsContainer>();
+            GenerateGrid();
         }
 
         protected virtual void OnDestroy()
@@ -38,16 +45,6 @@ namespace AutoBattler.UnitsContainers.Grids
             UnitsEventManager.OnUnitChangedPosition -= RemoveUnit;
             UnitsEventManager.OnUnitSold -= RemoveUnit;
         }
-
-        protected virtual void Start()
-        {
-            tilesContainer = transform.Find("Tiles").gameObject;
-            unitsContainer = GetComponent<UnitsContainer>();
-            GenerateGrid();
-        }
-
-        public int Width => width;
-        public int Height => height;
 
         public Vector3 GetTilePositionByIndex(int x, int y) => tiles[x, y].transform.position;
 

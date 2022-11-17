@@ -1,22 +1,31 @@
 using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
+using AutoBattler.Managers;
 using AutoBattler.Data.Buffs;
 using AutoBattler.Data.Enums;
+using AutoBattler.Data.ScriptableObjects.Structs;
+using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.UnitsContainers.Grids;
+using AutoBattler.SaveSystem;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
-    public class PlayerFieldContainer : FieldContainer
+    public class PlayerFieldContainer : FieldContainer, IDataPersistence
     {
         protected PlayerFieldGridManager playerFieldGridManager;
 
         public BuffContainer Buffs { get; private set; }
 
-        private void Awake()
+        protected override void Awake()
         {
             BuffsEventManager.OnBuffLevelIncreased += AddBuffEffect;
             BuffsEventManager.OnBuffLevelDecreased += RemoveBuffEffect;
+
+            base.Awake();
+
+            playerFieldGridManager = GetComponent<PlayerFieldGridManager>();
+            Buffs = transform.GetComponentInChildren<BuffContainer>();
         }
 
         private void OnDestroy()
@@ -25,36 +34,30 @@ namespace AutoBattler.UnitsContainers.Containers
             BuffsEventManager.OnBuffLevelDecreased -= RemoveBuffEffect;
         }
 
-        protected override void Start()
-        {
-            base.Start();
-
-            playerFieldGridManager = GetComponent<PlayerFieldGridManager>();
-            Buffs = transform.GetComponentInChildren<BuffContainer>();
-        }
-
         public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;
 
         public int GetOpenedCellsAmount() => playerFieldGridManager.GetOpenedCellsAmount();
 
         public override bool AddUnit(BaseUnit unit, Vector2Int index)
         {
-            bool result = base.AddUnit(unit, index);
-
-            if (result)
+            if (base.AddUnit(unit, index))
+            {
                 UnitsEventManager.OnUnitAddedOnField(unit);
+                return true;
+            }
 
-            return result;
+            return false;
         }
 
         public override bool RemoveUnit(BaseUnit unit)
         {
-            bool result = base.RemoveUnit(unit);
-
-            if (result)
+            if (base.RemoveUnit(unit))
+            {
                 UnitsEventManager.OnUnitRemovedFromField(unit);
+                return true;
+            }
 
-            return result;
+            return false;
         }
 
         public void AddBuffEffect(Buff buff)
@@ -78,6 +81,41 @@ namespace AutoBattler.UnitsContainers.Containers
                 for (int j = 0; j < units.GetLength(1); ++j)
                 {
                     units[i, j]?.ApplyCharacteristicBonus(characteristic, addedPointsAmount);
+                }
+            }
+        }
+
+        public void LoadData(GameData data)
+        {
+            ShopDatabase shopDb = GameManager.Instance.ShopDb;
+            ShopUnitEntity shopUnitEntity;
+
+            foreach (UnitData unitData in data.field)
+            {
+                shopUnitEntity = shopDb.GetShopUnitEntityByTitle(unitData.title);
+
+                AddUnit(
+                    shopUnitEntity,
+                    new Vector2Int(unitData.x, unitData.y)
+                    );
+
+                units[unitData.x, unitData.y].SetUnitDataÑharacteristics(unitData);
+            }
+        }
+
+        public void SaveData(GameData data)
+        {
+            UnitData unitData;
+
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j] == null)
+                        continue;
+
+                    unitData = new UnitData(units[i, j], i, j);
+                    data.field.Add(unitData);
                 }
             }
         }

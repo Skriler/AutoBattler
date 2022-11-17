@@ -34,9 +34,14 @@ namespace AutoBattler.Managers
         public ShopDatabase ShopDb => shopDb;
         public int MaxGainGoldPerRound => maxGainGoldPerRound;
 
+        private void Start()
+        {
+            DataPersistenceManager.Instance.LoadGame();
+        }
+
         public void OpenMenu()
         {
-            //DataPersistenceManager.Instance.SaveGame();
+            DataPersistenceManager.Instance.SaveGame();
             SceneManager.LoadScene(0);
         }
 
@@ -91,12 +96,12 @@ namespace AutoBattler.Managers
 
         public void LoadData(GameData data)
         {
-            CurrentRound = data.CurrentRound;
+            CurrentRound = data.currentRound;
         }
 
         public void SaveData(GameData data)
         {
-            data.CurrentRound = CurrentRound;
+            data.currentRound = CurrentRound;
         }
     }
 }

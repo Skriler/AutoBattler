@@ -1,10 +1,12 @@
 ﻿using System.Linq;
+using System.Collections.Generic;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Units;
+using AutoBattler.SaveSystem;
 
 namespace AutoBattler.Data.Buffs
 {
-    public class PlayerBuffContainer : BuffContainer
+    public class PlayerBuffContainer : BuffContainer, IDataPersistence
     {
         protected void Awake()
         {
@@ -36,6 +38,23 @@ namespace AutoBattler.Data.Buffs
                 BuffsEventManager.SendRemovedBuffsFromUnit(unit);
 
             base.RemoveBuffsFromUnit(unit);
+        }
+
+        public void LoadData(GameData data)
+        {
+            Buff buff;
+
+            foreach (BuffData buffData in data.buffs)
+            {
+                buff = GetBuffByTitle(buffData.title);
+                buff.SetBuffDataСharacteristics(buffData);
+            }
+        }
+
+        public void SaveData(GameData data)
+        {
+            foreach(Buff buff in buffs)
+                data.buffs.Add(new BuffData(buff));
         }
     }
 }

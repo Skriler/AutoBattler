@@ -14,7 +14,7 @@ namespace AutoBattler.SaveSystem
         {
             string dataToStore = JsonUtility.ToJson(data, true);
 
-            using (FileStream stream = new FileStream(PROGRESS_PATH, FileMode.Create))
+            using (FileStream stream = new FileStream(PROGRESS_PATH, FileMode.CreateNew))
             {
                 using (TextWriter writer = new StreamWriter(stream))
                 {

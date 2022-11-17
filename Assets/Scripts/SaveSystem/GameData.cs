@@ -1,29 +1,26 @@
 using System;
 using System.Collections.Generic;
-using AutoBattler.Data.Units;
-using AutoBattler.Data.Buffs;
 
 namespace AutoBattler.SaveSystem
 {
     [Serializable]
     public class GameData
     {
-        public int CurrentRound;
-        public int Health;
-        public int Gold;
-        public int TavernTier;
-        public int LevelUpTavernTierCost;
+        public int currentRound;
+        public int health;
+        public int gold;
+        public int tavernTier;
+        public int levelUpTavernTierCost;
 
-        public BaseUnit[] Storage { get; private set; }
-        public BaseUnit[,] Field { get; private set; }
-        public List<Buff> Buffs { get; private set; }
+        public List<UnitData> storage;
+        public List<UnitData> field;
+        public List<BuffData> buffs;
 
         public GameData()
         {
-            Health = 0;
-            Gold = 0;
-            TavernTier = 0;
-            LevelUpTavernTierCost = 0;
+            storage = new List<UnitData>();
+            field = new List<UnitData>();
+            buffs = new List<BuffData>();
         }
     }
 }

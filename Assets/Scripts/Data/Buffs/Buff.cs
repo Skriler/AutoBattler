@@ -3,6 +3,7 @@ using AutoBattler.Data.Units;
 using AutoBattler.Data.Enums;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.EventManagers;
+using AutoBattler.SaveSystem;
 
 namespace AutoBattler.Data.Buffs
 {
@@ -28,6 +29,8 @@ namespace AutoBattler.Data.Buffs
 
         public abstract bool IsUnitPassCheck(BaseUnit unit);
 
+        public bool IsActive() => CurrentLevel > MIN_LEVEL;
+
         private void SetCharacteristics()
         {
             Title = characteristics.Title;
@@ -44,8 +47,6 @@ namespace AutoBattler.Data.Buffs
             CurrentLevel = MIN_LEVEL;
             UnitsAmountOnCurrentLevel = START_UNITS_AMOUNT_ON_LEVEL;
         }
-
-        public bool IsActive() => CurrentLevel > MIN_LEVEL;
 
         public void AddBuff(BaseUnit unit)
         {
@@ -80,6 +81,12 @@ namespace AutoBattler.Data.Buffs
             }
 
             --UnitsAmountOnCurrentLevel;
+        }
+
+        public void SetBuffData—haracteristics(BuffData buffData)
+        {
+            CurrentLevel = buffData.currentLevel;
+            UnitsAmountOnCurrentLevel = buffData.unitsAmountOnCurrentLevel;
         }
     }
 }

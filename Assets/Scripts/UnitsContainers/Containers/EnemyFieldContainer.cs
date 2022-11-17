@@ -12,22 +12,19 @@ namespace AutoBattler.UnitsContainers.Containers
 
         public BuffContainer Buffs { get; private set; }
 
-        protected void Awake()
+        protected override void Awake()
         {
             FightEventManager.OnFightEnded += ClearField;
+
+            base.Awake();
+
+            enemyFieldGridManager = GetComponent<EnemyFieldGridManager>();
+            Buffs = transform.GetComponentInChildren<BuffContainer>();
         }
 
         protected void OnDestroy()
         {
             FightEventManager.OnFightEnded -= ClearField;
-        }
-
-        protected override void Start()
-        {
-            base.Start();
-
-            enemyFieldGridManager = GetComponent<EnemyFieldGridManager>();
-            Buffs = transform.GetComponentInChildren<BuffContainer>();
         }
 
         public override bool IsCellOccupied(Vector2Int index) => true;
