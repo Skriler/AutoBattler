@@ -93,7 +93,7 @@ namespace AutoBattler.UI.PlayerInfo
             {
                 sellUnitSound?.Play();
                 Destroy(unit.gameObject);
-                UnitsEventManager.OnUnitSold(unit);
+                UnitsEventManager.SendUnitSold(unit);
             }
 
             ChangeImageSprite(trashCanSprite);

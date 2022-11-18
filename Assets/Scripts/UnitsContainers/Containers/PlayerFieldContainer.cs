@@ -42,7 +42,7 @@ namespace AutoBattler.UnitsContainers.Containers
         {
             if (base.AddUnit(unit, index))
             {
-                UnitsEventManager.OnUnitAddedOnField(unit);
+                UnitsEventManager.SendUnitAddedOnField(unit);
                 return true;
             }
 
@@ -53,7 +53,7 @@ namespace AutoBattler.UnitsContainers.Containers
         {
             if (base.RemoveUnit(unit))
             {
-                UnitsEventManager.OnUnitRemovedFromField(unit);
+                UnitsEventManager.SendUnitRemovedFromField(unit);
                 return true;
             }
 

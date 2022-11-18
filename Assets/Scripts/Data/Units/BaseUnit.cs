@@ -165,7 +165,7 @@ namespace AutoBattler.Data.Units
 
             healthBar.UpdateHealth(Health);
 
-            UnitsEventManager.OnUnitTookDamage(this, damage, damageType);
+            UnitsEventManager.SendUnitTookDamage(this, damage, damageType);
 
             if (UIUnitTooltip.Instance.CurrentUnit == this)
                 UIUnitTooltip.Instance.Setup(this);

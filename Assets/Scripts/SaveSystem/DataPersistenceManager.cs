@@ -11,13 +11,6 @@ namespace AutoBattler.SaveSystem
         private GameData gameData;
         private List<IDataPersistence> dataPersistenceObjects;
 
-        protected override void Awake()
-        {
-            base.Awake();
-
-            dataPersistenceObjects = GetAllDataPersistenceObjects();
-        }
-
         public void NewGame()
         {
             gameData = new GameData();
@@ -25,6 +18,7 @@ namespace AutoBattler.SaveSystem
 
         public void LoadGame()
         {
+            dataPersistenceObjects = GetAllDataPersistenceObjects();
             gameData = FileSaveSystem.LoadProgress();
 
             if (gameData == null)

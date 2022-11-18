@@ -69,7 +69,7 @@ namespace AutoBattler.UI.Shop
 
             player.SpendGold(shopUnit.characteristics.Cost);
             AudioManager.Instance.PlayBuyUnitSound();
-            UnitsEventManager.OnUnitBought(shopUnit);
+            UnitsEventManager.SendUnitBought(shopUnit);
 
             UIShopUnitTooltip.Instance.Hide();
             UIUnitDescription.Instance.Hide();

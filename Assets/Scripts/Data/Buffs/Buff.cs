@@ -63,7 +63,7 @@ namespace AutoBattler.Data.Buffs
                 ++CurrentLevel;
                 UnitsAmountOnCurrentLevel = START_UNITS_AMOUNT_ON_LEVEL;
 
-                BuffsEventManager.OnBuffLevelIncreased(this);
+                BuffsEventManager.SendBuffLevelIncreased(this);
             }
         }
 
@@ -77,7 +77,7 @@ namespace AutoBattler.Data.Buffs
                 --CurrentLevel;
                 UnitsAmountOnCurrentLevel = UnitsPerLevel;
 
-                BuffsEventManager.OnBuffLevelDecreased(this);
+                BuffsEventManager.SendBuffLevelDecreased(this);
             }
 
             --UnitsAmountOnCurrentLevel;

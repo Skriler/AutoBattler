@@ -92,7 +92,7 @@ namespace AutoBattler.Data.Player
             Health -= damage;
             Health = Health < 0 ? 0 : Health;
 
-            PlayerEventManager.OnHealthAmountChanged(Health);
+            PlayerEventManager.SendHealthAmountChanged(Health);
 
             if (!IsAlive())
                 Death();

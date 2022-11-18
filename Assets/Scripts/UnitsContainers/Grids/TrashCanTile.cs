@@ -38,7 +38,7 @@ namespace AutoBattler.UnitsContainers.Grids
                 return;
 
             Destroy(unit.gameObject);
-            UnitsEventManager.OnUnitSold(unit);
+            UnitsEventManager.SendUnitSold(unit);
         }
     }
 }
