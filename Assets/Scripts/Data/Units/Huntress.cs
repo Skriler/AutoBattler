@@ -3,10 +3,11 @@ using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Data.Units
 {
-    public class Huntress : SingleTargetUnit
+    public class Huntress : MultipleTargetsUnit
     {
         protected override void FindTarget(BaseUnit[,] enemyUnits)
         {
+            currentTargets.Clear();
             List<BaseUnit> aliveUnits = new List<BaseUnit>();
 
             for (int i = 0; i < enemyUnits.GetLength(0); ++i)
@@ -21,7 +22,7 @@ namespace AutoBattler.Data.Units
             }
 
             if (aliveUnits.Count >= 1)
-                currentTarget = DetermineOptimalTarget(aliveUnits);
+                currentTargets.Add(DetermineOptimalTarget(aliveUnits));
         }
 
         protected BaseUnit DetermineOptimalTarget(List<BaseUnit> units)

@@ -21,10 +21,7 @@ namespace AutoBattler.Data.Units
                 }
 
                 if (aliveUnits.Count >= 1)
-                {
                     currentTargets.Add(DetermineOptimalTarget(aliveUnits));
-                    aliveUnits.Clear();
-                }
             }
         }
 
