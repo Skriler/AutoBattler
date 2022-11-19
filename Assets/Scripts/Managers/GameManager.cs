@@ -6,6 +6,7 @@ using AutoBattler.Data.Player;
 using AutoBattler.EventManagers;
 using AutoBattler.UI.ResultNotifications;
 using AutoBattler.SaveSystem;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.Managers
 {

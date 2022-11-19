@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using System.Collections.Generic;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Units;
 using AutoBattler.SaveSystem;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.Data.Buffs
 {
@@ -53,7 +53,9 @@ namespace AutoBattler.Data.Buffs
 
         public void SaveData(GameData data)
         {
-            foreach(Buff buff in buffs)
+            data.buffs.Clear();
+
+            foreach (Buff buff in buffs)
                 data.buffs.Add(new BuffData(buff));
         }
     }

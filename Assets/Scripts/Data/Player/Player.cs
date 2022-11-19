@@ -5,6 +5,7 @@ using AutoBattler.EventManagers;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.Managers;
 using AutoBattler.SaveSystem;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.Data.Player
 {

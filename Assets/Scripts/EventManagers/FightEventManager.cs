@@ -8,7 +8,7 @@ namespace AutoBattler.EventManagers
 
         public static UnityAction OnFightEnded;
 
-        public static void SendFightStarted() 
+        public static void SendFightStarted()
             => OnFightStarted.Invoke();
 
         public static void SendFightEnded()

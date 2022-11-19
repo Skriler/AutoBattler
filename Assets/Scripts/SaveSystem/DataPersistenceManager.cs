@@ -1,15 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using AutoBattler.Managers;
+using AutoBattler.EventManagers;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.SaveSystem
 {
     public class DataPersistenceManager : Manager<DataPersistenceManager>
     {
+        [SerializeField] private bool useEncryption = true;
+        [SerializeField] private string encryptionCodeWord = "SomeWord";
+
         private GameData gameData;
         private List<IDataPersistence> dataPersistenceObjects;
+
+        protected override void Awake()
+        {
+            if (Instance != null)
+                return;
+
+            base.Awake();
+            DontDestroyOnLoad(this);
+        }
 
         public void NewGame()
         {
@@ -19,7 +32,7 @@ namespace AutoBattler.SaveSystem
         public void LoadGame()
         {
             dataPersistenceObjects = GetAllDataPersistenceObjects();
-            gameData = FileSaveSystem.LoadProgress();
+            gameData = FileSaveSystem.LoadProgress(useEncryption, encryptionCodeWord);
 
             if (gameData == null)
             {
@@ -29,6 +42,8 @@ namespace AutoBattler.SaveSystem
 
             foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
                 dataPersistenceObj.LoadData(gameData);
+
+            SaveSystemEventManager.SendDataLoaded();
         }
 
         public void SaveGame()
@@ -36,7 +51,7 @@ namespace AutoBattler.SaveSystem
             foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
                 dataPersistenceObj.SaveData(gameData);
 
-            FileSaveSystem.SaveProgress(gameData);
+            FileSaveSystem.SaveProgress(gameData, useEncryption, encryptionCodeWord);
         }
 
         public List<IDataPersistence> GetAllDataPersistenceObjects()

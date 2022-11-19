@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AutoBattler.SaveSystem
+namespace AutoBattler.SaveSystem.Data
 {
     [Serializable]
     public class GameData

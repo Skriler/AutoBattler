@@ -1,3 +1,5 @@
+using AutoBattler.SaveSystem.Data;
+
 namespace AutoBattler.SaveSystem
 {
     public interface IDataPersistence

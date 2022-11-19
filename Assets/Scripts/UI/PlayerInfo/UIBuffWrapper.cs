@@ -23,12 +23,14 @@ namespace AutoBattler.UI.PlayerInfo
         {
             BuffsEventManager.OnBuffLevelIncreased += ChangeBuffImageColor;
             BuffsEventManager.OnBuffLevelDecreased += ChangeBuffImageColor;
+            SaveSystemEventManager.OnDataLoaded += ChangeBuffImageColor;
         }
 
         private void OnDestroy()
         {
             BuffsEventManager.OnBuffLevelIncreased -= ChangeBuffImageColor;
             BuffsEventManager.OnBuffLevelDecreased -= ChangeBuffImageColor;
+            SaveSystemEventManager.OnDataLoaded -= ChangeBuffImageColor;
         }
 
         private void Start()
@@ -50,6 +52,11 @@ namespace AutoBattler.UI.PlayerInfo
             if (this.buff != buff)
                 return;
 
+            ChangeBuffImageColor();
+        }
+
+        public void ChangeBuffImageColor()
+        {
             float level—oefficient = (float)buff.CurrentLevel / buff.MaxLevel;
 
             float color—oefficient = level—oefficient * (1 - minColor—oefficient);

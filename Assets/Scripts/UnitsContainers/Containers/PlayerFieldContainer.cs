@@ -8,6 +8,7 @@ using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.SaveSystem;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
@@ -38,26 +39,28 @@ namespace AutoBattler.UnitsContainers.Containers
 
         public int GetOpenedCellsAmount() => playerFieldGridManager.GetOpenedCellsAmount();
 
-        public override bool AddUnit(BaseUnit unit, Vector2Int index)
+        public override void AddUnit(BaseUnit unit, Vector2Int index)
         {
-            if (base.AddUnit(unit, index))
-            {
-                UnitsEventManager.SendUnitAddedOnField(unit);
-                return true;
-            }
+            if (IsCellOccupied(index))
+                return;
 
-            return false;
+            unit.transform.SetParent(unitsContainer.transform);
+            unit.ShowHealthBar();
+            units[index.x, index.y] = unit;
+
+            UnitsEventManager.SendUnitAddedOnField(unit);
         }
 
-        public override bool RemoveUnit(BaseUnit unit)
+        public override void RemoveUnit(BaseUnit unit)
         {
-            if (base.RemoveUnit(unit))
-            {
-                UnitsEventManager.SendUnitRemovedFromField(unit);
-                return true;
-            }
+            Vector2Int unitPosition = GetUnitPosition(unit);
 
-            return false;
+            if (IsUnitOnPosition(unitPosition))
+            {
+                units[unitPosition.x, unitPosition.y] = null;
+                unit?.HideHealthBar();
+                UnitsEventManager.SendUnitRemovedFromField(unit);
+            }
         }
 
         public void AddBuffEffect(Buff buff)
@@ -105,6 +108,7 @@ namespace AutoBattler.UnitsContainers.Containers
 
         public void SaveData(GameData data)
         {
+            data.field.Clear();
             UnitData unitData;
 
             for (int i = 0; i < units.GetLength(0); ++i)

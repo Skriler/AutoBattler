@@ -6,10 +6,10 @@ namespace AutoBattler.UnitsContainers.Containers
     public abstract class UnitsContainer : MonoBehaviour
     {
         // Return true if added successfully
-        public abstract bool AddUnit(BaseUnit unit, Vector2Int index);
+        public abstract void AddUnit(BaseUnit unit, Vector2Int index);
 
         // Return true if removed successfully
-        public abstract bool RemoveUnit(BaseUnit unit);
+        public abstract void RemoveUnit(BaseUnit unit);
 
         public abstract void ChangeUnitPosition(BaseUnit unit, Vector2Int index);
 

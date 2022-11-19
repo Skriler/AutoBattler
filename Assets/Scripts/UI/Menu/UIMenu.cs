@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using AutoBattler.SaveSystem;
@@ -12,6 +13,7 @@ namespace AutoBattler.UI.Menu
         [Header("Components")]
         [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject optionsMenu;
+        [SerializeField] private Button continueButton;
         [SerializeField] private TextMeshProUGUI textVersion;
 
         private void Start()
@@ -20,6 +22,8 @@ namespace AutoBattler.UI.Menu
 
             FileSaveSystem.LoadSettings();
             SetPlayerSettings();
+
+            continueButton.interactable = FileSaveSystem.IsSavedProgress();
         }
 
         public void QuitGame() => Application.Quit();
@@ -38,6 +42,12 @@ namespace AutoBattler.UI.Menu
                 PlayerSettings.IsFullScreen, 
                 PlayerSettings.Resolution.refreshRate
                 );
+        }
+
+        public void StartNewGame()
+        {
+            FileSaveSystem.DeleteSavedProgress();
+            LoadGameScene();
         }
 
         public void LoadGameScene()

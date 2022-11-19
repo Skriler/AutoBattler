@@ -3,7 +3,7 @@ using AutoBattler.Data.Units;
 using AutoBattler.Data.Enums;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.EventManagers;
-using AutoBattler.SaveSystem;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.Data.Buffs
 {

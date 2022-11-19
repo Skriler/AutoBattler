@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using AutoBattler.Data.Units;
 
-namespace AutoBattler.SaveSystem
+namespace AutoBattler.SaveSystem.Data
 {
     [Serializable]
     public class UnitData

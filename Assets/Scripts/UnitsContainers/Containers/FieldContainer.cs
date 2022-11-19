@@ -26,49 +26,21 @@ namespace AutoBattler.UnitsContainers.Containers
 
         public bool IsTileOnPosition(Vector3 position) => gridManager.IsTileOnPositon(position);
 
+        public bool IsUnitOnPosition(Vector2Int unitPosition) => units[unitPosition.x, unitPosition.y] != null;
+
         public void AddUnit(ShopUnitEntity shopUnit, Vector2Int index)
         {
             if (IsCellOccupied(index))
                 return;
 
             BaseUnit newUnit = Instantiate(shopUnit.prefab);
+
             newUnit.gameObject.name = shopUnit.characteristics.Title;
             newUnit.transform.position = gridManager.GetTilePositionByIndex(index.x, index.y);
+            newUnit.transform.SetParent(unitsContainer.transform);
+            newUnit.ShowHealthBar();
 
-            AddUnit(newUnit, index);
-        }
-
-        public override bool AddUnit(BaseUnit unit, Vector2Int index)
-        {
-            if (IsCellOccupied(index))
-                return false;
-
-            unit.transform.SetParent(unitsContainer.transform);
-            unit.ShowHealthBar();
-            units[index.x, index.y] = unit;
-            
-            return true;
-        }
-
-        public override bool RemoveUnit(BaseUnit unit)
-        {
-            if (!Contains(unit))
-                return false;
-
-            for (int i = 0; i < units.GetLength(0); ++i)
-            {
-                for (int j = 0; j < units.GetLength(1); ++j)
-                {
-                    if (units[i, j]?.Id != unit.Id)
-                        continue;
-
-                    units[i, j] = null;
-                    unit.HideHealthBar();
-                    return true;
-                }
-            }
-
-            return false;
+            units[index.x, index.y] = newUnit;
         }
 
         public override void ChangeUnitPosition(BaseUnit unit, Vector2Int index)
@@ -99,6 +71,28 @@ namespace AutoBattler.UnitsContainers.Containers
             }
 
             return false;
+        }
+
+        public Vector2Int GetUnitPosition(BaseUnit unit)
+        {
+            Vector2Int unitPosition = new Vector2Int(-1, -1);
+
+            if (!Contains(unit))
+                return unitPosition;
+
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j]?.Id != unit.Id)
+                        continue;
+
+                    unitPosition.Set(i, j);
+                    return unitPosition;
+                }
+            }
+
+            return unitPosition;
         }
 
         public bool IsAtLeastOneAliveUnit()

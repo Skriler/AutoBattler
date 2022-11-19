@@ -1,7 +1,7 @@
 using System;
 using AutoBattler.Data.Buffs;
 
-namespace AutoBattler.SaveSystem
+namespace AutoBattler.SaveSystem.Data
 {
     [Serializable]
     public class BuffData

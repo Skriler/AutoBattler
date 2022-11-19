@@ -7,6 +7,7 @@ using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.EventManagers;
 using AutoBattler.Managers;
 using AutoBattler.SaveSystem;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.UnitsContainers.Containers
 {
@@ -60,18 +61,16 @@ namespace AutoBattler.UnitsContainers.Containers
             AddUnit(newUnit, index);
         }
 
-        public override bool AddUnit(BaseUnit unit, Vector2Int index)
+        public override void AddUnit(BaseUnit unit, Vector2Int index)
         {
             if (IsCellOccupied(index))
-                return false;
+                return;
 
             unit.transform.SetParent(unitsContainer.transform);
             units[index.x] = unit;
-            
-            return true;
         }
 
-        public override bool RemoveUnit(BaseUnit unit)
+        public override void RemoveUnit(BaseUnit unit)
         {
             for (int i = 0; i < units.Length; ++i)
             {
@@ -79,9 +78,8 @@ namespace AutoBattler.UnitsContainers.Containers
                     continue;
 
                 units[i] = null;
-                return true;
+                return;
             }
-            return false;
         }
 
         public override void ChangeUnitPosition(BaseUnit unit, Vector2Int index)
@@ -155,6 +153,7 @@ namespace AutoBattler.UnitsContainers.Containers
 
         public void SaveData(GameData data)
         {
+            data.storage.Clear();
             UnitData unitData;
 
             foreach (var (unit, i) in units.Select((unit, i) => (unit, i)))

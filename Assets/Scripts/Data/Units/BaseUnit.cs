@@ -8,7 +8,7 @@ using AutoBattler.UnitsComponents;
 using AutoBattler.Data.Enums;
 using AutoBattler.UI.Tooltips;
 using AutoBattler.EventManagers;
-using AutoBattler.SaveSystem;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.Data.Units
 {
@@ -132,10 +132,10 @@ namespace AutoBattler.Data.Units
 
         public void SetUnitData—haracteristics(UnitData unitData)
         {
-            MaxHealth = unitData.maxHealth;
-            Health = unitData.health;
-            AttackDamage = unitData.attackDamage;
-            AttackSpeed = unitData.attackSpeed;
+            MaxHealth = (float)Math.Round(unitData.maxHealth, 1);
+            Health = (float)Math.Round(unitData.health, 1);
+            AttackDamage = (float)Math.Round(unitData.attackDamage, 1);
+            AttackSpeed = (float)Math.Round(unitData.attackSpeed, 1);
 
             healthBar.Setup(this.transform, MaxHealth, AttackSpeed);
         }

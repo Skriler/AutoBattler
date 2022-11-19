@@ -29,6 +29,15 @@ namespace AutoBattler.UnitsContainers.Containers
 
         public override bool IsCellOccupied(Vector2Int index) => true;
 
+        public override void AddUnit(BaseUnit unit, Vector2Int index) => units[index.x, index.y] = unit;
+
+        public override void RemoveUnit(BaseUnit unit)
+        {
+            Vector2Int unitPosition = GetUnitPosition(unit);
+            units[unitPosition.x, unitPosition.y] = null;
+            unit?.HideHealthBar();
+        }
+
         public void SpawnUnits()
         {
             if (units == null)

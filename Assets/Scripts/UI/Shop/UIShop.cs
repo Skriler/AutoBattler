@@ -31,12 +31,14 @@ namespace AutoBattler.UI.Shop
         {
             FightEventManager.OnFightStarted += EndRound;
             FightEventManager.OnFightEnded += StartRound;
+            SaveSystemEventManager.OnDataLoaded += GenerateUnits;
         }
 
         protected void OnDestroy()
         {
             FightEventManager.OnFightStarted -= EndRound;
             FightEventManager.OnFightEnded -= StartRound;
+            SaveSystemEventManager.OnDataLoaded -= GenerateUnits;
         }
 
         private void Start()
