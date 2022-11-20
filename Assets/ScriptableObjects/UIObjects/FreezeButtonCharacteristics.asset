@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FreezeButtonCharacteristics
   m_EditorClassIdentifier: 
   title: Freeze units
-  description: 
+  description: Save units until next turn

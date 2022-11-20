@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4574079420926815094}
   - component: {fileID: 4574079420926815093}
   m_Layer: 5
-  m_Name: IconTavernTier
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 4574079422179689534}
   - component: {fileID: 4574079422179689533}
   m_Layer: 5
-  m_Name: TextTavernTier
+  m_Name: TextValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,7 +255,8 @@ MonoBehaviour:
   m_text: 5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867, type: 2}
-  m_sharedMaterial: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867, type: 2}
+  m_sharedMaterial: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

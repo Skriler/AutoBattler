@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea22d062851741047b8b928447158ddd, type: 3}
   m_Name: TavernTierIconCharacteristics
   m_EditorClassIdentifier: 
-  title: Tavern Tier
+  title: Tavern tier
   description: 

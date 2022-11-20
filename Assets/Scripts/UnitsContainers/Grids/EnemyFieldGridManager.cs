@@ -8,6 +8,8 @@ namespace AutoBattler.UnitsContainers.Grids
     {
         protected override TileStatus GetCurrentTileStatus(Vector2Int index) => TileStatus.Closed;
 
+        public void ChangeTileStatus(Vector2Int index, TileStatus tileStatus) => tiles[index.x, index.y].SetTileStatus(tileStatus);
+
         public void SpawnUnits(BaseUnit[,] army, Transform unitsContainer)
         {
             Vector3 newUnitPosition;
@@ -20,6 +22,7 @@ namespace AutoBattler.UnitsContainers.Grids
                     if (army[i, j] == null)
                         continue;
 
+                    ChangeTileStatus(new Vector2Int(i, j), TileStatus.Opened);
                     newUnitPosition = tiles[i, j].transform.position;
 
                     newUnit = Instantiate(army[i, j], newUnitPosition, Quaternion.identity);

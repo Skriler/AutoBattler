@@ -28,7 +28,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
         protected virtual void Awake()
         {
-            UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileSprite;
+            UnitsEventManager.OnDraggedUnitChangedPosition += ChangeTileStatus;
             UnitsEventManager.OnUnitEndDrag += ChangeUnitPosition;
             UnitsEventManager.OnUnitChangedPosition += RemoveUnit;
             UnitsEventManager.OnUnitSold += RemoveUnit;
@@ -40,7 +40,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
         protected virtual void OnDestroy()
         {
-            UnitsEventManager.OnDraggedUnitChangedPosition -= ChangeTileSprite;
+            UnitsEventManager.OnDraggedUnitChangedPosition -= ChangeTileStatus;
             UnitsEventManager.OnUnitEndDrag -= ChangeUnitPosition;
             UnitsEventManager.OnUnitChangedPosition -= RemoveUnit;
             UnitsEventManager.OnUnitSold -= RemoveUnit;
@@ -123,7 +123,7 @@ namespace AutoBattler.UnitsContainers.Grids
             }
         }
 
-        private void ChangeTileSprite(Vector3 position)
+        private void ChangeTileStatus(Vector3 position)
         {
             StandardizePreviousChangedCell();
 
@@ -134,10 +134,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
             TileStatus tileStatus;
 
-            if (!IsFreeTile(index))
-                tileStatus = TileStatus.Occupied;
-            else
-                tileStatus = TileStatus.Free;
+            tileStatus = IsFreeTile(index) ? TileStatus.Free : TileStatus.Occupied;
 
             previousTileStatus = currentTile.Status;
             previousTile = currentTile;
