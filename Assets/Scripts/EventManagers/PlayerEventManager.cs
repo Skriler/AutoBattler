@@ -10,6 +10,8 @@ namespace AutoBattler.EventManagers
 
         public static UnityAction<int> OnTavernTierIncreased;
 
+        public static UnityAction<int> OnRoundsWonAmountIncreased;
+
         public static void SendGoldAmountChanged(int goldAmount)
             => OnGoldAmountChanged.Invoke(goldAmount);
 
@@ -18,5 +20,8 @@ namespace AutoBattler.EventManagers
 
         public static void SendTavernTierIncreased(int tavernTier)
             => OnTavernTierIncreased.Invoke(tavernTier);
+
+        public static void SendRoundsWonAmountIncreased(int roundsWonAmount)
+            => OnRoundsWonAmountIncreased.Invoke(roundsWonAmount);
     }
 }

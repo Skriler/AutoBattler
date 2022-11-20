@@ -21,7 +21,7 @@ namespace AutoBattler.Managers
         [Header("UI sounds")]
         [SerializeField] private AudioSource clickSound;
         [SerializeField] private AudioSource hoverSound;
-        [SerializeField] private AudioSource playButtonClickSound;
+        [SerializeField] private AudioSource startBattleButtonClickSound;
 
         [Header("Shop sounds")]
         [SerializeField] private AudioSource shopButtonClickSound;
@@ -75,7 +75,7 @@ namespace AutoBattler.Managers
 
         public void PlayHoverSound() => hoverSound?.Play();
 
-        public void PlayPlayButtonClickSound() => playButtonClickSound?.Play();
+        public void PlayStartBattleButtonClickSound() => startBattleButtonClickSound?.Play();
 
         public void PlayShopButtonClickSound() => shopButtonClickSound?.Play();
 

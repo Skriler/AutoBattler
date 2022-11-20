@@ -19,6 +19,7 @@ namespace AutoBattler.Data.Player
         public int Health { get; private set; }
         public int Gold { get; private set; }
         public int TavernTier { get; private set; }
+        public int RoundsWonAmount { get; private set; }
         public int LevelUpTavernTierCost { get; private set; } = 4;
 
         private int maxGainGoldPerRound;
@@ -50,18 +51,18 @@ namespace AutoBattler.Data.Player
             PlayerEventManager.SendTavernTierIncreased(TavernTier);
         }
 
+        public bool IsEnoughGoldForAction(int actionCost) => Gold >= actionCost;
+
+        public bool IsMaxTavernTier() => TavernTier >= characteristics.MaxTavernTier;
+
+        public bool IsAlive() => Health > 0;
+
         private void SetStartPlayerCharacteristics()
         {
             Health = characteristics.StartHealth;
             Gold = characteristics.StartGold;
             TavernTier = characteristics.StartTavernTier;
         }
-
-        public bool IsEnoughGoldForAction(int actionCost) => Gold >= actionCost;
-
-        public bool IsMaxTavernTier() => TavernTier >= characteristics.MaxTavernTier;
-
-        public bool IsAlive() => Health > 0;
 
         public void SpendGold(int actionCost)
         {
@@ -111,6 +112,12 @@ namespace AutoBattler.Data.Player
             LevelUpTavernTierCost = Field.GetOpenedCellsAmount();
         }
 
+        public void IncreaseRoundsWonAmountByOne()
+        {
+            ++RoundsWonAmount;
+            PlayerEventManager.SendRoundsWonAmountIncreased(RoundsWonAmount);
+        }
+
         public void Death()
         {
             Destroy(this.gameObject);
@@ -136,11 +143,13 @@ namespace AutoBattler.Data.Player
             Health = data.health;
             Gold = data.gold;
             TavernTier = data.tavernTier;
+            RoundsWonAmount = data.roundsWonAmount;
             LevelUpTavernTierCost = data.levelUpTavernTierCost;
 
             PlayerEventManager.SendGoldAmountChanged(Gold);
             PlayerEventManager.SendHealthAmountChanged(Health);
             PlayerEventManager.SendTavernTierIncreased(TavernTier);
+            PlayerEventManager.SendRoundsWonAmountIncreased(RoundsWonAmount);
         }
 
         public void SaveData(GameData data)
@@ -148,6 +157,7 @@ namespace AutoBattler.Data.Player
             data.health = Health;
             data.gold = Gold;
             data.tavernTier = TavernTier;
+            data.roundsWonAmount = RoundsWonAmount;
             data.levelUpTavernTierCost = LevelUpTavernTierCost;
         }
     }

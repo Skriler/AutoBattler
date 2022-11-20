@@ -56,7 +56,6 @@ namespace AutoBattler.UI.Tooltips
                 out localPoint);
 
             transform.localPosition = localPoint;
-            //transform.position = mousePositon;
         }
 
         private Vector2 ClampPosition(Vector2 position)

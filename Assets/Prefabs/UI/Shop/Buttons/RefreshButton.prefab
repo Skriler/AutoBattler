@@ -126,7 +126,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: AutoBattler.UI.Shop.UIShop, Assembly-CSharp
-        m_MethodName: RefreshShop
+        m_MethodName: RefreshUnits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -216,7 +216,8 @@ AudioSource:
   m_GameObject: {fileID: 887039302130036642}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: e9d74edc43af59249b0434b2fe1c7cd7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

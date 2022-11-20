@@ -78,6 +78,7 @@ namespace AutoBattler.Managers
                     player.GetRoundRewardGoldAmount()
                     );
 
+                player.IncreaseRoundsWonAmountByOne();
                 StartCoroutine(EndBattleCoroutine());
             }
         }

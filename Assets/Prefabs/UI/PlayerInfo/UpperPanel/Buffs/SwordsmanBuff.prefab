@@ -236,7 +236,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 6397830201483172103, guid: 01cf0cbea0d80114e86810679ff353ec,
+            type: 3}
           m_TargetAssemblyTypeName: AutoBattler.Managers.AudioManager, Assembly-CSharp
           m_MethodName: PlayHoverSound
           m_Mode: 1

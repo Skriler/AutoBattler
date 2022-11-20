@@ -10,6 +10,7 @@ namespace AutoBattler.SaveSystem.Data
         public int health;
         public int gold;
         public int tavernTier;
+        public int roundsWonAmount;
         public int levelUpTavernTierCost;
 
         public List<UnitData> storage;

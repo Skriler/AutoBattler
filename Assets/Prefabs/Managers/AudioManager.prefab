@@ -74,7 +74,8 @@ AudioSource:
   m_GameObject: {fileID: 1283113043}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -3583701399763804762, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -3583701399763804762, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 102a2681328eefe458e0f1712e3a321d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -172,7 +173,7 @@ GameObject:
   - component: {fileID: 6072816217757973269}
   - component: {fileID: 423020298068806014}
   m_Layer: 0
-  m_Name: PlayButtonClickSound
+  m_Name: StartBattleButtonClickSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +203,8 @@ AudioSource:
   m_GameObject: {fileID: 2196589528589879517}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: e2dd7ebd7861fc841aa9be06672f12c0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -330,7 +332,8 @@ AudioSource:
   m_GameObject: {fileID: 2621038005799674592}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 79717931841705e428ea382d55f6986c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
@@ -458,7 +461,8 @@ AudioSource:
   m_GameObject: {fileID: 2774090729445291486}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: f0c17912d0b253f47b3b948e36caf3e3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.9
@@ -618,7 +622,8 @@ AudioSource:
   m_GameObject: {fileID: 5198581400602847756}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -3583701399763804762, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -3583701399763804762, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 5ca468606fe37e2479403b6d66ca9558, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -746,7 +751,8 @@ AudioSource:
   m_GameObject: {fileID: 5388901571251707030}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -9031348642106812856, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -9031348642106812856, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -976,7 +982,8 @@ AudioSource:
   m_GameObject: {fileID: 6397830201131322706}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: e6f731673d0357c4bb8557605a28d62f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1104,7 +1111,8 @@ AudioSource:
   m_GameObject: {fileID: 6397830201322453921}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 40506ea3ae92e064e86ed7db8616ded7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -1249,7 +1257,7 @@ MonoBehaviour:
   switchMusicWaitInterval: 1.5
   clickSound: {fileID: 6397830201322453927}
   hoverSound: {fileID: 6397830201131322707}
-  playButtonClickSound: {fileID: 423020298068806014}
+  startBattleButtonClickSound: {fileID: 423020298068806014}
   shopButtonClickSound: {fileID: 6825498153523579069}
   levelUpButtonClickSound: {fileID: 4036224236023869506}
   buyUnitSound: {fileID: 3347453428882793765}
@@ -1297,7 +1305,8 @@ AudioSource:
   m_GameObject: {fileID: 7427910355175684180}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: c52e3e96b0a9a1f4fa4cba49da7237a0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.8
@@ -1425,7 +1434,8 @@ AudioSource:
   m_GameObject: {fileID: 9190209898934778680}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -6528524887002945317, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 29833e36cd39f6d4fa78382ab1152280, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
