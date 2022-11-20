@@ -1,17 +1,17 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace AutoBattler.Data.ScriptableObjects.Characteristics
 {
     [CreateAssetMenu(
-        fileName = "Player Characteristics",
-        menuName = "Custom/Characteristics/PlayerCharacteristics"
+        fileName = "Member Characteristics",
+        menuName = "Custom/Characteristics/MemberCharacteristics"
         )]
-    public class PlayerCharacteristics : ScriptableObject
+    public class MemberCharacteristics : ScriptableObject
     {
         [SerializeField] private int startHealth = 10;
-        [SerializeField] private int startGold = 0;
+        [SerializeField] private int startGold = 3;
         [SerializeField] private int startTavernTier = 1;
-        [SerializeField] private int maxHealth = 99;
+        [SerializeField] private int maxHealth = 10;
         [SerializeField] private int maxGold = 99;
         [SerializeField] private int maxTavernTier = 5;
 

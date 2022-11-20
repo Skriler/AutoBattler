@@ -3,35 +3,25 @@ using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.ScriptableObjects.Structs;
-using AutoBattler.Data.ScriptableObjects.Databases;
-using AutoBattler.EventManagers;
-using AutoBattler.Managers;
-using AutoBattler.SaveSystem;
-using AutoBattler.SaveSystem.Data;
 
-namespace AutoBattler.UnitsContainers.Containers
+namespace AutoBattler.UnitsContainers.Containers.Storage
 {
-    public class StorageContainer : UnitsContainer, IDataPersistence
+    public abstract class StorageContainer : UnitsContainer
     {
-        private GameObject unitsContainer;
-        private GridManager gridManager;
-        private BaseUnit[] units;
+        protected GameObject unitsContainer;
+        protected GridManager gridManager;
+        protected BaseUnit[] units;
 
-        private void Awake()
+        protected virtual void Awake()
         {
-            UnitsEventManager.OnUnitBought += AddUnit;
-
             unitsContainer = transform.Find("Units").gameObject;
             gridManager = GetComponent<GridManager>();
             units = new BaseUnit[gridManager.Width];
         }
 
-        private void OnDestroy()
-        {
-            UnitsEventManager.OnUnitBought -= AddUnit;
-        }
-
         public bool IsTileOnPosition(Vector3 position) => gridManager.IsTileOnPositon(position);
+
+        public override bool IsCellOccupied(Vector2Int index) => units[index.x] != null;
 
         public void AddUnit(ShopUnitEntity shopUnit)
         {
@@ -95,11 +85,6 @@ namespace AutoBattler.UnitsContainers.Containers
             }
         }
 
-        public override bool IsCellOccupied(Vector2Int index)
-        {
-            return units[index.x] != null;
-        }
-
         public override bool Contains(BaseUnit unit)
         {
             for (int i = 0; i < units.Length; ++i)
@@ -131,39 +116,6 @@ namespace AutoBattler.UnitsContainers.Containers
             }
 
             return -1;
-        }
-
-        public void LoadData(GameData data)
-        {
-            ShopDatabase shopDb = GameManager.Instance.ShopDb;
-            ShopUnitEntity shopUnitEntity;
-
-            foreach (UnitData unitData in data.storage)
-            {
-                shopUnitEntity = shopDb.GetShopUnitEntityByTitle(unitData.title);
-
-                AddUnit(
-                    shopUnitEntity, 
-                    new Vector2Int(unitData.x, unitData.y)
-                    );
-
-                units[unitData.x].SetUnitDataÑharacteristics(unitData);
-            }
-        }
-
-        public void SaveData(GameData data)
-        {
-            data.storage.Clear();
-            UnitData unitData;
-
-            foreach (var (unit, i) in units.Select((unit, i) => (unit, i)))
-            {
-                if (unit == null)
-                    continue;
-
-                unitData = new UnitData(unit, i, 0);
-                data.storage.Add(unitData);
-            }
         }
     }
 }

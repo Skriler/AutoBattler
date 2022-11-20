@@ -1,5 +1,6 @@
 using UnityEngine;
-using AutoBattler.UnitsContainers.Containers;
+using AutoBattler.UnitsContainers.Containers.Field;
+using AutoBattler.UnitsContainers.Containers.Storage;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
@@ -9,27 +10,18 @@ using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.Data.Player
 {
-    public class Player : MonoBehaviour, IDataPersistence
+    public class Player : Member, IDataPersistence
     {
-        [SerializeField] private PlayerCharacteristics characteristics;
-
-        public StorageContainer Storage { get; private set; }
-        public PlayerFieldContainer Field { get; private set; }
-        public EnemyFieldContainer EnemyField { get; private set; }
-        public int Health { get; private set; }
-        public int Gold { get; private set; }
-        public int TavernTier { get; private set; }
+        public PlayerStorageContainer Storage { get; protected set; }
+        public PlayerFieldContainer Field { get; protected set; }
         public int RoundsWonAmount { get; private set; }
-        public int LevelUpTavernTierCost { get; private set; } = 4;
 
-        private int maxGainGoldPerRound;
-
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             UnitsEventManager.OnUnitSold += SellUnit;
             UnitsEventManager.OnUnitEndDrag += PlayDragSound;
-
-            SetStartPlayerCharacteristics();
         }
 
         private void OnDestroy()
@@ -38,13 +30,12 @@ namespace AutoBattler.Data.Player
             UnitsEventManager.OnUnitEndDrag -= PlayDragSound;
         }
 
-        private void Start()
+        protected override void Start()
         {
-            Storage = transform.GetComponentInChildren<StorageContainer>();
-            Field = transform.Find("PlayerField").GetComponent<PlayerFieldContainer>();
-            EnemyField = transform.Find("EnemyField").GetComponent<EnemyFieldContainer>();
+            base.Start();
 
-            maxGainGoldPerRound = GameManager.Instance.MaxGainGoldPerRound;
+            Storage = transform.GetComponentInChildren<PlayerStorageContainer>();
+            Field = transform.GetComponentInChildren<PlayerFieldContainer>();
 
             PlayerEventManager.SendGoldAmountChanged(Gold);
             PlayerEventManager.SendHealthAmountChanged(Health);
@@ -56,13 +47,6 @@ namespace AutoBattler.Data.Player
         public bool IsMaxTavernTier() => TavernTier >= characteristics.MaxTavernTier;
 
         public bool IsAlive() => Health > 0;
-
-        private void SetStartPlayerCharacteristics()
-        {
-            Health = characteristics.StartHealth;
-            Gold = characteristics.StartGold;
-            TavernTier = characteristics.StartTavernTier;
-        }
 
         public void SpendGold(int actionCost)
         {

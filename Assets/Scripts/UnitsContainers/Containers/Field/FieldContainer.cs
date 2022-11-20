@@ -3,7 +3,7 @@ using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Units;
 using AutoBattler.Data.ScriptableObjects.Structs;
 
-namespace AutoBattler.UnitsContainers.Containers
+namespace AutoBattler.UnitsContainers.Containers.Field
 {
     public abstract class FieldContainer : UnitsContainer
     {

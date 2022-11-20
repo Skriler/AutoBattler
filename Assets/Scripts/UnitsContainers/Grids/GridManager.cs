@@ -123,7 +123,7 @@ namespace AutoBattler.UnitsContainers.Grids
             }
         }
 
-        private void ChangeTileStatus(Vector3 position)
+        protected void ChangeTileStatus(Vector3 position)
         {
             StandardizePreviousChangedCell();
 
@@ -141,7 +141,7 @@ namespace AutoBattler.UnitsContainers.Grids
             currentTile.SetTileStatus(tileStatus);
         }
 
-        private void StandardizePreviousChangedCell()
+        protected void StandardizePreviousChangedCell()
         {
             if (previousTile == null)
                 return;
@@ -150,7 +150,7 @@ namespace AutoBattler.UnitsContainers.Grids
             previousTile = null;
         }
 
-        private void ChangeUnitPosition(BaseUnit unit, Vector3 worldPosition)
+        protected void ChangeUnitPosition(BaseUnit unit, Vector3 worldPosition)
         {
             StandardizePreviousChangedCell();
 

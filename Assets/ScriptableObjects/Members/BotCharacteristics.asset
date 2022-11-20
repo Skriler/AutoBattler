@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67a3e14ed2966c8478fd4593a9319156, type: 3}
-  m_Name: PlayerCharacteristics
+  m_Script: {fileID: 11500000, guid: 310bfadc3b8826542a10817b8d9205c2, type: 3}
+  m_Name: BotCharacteristics
   m_EditorClassIdentifier: 
   startHealth: 10
-  startGold: 99
+  startGold: 3
   startTavernTier: 1
   maxHealth: 10
   maxGold: 99

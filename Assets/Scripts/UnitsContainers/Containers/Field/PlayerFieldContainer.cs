@@ -10,7 +10,7 @@ using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 
-namespace AutoBattler.UnitsContainers.Containers
+namespace AutoBattler.UnitsContainers.Containers.Field
 {
     public class PlayerFieldContainer : FieldContainer, IDataPersistence
     {

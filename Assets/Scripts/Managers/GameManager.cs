@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using AutoBattler.Data.ScriptableObjects.Databases;
@@ -14,6 +16,7 @@ namespace AutoBattler.Managers
     {
         [Header("Components")]
         [SerializeField] private Player player;
+        [SerializeField] private List<Bot> bots;
         [SerializeField] private ShopDatabase shopDb;
         [SerializeField] private GameObject UICanvas;
 
@@ -31,12 +34,14 @@ namespace AutoBattler.Managers
         private RoundResultNotification currentNotification;
 
         public int CurrentRound { get; private set; } = 1;
+        public bool SoloMode { get; private set; } = false;
 
         public ShopDatabase ShopDb => shopDb;
         public int MaxGainGoldPerRound => maxGainGoldPerRound;
 
         private void Start()
         {
+            RunBotsRoundLogic();
             DataPersistenceManager.Instance.LoadGame();
         }
 
@@ -48,11 +53,23 @@ namespace AutoBattler.Managers
 
         public void StartBattle()
         {
-            battleManager = new BattleManager(player.Field, player.EnemyField, shopDb);
-            battleManager.StartBattle();
-            FightEventManager.SendFightStarted();
+            if (SoloMode)
+            {
+                battleManager = new BattleManager(player.Field, player.EnemyField, shopDb);
+                battleManager.StartBattle();
+                FightEventManager.SendFightStarted();
+            }
+            else
+            {
+
+            }
 
             StartCoroutine(CheckBattleStatusCoroutine());
+        }
+
+        private void RunBotsRoundLogic()
+        {
+            bots.ForEach(b => b.MakeTurn(CurrentRound, 0));
         }
 
         private IEnumerator CheckBattleStatusCoroutine()
@@ -94,6 +111,8 @@ namespace AutoBattler.Managers
             player.GainGold(player.GetRoundRewardGoldAmount());
 
             FightEventManager.SendFightEnded();
+
+            RunBotsRoundLogic();
         }
 
         public void LoadData(GameData data)

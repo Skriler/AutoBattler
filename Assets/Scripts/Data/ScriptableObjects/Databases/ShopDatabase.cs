@@ -16,10 +16,10 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
 
         public List<ShopUnitEntity> GetUnits() => shopUnits;
 
-        public List<ShopUnitEntity> GetUnitsAtTavernTier(int playerTavernTier)
+        public List<ShopUnitEntity> GetUnitsAtTavernTier(int tavernTier)
         {
             return shopUnits
-                .Where(u => u.characteristics.TavernTier <= playerTavernTier)
+                .Where(u => u.characteristics.TavernTier <= tavernTier)
                 .ToList();
         }
 
@@ -28,6 +28,13 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
             return shopUnits
                 .Where(u => u.characteristics.Title == title)
                 .FirstOrDefault();
+        }
+
+        public ShopUnitEntity GetRandomShopUnitEntityAtTavernTier(int tavernTier)
+        {
+            List<ShopUnitEntity> units = GetUnitsAtTavernTier(tavernTier);
+
+            return units[Random.Range(0, units.Count - 1)];
         }
     }
 }
