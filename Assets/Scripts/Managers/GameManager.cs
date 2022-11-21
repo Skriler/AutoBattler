@@ -55,7 +55,7 @@ namespace AutoBattler.Managers
         {
             if (SoloMode)
             {
-                battleManager = new BattleManager(player.Field, player.EnemyField, shopDb);
+                battleManager = new BattleManager(player.Field, player.EnemyField);
                 battleManager.StartBattle();
                 FightEventManager.SendFightStarted();
                 StartCoroutine(CheckBattleStatusCoroutine());

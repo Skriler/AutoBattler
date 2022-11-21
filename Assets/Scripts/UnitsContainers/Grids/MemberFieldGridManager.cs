@@ -3,6 +3,7 @@ using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UnitsContainers.Enums;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Player;
+using System.Linq;
 
 namespace AutoBattler.UnitsContainers.Grids
 {
@@ -28,6 +29,13 @@ namespace AutoBattler.UnitsContainers.Grids
         {
             return tiles[index.x, index.y].Status == TileStatus.Opened &&
                 !unitsContainer.IsCellOccupied(index);
+        }
+
+        public TavernTierOpenedTiles GetTavernTierOpenedTiles(int tavernTier)
+        {
+            return openedTilesPerTavernTiersArray
+                .Where(t => t.tavernTier == tavernTier)
+                .First();
         }
 
         protected override TileStatus GetCurrentTileStatus(Vector2Int index)
