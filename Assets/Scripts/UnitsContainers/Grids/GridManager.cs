@@ -46,9 +46,9 @@ namespace AutoBattler.UnitsContainers.Grids
             UnitsEventManager.OnUnitSold -= RemoveUnit;
         }
 
-        public Vector3 GetTilePositionByIndex(int x, int y) => tiles[x, y].transform.position;
+        public Vector3 GetTilePositionByIndex(Vector2Int index) => tiles[index.x, index.y].transform.position;
 
-        protected virtual bool IsFreeTile(Vector2Int index) => !unitsContainer.IsCellOccupied(index);
+        public virtual bool IsFreeTile(Vector2Int index) => !unitsContainer.IsCellOccupied(index);
 
         protected virtual TileStatus GetCurrentTileStatus(Vector2Int index) => TileStatus.Opened;
 

@@ -7,21 +7,13 @@ namespace AutoBattler.SaveSystem.Data
     public class GameData
     {
         public int currentRound;
-        public int health;
-        public int gold;
-        public int tavernTier;
-        public int roundsWonAmount;
-        public int levelUpTavernTierCost;
-
-        public List<UnitData> storage;
-        public List<UnitData> field;
-        public List<BuffData> buffs;
+        public PlayerData player;
+        public List<MemberData> bots;
 
         public GameData()
         {
-            storage = new List<UnitData>();
-            field = new List<UnitData>();
-            buffs = new List<BuffData>();
+            player = new PlayerData();
+            bots = new List<MemberData>();
         }
     }
 }

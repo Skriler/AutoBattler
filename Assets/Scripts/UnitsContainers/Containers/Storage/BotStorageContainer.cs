@@ -1,4 +1,5 @@
 using UnityEngine;
+using AutoBattler.Data.Units;
 
 namespace AutoBattler.UnitsContainers.Containers.Storage
 { 
@@ -17,6 +18,19 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
             }
 
             return unitsAmount;
+        }
+
+        public BaseUnit GetUnit()
+        {
+            for (int i = 0; i < units.Length; ++i)
+            {
+                if (units[i] == null)
+                    continue;
+
+                return units[i];
+            }
+
+            return null;
         }
     }
 }

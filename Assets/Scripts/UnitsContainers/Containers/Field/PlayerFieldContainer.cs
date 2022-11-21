@@ -6,27 +6,19 @@ using AutoBattler.Data.Buffs;
 using AutoBattler.Data.Enums;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.Data.ScriptableObjects.Databases;
-using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.UnitsContainers.Containers.Field
 {
-    public class PlayerFieldContainer : FieldContainer, IDataPersistence
+    public class PlayerFieldContainer : MemberFieldContainer, IDataPersistence
     {
-        protected PlayerFieldGridManager playerFieldGridManager;
-
-        public BuffContainer Buffs { get; private set; }
-
         protected override void Awake()
         {
             BuffsEventManager.OnBuffLevelIncreased += AddBuffEffect;
             BuffsEventManager.OnBuffLevelDecreased += RemoveBuffEffect;
 
             base.Awake();
-
-            playerFieldGridManager = GetComponent<PlayerFieldGridManager>();
-            Buffs = transform.GetComponentInChildren<BuffContainer>();
         }
 
         private void OnDestroy()
@@ -34,10 +26,6 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             BuffsEventManager.OnBuffLevelIncreased -= AddBuffEffect;
             BuffsEventManager.OnBuffLevelDecreased -= RemoveBuffEffect;
         }
-
-        public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;
-
-        public int GetOpenedCellsAmount() => playerFieldGridManager.GetOpenedCellsAmount();
 
         public override void AddUnit(BaseUnit unit, Vector2Int index)
         {
@@ -93,7 +81,7 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             ShopDatabase shopDb = GameManager.Instance.ShopDb;
             ShopUnitEntity shopUnitEntity;
 
-            foreach (UnitData unitData in data.field)
+            foreach (UnitData unitData in data.player.field)
             {
                 shopUnitEntity = shopDb.GetShopUnitEntityByTitle(unitData.title);
 
@@ -108,7 +96,7 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         public void SaveData(GameData data)
         {
-            data.field.Clear();
+            data.player.field.Clear();
             UnitData unitData;
 
             for (int i = 0; i < units.GetLength(0); ++i)
@@ -119,7 +107,7 @@ namespace AutoBattler.UnitsContainers.Containers.Field
                         continue;
 
                     unitData = new UnitData(units[i, j], i, j);
-                    data.field.Add(unitData);
+                    data.player.field.Add(unitData);
                 }
             }
         }

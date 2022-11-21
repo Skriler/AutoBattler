@@ -46,7 +46,7 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
 
             BaseUnit newUnit = Instantiate(shopUnit.prefab);
             newUnit.gameObject.name = shopUnit.characteristics.Title;
-            newUnit.transform.position = gridManager.GetTilePositionByIndex(index.x, index.y);
+            newUnit.transform.position = gridManager.GetTilePositionByIndex(index);
 
             AddUnit(newUnit, index);
         }

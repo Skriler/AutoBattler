@@ -34,7 +34,7 @@ namespace AutoBattler.Managers
         private RoundResultNotification currentNotification;
 
         public int CurrentRound { get; private set; } = 1;
-        public bool SoloMode { get; private set; } = false;
+        public bool SoloMode { get; private set; } = true;
 
         public ShopDatabase ShopDb => shopDb;
         public int MaxGainGoldPerRound => maxGainGoldPerRound;
@@ -58,13 +58,12 @@ namespace AutoBattler.Managers
                 battleManager = new BattleManager(player.Field, player.EnemyField, shopDb);
                 battleManager.StartBattle();
                 FightEventManager.SendFightStarted();
+                StartCoroutine(CheckBattleStatusCoroutine());
             }
             else
             {
 
             }
-
-            StartCoroutine(CheckBattleStatusCoroutine());
         }
 
         private void RunBotsRoundLogic()

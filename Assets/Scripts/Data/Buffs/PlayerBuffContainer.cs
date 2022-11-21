@@ -44,7 +44,7 @@ namespace AutoBattler.Data.Buffs
         {
             Buff buff;
 
-            foreach (BuffData buffData in data.buffs)
+            foreach (BuffData buffData in data.player.buffs)
             {
                 buff = GetBuffByTitle(buffData.title);
                 buff.SetBuffDataСharacteristics(buffData);
@@ -53,10 +53,10 @@ namespace AutoBattler.Data.Buffs
 
         public void SaveData(GameData data)
         {
-            data.buffs.Clear();
+            data.player.buffs.Clear();
 
             foreach (Buff buff in buffs)
-                data.buffs.Add(new BuffData(buff));
+                data.player.buffs.Add(new BuffData(buff));
         }
     }
 }

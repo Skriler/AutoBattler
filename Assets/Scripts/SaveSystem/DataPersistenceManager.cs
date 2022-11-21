@@ -32,7 +32,7 @@ namespace AutoBattler.SaveSystem
         public void LoadGame()
         {
             dataPersistenceObjects = GetAllDataPersistenceObjects();
-            gameData = FileSaveSystem.LoadProgress(useEncryption, encryptionCodeWord);
+            //gameData = FileSaveSystem.LoadProgress(useEncryption, encryptionCodeWord);
 
             if (gameData == null)
             {

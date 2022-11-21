@@ -28,7 +28,7 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
             ShopDatabase shopDb = GameManager.Instance.ShopDb;
             ShopUnitEntity shopUnitEntity;
 
-            foreach (UnitData unitData in data.storage)
+            foreach (UnitData unitData in data.player.storage)
             {
                 shopUnitEntity = shopDb.GetShopUnitEntityByTitle(unitData.title);
 
@@ -43,7 +43,7 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
 
         public void SaveData(GameData data)
         {
-            data.storage.Clear();
+            data.player.storage.Clear();
             UnitData unitData;
 
             foreach (var (unit, i) in units.Select((unit, i) => (unit, i)))
@@ -52,7 +52,7 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
                     continue;
 
                 unitData = new UnitData(unit, i, 0);
-                data.storage.Add(unitData);
+                data.player.storage.Add(unitData);
             }
         }
     }
