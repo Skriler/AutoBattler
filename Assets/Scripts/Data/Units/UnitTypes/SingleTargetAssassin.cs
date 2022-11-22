@@ -5,29 +5,7 @@ namespace AutoBattler.Data.Units
 {
     public class SingleTargetAssassin : SingleTargetUnit
     {
-        protected override void FindTargetOnNormalMode()
-        {
-            List<BaseUnit> aliveUnits = new List<BaseUnit>();
-
-            for (int i = enemyUnits.GetLength(0) - 1; i >= 0; --i)
-            {
-                for (int j = 0; j < enemyUnits.GetLength(1); ++j)
-                {
-                    if (!IsUnitAlive(enemyUnits[i, j]))
-                        continue;
-
-                    aliveUnits.Add(enemyUnits[i, j]);
-                }
-
-                if (aliveUnits.Count >= 1)
-                {
-                    currentTarget = DetermineOptimalTarget(aliveUnits);
-                    return;
-                }
-            }
-        }
-
-        protected override void FindTargetOnEnemyMode()
+        protected override void FindTarget()
         {
             List<BaseUnit> aliveUnits = new List<BaseUnit>();
 

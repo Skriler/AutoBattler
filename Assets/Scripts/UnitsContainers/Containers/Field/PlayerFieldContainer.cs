@@ -53,7 +53,7 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         public void AddBuffEffect(Buff buff)
         {
-            if (!buff.IsActive())
+            if (!Buffs.Contains(buff) || !buff.IsActive())
                 return;
 
             ApplyCharacteristicBonus(buff.TargetCharacteristic, buff.Bonus);
@@ -61,6 +61,9 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         public void RemoveBuffEffect(Buff buff)
         {
+            if (!Buffs.Contains(buff))
+                return;
+
             float removedPointsAmount = -buff.Bonus;
             ApplyCharacteristicBonus(buff.TargetCharacteristic, removedPointsAmount);
         }

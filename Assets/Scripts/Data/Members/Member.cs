@@ -1,12 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Containers.Field;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.Managers;
 
 namespace AutoBattler.Data.Members
 {
-    public class Member : MonoBehaviour
+    public abstract class Member : MonoBehaviour
     {
         [SerializeField] protected MemberCharacteristics characteristics;
 
@@ -34,6 +35,9 @@ namespace AutoBattler.Data.Members
             startGainGoldPerRound = GameManager.Instance.StartGainGoldPerRound;
             maxGainGoldPerRound = GameManager.Instance.MaxGainGoldPerRound;
         }
+
+        public abstract FieldContainer GetFieldContainer();
+        public abstract FieldContainer GetEnemyFieldContainer();
 
         public bool IsEnoughGoldForAction(int actionCost) => Gold >= actionCost;
 

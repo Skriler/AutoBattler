@@ -41,7 +41,6 @@ namespace AutoBattler.Data.Units
         public float Stamina { get; protected set; }
 
         public bool IsFightMode { get; protected set; } = false;
-        public bool IsEnemyMode { get; protected set; } = false;
 
         protected Dictionary<DamageType, int> damageTypesProtectionPercentage;
 
@@ -294,7 +293,6 @@ namespace AutoBattler.Data.Units
 
         public void EnterEnemyMode()
         {
-            IsEnemyMode = true;
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
 

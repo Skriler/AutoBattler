@@ -14,36 +14,10 @@ namespace AutoBattler.Data.Units
             if (enemyUnits == null)
                 return;
 
-            if (IsEnemyMode)
-                FindTargetOnEnemyMode();
-            else
-                FindTargetOnNormalMode();
+            FindTarget();
         }
 
-        protected void FindTargetOnNormalMode()
-        {
-            List<BaseUnit> aliveUnits = new List<BaseUnit>();
-
-            for (int i = enemyUnits.GetLength(0) - 1; i >= 0; --i)
-            {
-                for (int j = 0; j < enemyUnits.GetLength(1); ++j)
-                {
-                    if (!IsUnitAlive(enemyUnits[i, j]))
-                        continue;
-
-                    aliveUnits.Add(enemyUnits[i, j]);
-                }
-
-                if (aliveUnits.Count >= 1)
-                {
-                    currentTargets.Clear();
-                    DetermineOptimalTarget(aliveUnits, ref currentTargets);
-                    return;
-                }
-            }
-        }
-
-        protected void FindTargetOnEnemyMode()
+        protected void FindTarget()
         {
             List<BaseUnit> aliveUnits = new List<BaseUnit>();
 

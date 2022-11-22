@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using AutoBattler.Data.Members;
 using AutoBattler.Data.Units;
+using AutoBattler.Data.Enums;
 using AutoBattler.UnitsContainers.Containers.Field;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.ScriptableObjects.Structs;
-using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Managers
 {
@@ -17,14 +18,13 @@ namespace AutoBattler.Managers
         [SerializeField] private const int thirdTavernMaxRound = 9;
         [SerializeField] private const int fourthTavernMaxRound = 12;
 
-        private PlayerFieldContainer playerFieldContainer;
-        private EnemyFieldContainer enemyFieldContainer;
+        private Player player;
+        private List<Bot> bots;
 
-        private BaseUnit[,] playerArmy;
-        private BaseUnit[,] enemyArmy;
+        private int armyWidth;
+        private int armyHeight;
 
-        private int ArmyWidth;
-        private int ArmyHeight;
+        Dictionary<Member, Member> battlePairs;
 
         private ShopDatabase shopDb;
 
@@ -33,22 +33,128 @@ namespace AutoBattler.Managers
             shopDb = GameManager.Instance.ShopDb;
         }
 
-        public void Setup(PlayerFieldContainer playerFieldContainer, EnemyFieldContainer enemyFieldContainer)
+        public bool IsMemberArmyAlive(Member member) => member.GetFieldContainer().IsAtLeastOneAliveUnit();
+
+        public bool IsMemberEnemyArmyAlive(Member member) => member.GetEnemyFieldContainer().IsAtLeastOneAliveUnit();
+
+        public bool IsBothMemberArmiesAlive(Member member) => IsMemberArmyAlive(member) && IsMemberEnemyArmyAlive(member);
+
+        public void Setup(Player player, List<Bot> bots)
         {
-            this.playerFieldContainer = playerFieldContainer;
-            this.enemyFieldContainer = enemyFieldContainer;
+            this.player = player;
+            this.bots = new List<Bot>(bots);
 
-            playerArmy = playerFieldContainer.GetArmy();
-            enemyArmy = enemyFieldContainer.GetArmy();
-
-            ArmyWidth = playerArmy.GetLength(0);
-            ArmyHeight = enemyArmy.GetLength(1);
-
-            GenerateSecondArmy();
-            enemyFieldContainer.SpawnUnits();
+            BaseUnit[,] playersArmy = player.Field.GetArmy();
+            armyWidth = playersArmy.GetLength(0);
+            armyHeight = playersArmy.GetLength(1);
         }
 
-        private void GenerateSecondArmy()
+        public void StartSoloModeBattle()
+        {
+            BaseUnit[,] playerEnemyUnits = GeneratePlayerEnemyArmy();
+            EnterFightModeForMemberArmies(player,  playerEnemyUnits);
+        }
+
+        public void EndSoloModeBattle()
+        {
+            ExitFightModeForArmies(player);
+        }
+
+        public void StartConfrontationModeBattle()
+        {
+            battlePairs = GenerateBattlePairs();
+
+            if (battlePairs.Count == 0)
+                return;
+
+            BaseUnit[,] memberEnemyArmy;
+            foreach (var battlePair in battlePairs)
+            {
+                memberEnemyArmy = GetCopyOfMemberArmy(battlePair.Key.GetFieldContainer());
+                EnterFightModeForMemberArmies(battlePair.Key, memberEnemyArmy);
+
+                memberEnemyArmy = GetCopyOfMemberArmy(battlePair.Value.GetFieldContainer());
+                EnterFightModeForMemberArmies(battlePair.Value, memberEnemyArmy);
+            }
+        }
+
+        public void EndConfrontationModeBattle()
+        {
+            foreach (var battlePair in battlePairs)
+            {
+                ExitFightModeForArmies(battlePair.Key);
+                ExitFightModeForArmies(battlePair.Value);
+            }
+
+            battlePairs.Clear();
+        }
+
+        public bool IsConfrontationModeBattlesEnded()
+        {
+            Member member;
+            foreach (var battlePair in battlePairs)
+            {
+                member = battlePair.Key;
+                if (IsBothMemberArmiesAlive(member))
+                    return false;
+
+                member = battlePair.Value;
+                if (IsBothMemberArmiesAlive(member))
+                    return false;
+            }
+
+            return true;
+        }
+
+        public Dictionary<Member, bool> GetFightResults()
+        {
+            Dictionary<Member, bool> fightResults = new Dictionary<Member, bool>();
+
+            Member member;
+            foreach (var battlePair in battlePairs)
+            {
+                member = battlePair.Key;
+                fightResults.Add(member, IsMemberArmyAlive(member));
+                member = battlePair.Value;
+                fightResults.Add(member, IsMemberArmyAlive(member));
+            }
+
+            return fightResults;
+        }
+
+        private void EnterFightModeForMemberArmies(Member member, BaseUnit[,] playerEnemyUnits)
+        {
+            member.EnemyField.SpawnUnits(playerEnemyUnits);
+
+            BaseUnit[,] memberArmy = member.GetFieldContainer().GetArmy();
+            BaseUnit[,] memberEnemyArmy = member.GetEnemyFieldContainer().GetArmy();
+
+            for (int i = 0; i < armyWidth; ++i)
+            {
+                for (int j = 0; j < armyHeight; ++j)
+                {
+                    memberArmy[i, j]?.EnterFightMode(memberEnemyArmy);
+                    memberEnemyArmy[i, j]?.EnterFightMode(memberArmy);
+                }
+            }
+        }
+
+        private void ExitFightModeForArmies(Member member)
+        {
+            BaseUnit[,] memberArmy = member.GetFieldContainer().GetArmy();
+            BaseUnit[,] memberEnemyArmy = member.GetEnemyFieldContainer().GetArmy();
+
+            for (int i = 0; i < armyWidth; ++i)
+            {
+                for (int j = 0; j < armyHeight; ++j)
+                {
+                    memberArmy[i, j]?.ExitFightMode();
+                    memberEnemyArmy[i, j]?.ExitFightMode();
+                }
+            }
+        }
+
+        private BaseUnit[,] GeneratePlayerEnemyArmy()
         {
             int currentRound = GameManager.Instance.CurrentRound;
 
@@ -62,29 +168,18 @@ namespace AutoBattler.Managers
             };
 
             List<BaseUnit> units = GenerateUnits(tavernTier);
-            ModifyEnemyArmy(units, tavernTier);
-
-            //enemyArmy[0, 0] = shopUnits[8].prefab;
-            //enemyArmy[0, 1] = null;
-            //enemyArmy[0, 2] = shopUnits[8].prefab;
-            //enemyArmy[0, 3] = shopUnits[11].prefab;
-            //enemyArmy[0, 4] = shopUnits[11].prefab;
-            //enemyArmy[1, 0] = null;
-            //enemyArmy[1, 1] = shopUnits[11].prefab;
-            //enemyArmy[1, 2] = shopUnits[8].prefab;
-            //enemyArmy[1, 3] = shopUnits[7].prefab;
-            //enemyArmy[1, 4] = shopUnits[11].prefab;
+            return CreateEnemyArmyFromUnits(units, tavernTier);
         }
 
         private List<BaseUnit> GenerateUnits(int tavernTier)
         {
-            BaseUnit keyUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(tavernTier).prefab;
+            ShopUnitEntity keyUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(tavernTier);
 
             List<BaseUnit> units = new List<BaseUnit>();
-            units.Add(keyUnit);
+            units.Add(keyUnit.prefab);
 
-            List<BaseUnit> sameRaceUnits = shopDb.GetUnitsWithRace(keyUnit.Race, tavernTier);
-            List<BaseUnit> sameSpecificationUnits = shopDb.GetUnitsWithSpecification(keyUnit.Specification, tavernTier);
+            List<BaseUnit> sameRaceUnits = shopDb.GetUnitsWithRace(keyUnit.characteristics.Race, tavernTier);
+            List<BaseUnit> sameSpecificationUnits = shopDb.GetUnitsWithSpecification(keyUnit.characteristics.Specification, tavernTier);
 
             units.AddRange(GenerateUnitsAmount(sameRaceUnits, tavernTier));
             units.AddRange(GenerateUnitsAmount(sameSpecificationUnits, tavernTier));
@@ -100,10 +195,10 @@ namespace AutoBattler.Managers
             {
                 1 => Random.Range(1, 3),
                 2 => Random.Range(2, 4),
-                3 => Random.Range(2, 4),
-                4 => Random.Range(3, 5),
-                5 => Random.Range(4, 6),
-                _ => Random.Range(1, 6)
+                3 => Random.Range(2, 5),
+                4 => Random.Range(3, 6),
+                5 => Random.Range(4, 7),
+                _ => Random.Range(1, 7)
             };
 
             for (int i = 0; i < unitsAmount; ++i)
@@ -112,59 +207,59 @@ namespace AutoBattler.Managers
             return generatedUnits;
         }
 
-        private void ModifyEnemyArmy(List<BaseUnit> units, int tavernTier)
+        private BaseUnit[,] CreateEnemyArmyFromUnits(List<BaseUnit> units, int tavernTier)
         {
-            TavernTierOpenedTiles tavernTierOpenedTiles =
-                playerFieldContainer.GetTavernTierOpenedTiles(tavernTier);
-            TavernTierOpenedTiles enemyFieldTiles = TransformIntoEnemyFieldTiles(tavernTierOpenedTiles);
+            TavernTierOpenedTiles fieldTiles = TransformIntoEnemyFieldTiles(
+                player.Field.GetTavernTierOpenedTiles(tavernTier)
+                );
+            fieldTiles.tavernTier = tavernTier;
 
             Dictionary<Vector2Int, bool> tiles = new Dictionary<Vector2Int, bool>();
 
-            tavernTierOpenedTiles.openedTiles.ForEach(t => tiles.Add(t, false));
+            fieldTiles.openedTiles.ForEach(t => tiles.Add(t, false));
+
+            BaseUnit[,] enemyArmy = new BaseUnit[armyWidth, armyHeight];
 
             for (int i = 0; i < units.Count; ++i)
             {
-                if (i >= tavernTierOpenedTiles.openedTiles.Count)
+                if (i >= fieldTiles.openedTiles.Count)
                     break;
 
-                SetUnitOnBestPlace(units[i], tiles);
+                SetUnitOnBestPlace(enemyArmy, units[i], tiles);
             }
+
+            return enemyArmy;
         }
 
-        private TavernTierOpenedTiles TransformIntoEnemyFieldTiles(TavernTierOpenedTiles tavernTierOpenedTiles)
+        private TavernTierOpenedTiles TransformIntoEnemyFieldTiles(List<TavernTierOpenedTiles> tavernTierOpenedTiles)
         {
-            TavernTierOpenedTiles enemyFieldTiles = new TavernTierOpenedTiles();
+            TavernTierOpenedTiles fieldTiles = new TavernTierOpenedTiles();
 
-            enemyFieldTiles.tavernTier = tavernTierOpenedTiles.tavernTier;
-            enemyFieldTiles.openedTiles = new List<Vector2Int>();
+            fieldTiles.openedTiles = new List<Vector2Int>();
 
-            int index;
-            foreach (Vector2Int tile in tavernTierOpenedTiles.openedTiles)
-            {
-                index = tile.x == 0 ? 1 : 0;
+            foreach (TavernTierOpenedTiles tiles in tavernTierOpenedTiles)
+                foreach (Vector2Int tile in tiles.openedTiles)
+                    fieldTiles.openedTiles.Add(new Vector2Int(tile.x, tile.y));
 
-                enemyFieldTiles.openedTiles.Add(new Vector2Int(index, tile.y));
-            }
-
-            return enemyFieldTiles;
+            return fieldTiles;
         }
 
-        private void SetUnitOnBestPlace(BaseUnit unit, Dictionary<Vector2Int, bool> tiles)
+        private void SetUnitOnBestPlace(BaseUnit[,] units, BaseUnit unit, Dictionary<Vector2Int, bool> tiles)
         {
             int lineIndex = unit.Specification switch
             {
-                UnitSpecification.Swordsman => 0,
-                UnitSpecification.Archer => 1,
-                UnitSpecification.Mage => 1,
-                UnitSpecification.Assassin => 1,
-                UnitSpecification.Knight => 0,
-                UnitSpecification.Brute => 0,
-                _ => 0
+                UnitSpecification.Swordsman => 1,
+                UnitSpecification.Archer => 0,
+                UnitSpecification.Mage => 0,
+                UnitSpecification.Assassin => 0,
+                UnitSpecification.Knight => 1,
+                UnitSpecification.Brute => 1,
+                _ => 1
             };
 
             int index = IsFreeTileOnLine(tiles, lineIndex) ? lineIndex : GetAnotherLineIndex(lineIndex);
 
-            PutUnitOnLine(unit, tiles, index);
+            PutUnitOnLine(units, unit, tiles, index);
         }
 
         private bool IsFreeTileOnLine(Dictionary<Vector2Int, bool> tiles, int lineIndex)
@@ -182,7 +277,7 @@ namespace AutoBattler.Managers
 
         private int GetAnotherLineIndex(int lineIndex) => lineIndex == 1 ? 0 : 1;
 
-        private void PutUnitOnLine(BaseUnit unit, Dictionary<Vector2Int, bool> tiles, int lineIndex)
+        private void PutUnitOnLine(BaseUnit[,] units, BaseUnit unit, Dictionary<Vector2Int, bool> tiles, int lineIndex)
         {
             Dictionary<Vector2Int, bool> tilesOnLine = new Dictionary<Vector2Int, bool>();
 
@@ -196,54 +291,57 @@ namespace AutoBattler.Managers
 
             Vector2Int position = tilesOnLine.ElementAt(Random.Range(0, tilesOnLine.Count)).Key;
 
-            enemyArmy[position.x, position.y] = unit;
+            units[position.x, position.y] = unit;
             tiles[position] = true;
         }
 
-
-        public BaseUnit[,] GetSecondArmy() => enemyArmy;
-
-        public void StartBattle()
+        private Dictionary<Member, Member> GenerateBattlePairs()
         {
-            for (int i = 0; i < ArmyWidth; ++i)
+            Dictionary<Member, Member> battlePairs = new Dictionary<Member, Member>();
+            List<Member> battleMembers = new List<Member>(bots);
+
+            int battlePairsAmount = (bots.Count + 1) / 2;
+
+            if (battlePairsAmount <= 0)
+                return battlePairs;
+
+            int memberIndex = Random.Range(0, battleMembers.Count);
+
+            battlePairs.Add(player, battleMembers[memberIndex]);
+            battleMembers.RemoveAt(memberIndex);
+
+            Member firstMember;
+            Member secondMember;
+            for (int i = 1; i < battlePairsAmount; ++i)
             {
-                for (int j = 0; j < ArmyHeight; ++j)
-                {
-                    playerArmy[i, j]?.EnterFightMode(enemyArmy);
-                    enemyArmy[i, j]?.EnterFightMode(playerArmy);
-                }
+                firstMember = battleMembers[Random.Range(0, battleMembers.Count)];
+                battleMembers.Remove(firstMember);
+                secondMember = battleMembers[Random.Range(0, battleMembers.Count)];
+                battleMembers.Remove(secondMember);
+
+                battlePairs.Add(firstMember, secondMember);
             }
+
+            return battlePairs;
         }
 
-        public void EndBattle()
+        private BaseUnit[,] GetCopyOfMemberArmy(FieldContainer fieldContainer)
         {
-            for (int i = 0; i < ArmyWidth; ++i)
-            {
-                for (int j = 0; j < ArmyHeight; ++j)
-                {
-                    playerArmy[i, j]?.ExitFightMode();
-                    enemyArmy[i, j]?.ExitFightMode();
-                }
-            }
-        }
+            BaseUnit[,] copiedUnits = new BaseUnit[armyWidth, armyHeight];
+            BaseUnit[,] memberArmy = fieldContainer.GetArmy();
 
-        public bool IsFirstArmyAlive() => playerFieldContainer.IsAtLeastOneAliveUnit();
-
-        public bool IsSecondArmyAlive()
-        {
-            for (int i = 0; i < enemyArmy.GetLength(0); ++i)
+            for (int i = 0; i < armyWidth; ++i)
             {
-                for (int j = 0; j < enemyArmy.GetLength(1); ++j)
+                for (int j = 0; j < armyHeight; ++j)
                 {
-                    if (enemyArmy[i, j] == null)
+                    if (memberArmy[i, j] == null)
                         continue;
 
-                    if (enemyArmy[i, j].IsAlive())
-                        return true;
+                    copiedUnits[i, j] = shopDb.GetShopUnitEntityByTitle(memberArmy[i, j].Title).prefab;
                 }
             }
 
-            return false;
+            return copiedUnits;
         }
     }
 }

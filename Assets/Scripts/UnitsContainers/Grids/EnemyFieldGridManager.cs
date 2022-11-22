@@ -10,27 +10,27 @@ namespace AutoBattler.UnitsContainers.Grids
 
         public void ChangeTileStatus(Vector2Int index, TileStatus tileStatus) => tiles[index.x, index.y].SetTileStatus(tileStatus);
 
-        public void SpawnUnits(BaseUnit[,] army, Transform unitsContainer)
+        public void SpawnUnits(BaseUnit[,] units, Transform unitsContainer)
         {
             Vector3 newUnitPosition;
             BaseUnit newUnit;
 
-            for (int i = 0; i < army.GetLength(0); ++i)
+            for (int i = 0; i < units.GetLength(0); ++i)
             {
-                for (int j = 0; j < army.GetLength(1); ++j)
+                for (int j = 0; j < units.GetLength(1); ++j)
                 {
-                    if (army[i, j] == null)
+                    if (units[i, j] == null)
                         continue;
 
                     ChangeTileStatus(new Vector2Int(i, j), TileStatus.Opened);
                     newUnitPosition = tiles[i, j].transform.position;
 
-                    newUnit = Instantiate(army[i, j], newUnitPosition, Quaternion.identity);
+                    newUnit = Instantiate(units[i, j], newUnitPosition, Quaternion.identity);
                     newUnit.transform.SetParent(unitsContainer);
                     newUnit.EnterEnemyMode();
                     newUnit.ShowHealthBar();
 
-                    army[i, j] = newUnit;
+                    units[i, j] = newUnit;
                 }
             }
         }

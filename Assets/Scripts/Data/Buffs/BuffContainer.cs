@@ -11,6 +11,8 @@ namespace AutoBattler.Data.Buffs
 
         public List<Buff> GetBuffs() => buffs;
 
+        public bool Contains(Buff buff) => buffs.Contains(buff);
+
         public void ResetBuffs()
         {
             foreach (Buff buff in buffs)

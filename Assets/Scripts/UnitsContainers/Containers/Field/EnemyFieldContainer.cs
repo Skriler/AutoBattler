@@ -40,13 +40,15 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             unit?.HideHealthBar();
         }
 
-        public void SpawnUnits()
+        public void SpawnUnits(BaseUnit[,] units)
         {
             if (units == null)
                 return;
 
             enemyFieldGridManager.SpawnUnits(units, unitsContainer.transform);
             ApplyBuffsForUnits(units);
+
+            this.units = units;
         }
 
         public void ClearField()

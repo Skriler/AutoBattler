@@ -40,6 +40,10 @@ namespace AutoBattler.Data.Members
             PlayerEventManager.SendTavernTierIncreased(TavernTier);
         }
 
+        public override FieldContainer GetFieldContainer() => Field;
+
+        public override FieldContainer GetEnemyFieldContainer() => EnemyField;
+
         public void SpendGold(int actionCost)
         {
             if (Gold - actionCost < 0)

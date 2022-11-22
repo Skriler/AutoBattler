@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UnitsContainers.Enums;
 using System.Linq;
@@ -29,11 +30,11 @@ namespace AutoBattler.UnitsContainers.Grids
                 !unitsContainer.IsCellOccupied(index);
         }
 
-        public TavernTierOpenedTiles GetTavernTierOpenedTiles(int tavernTier)
+        public List<TavernTierOpenedTiles> GetTavernTierOpenedTiles(int tavernTier)
         {
             return openedTilesPerTavernTiersArray
-                .Where(t => t.tavernTier == tavernTier)
-                .First();
+                .Where(t => t.tavernTier <= tavernTier)
+                .ToList();
         }
 
         protected override TileStatus GetCurrentTileStatus(Vector2Int index)

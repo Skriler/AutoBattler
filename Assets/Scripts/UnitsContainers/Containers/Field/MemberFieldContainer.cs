@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Buffs;
 using AutoBattler.Data.ScriptableObjects.Structs;
@@ -23,7 +24,7 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         public int GetOpenedCellsAmount() => memberFieldGridManager.GetOpenedCellsAmount();
 
-        public TavernTierOpenedTiles GetTavernTierOpenedTiles(int tavernTier) =>
+        public List<TavernTierOpenedTiles> GetTavernTierOpenedTiles(int tavernTier) =>
             memberFieldGridManager.GetTavernTierOpenedTiles(tavernTier);
     }
 }

@@ -32,20 +32,10 @@ namespace AutoBattler.Data.Units
 
         protected void DetermineOptimalTarget(List<BaseUnit> evenUnits, List<BaseUnit> oddUnits, ref List<BaseUnit> targets)
         {
-            if (IsEnemyMode)
-            {
-                if (oddUnits.Count < evenUnits.Count)
-                    targets.AddRange(evenUnits);
-                else
-                    targets.AddRange(oddUnits);
-            }
+            if (oddUnits.Count < evenUnits.Count)
+                targets.AddRange(evenUnits);
             else
-            {
-                if (evenUnits.Count < oddUnits.Count)
-                    targets.AddRange(oddUnits);
-                else
-                    targets.AddRange(evenUnits);
-            }
+                targets.AddRange(oddUnits);
         }
     }
 }

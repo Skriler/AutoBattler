@@ -34,7 +34,9 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
 
         public ShopUnitEntity GetRandomShopUnitEntityAtTavernTier(int tavernTier)
         {
-            List<ShopUnitEntity> units = GetUnitsAtTavernTier(tavernTier);
+            List<ShopUnitEntity> units = shopUnits
+                .Where(u => u.characteristics.TavernTier == tavernTier)
+                .ToList();
 
             return units[Random.Range(0, units.Count)];
         }

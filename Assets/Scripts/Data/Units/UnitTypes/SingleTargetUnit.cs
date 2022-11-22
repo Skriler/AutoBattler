@@ -7,9 +7,7 @@ namespace AutoBattler.Data.Units
     {
         protected BaseUnit currentTarget = null;
 
-        protected abstract void FindTargetOnEnemyMode();
-
-        protected abstract void FindTargetOnNormalMode();
+        protected abstract void FindTarget();
 
         protected override bool HasTarget() => currentTarget != null;
 
@@ -26,10 +24,7 @@ namespace AutoBattler.Data.Units
             if (enemyUnits == null)
                 return;
 
-            if (IsEnemyMode)
-                FindTargetOnEnemyMode();
-            else
-                FindTargetOnNormalMode();
+            FindTarget();
         }
 
         protected BaseUnit DetermineOptimalTarget(List<BaseUnit> units)

@@ -25,6 +25,10 @@ namespace AutoBattler.Data.Members
             shopDb = GameManager.Instance.ShopDb;
         }
 
+        public override FieldContainer GetFieldContainer() => Field;
+
+        public override FieldContainer GetEnemyFieldContainer() => EnemyField;
+
         protected void LevelUpTavernTier()
         {
             if (IsMaxTavernTier() || !IsEnoughGoldForAction(LevelUpTavernTierCost))
