@@ -40,67 +40,45 @@ namespace AutoBattler.Data.Members
             PlayerEventManager.SendTavernTierIncreased(TavernTier);
         }
 
-        public override FieldContainer GetFieldContainer() => Field;
+        public override MemberFieldContainer GetFieldContainer() => Field;
 
         public override FieldContainer GetEnemyFieldContainer() => EnemyField;
 
-        public void SpendGold(int actionCost)
+        public override void SpendGold(int actionCost)
         {
-            if (Gold - actionCost < 0)
-            {
-                Debug.Log("Not enough gold");
-                return;
-            }
-
-            Gold -= actionCost;
+            base.SpendGold(actionCost);
             PlayerEventManager.SendGoldAmountChanged(Gold);
         }
 
-        public void SellUnit(BaseUnit unit)
+        public override void GainGold(int gold)
         {
-            GainGold(1);
-        }
-
-        public void GainGold(int gold)
-        {
-            Gold += gold;
-            Gold = Gold > characteristics.MaxGold ? characteristics.MaxGold : Gold;
-
+            base.GainGold(gold);
             PlayerEventManager.SendGoldAmountChanged(Gold);
         }
 
-        public void TakeDamage(int damage)
+        public override void TakeDamage(int damage)
         {
-            Health -= damage;
-            Health = Health < 0 ? 0 : Health;
-
+            base.TakeDamage(damage);
             PlayerEventManager.SendHealthAmountChanged(Health);
 
             if (!IsAlive())
                 Death();
         }
 
-        public void LevelUpTavernTier()
+        public override void LevelUpTavernTier()
         {
             if (IsMaxTavernTier() || !IsEnoughGoldForAction(LevelUpTavernTierCost))
                 return;
 
-            SpendGold(LevelUpTavernTierCost);
-
-            ++TavernTier;
+            base.LevelUpTavernTier();
             PlayerEventManager.OnTavernTierIncreased(TavernTier);
             LevelUpTavernTierCost = Field.GetOpenedCellsAmount();
         }
 
-        public void IncreaseRoundsWonAmountByOne()
+        public override void IncreaseRoundsWonAmountByOne()
         {
-            ++RoundsWonAmount;
+            base.IncreaseRoundsWonAmountByOne();
             PlayerEventManager.SendRoundsWonAmountIncreased(RoundsWonAmount);
-        }
-
-        public void Death()
-        {
-            Destroy(this.gameObject);
         }
 
         private void PlayDragSound(BaseUnit unit, Vector3 worldPosition)

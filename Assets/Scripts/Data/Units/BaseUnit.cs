@@ -80,6 +80,13 @@ namespace AutoBattler.Data.Units
             if (!IsFightMode || !IsAlive())
                 return;
 
+            if (!IsAliveEnemyUnits())
+            {
+                IsFightMode = false;
+                Stamina = 0;
+                healthBar.UpdateStamina(Stamina);
+            }
+            
             if (!HasEnoughStamina() && regenStamina == null)
                 regenStamina = StartCoroutine(RegenStaminaCoroutine());
 
@@ -87,7 +94,7 @@ namespace AutoBattler.Data.Units
             {
                 FindTarget(enemyUnits);
                 Attack();
-            }     
+            }
         }
 
         public void MouseExit()
@@ -243,7 +250,10 @@ namespace AutoBattler.Data.Units
             while (Stamina < AttackSpeed)
             {
                 if (!IsFightMode)
+                {
+                    regenStamina = null;
                     yield break;
+                }
 
                 Stamina += staminaRegenInterval;
                 healthBar.UpdateStamina(Stamina);
@@ -263,6 +273,7 @@ namespace AutoBattler.Data.Units
         {
             Health = MaxHealth;
             Stamina = 0;
+            regenStamina = null;
 
             animator.SetTrigger("idleTrigger");
 
@@ -300,7 +311,6 @@ namespace AutoBattler.Data.Units
         {
             draggable.IsActive = false;
             IsFightMode = true;
-
             this.enemyUnits = enemyUnits;
         }
 
@@ -308,8 +318,28 @@ namespace AutoBattler.Data.Units
         {
             draggable.IsActive = true;
             IsFightMode = false;
+            enemyUnits = null;
 
             Resurrect();
+        }
+
+        private bool IsAliveEnemyUnits()
+        {
+            if (enemyUnits == null)
+                return false;
+
+            for (int i = 0; i < enemyUnits.GetLength(0); ++i)
+            {
+                for (int j = 0; j < enemyUnits.GetLength(1); ++j)
+                {
+                    if (!IsUnitAlive(enemyUnits[i, j]))
+                        continue;
+
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

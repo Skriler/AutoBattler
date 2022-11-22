@@ -71,10 +71,10 @@ namespace AutoBattler.Managers
             foreach (var battlePair in battlePairs)
             {
                 memberEnemyArmy = GetCopyOfMemberArmy(battlePair.Key.GetFieldContainer());
-                EnterFightModeForMemberArmies(battlePair.Key, memberEnemyArmy);
+                EnterFightModeForMemberArmies(battlePair.Value, memberEnemyArmy);
 
                 memberEnemyArmy = GetCopyOfMemberArmy(battlePair.Value.GetFieldContainer());
-                EnterFightModeForMemberArmies(battlePair.Value, memberEnemyArmy);
+                EnterFightModeForMemberArmies(battlePair.Key, memberEnemyArmy);
             }
         }
 

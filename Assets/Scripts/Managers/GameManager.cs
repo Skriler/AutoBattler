@@ -102,32 +102,17 @@ namespace AutoBattler.Managers
             while (BattleManager.Instance.IsBothMemberArmiesAlive(player))
                 yield return checkBattleWaitTime;
 
-            if (!BattleManager.Instance.IsMemberArmyAlive(player))
-            {
-                currentNotification = Instantiate(roundLostNotification, UICanvas.transform);
-                (currentNotification as RoundLostNotification).Setup(
-                    player.GetRoundRewardGoldAmount(),
-                    -damageForLose
-                    );
+            if (BattleManager.Instance.IsMemberArmyAlive(player))
+                PlayerWonBattle();
+            else if (BattleManager.Instance.IsMemberEnemyArmyAlive(player))
+                PlayerLostBattle();
 
-                player.TakeDamage(damageForLose);
-                StartCoroutine(EndBattleCoroutine());
-            }
-            else if (!BattleManager.Instance.IsMemberEnemyArmyAlive(player))
-            {
-                currentNotification = Instantiate(roundWonNotification, UICanvas.transform);
-                (currentNotification as RoundWonNotification).Setup(
-                    player.GetRoundRewardGoldAmount()
-                    );
-
-                player.IncreaseRoundsWonAmountByOne();
-                StartCoroutine(EndBattleCoroutine());
-            }
+            StartCoroutine(EndBattleCoroutine());
         }
 
         private IEnumerator CheckConfrontationModeBattleStatusCoroutine()
         {
-            while (BattleManager.Instance.IsConfrontationModeBattlesEnded())
+            while (!BattleManager.Instance.IsConfrontationModeBattlesEnded())
                 yield return checkBattleWaitTime;
 
             Dictionary<Member, bool> fightResults = BattleManager.Instance.GetFightResults();
@@ -137,15 +122,48 @@ namespace AutoBattler.Managers
             {
                 member = fightResult.Key;
 
+                if (member is Player)
+                {
+                    if (fightResult.Value)
+                        PlayerWonBattle();
+                    else
+                        PlayerLostBattle();
+                    continue;
+                }
+
+
                 if (fightResult.Value)
                 {
-                    
+                    member.IncreaseRoundsWonAmountByOne();
                 }
                 else
                 {
-                    
+                    member.TakeDamage(damageForLose);
                 }
             }
+
+            StartCoroutine(EndBattleCoroutine());
+        }
+
+        private void PlayerLostBattle()
+        {
+            currentNotification = Instantiate(roundLostNotification, UICanvas.transform);
+            (currentNotification as RoundLostNotification).Setup(
+                player.GetRoundRewardGoldAmount(),
+                -damageForLose
+                );
+
+            player.TakeDamage(damageForLose);
+        }
+
+        private void PlayerWonBattle()
+        {
+            currentNotification = Instantiate(roundWonNotification, UICanvas.transform);
+            (currentNotification as RoundWonNotification).Setup(
+                player.GetRoundRewardGoldAmount()
+                );
+
+            player.IncreaseRoundsWonAmountByOne();
         }
 
         private IEnumerator EndBattleCoroutine()

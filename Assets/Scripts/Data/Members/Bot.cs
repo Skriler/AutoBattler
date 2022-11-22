@@ -25,28 +25,18 @@ namespace AutoBattler.Data.Members
             shopDb = GameManager.Instance.ShopDb;
         }
 
-        public override FieldContainer GetFieldContainer() => Field;
+        public override MemberFieldContainer GetFieldContainer() => Field;
 
         public override FieldContainer GetEnemyFieldContainer() => EnemyField;
 
-        protected void LevelUpTavernTier()
+        public override void LevelUpTavernTier()
         {
             if (IsMaxTavernTier() || !IsEnoughGoldForAction(LevelUpTavernTierCost))
                 return;
 
-            SpendGold(LevelUpTavernTierCost);
-
-            ++TavernTier;
+            base.LevelUpTavernTier();
             BotsEventManager.OnTavernTierIncreased(TavernTier, Id);
             LevelUpTavernTierCost = Field.GetOpenedCellsAmount();
-        }
-
-        protected void SpendGold(int actionCost)
-        {
-            if (Gold - actionCost < 0)
-                return;
-
-            Gold -= actionCost;
         }
 
         public void MakeTurn(int currentRound, int amountOfAliveMembers)
