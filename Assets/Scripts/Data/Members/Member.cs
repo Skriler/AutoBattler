@@ -18,6 +18,7 @@ namespace AutoBattler.Data.Members
         public int RoundsWonAmount { get; protected set; }
         public int LevelUpTavernTierCost { get; protected set; } = 4;
 
+        protected int startGainGoldPerRound;
         protected int maxGainGoldPerRound;
 
         protected virtual void Awake()
@@ -30,6 +31,7 @@ namespace AutoBattler.Data.Members
             EnemyField = transform.GetComponentInChildren<EnemyFieldContainer>();
             Id = Guid.NewGuid().ToString("N");
 
+            startGainGoldPerRound = GameManager.Instance.StartGainGoldPerRound;
             maxGainGoldPerRound = GameManager.Instance.MaxGainGoldPerRound;
         }
 
@@ -48,9 +50,9 @@ namespace AutoBattler.Data.Members
 
         public int GetRoundRewardGoldAmount()
         {
-            int currentRound = GameManager.Instance.CurrentRound;
+            int gainGold = startGainGoldPerRound + GameManager.Instance.CurrentRound;
 
-            return currentRound <= maxGainGoldPerRound ? currentRound : maxGainGoldPerRound;
+            return gainGold <= maxGainGoldPerRound ? gainGold : maxGainGoldPerRound;
         }
     }
 }

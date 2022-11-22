@@ -22,7 +22,7 @@ namespace AutoBattler.UI.PlayerInfo
 
         [Header("Confrontation Mode Components")]
         [SerializeField] private GameObject bigSidePanelBackground;
-        [SerializeField] private GameObject membersHealth;
+        [SerializeField] private List<UIMemberHealth> membersHealth;
 
         protected override void Awake()
         {
@@ -67,7 +67,7 @@ namespace AutoBattler.UI.PlayerInfo
         public void SetActiveConfrontationModeObjects(bool isActive)
         {
             bigSidePanelBackground.SetActive(isActive);
-            membersHealth.SetActive(isActive);
+            membersHealth.ForEach(h => h.gameObject.SetActive(isActive));
         }
     }
 }

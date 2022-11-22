@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aca3a27d842d994586345ab9dd59d00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showNotificationTime: 3.5
+  showNotificationTime: 2.5
   hideNotificationTime: 1.5
   hideNotificationInterval: 0.05
   textGold: {fileID: 3284471281500740618}

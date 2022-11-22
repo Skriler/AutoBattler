@@ -29,6 +29,7 @@ namespace AutoBattler.Managers
         [Header("Parameters")]
         [SerializeField] private float checkBattleWaitTime = 0.5f;
         [SerializeField] private float endBattleWaitTime = 2.5F;
+        [SerializeField] private int startGainGoldPerRound = 3;
         [SerializeField] private int maxGainGoldPerRound = 10;
         [SerializeField] private int damageForLose = 1;
 
@@ -38,6 +39,7 @@ namespace AutoBattler.Managers
         public GameMode GameMode { get; private set; } = GameMode.Solo;
 
         public ShopDatabase ShopDb => shopDb;
+        public int StartGainGoldPerRound => startGainGoldPerRound;
         public int MaxGainGoldPerRound => maxGainGoldPerRound;
 
         private void Start()
@@ -121,19 +123,26 @@ namespace AutoBattler.Managers
         private IEnumerator EndBattleCoroutine()
         {
             ++CurrentRound;
-
+            
             yield return new WaitForSeconds(endBattleWaitTime);
 
-            BattleManager.Instance.EndBattle();
             currentNotification.Show();
-            player.GainGold(player.GetRoundRewardGoldAmount());
-
+            BattleManager.Instance.EndBattle();
             FightEventManager.SendFightEnded();
+
+            RewardMembers();
+            RunBotsRoundLogic();
         }
 
         private void RunBotsRoundLogic()
         {
             bots.ForEach(b => b.MakeTurn(CurrentRound, 0));
+        }
+
+        private void RewardMembers()
+        {
+            player.GainGold(player.GetRoundRewardGoldAmount());
+            bots.ForEach(b => b.GetRoundRewardGoldAmount());
         }
 
         private void StartConfrontationModeBattle()
