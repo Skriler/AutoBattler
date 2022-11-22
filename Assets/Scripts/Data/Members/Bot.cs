@@ -7,7 +7,7 @@ using AutoBattler.EventManagers;
 using AutoBattler.Managers;
 using AutoBattler.Data.Units;
 
-namespace AutoBattler.Data.Player
+namespace AutoBattler.Data.Members
 {
     public class Bot : Member
     {

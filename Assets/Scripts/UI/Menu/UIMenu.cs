@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using AutoBattler.SaveSystem;
 using AutoBattler.Managers;
-using AutoBattler.Data.Player;
+using AutoBattler.SaveSystem.Data;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.UI.Menu
 {
@@ -13,6 +14,7 @@ namespace AutoBattler.UI.Menu
         [Header("Components")]
         [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject optionsMenu;
+        [SerializeField] private GameObject gameModeSelectionMenu;
         [SerializeField] private Button continueButton;
         [SerializeField] private TextMeshProUGUI textVersion;
 
@@ -22,6 +24,10 @@ namespace AutoBattler.UI.Menu
 
             FileSaveSystem.LoadSettings();
             SetPlayerSettings();
+
+            mainMenu.SetActive(true);
+            optionsMenu.SetActive(false);
+            gameModeSelectionMenu.SetActive(false);
 
             continueButton.interactable = FileSaveSystem.IsSavedProgress();
         }
@@ -44,9 +50,17 @@ namespace AutoBattler.UI.Menu
                 );
         }
 
-        public void StartNewGame()
+        public void StartNewSoloModeGame()
         {
             FileSaveSystem.DeleteSavedProgress();
+            DataPersistenceManager.Instance.NewGame(GameMode.Solo);
+            LoadGameScene();
+        }
+
+        public void StartNewConfrontationModeGame()
+        {
+            FileSaveSystem.DeleteSavedProgress();
+            DataPersistenceManager.Instance.NewGame(GameMode.Confrontation);
             LoadGameScene();
         }
 
@@ -55,10 +69,16 @@ namespace AutoBattler.UI.Menu
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
-        public void OpenOptions()
+        public void OpenOptionsMenu()
         {
             mainMenu.SetActive(optionsMenu.activeSelf);
             optionsMenu.SetActive(!optionsMenu.activeSelf);
+        }
+
+        public void OpenGameModeSelectionMenu()
+        {
+            mainMenu.SetActive(gameModeSelectionMenu.activeSelf);
+            gameModeSelectionMenu.SetActive(!gameModeSelectionMenu.activeSelf);
         }
     }
 }

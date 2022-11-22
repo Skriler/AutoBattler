@@ -7,7 +7,7 @@ using AutoBattler.Managers;
 using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 
-namespace AutoBattler.Data.Player
+namespace AutoBattler.Data.Members
 {
     public class Player : Member, IDataPersistence
     {

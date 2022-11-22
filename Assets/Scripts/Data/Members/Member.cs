@@ -1,14 +1,10 @@
 ﻿using System;
 using UnityEngine;
 using AutoBattler.UnitsContainers.Containers.Field;
-using AutoBattler.Data.Units;
-using AutoBattler.EventManagers;
 using AutoBattler.Data.ScriptableObjects.Characteristics;
 using AutoBattler.Managers;
-using AutoBattler.SaveSystem;
-using AutoBattler.SaveSystem.Data;
 
-namespace AutoBattler.Data.Player
+namespace AutoBattler.Data.Members
 {
     public class Member : MonoBehaviour
     {

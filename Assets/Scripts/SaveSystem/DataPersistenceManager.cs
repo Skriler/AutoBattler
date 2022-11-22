@@ -4,6 +4,7 @@ using UnityEngine;
 using AutoBattler.Managers;
 using AutoBattler.EventManagers;
 using AutoBattler.SaveSystem.Data;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.SaveSystem
 {
@@ -11,6 +12,8 @@ namespace AutoBattler.SaveSystem
     {
         [SerializeField] private bool useEncryption = true;
         [SerializeField] private string encryptionCodeWord = "SomeWord";
+
+        public GameMode GameMode { get; private set; }
 
         private GameData gameData;
         private List<IDataPersistence> dataPersistenceObjects;
@@ -24,19 +27,20 @@ namespace AutoBattler.SaveSystem
             DontDestroyOnLoad(this);
         }
 
-        public void NewGame()
+        public void NewGame(GameMode gameMode)
         {
+            GameMode = gameMode;
             gameData = new GameData();
         }
 
         public void LoadGame()
         {
             dataPersistenceObjects = GetAllDataPersistenceObjects();
-            //gameData = FileSaveSystem.LoadProgress(useEncryption, encryptionCodeWord);
+            gameData = FileSaveSystem.LoadProgress(useEncryption, encryptionCodeWord);
 
             if (gameData == null)
             {
-                NewGame();
+                NewGame(GameManager.Instance.GameMode);
                 return;
             }
 

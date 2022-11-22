@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using AutoBattler.EventManagers;
-using AutoBattler.Data.Player;
+using AutoBattler.Data.Members;
 
 namespace AutoBattler.UnitsContainers.Grids
 {

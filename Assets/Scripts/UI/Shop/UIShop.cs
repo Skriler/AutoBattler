@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.EventManagers;
-using AutoBattler.Data.Player;
+using AutoBattler.Data.Members;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UI.Tooltips;
 using AutoBattler.Managers;
-using Unity.VisualScripting.Antlr3.Runtime;
 
 namespace AutoBattler.UI.Shop
 {
@@ -131,12 +130,12 @@ namespace AutoBattler.UI.Shop
         private void GenerateUnits()
         {
             List<ShopUnitEntity> shopUnits = shopDb.GetUnitsAtTavernTier(player.TavernTier);
-            int unitsAmount = shopUnits.Count;
+            unitCards.ForEach(card => GenerateUnit(card, shopUnits));
+        }
 
-            for (int i = 0; i < unitCards.Count; ++i)
-            {
-                unitCards[i].Setup(shopUnits[Random.Range(0, unitsAmount)]);
-            }
+        private void GenerateUnit(UICard card, List<ShopUnitEntity> units)
+        {
+            card.Setup(units[Random.Range(0, units.Count)]);
         }
 
         private void SetActiveUnitCards()
@@ -148,12 +147,31 @@ namespace AutoBattler.UI.Shop
             }
         }
 
+        private void AddUnitCardsOnEmptySlots()
+        {
+            List<ShopUnitEntity> shopUnits = shopDb.GetUnitsAtTavernTier(player.TavernTier);
+
+            foreach (UICard card in unitCards)
+            {
+                if (card.gameObject.activeSelf)
+                    continue;
+
+                card.gameObject.SetActive(true);
+                GenerateUnit(card, shopUnits);
+            }
+        }
+
         private void StartRound()
         {
             if (IsFreezed)
+            {
                 FreezeUnits();
+                AddUnitCardsOnEmptySlots();
+            }
             else
+            {
                 RefreshUnits();
+            } 
         }
 
         private void EndRound()

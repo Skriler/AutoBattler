@@ -1,7 +1,7 @@
 using System.Text;
 using UnityEngine;
 
-namespace AutoBattler.Data.Player
+namespace AutoBattler.SaveSystem.Data
 {
     public static class PlayerSettings
     {

@@ -36,7 +36,7 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
         {
             List<ShopUnitEntity> units = GetUnitsAtTavernTier(tavernTier);
 
-            return units[Random.Range(0, units.Count - 1)];
+            return units[Random.Range(0, units.Count)];
         }
 
         public List<BaseUnit> GetUnitsWithRace(UnitRace race, int maxTavernTier)

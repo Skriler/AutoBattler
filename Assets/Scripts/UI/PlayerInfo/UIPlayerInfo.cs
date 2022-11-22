@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using AutoBattler.EventManagers;
+using AutoBattler.Managers;
 
 namespace AutoBattler.UI.PlayerInfo
 {
-    public class UIPlayerInfo : MonoBehaviour
+    public class UIPlayerInfo : Manager<UIPlayerInfo>
     {
         [Header("Components")]
         [SerializeField] private TextMeshProUGUI textGold;
@@ -16,8 +16,18 @@ namespace AutoBattler.UI.PlayerInfo
         [SerializeField] private TextMeshProUGUI textGoldenCup;
         [SerializeField] private List<Button> buttons;
 
-        private void Awake()
+        [Header("Solo Mode Components")]
+        [SerializeField] private GameObject smallSidePanelBackground;
+        [SerializeField] private UIBaseObject goldenCup;
+
+        [Header("Confrontation Mode Components")]
+        [SerializeField] private GameObject bigSidePanelBackground;
+        [SerializeField] private GameObject membersHealth;
+
+        protected override void Awake()
         {
+            base.Awake();
+
             PlayerEventManager.OnGoldAmountChanged += SetGold;
             PlayerEventManager.OnHealthAmountChanged += SetHealth;
             PlayerEventManager.OnTavernTierIncreased += SetTavernTier;
@@ -26,7 +36,7 @@ namespace AutoBattler.UI.PlayerInfo
             FightEventManager.OnFightEnded += EnableButtons;
         }
 
-        private void OnDestroy()
+        protected void OnDestroy()
         {
             PlayerEventManager.OnGoldAmountChanged -= SetGold;
             PlayerEventManager.OnHealthAmountChanged -= SetHealth;
@@ -47,5 +57,17 @@ namespace AutoBattler.UI.PlayerInfo
         private void DisableButtons() => buttons.ForEach(b => b.interactable = false);
 
         private void EnableButtons() => buttons.ForEach(b => b.interactable = true);
+
+        public void SetActiveSoloModeObjects(bool isActive)
+        {
+            smallSidePanelBackground.SetActive(isActive);
+            goldenCup.gameObject.SetActive(isActive);
+        }
+
+        public void SetActiveConfrontationModeObjects(bool isActive)
+        {
+            bigSidePanelBackground.SetActive(isActive);
+            membersHealth.SetActive(isActive);
+        }
     }
 }

@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1f12b234b231449acf3db98d0fac52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useEncryption: 1
+  useEncryption: 0
   encryptionCodeWord: Horseshoe

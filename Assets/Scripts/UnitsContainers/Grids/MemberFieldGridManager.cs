@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UnitsContainers.Enums;
-using AutoBattler.EventManagers;
-using AutoBattler.Data.Player;
 using System.Linq;
 
 namespace AutoBattler.UnitsContainers.Grids

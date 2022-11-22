@@ -1,7 +1,6 @@
 using System;
 using System.IO;
 using UnityEngine;
-using AutoBattler.Data.Player;
 using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.SaveSystem
