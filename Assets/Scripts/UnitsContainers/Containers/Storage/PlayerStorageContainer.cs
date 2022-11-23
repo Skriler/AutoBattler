@@ -9,7 +9,7 @@ using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.UnitsContainers.Containers.Storage
 {
-    public class PlayerStorageContainer : StorageContainer, IDataPersistence
+    public class PlayerStorageContainer : MemberStorageContainer
     {
         protected override void Awake()
         {
@@ -23,37 +23,14 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
             UnitsEventManager.OnUnitBought -= AddUnit;
         }
 
-        public void LoadData(GameData data)
+        public override void LoadData(GameData data)
         {
-            ShopDatabase shopDb = GameManager.Instance.ShopDb;
-            ShopUnitEntity shopUnitEntity;
-
-            foreach (UnitData unitData in data.player.storage)
-            {
-                shopUnitEntity = shopDb.GetShopUnitEntityByTitle(unitData.title);
-
-                AddUnit(
-                    shopUnitEntity,
-                    new Vector2Int(unitData.x, unitData.y)
-                    );
-
-                units[unitData.x].SetUnitDataÑharacteristics(unitData);
-            }
+            LoadDataFromMemberData(data.player);
         }
 
-        public void SaveData(GameData data)
+        public override void SaveData(GameData data)
         {
-            data.player.storage.Clear();
-            UnitData unitData;
-
-            foreach (var (unit, i) in units.Select((unit, i) => (unit, i)))
-            {
-                if (unit == null)
-                    continue;
-
-                unitData = new UnitData(unit, i, 0);
-                data.player.storage.Add(unitData);
-            }
+            SaveDataToMemberData(data.player);
         }
     }
 }

@@ -6,10 +6,12 @@ namespace AutoBattler.SaveSystem.Data
     [Serializable]
     public class MemberData
     {
+        public string id;
         public int health;
         public int gold;
         public int tavernTier;
         public int levelUpTavernTierCost;
+        public int roundsWonAmount;
 
         public List<UnitData> storage;
         public List<UnitData> field;

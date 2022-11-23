@@ -4,9 +4,9 @@ using AutoBattler.Data.Units;
 using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 
-namespace AutoBattler.Data.Buffs
+namespace AutoBattler.Data.Buffs.Containers
 {
-    public class PlayerBuffContainer : BuffContainer, IDataPersistence
+    public class PlayerBuffContainer : MemberBuffContainer
     {
         protected void Awake()
         {
@@ -40,23 +40,14 @@ namespace AutoBattler.Data.Buffs
             base.RemoveBuffsFromUnit(unit);
         }
 
-        public void LoadData(GameData data)
+        public override void LoadData(GameData data)
         {
-            Buff buff;
-
-            foreach (BuffData buffData in data.player.buffs)
-            {
-                buff = GetBuffByTitle(buffData.title);
-                buff.SetBuffDataСharacteristics(buffData);
-            }
+            LoadDataFromMemberData(data.player);
         }
 
-        public void SaveData(GameData data)
+        public override void SaveData(GameData data)
         {
-            data.player.buffs.Clear();
-
-            foreach (Buff buff in buffs)
-                data.player.buffs.Add(new BuffData(buff));
+            SaveDataToMemberData(data.player);
         }
     }
 }

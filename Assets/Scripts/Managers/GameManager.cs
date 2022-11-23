@@ -36,7 +36,7 @@ namespace AutoBattler.Managers
         private RoundResultNotification currentNotification;
 
         public int CurrentRound { get; private set; } = 1;
-        public GameMode GameMode { get; private set; } = GameMode.Confrontation;
+        public GameMode GameMode { get; private set; }
 
         public ShopDatabase ShopDb => shopDb;
         public int StartGainGoldPerRound => startGainGoldPerRound;
@@ -44,6 +44,10 @@ namespace AutoBattler.Managers
 
         private void Start()
         {
+            RunBotsRoundLogic();
+            RewardMembers();
+
+            DataPersistenceManager.Instance.LoadGame();
             GameMode = DataPersistenceManager.Instance.GameMode;
 
             bool isSoloMode = GameMode == GameMode.Solo ? true : false;
@@ -52,10 +56,6 @@ namespace AutoBattler.Managers
             UIPlayerInfo.Instance.SetActiveSoloModeObjects(isSoloMode);
             UIPlayerInfo.Instance.SetActiveConfrontationModeObjects(!isSoloMode);
 
-            RunBotsRoundLogic();
-            RewardMembers();
-            
-            DataPersistenceManager.Instance.LoadGame();
             BattleManager.Instance.Setup(player, bots);
         }
 
@@ -198,11 +198,13 @@ namespace AutoBattler.Managers
 
         public void LoadData(GameData data)
         {
+            GameMode = data.gameMode;
             CurrentRound = data.currentRound;
         }
 
         public void SaveData(GameData data)
         {
+            data.gameMode = GameMode;
             data.currentRound = CurrentRound;
         }
     }

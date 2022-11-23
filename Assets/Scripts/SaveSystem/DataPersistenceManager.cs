@@ -13,7 +13,7 @@ namespace AutoBattler.SaveSystem
         [SerializeField] private bool useEncryption = true;
         [SerializeField] private string encryptionCodeWord = "SomeWord";
 
-        public GameMode GameMode { get; private set; } = GameMode.Confrontation;
+        public GameMode GameMode { get; private set; }
 
         private GameData gameData;
         private List<IDataPersistence> dataPersistenceObjects;
@@ -40,9 +40,11 @@ namespace AutoBattler.SaveSystem
 
             if (gameData == null)
             {
-                NewGame(GameManager.Instance.GameMode);
+                NewGame(GameMode);
                 return;
             }
+
+            GameMode = gameData.gameMode;
 
             foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
                 dataPersistenceObj.LoadData(gameData);

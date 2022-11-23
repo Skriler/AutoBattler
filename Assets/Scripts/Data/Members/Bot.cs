@@ -6,6 +6,8 @@ using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.EventManagers;
 using AutoBattler.Managers;
 using AutoBattler.Data.Units;
+using AutoBattler.SaveSystem.Data;
+using System.Linq;
 
 namespace AutoBattler.Data.Members
 {
@@ -16,13 +18,12 @@ namespace AutoBattler.Data.Members
 
         private ShopDatabase shopDb;
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
 
             Storage = transform.GetComponentInChildren<BotStorageContainer>();
             Field = transform.GetComponentInChildren<BotFieldContainer>();
-            shopDb = GameManager.Instance.ShopDb;
         }
 
         public override MemberFieldContainer GetFieldContainer() => Field;
@@ -35,12 +36,15 @@ namespace AutoBattler.Data.Members
                 return;
 
             base.LevelUpTavernTier();
-            BotsEventManager.OnTavernTierIncreased(TavernTier, Id);
+            BotsEventManager.SendTavernTierIncreased(TavernTier, Id);
             LevelUpTavernTierCost = Field.GetOpenedCellsAmount();
         }
 
         public void MakeTurn(int currentRound, int amountOfAliveMembers)
         {
+            if (shopDb == null)
+                shopDb = GameManager.Instance.ShopDb;
+
             //Gold = 99;
             //LevelUpTavernTier();
             //BuyRandomUnit();
@@ -71,6 +75,32 @@ namespace AutoBattler.Data.Members
                     Field.AddUnit(unit);
                 }
             }
+        }
+
+        public override void LoadData(GameData data)
+        {
+            MemberData memberData = data.bots.Where(b => b.id == Id).First();
+
+            LoadDataFromMemberData(memberData);
+
+            //BotsEventManager.SendHealthAmountChanged(Health, id);
+            BotsEventManager.SendTavernTierIncreased(TavernTier, Id);
+        }
+
+        public override void SaveData(GameData data)
+        {
+            MemberData memberData;
+            if (data.bots.Exists(b => b.id == Id))
+            {
+                memberData = data.bots.Where(b => b.id == Id).First();
+            }
+            else
+            {
+                memberData = new MemberData();
+                data.bots.Add(memberData);
+            }
+
+            SaveDataToMemberData(memberData);
         }
     }
 }

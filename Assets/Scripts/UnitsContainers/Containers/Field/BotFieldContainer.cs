@@ -2,6 +2,9 @@ using AutoBattler.Data.Units;
 using UnityEngine;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Buffs;
+using AutoBattler.SaveSystem.Data;
+using System.Linq;
+using AutoBattler.EventManagers;
 
 namespace AutoBattler.UnitsContainers.Containers.Field
 {
@@ -26,6 +29,8 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             unit.transform.SetParent(unitsContainer.transform);
             unit.ShowHealthBar();
             units[index.x, index.y] = unit;
+
+            BotsEventManager.SendUnitAddedOnField(unit, owner.Id);
         }
 
         public override void RemoveUnit(BaseUnit unit)
@@ -36,6 +41,7 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             {
                 units[unitPosition.x, unitPosition.y] = null;
                 unit?.HideHealthBar();
+                BotsEventManager.SendUnitRemovedFromField(unit, owner.Id);
             }
         }
 
@@ -59,6 +65,30 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             }
 
             return index;
+        }
+
+        public override void LoadData(GameData data)
+        {
+            MemberData memberData = data.bots.Where(b => b.id == owner.Id).First();
+
+            LoadDataFromMemberData(memberData);
+        }
+
+        public override void SaveData(GameData data)
+        {
+            MemberData memberData;
+            if (data.bots.Exists(b => b.id == owner.Id))
+            {
+                memberData = data.bots.Where(b => b.id == owner.Id).First();
+            }
+            else
+            {
+                memberData = new MemberData();
+                memberData.id = owner.Id;
+                data.bots.Add(memberData);
+            }
+
+            SaveDataToMemberData(memberData);
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Grids;
-using AutoBattler.Data.Buffs;
+using AutoBattler.Data.Buffs.Containers;
 using AutoBattler.EventManagers;
 using AutoBattler.UnitsContainers.Enums;
 

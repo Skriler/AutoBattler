@@ -19,30 +19,7 @@ namespace AutoBattler.UI.PlayerInfo
         {
             base.Awake();
 
-            PlayerEventManager.OnHealthAmountChanged += CheckPlayersHealth;
-            BotsEventManager.OnHealthAmountChanged += CheckOwnersHealth;
-
             startDescription = Description;
-        }
-
-        protected void OnDestroy()
-        {
-            PlayerEventManager.OnHealthAmountChanged -= CheckPlayersHealth;
-            BotsEventManager.OnHealthAmountChanged -= CheckOwnersHealth;
-        }
-
-        private void CheckPlayersHealth(int health)
-        {
-            if (owner is Player)
-                UpdateDescription();
-        }
-
-        private void CheckOwnersHealth(int health, string id)
-        {
-            if (owner.Id != id)
-                return;
-
-            UpdateDescription();
         }
 
         public void UpdateDescription()

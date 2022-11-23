@@ -1,18 +1,20 @@
 using System;
 using System.Collections.Generic;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.SaveSystem.Data
 {
     [Serializable]
     public class GameData
     {
+        public GameMode gameMode;
         public int currentRound;
-        public PlayerData player;
+        public MemberData player;
         public List<MemberData> bots;
 
         public GameData()
         {
-            player = new PlayerData();
+            player = new MemberData();
             bots = new List<MemberData>();
         }
     }

@@ -16,7 +16,7 @@ namespace AutoBattler.Data.Buffs
         [SerializeField] private GameObject removeBuffParticlesPrefab;
 
         [Header("Parameters")]
-        [SerializeField] private PlayerFieldContainer fieldContainer;
+        [SerializeField] private MemberFieldContainer fieldContainer;
         [SerializeField] private string foregroundLayerName = "Foreground";
         [SerializeField] private Vector3 applyBuffParticlesOffset;
         [SerializeField] private Vector3 removeBuffParticlesOffset;

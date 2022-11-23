@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace AutoBattler.UnitsContainers.Grids
 {
-    public class MemberFieldGridManager : GridManager
+    public abstract class MemberFieldGridManager : GridManager
     {
         [Header("Field spawn parameters")]
         [SerializeField] protected TavernTierOpenedTiles[] openedTilesPerTavernTiersArray;

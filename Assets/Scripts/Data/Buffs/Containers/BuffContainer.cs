@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.Data.Units;
 
-namespace AutoBattler.Data.Buffs
+namespace AutoBattler.Data.Buffs.Containers
 {
     public class BuffContainer : MonoBehaviour
     {

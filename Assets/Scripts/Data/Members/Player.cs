@@ -9,7 +9,7 @@ using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.Data.Members
 {
-    public class Player : Member, IDataPersistence
+    public class Player : Member
     {
         public PlayerStorageContainer Storage { get; protected set; }
         public PlayerFieldContainer Field { get; protected set; }
@@ -89,13 +89,9 @@ namespace AutoBattler.Data.Members
                 AudioManager.Instance.PlayUnitDragFailedSound();
         }
 
-        public void LoadData(GameData data)
+        public override void LoadData(GameData data)
         {
-            Health = data.player.health;
-            Gold = data.player.gold;
-            TavernTier = data.player.tavernTier;
-            RoundsWonAmount = data.player.roundsWonAmount;
-            LevelUpTavernTierCost = data.player.levelUpTavernTierCost;
+            LoadDataFromMemberData(data.player);
 
             PlayerEventManager.SendGoldAmountChanged(Gold);
             PlayerEventManager.SendHealthAmountChanged(Health);
@@ -103,13 +99,9 @@ namespace AutoBattler.Data.Members
             PlayerEventManager.SendRoundsWonAmountIncreased(RoundsWonAmount);
         }
 
-        public void SaveData(GameData data)
+        public override void SaveData(GameData data)
         {
-            data.player.health = Health;
-            data.player.gold = Gold;
-            data.player.tavernTier = TavernTier;
-            data.player.roundsWonAmount = RoundsWonAmount;
-            data.player.levelUpTavernTierCost = LevelUpTavernTierCost;
+            SaveDataToMemberData(data.player);
         }
     }
 }
