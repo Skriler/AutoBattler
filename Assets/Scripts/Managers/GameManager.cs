@@ -11,6 +11,7 @@ using AutoBattler.UI.PlayerInfo;
 using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 using AutoBattler.Data.Enums;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace AutoBattler.Managers
 {
@@ -32,8 +33,11 @@ namespace AutoBattler.Managers
         [SerializeField] private int startGainGoldPerRound = 3;
         [SerializeField] private int maxGainGoldPerRound = 10;
         [SerializeField] private int damageForLose = 1;
+        [SerializeField] private int roundsWonAmountForWin = 10;
 
         private RoundResultNotification currentNotification;
+
+        public static bool IsPlayerWon { get; private set; }
 
         public int CurrentRound { get; private set; } = 1;
         public GameMode GameMode { get; private set; }
@@ -172,8 +176,6 @@ namespace AutoBattler.Managers
             
             yield return new WaitForSeconds(endBattleWaitTime);
 
-            currentNotification.Show();
-
             if (GameMode == GameMode.Solo)
                 BattleManager.Instance.EndSoloModeBattle();
             else if (GameMode == GameMode.Confrontation)
@@ -181,8 +183,16 @@ namespace AutoBattler.Managers
 
             FightEventManager.SendFightEnded();
 
-            RewardMembers();
-            RunBotsRoundLogic();
+            if (IsGameEnded())
+            {
+                LoadResultScene();
+            }
+            else
+            {
+                currentNotification?.Show();
+                RewardMembers();
+                RunBotsRoundLogic();
+            }
         }
 
         private void RunBotsRoundLogic()
@@ -194,6 +204,29 @@ namespace AutoBattler.Managers
         {
             player.GainGold(player.GetRoundRewardGoldAmount());
             bots.ForEach(b => b.GetRoundRewardGoldAmount());
+        }
+
+        private bool IsGameEnded()
+        {
+            if (player.Health <= 0)
+                return true;
+
+            if (GameMode == GameMode.Solo && 
+                player.RoundsWonAmount >= roundsWonAmountForWin)
+                return true;
+
+            if (GameMode == GameMode.Confrontation)
+            {
+
+            }
+
+            return false;
+        }
+
+        private void LoadResultScene()
+        {
+            IsPlayerWon = player.Health > 0;
+            SceneManager.LoadScene(2);
         }
 
         public void LoadData(GameData data)

@@ -9333,6 +9333,7 @@ MonoBehaviour:
   startGainGoldPerRound: 3
   maxGainGoldPerRound: 10
   damageForLose: 1
+  roundsWonAmountForWin: 2
 --- !u!1 &1354466805
 GameObject:
   m_ObjectHideFlags: 0

@@ -90,9 +90,6 @@ namespace AutoBattler.Data.Members
         {
             Health -= damage;
             Health = Health < 0 ? 0 : Health;
-
-            if (!IsAlive())
-                Death();
         }
 
         public virtual void LevelUpTavernTier()
@@ -111,7 +108,7 @@ namespace AutoBattler.Data.Members
 
         public virtual void Death()
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         public void LoadDataFromMemberData(MemberData memberData)

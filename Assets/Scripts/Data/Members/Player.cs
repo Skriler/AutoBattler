@@ -60,9 +60,6 @@ namespace AutoBattler.Data.Members
         {
             base.TakeDamage(damage);
             PlayerEventManager.SendHealthAmountChanged(Health);
-
-            if (!IsAlive())
-                Death();
         }
 
         public override void LevelUpTavernTier()
