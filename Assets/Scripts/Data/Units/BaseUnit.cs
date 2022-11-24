@@ -73,6 +73,8 @@ namespace AutoBattler.Data.Units
             healthBar.Hide();
         }
 
+        public void SetDraggableActive(bool isActive) => draggable.IsActive = isActive;
+
         protected virtual void Start() { }
 
         protected virtual void Update()
