@@ -11,10 +11,7 @@ namespace AutoBattler.Managers.Battle
     public class SoloModeBattleManager : BattleManager
     {
         [Header("Parameters")]
-        [SerializeField] private const int firstTavernMaxRound = 3;
-        [SerializeField] private const int secondTavernMaxRound = 5;
-        [SerializeField] private const int thirdTavernMaxRound = 9;
-        [SerializeField] private const int fourthTavernMaxRound = 12;
+        [SerializeField] private List<TavernTierLevelUpTurns> tavernTierLevelUpTurns;
 
         public override void StartBattle()
         {
@@ -42,20 +39,16 @@ namespace AutoBattler.Managers.Battle
         {
             int currentRound = GameManager.Instance.CurrentRound;
 
-            int tavernTier = currentRound switch
-            {
-                <= firstTavernMaxRound => 1,
-                <= secondTavernMaxRound => 2,
-                <= thirdTavernMaxRound => 3,
-                <= fourthTavernMaxRound => 4,
-                _ => 5,
-            };
+            int tavernTier = tavernTierLevelUpTurns
+                .Where(obj => obj.levelUpTurn > currentRound)
+                .First()
+                .tavernTier;
 
-            List<BaseUnit> units = GenerateUnits(tavernTier);
+            List<BaseUnit> units = GenerateUnits(tavernTier, currentRound);
             return CreateEnemyArmyFromUnits(units, tavernTier);
         }
 
-        private List<BaseUnit> GenerateUnits(int tavernTier)
+        private List<BaseUnit> GenerateUnits(int tavernTier, int currentRound)
         {
             ShopUnitEntity keyUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(tavernTier);
 
@@ -65,13 +58,13 @@ namespace AutoBattler.Managers.Battle
             List<BaseUnit> sameRaceUnits = shopDb.GetUnitsWithRace(keyUnit.characteristics.Race, tavernTier);
             List<BaseUnit> sameSpecificationUnits = shopDb.GetUnitsWithSpecification(keyUnit.characteristics.Specification, tavernTier);
 
-            units.AddRange(GenerateUnits(sameRaceUnits, tavernTier));
-            units.AddRange(GenerateUnits(sameSpecificationUnits, tavernTier));
+            units.AddRange(GenerateUnits(sameRaceUnits, tavernTier, currentRound));
+            units.AddRange(GenerateUnits(sameSpecificationUnits, tavernTier, currentRound));
 
             return units;
         }
 
-        private List<BaseUnit> GenerateUnits(List<BaseUnit> units, int tavernTier)
+        private List<BaseUnit> GenerateUnits(List<BaseUnit> units, int tavernTier, int currentRound)
         {
             List<BaseUnit> generatedUnits = new List<BaseUnit>();
 
