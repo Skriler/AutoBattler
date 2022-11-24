@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using AutoBattler.Data.ScriptableObjects.Databases;
@@ -11,7 +10,6 @@ using AutoBattler.UI.PlayerInfo;
 using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 using AutoBattler.Data.Enums;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace AutoBattler.Managers
 {
@@ -61,6 +59,7 @@ namespace AutoBattler.Managers
             UIPlayerInfo.Instance.SetActiveConfrontationModeObjects(!isSoloMode);
 
             BattleManager.Instance.Setup(player, bots);
+            CameraMovement.Instance.CalculateBackgroundParameters();
         }
 
         private void SetActiveConfrontationModeObjects(bool isActive)

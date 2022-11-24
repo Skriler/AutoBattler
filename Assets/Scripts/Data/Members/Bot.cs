@@ -40,6 +40,15 @@ namespace AutoBattler.Data.Members
             LevelUpTavernTierCost = Field.GetOpenedCellsAmount();
         }
 
+        public override void TakeDamage(int damage)
+        {
+            base.TakeDamage(damage);
+            BotsEventManager.SendHealthAmountChanged(Health, Id);
+
+            if (!IsAlive())
+                Death();
+        }
+
         public void MakeTurn(int currentRound, int amountOfAliveMembers)
         {
             if (shopDb == null)
@@ -83,7 +92,7 @@ namespace AutoBattler.Data.Members
 
             LoadDataFromMemberData(memberData);
 
-            //BotsEventManager.SendHealthAmountChanged(Health, id);
+            BotsEventManager.SendHealthAmountChanged(Health, id);
             BotsEventManager.SendTavernTierIncreased(TavernTier, Id);
         }
 

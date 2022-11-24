@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using AutoBattler.EventManagers;
 using AutoBattler.Managers;
+using AutoBattler.Data.Members;
 
 namespace AutoBattler.UI.PlayerInfo
 {
@@ -30,20 +32,24 @@ namespace AutoBattler.UI.PlayerInfo
 
             PlayerEventManager.OnGoldAmountChanged += SetGold;
             PlayerEventManager.OnHealthAmountChanged += SetHealth;
+            PlayerEventManager.OnHealthAmountChanged += UpdatePlayerHealth;
             PlayerEventManager.OnTavernTierIncreased += SetTavernTier;
             PlayerEventManager.OnRoundsWonAmountIncreased += SetGoldenCup;
             FightEventManager.OnFightStarted += DisableButtons;
             FightEventManager.OnFightEnded += EnableButtons;
+            BotsEventManager.OnHealthAmountChanged += UpdateMemberHealth;
         }
 
         protected void OnDestroy()
         {
             PlayerEventManager.OnGoldAmountChanged -= SetGold;
             PlayerEventManager.OnHealthAmountChanged -= SetHealth;
+            PlayerEventManager.OnHealthAmountChanged -= UpdatePlayerHealth;
             PlayerEventManager.OnTavernTierIncreased -= SetTavernTier;
             PlayerEventManager.OnRoundsWonAmountIncreased -= SetGoldenCup;
             FightEventManager.OnFightStarted -= DisableButtons;
             FightEventManager.OnFightEnded -= EnableButtons;
+            BotsEventManager.OnHealthAmountChanged -= UpdateMemberHealth;
         }
 
         private void SetGold(int gold) => textGold.text = gold.ToString();
@@ -68,6 +74,20 @@ namespace AutoBattler.UI.PlayerInfo
         {
             bigSidePanelBackground.SetActive(isActive);
             membersHealth.ForEach(h => h.gameObject.SetActive(isActive));
+        }
+
+        public void UpdatePlayerHealth(int health)
+        {
+            UIMemberHealth UIPlayerHealth = membersHealth.Where(h => h.Owner is Player).First();
+            UIPlayerHealth?.UpdateDescription();
+            UIPlayerHealth?.UpdateHealth();
+        }
+
+        public void UpdateMemberHealth(int health, string membersId)
+        {
+            UIMemberHealth UIMemberHealth = membersHealth.Where(h => h.Owner.Id == membersId).First();
+            UIMemberHealth?.UpdateDescription();
+            UIMemberHealth?.UpdateHealth();
         }
     }
 }

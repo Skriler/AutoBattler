@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Background
+  - Canvas
+  - UIEffectsContainer
+  - Unit
   layers:
   - Default
   - TransparentFX
@@ -25,9 +29,9 @@ TagManager:
   - 
   - 
   - 
-  - Layer 1
-  - Layer 2
-  - Layer 3
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -38,15 +42,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
+  - name: Background
+    uniqueID: 3030237883
     locked: 0
-  - name: Layer 1
-    uniqueID: 2425651459
+  - name: BackgroundGrass
+    uniqueID: 4189426099
     locked: 0
-  - name: Layer 2
+  - name: BackgroundWall
     uniqueID: 4250941897
     locked: 0
-  - name: Layer 3
-    uniqueID: 4189426099
+  - name: BackgroundItems
+    uniqueID: 2425651459
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

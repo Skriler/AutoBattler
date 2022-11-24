@@ -1,11 +1,13 @@
 using UnityEngine;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Managers
 {
     public class CameraMovement : Manager<CameraMovement>
     {
         [Header("Components")]
-        [SerializeField] private SpriteRenderer backgroundSpriteRenderer;
+        [SerializeField] private SpriteRenderer soloModeBackground;
+        [SerializeField] private SpriteRenderer confrontationModeBackground;
 
         [Header("Parameters")]
         [SerializeField] private float zoomStep = 0.5f;
@@ -21,12 +23,6 @@ namespace AutoBattler.Managers
 
         public bool IsActive { get; set; } = true;
         public bool IsOnUI { get; set; } = false;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            CalculateBackgroundParameters();
-        }
 
         private void Start()
         {
@@ -57,10 +53,17 @@ namespace AutoBattler.Managers
             SetNewCameraSize(newCameraSize);
         }
 
-        private void CalculateBackgroundParameters()
+        public void CalculateBackgroundParameters()
         {
-            Vector3 position = backgroundSpriteRenderer.transform.position;
-            Vector3 size = backgroundSpriteRenderer.bounds.size;
+            SpriteRenderer currentBackground = GameManager.Instance.GameMode switch
+            {
+                GameMode.Solo => soloModeBackground,
+                GameMode.Confrontation => confrontationModeBackground,
+                _ => confrontationModeBackground
+            };
+
+            Vector3 position = currentBackground.transform.position;
+            Vector3 size = currentBackground.bounds.size;
 
             backgroundMinX = position.x - size.x / 2f;
             backgroundMaxX = position.x + size.x / 2f;
