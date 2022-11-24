@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: King
   attackDescription: Attack multiple units.
-  cost: 6
+  cost: 9
   tavernTier: 5
   race: 0
   specification: 4
   maxHealth: 180
   damageType: 1
-  attackDamage: 31.5
+  attackDamage: 16.5
   attackSpeed: 2.9
   damageTypesProtectionPercentage:
   - damageType: 0

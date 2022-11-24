@@ -32,10 +32,11 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
                 .FirstOrDefault();
         }
 
-        public ShopUnitEntity GetRandomShopUnitEntityAtTavernTier(int tavernTier)
+        public ShopUnitEntity GetRandomShopUnitEntityAtTavernTier(int tavernTier, int maxCost)
         {
             List<ShopUnitEntity> units = shopUnits
                 .Where(u => u.characteristics.TavernTier == tavernTier)
+                .Where(u => u.characteristics.Cost <= maxCost)
                 .ToList();
 
             return units[Random.Range(0, units.Count)];

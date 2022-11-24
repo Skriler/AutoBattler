@@ -134,7 +134,10 @@ namespace AutoBattler.UnitsContainers.Grids
 
             TileStatus tileStatus;
 
-            tileStatus = IsFreeTile(index) ? TileStatus.Free : TileStatus.Occupied;
+            tileStatus = 
+                IsFreeTile(index) && unitsContainer.CanPlaceUnits ? 
+                TileStatus.Free : 
+                TileStatus.Occupied;
 
             previousTileStatus = currentTile.Status;
             previousTile = currentTile;
@@ -156,7 +159,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
             Tile currentTile = GetTileAtPosition(worldPosition, out Vector2Int index);
 
-            if (currentTile == null || !IsFreeTile(index))
+            if (currentTile == null || !IsFreeTile(index) || !unitsContainer.CanPlaceUnits)
                 return;
 
             unit.transform.position = currentTile.transform.position;

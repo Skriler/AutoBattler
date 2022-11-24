@@ -273,11 +273,12 @@ namespace AutoBattler.Data.Units
 
         public void Resurrect()
         {
+            if (!IsAlive())
+                animator.SetTrigger("idleTrigger");
+
             Health = MaxHealth;
             Stamina = 0;
             regenStamina = null;
-
-            animator.SetTrigger("idleTrigger");
 
             healthBar.Show();
             healthBar.UpdateHealth(Health);

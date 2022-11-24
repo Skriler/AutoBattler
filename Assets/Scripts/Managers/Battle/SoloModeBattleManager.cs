@@ -12,6 +12,7 @@ namespace AutoBattler.Managers.Battle
     {
         [Header("Parameters")]
         [SerializeField] private List<TavernTierLevelUpTurns> tavernTierLevelUpTurns;
+        [SerializeField] private int maxGeneratedUnitsByCharacteristic = 6;
 
         public override void StartBattle()
         {
@@ -50,7 +51,7 @@ namespace AutoBattler.Managers.Battle
 
         private List<BaseUnit> GenerateUnits(int tavernTier, int currentRound)
         {
-            ShopUnitEntity keyUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(tavernTier);
+            ShopUnitEntity keyUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(tavernTier, currentRound);
 
             List<BaseUnit> units = new List<BaseUnit>();
             units.Add(keyUnit.prefab);
@@ -68,15 +69,13 @@ namespace AutoBattler.Managers.Battle
         {
             List<BaseUnit> generatedUnits = new List<BaseUnit>();
 
-            int unitsAmount = tavernTier switch
-            {
-                1 => Random.Range(1, 3),
-                2 => Random.Range(2, 4),
-                3 => Random.Range(2, 5),
-                4 => Random.Range(3, 6),
-                5 => Random.Range(4, 7),
-                _ => Random.Range(1, 7)
-            };
+            int minUnitsAmount = tavernTier - 1; 
+            int maxUnitsAmount = 
+                (tavernTier + currentRound + 1) / 2 >= maxGeneratedUnitsByCharacteristic ?
+                maxGeneratedUnitsByCharacteristic :
+                (tavernTier + currentRound + 1) / 2;
+
+            int unitsAmount = Random.Range(minUnitsAmount, maxUnitsAmount);
 
             for (int i = 0; i < unitsAmount; ++i)
                 generatedUnits.Add(units[Random.Range(0, units.Count)]);

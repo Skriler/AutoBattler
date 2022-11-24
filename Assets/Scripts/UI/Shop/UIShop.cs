@@ -85,7 +85,7 @@ namespace AutoBattler.UI.Shop
             IsFreezed = !IsFreezed;
         }
 
-        public void RefreshUnits()
+        public void OnRefreshButtonClick()
         {
             if (!player.IsEnoughGoldForAction(refreshCost))
             {
@@ -93,11 +93,13 @@ namespace AutoBattler.UI.Shop
                 return;
             }
 
-            if (gameObject.activeSelf)
-                refreshButton.PlayClickSound();
-
+            refreshButton.PlayClickSound();
             player.SpendGold(refreshCost);
+            RefreshUnits();
+        }
 
+        private void RefreshUnits()
+        {
             SetActiveUnitCards();
             GenerateUnits();
 

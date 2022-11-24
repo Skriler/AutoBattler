@@ -51,7 +51,6 @@ namespace AutoBattler.Managers
         private void Start()
         {
             RunBotsRoundLogic();
-            RewardMembers();
 
             DataPersistenceManager.Instance.LoadGame();
             GameMode = DataPersistenceManager.Instance.GameMode;
@@ -139,9 +138,7 @@ namespace AutoBattler.Managers
         }
 
         private IEnumerator EndBattleCoroutine()
-        {
-            ++CurrentRound;
-            
+        { 
             yield return new WaitForSeconds(endBattleWaitTime);
 
             currentBattleManager.EndBattle();
@@ -155,6 +152,7 @@ namespace AutoBattler.Managers
             {
                 currentNotification?.Show();
                 RewardMembers();
+                ++CurrentRound;
                 RunBotsRoundLogic();
             }
         }
@@ -167,7 +165,7 @@ namespace AutoBattler.Managers
         private void RewardMembers()
         {
             player.GainGold(player.GetRoundRewardGoldAmount());
-            bots.ForEach(b => b.GetRoundRewardGoldAmount());
+            bots.ForEach(b => b.GainGold(b.GetRoundRewardGoldAmount()));
         }
 
         private bool IsGameEnded()

@@ -28,8 +28,6 @@ namespace AutoBattler.Data.Members
 
         public override MemberFieldContainer GetFieldContainer() => Field;
 
-        public override FieldContainer GetEnemyFieldContainer() => EnemyField;
-
         public override void LevelUpTavernTier()
         {
             if (IsMaxTavernTier() || !IsEnoughGoldForAction(LevelUpTavernTierCost))
@@ -65,7 +63,7 @@ namespace AutoBattler.Data.Members
 
         private void BuyRandomUnit()
         {
-            ShopUnitEntity shopUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(TavernTier);
+            ShopUnitEntity shopUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(TavernTier, 99);
             Storage.AddUnit(shopUnit);
         }
 

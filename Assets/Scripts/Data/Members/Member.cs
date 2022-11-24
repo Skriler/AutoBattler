@@ -41,8 +41,6 @@ namespace AutoBattler.Data.Members
 
         public abstract MemberFieldContainer GetFieldContainer();
 
-        public abstract FieldContainer GetEnemyFieldContainer();
-
         public abstract void LoadData(GameData data);
 
         public abstract void SaveData(GameData data);

@@ -42,8 +42,6 @@ namespace AutoBattler.Data.Members
 
         public override MemberFieldContainer GetFieldContainer() => Field;
 
-        public override FieldContainer GetEnemyFieldContainer() => EnemyField;
-
         public override void SpendGold(int actionCost)
         {
             base.SpendGold(actionCost);

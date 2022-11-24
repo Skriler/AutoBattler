@@ -1,5 +1,7 @@
-using AutoBattler.Data.Enums;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Data.Units
 {
@@ -97,19 +99,29 @@ namespace AutoBattler.Data.Units
             if (units == null || units.Count == 0)
                 return null;
 
+            Dictionary<BaseUnit, float> leastHealthAmountUnits = new Dictionary<BaseUnit, float>();
             float leastHealthAmount = units[0].Health;
-            BaseUnit leastHealthAmountUnit = units[0];
 
             foreach (BaseUnit unit in units)
             {
-                if (unit.Health >= leastHealthAmount)
+                if (unit.Health > leastHealthAmount)
                     continue;
 
-                leastHealthAmount = unit.Health;
-                leastHealthAmountUnit = unit;
+                if (unit.Health < leastHealthAmount)
+                {
+                    leastHealthAmountUnits.Clear();
+                    leastHealthAmount = unit.Health;
+                    leastHealthAmountUnits.Add(unit, unit.Health);
+                } 
+                else
+                {
+                    leastHealthAmountUnits.Add(unit, unit.Health);
+                }
             }
 
-            return leastHealthAmountUnit;
+            return leastHealthAmountUnits
+                .ElementAt(Random.Range(0, leastHealthAmountUnits.Count))
+                .Key;
         }
     }
 }

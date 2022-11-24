@@ -5,6 +5,8 @@ namespace AutoBattler.UnitsContainers.Containers
 {
     public abstract class UnitsContainer : MonoBehaviour
     {
+        public bool CanPlaceUnits { get; set; } = true;
+
         public abstract void AddUnit(BaseUnit unit, Vector2Int index);
 
         public abstract void RemoveUnit(BaseUnit unit);

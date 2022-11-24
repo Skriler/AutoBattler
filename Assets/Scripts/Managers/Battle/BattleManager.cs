@@ -3,6 +3,7 @@ using UnityEngine;
 using AutoBattler.Data.Members;
 using AutoBattler.Data.Units;
 using AutoBattler.Data.ScriptableObjects.Databases;
+using AutoBattler.UnitsContainers.Containers.Field;
 
 namespace AutoBattler.Managers.Battle
 {
@@ -31,7 +32,7 @@ namespace AutoBattler.Managers.Battle
 
         public bool IsMemberArmyAlive(Member member) => member.GetFieldContainer().IsAtLeastOneAliveUnit();
 
-        public bool IsMemberEnemyArmyAlive(Member member) => member.GetEnemyFieldContainer().IsAtLeastOneAliveUnit();
+        public bool IsMemberEnemyArmyAlive(Member member) => member.EnemyField.IsAtLeastOneAliveUnit();
 
         public bool IsBothMemberArmiesAlive(Member member) => IsMemberArmyAlive(member) && IsMemberEnemyArmyAlive(member);
 
@@ -47,10 +48,14 @@ namespace AutoBattler.Managers.Battle
 
         protected void EnterFightModeForMemberArmies(Member member, BaseUnit[,] playerEnemyUnits)
         {
-            member.EnemyField.SpawnUnits(playerEnemyUnits);
+            MemberFieldContainer field = member.GetFieldContainer();
+            EnemyFieldContainer enemyField = member.EnemyField;
 
-            BaseUnit[,] memberArmy = member.GetFieldContainer().GetArmy();
-            BaseUnit[,] memberEnemyArmy = member.GetEnemyFieldContainer().GetArmy();
+            field.CanPlaceUnits = false;
+            enemyField.SpawnUnits(playerEnemyUnits);
+
+            BaseUnit[,] memberArmy = field.GetArmy();
+            BaseUnit[,] memberEnemyArmy = enemyField.GetArmy();
 
             for (int i = 0; i < armyWidth; ++i)
             {
@@ -64,8 +69,12 @@ namespace AutoBattler.Managers.Battle
 
         protected void ExitFightModeForArmies(Member member)
         {
-            BaseUnit[,] memberArmy = member.GetFieldContainer().GetArmy();
-            BaseUnit[,] memberEnemyArmy = member.GetEnemyFieldContainer().GetArmy();
+            MemberFieldContainer field = member.GetFieldContainer();
+
+            field.CanPlaceUnits = true;
+
+            BaseUnit[,] memberArmy = field.GetArmy();
+            BaseUnit[,] memberEnemyArmy = member.EnemyField.GetArmy();
 
             for (int i = 0; i < armyWidth; ++i)
             {

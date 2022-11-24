@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerCharacteristics
   m_EditorClassIdentifier: 
   startHealth: 10
-  startGold: 99
+  startGold: 1
   startTavernTier: 1
   maxHealth: 10
   maxGold: 99

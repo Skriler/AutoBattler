@@ -4,7 +4,7 @@ using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Buffs.Containers;
 using AutoBattler.EventManagers;
 using AutoBattler.UnitsContainers.Enums;
-
+using AutoBattler.UI.Tooltips;
 
 namespace AutoBattler.UnitsContainers.Containers.Field
 {
@@ -59,6 +59,12 @@ namespace AutoBattler.UnitsContainers.Containers.Field
                 {
                     if (units[i, j] == null)
                         continue;
+
+                    if (units[i, j] == UIUnitTooltip.Instance.CurrentUnit)
+                    {
+                        UIUnitTooltip.Instance.Hide();
+                        UIUnitDescription.Instance.Hide();
+                    }
 
                     enemyFieldGridManager.ChangeTileStatus(new Vector2Int(i, j), TileStatus.Closed);
                     Destroy(units[i, j].gameObject);
