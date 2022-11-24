@@ -19,7 +19,7 @@ namespace AutoBattler.UI.Tooltips
 
         public abstract void Setup(Object data);
 
-        protected void Start()
+        protected virtual void Start()
         {
             rectTransform = transform.GetComponent<RectTransform>();
             currentCamera = Camera.current;

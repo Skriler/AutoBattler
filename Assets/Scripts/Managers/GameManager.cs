@@ -10,6 +10,7 @@ using AutoBattler.UI.PlayerInfo;
 using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 using AutoBattler.Data.Enums;
+using AutoBattler.Managers.Battle;
 
 namespace AutoBattler.Managers
 {
@@ -20,6 +21,8 @@ namespace AutoBattler.Managers
         [SerializeField] private List<Bot> bots;
         [SerializeField] private ShopDatabase shopDb;
         [SerializeField] private GameObject UICanvas;
+        [SerializeField] private BattleManager soloModeBattleManager;
+        [SerializeField] private BattleManager confrontationModeBattleManager;
 
         [Header("Prefabs")]
         [SerializeField] private RoundResultNotification roundLostNotification;
@@ -33,6 +36,7 @@ namespace AutoBattler.Managers
         [SerializeField] private int damageForLose = 1;
         [SerializeField] private int roundsWonAmountForWin = 10;
 
+        private BattleManager currentBattleManager;
         private RoundResultNotification currentNotification;
 
         public static bool IsPlayerWon { get; private set; }
@@ -52,19 +56,26 @@ namespace AutoBattler.Managers
             DataPersistenceManager.Instance.LoadGame();
             GameMode = DataPersistenceManager.Instance.GameMode;
 
-            bool isSoloMode = GameMode == GameMode.Solo ? true : false;
+            HideAnotherGameModeObjects();
 
-            SetActiveConfrontationModeObjects(!isSoloMode);
-            UIPlayerInfo.Instance.SetActiveSoloModeObjects(isSoloMode);
-            UIPlayerInfo.Instance.SetActiveConfrontationModeObjects(!isSoloMode);
+            currentBattleManager = GameMode switch
+            {
+                GameMode.Solo => soloModeBattleManager,
+                GameMode.Confrontation => confrontationModeBattleManager,
+                _ => soloModeBattleManager
+            };
+            currentBattleManager.Setup(player, bots);
 
-            BattleManager.Instance.Setup(player, bots);
             CameraMovement.Instance.CalculateBackgroundParameters();
         }
 
-        private void SetActiveConfrontationModeObjects(bool isActive)
+        private void HideAnotherGameModeObjects()
         {
-            bots.ForEach(b => b.gameObject.SetActive(isActive));
+            bool isSoloMode = GameMode == GameMode.Solo ? true : false;
+
+            bots.ForEach(b => b.gameObject.SetActive(!isSoloMode));
+            UIPlayerInfo.Instance.SetActiveSoloModeObjects(isSoloMode);
+            UIPlayerInfo.Instance.SetActiveConfrontationModeObjects(!isSoloMode);
         }
 
         public void OpenMenu()
@@ -75,65 +86,27 @@ namespace AutoBattler.Managers
 
         public void StartBattle()
         {
-            switch (GameMode)
-            {
-                case GameMode.Solo:
-                    StartSoloModeBattle();
-                    break;
-                case GameMode.Confrontation:
-                    StartConfrontationModeBattle();
-                    break;
-            }
-        }
-
-        private void StartSoloModeBattle()
-        {
-            BattleManager.Instance.StartSoloModeBattle();
+            currentBattleManager.StartBattle();
             FightEventManager.SendFightStarted();
-            StartCoroutine(CheckSoloModeBattleStatusCoroutine());
+            StartCoroutine(CheckBattleStatusCoroutine());
         }
 
-        private void StartConfrontationModeBattle()
+        private IEnumerator CheckBattleStatusCoroutine()
         {
-            BattleManager.Instance.StartConfrontationModeBattle();
-            FightEventManager.SendFightStarted();
-            StartCoroutine(CheckConfrontationModeBattleStatusCoroutine());
-        }
-
-        private IEnumerator CheckSoloModeBattleStatusCoroutine()
-        {
-            while (BattleManager.Instance.IsBothMemberArmiesAlive(player))
+            while (!currentBattleManager.IsBattleEnded())
                 yield return checkBattleWaitTime;
 
-            if (BattleManager.Instance.IsMemberArmyAlive(player))
-                PlayerWonBattle();
-            else if (BattleManager.Instance.IsMemberEnemyArmyAlive(player))
-                PlayerLostBattle();
+            if (currentBattleManager.IsMemberArmyAlive(player))
+                CreatePlayerWonBattleNotification();
+            else
+                CreatePlayerLostBattleNotification();
 
-            StartCoroutine(EndBattleCoroutine());
-        }
-
-        private IEnumerator CheckConfrontationModeBattleStatusCoroutine()
-        {
-            while (!BattleManager.Instance.IsConfrontationModeBattlesEnded())
-                yield return checkBattleWaitTime;
-
-            Dictionary<Member, bool> fightResults = BattleManager.Instance.GetFightResults();
+            Dictionary<Member, bool> fightResults = currentBattleManager.GetFightResults();
 
             Member member;
             foreach (var fightResult in fightResults)
             {
                 member = fightResult.Key;
-
-                if (member is Player)
-                {
-                    if (fightResult.Value)
-                        PlayerWonBattle();
-                    else
-                        PlayerLostBattle();
-                    continue;
-                }
-
 
                 if (fightResult.Value)
                 {
@@ -148,25 +121,21 @@ namespace AutoBattler.Managers
             StartCoroutine(EndBattleCoroutine());
         }
 
-        private void PlayerLostBattle()
+        private void CreatePlayerLostBattleNotification()
         {
             currentNotification = Instantiate(roundLostNotification, UICanvas.transform);
             (currentNotification as RoundLostNotification).Setup(
                 player.GetRoundRewardGoldAmount(),
                 -damageForLose
                 );
-
-            player.TakeDamage(damageForLose);
         }
 
-        private void PlayerWonBattle()
+        private void CreatePlayerWonBattleNotification()
         {
             currentNotification = Instantiate(roundWonNotification, UICanvas.transform);
             (currentNotification as RoundWonNotification).Setup(
                 player.GetRoundRewardGoldAmount()
                 );
-
-            player.IncreaseRoundsWonAmountByOne();
         }
 
         private IEnumerator EndBattleCoroutine()
@@ -175,11 +144,7 @@ namespace AutoBattler.Managers
             
             yield return new WaitForSeconds(endBattleWaitTime);
 
-            if (GameMode == GameMode.Solo)
-                BattleManager.Instance.EndSoloModeBattle();
-            else if (GameMode == GameMode.Confrontation)
-                BattleManager.Instance.EndConfrontationModeBattle();
-
+            currentBattleManager.EndBattle();
             FightEventManager.SendFightEnded();
 
             if (IsGameEnded())
