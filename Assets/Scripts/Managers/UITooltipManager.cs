@@ -6,8 +6,10 @@ namespace AutoBattler.Managers
     {
         public static T Instance { get; private set; }
 
-        protected void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             Instance = (T)this;
         }
     }

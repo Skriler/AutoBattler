@@ -17,11 +17,13 @@ namespace AutoBattler.UI.Menu
         [SerializeField] private GameObject gameModeSelectionMenu;
         [SerializeField] private Button continueButton;
         [SerializeField] private TextMeshProUGUI textVersion;
+        [SerializeField] private TextMeshProUGUI textShadowVersion;
         [SerializeField] private Image uiBackground;
 
         private void Start()
         {
             textVersion.text += Application.version;
+            textShadowVersion.text += Application.version;
 
             FileSaveSystem.LoadSettings();
             SetPlayerSettings();

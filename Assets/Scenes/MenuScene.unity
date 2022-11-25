@@ -3535,6 +3535,7 @@ MonoBehaviour:
   gameModeSelectionMenu: {fileID: 1685872399}
   continueButton: {fileID: 6242025746477103913}
   textVersion: {fileID: 442022426}
+  textShadowVersion: {fileID: 989100359}
   uiBackground: {fileID: 2092634341}
 --- !u!114 &873481013 stripped
 MonoBehaviour:
@@ -11393,7 +11394,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Version:'
+  m_text: 'Version: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867, type: 2}
   m_sharedMaterial: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,

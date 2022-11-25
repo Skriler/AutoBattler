@@ -13,7 +13,8 @@ namespace AutoBattler.Managers
         [SerializeField] private float zoomStep = 0.5f;
         [SerializeField] private float wheelStep = 0.2f;
         [SerializeField] private float minCameraSize = 2;
-        [SerializeField] private float maxCameraSize = 6;
+        [SerializeField] private float maxSoloModeCameraSize = 6;
+        [SerializeField] private float maxConfrontationModeCameraSize = 6;
         [SerializeField] private string backgroundTag = "Background";
 
         private Camera mainCamera;
@@ -84,6 +85,13 @@ namespace AutoBattler.Managers
 
         private void SetNewCameraSize(float newCameraSize)
         {
+            float maxCameraSize = GameManager.Instance.GameMode switch
+            {
+                GameMode.Solo => maxSoloModeCameraSize,
+                GameMode.Confrontation => maxConfrontationModeCameraSize,
+                _ => maxSoloModeCameraSize,
+            };
+
             mainCamera.orthographicSize = Mathf.Clamp(newCameraSize, minCameraSize, maxCameraSize);
             mainCamera.transform.position = ClampCamera(mainCamera.transform.position);
         }

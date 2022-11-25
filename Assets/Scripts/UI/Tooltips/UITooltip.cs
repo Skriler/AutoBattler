@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using AutoBattler.EventManagers;
 
 namespace AutoBattler.UI.Tooltips
 {
@@ -19,6 +20,16 @@ namespace AutoBattler.UI.Tooltips
 
         public abstract void Setup(Object data);
 
+        protected virtual void Awake()
+        {
+            UIEventManager.OnScreenSizeChanged += SetScreenParameters;
+        }
+
+        protected void OnDestroy()
+        {
+            UIEventManager.OnScreenSizeChanged -= SetScreenParameters;
+        }
+
         protected virtual void Start()
         {
             rectTransform = transform.GetComponent<RectTransform>();
@@ -29,16 +40,21 @@ namespace AutoBattler.UI.Tooltips
 
         protected void OnEnable()
         {
-            UICanvasSize = new Vector2(
-                UICanvasRectTransform.rect.width,
-                UICanvasRectTransform.rect.height
-                );
-            screenSize = new Vector2(Screen.width, Screen.height);
+            SetScreenParameters();
         }
 
         protected void Update()
         {
             CalculatePosition();
+        }
+
+        private void SetScreenParameters()
+        {
+            UICanvasSize = new Vector2(
+                UICanvasRectTransform.rect.width,
+                UICanvasRectTransform.rect.height
+                );
+            screenSize = new Vector2(Screen.width, Screen.height);
         }
 
         private void CalculatePosition()
@@ -48,14 +64,15 @@ namespace AutoBattler.UI.Tooltips
 
             mousePositon = ClampPosition(mousePositon);
 
-            Vector2 localPoint;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                transform.parent.GetComponent<RectTransform>(),
-                mousePositon,
-                currentCamera,
-                out localPoint);
+            //Vector2 localPoint;
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            //    transform.parent.GetComponent<RectTransform>(),
+            //    mousePositon,
+            //    currentCamera,
+            //    out localPoint);
 
-            transform.localPosition = localPoint;
+            //transform.localPosition = localPoint;
+            transform.position = mousePositon;
         }
 
         private Vector2 ClampPosition(Vector2 position)
@@ -87,6 +104,7 @@ namespace AutoBattler.UI.Tooltips
 
         public void Show()
         {
+            CalculatePosition();
             gameObject.SetActive(true);
             transform.SetAsLastSibling();
         }

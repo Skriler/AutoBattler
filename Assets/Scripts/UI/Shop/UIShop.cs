@@ -49,16 +49,15 @@ namespace AutoBattler.UI.Shop
             gameObject.SetActive(false);
         }
 
-        private void OnEnable()
-        {
-            levelUpButton.UpdateDescription(player.LevelUpTavernTierCost);
-        }
-
         public void MouseEnter() => CameraMovement.Instance.IsOnUI = true;
 
         public void MouseExit() => CameraMovement.Instance.IsOnUI = false;
 
-        public void Show() => gameObject.SetActive(!gameObject.activeSelf);
+        public void Show()
+        {
+            gameObject.SetActive(!gameObject.activeSelf);
+            levelUpButton.UpdateDescription(player.LevelUpTavernTierCost);
+        }
 
         public void OnCardClick(UICard card, ShopUnitEntity shopUnit)
         {
