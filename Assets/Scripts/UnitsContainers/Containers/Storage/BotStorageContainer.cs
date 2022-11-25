@@ -40,7 +40,7 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
             return unitsAmount;
         }
 
-        public BaseUnit GetUnit()
+        public BaseUnit GetFirstUnit()
         {
             for (int i = 0; i < units.Length; ++i)
             {
@@ -53,55 +53,34 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
             return null;
         }
 
-        public BaseUnit GetWeakestUnit()
+        public BaseUnit GetWeakestUnit() => GetMostUnit(true);
+
+        public BaseUnit GetStrongestUnit() => GetMostUnit(false);
+
+        private BaseUnit GetMostUnit(bool isWeakestRequired)
         {
-            BaseUnit weakestUnit = null;
+            BaseUnit mostUnit = GetFirstUnit();
+
+            if (mostUnit == null)
+                return mostUnit;
 
             for (int i = 0; i < units.Length; ++i)
             {
-                //for (int j = 0; j < Field.GetLength(1); ++j)
-                //{
-                //    if (Field[i, j] == null)
-                //        continue;
+                if (units[i] == null)
+                    continue;
 
-                //    if (!IsNewUnitBetter(Field[i, j], weakestUnit))
-                //    {
-                //        weakestUnit = Field[i, j];
-                //        weakestUnitCoords.X = i;
-                //        weakestUnitCoords.Y = j;
-                //    }
-                //}
+                if (isWeakestRequired && IsUnitWeaker(units[i], mostUnit))
+                    mostUnit = units[i];
+                else if (!isWeakestRequired && IsUnitStronger(units[i], mostUnit))
+                    mostUnit = units[i];
             }
 
-            return weakestUnit;
+            return mostUnit;
         }
 
-        //private bool IsNewUnitBetter(Unit newUnit, Unit oldUnit)
-        //{
-        //    if (oldUnit == null)
-        //        return true;
+        private bool IsUnitWeaker(BaseUnit newUnit, BaseUnit oldUnit) => newUnit.MaxHealth < oldUnit.MaxHealth;
 
-        //    int newUnitScore = 0;
-        //    int oldUnitScore = 0;
-
-        //    CheckCharacteristic(newUnit.StartHealth, oldUnit.StartHealth, ref newUnitScore, ref oldUnitScore);
-        //    CheckCharacteristic(newUnit.SpecificationPart.Strength, oldUnit.SpecificationPart.Strength, ref newUnitScore, ref oldUnitScore);
-        //    CheckCharacteristic(newUnit.SpecificationPart.AttackRange, oldUnit.SpecificationPart.AttackRange, ref newUnitScore, ref oldUnitScore);
-
-        //    if (newUnitScore > oldUnitScore)
-        //        return true;
-        //    else
-        //        return false;
-
-        //}
-
-        //private void CheckCharacteristic(int newUnitChar, int oldUnitChar, ref int newUnitScore, ref int oldUnitScore)
-        //{
-        //    if (newUnitChar >= oldUnitChar)
-        //        ++newUnitScore;
-        //    else
-        //        ++oldUnitScore;
-        //}
+        private bool IsUnitStronger(BaseUnit newUnit, BaseUnit oldUnit) => newUnit.MaxHealth > oldUnit.MaxHealth;
 
         public override void LoadData(GameData data)
         {

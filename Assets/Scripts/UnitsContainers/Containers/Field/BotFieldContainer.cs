@@ -11,6 +11,8 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 {
     public class BotFieldContainer : MemberFieldContainer
     {
+        public BaseUnit[,] Units => units;
+
         public BotBuffContainer Buffs { get; private set; }
 
         protected override void Awake()
@@ -137,7 +139,53 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             return freeCellsOnLine;
         }
 
-        private int GetAnotherLineIndex(int lineIndex) => lineIndex == 1 ? 0 : 1;
+        public BaseUnit GetFirstUnit()
+        {
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j] == null)
+                        continue;
+
+                    return units[i, j];
+                }
+            }
+
+            return null;
+        }
+
+        public BaseUnit GetWeakestUnit() => GetMostUnit(true);
+
+        public BaseUnit GetStrongestUnit() => GetMostUnit(false);
+
+        private BaseUnit GetMostUnit(bool isWeakestRequired)
+        {
+            BaseUnit mostUnit = GetFirstUnit();
+
+            if (mostUnit == null)
+                return mostUnit;
+
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j] == null)
+                        continue;
+
+                    if (isWeakestRequired && IsUnitWeaker(units[i, j], mostUnit))
+                        mostUnit = units[i, j];
+                    else if (!isWeakestRequired && IsUnitStronger(units[i, j], mostUnit))
+                        mostUnit = units[i, j];
+                }
+            }
+
+            return mostUnit;
+        }
+
+        private bool IsUnitWeaker(BaseUnit newUnit, BaseUnit oldUnit) => newUnit.MaxHealth < oldUnit.MaxHealth;
+
+        private bool IsUnitStronger(BaseUnit newUnit, BaseUnit oldUnit) => newUnit.MaxHealth > oldUnit.MaxHealth;
 
         public override void LoadData(GameData data)
         {

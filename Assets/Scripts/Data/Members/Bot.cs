@@ -60,13 +60,13 @@ namespace AutoBattler.Data.Members
             switch (currentRound)
             {
                 case < (int)GamePhase.EarlyGame:
-                    EarlyGameRoundLogic(currentRound);
+                    EarlyGameRoundLogic();
                     break;
                 case < (int)GamePhase.PreMidGame:
-                    PreMidGameRoundLogic(currentRound);
+                    PreMidGameRoundLogic();
                     break;
                 case < (int)GamePhase.MidGame:
-                    MidGameRoundLogic(currentRound);
+                    MidGameRoundLogic();
                     break;
                 case < (int)GamePhase.PreLateGame:
                     PreLateGameRoundLogic();
@@ -77,7 +77,7 @@ namespace AutoBattler.Data.Members
             }
         }
 
-        private void EarlyGameRoundLogic(int currentRound)
+        private void EarlyGameRoundLogic()
         {
             while (Gold != 0)
             {
@@ -87,7 +87,7 @@ namespace AutoBattler.Data.Members
             ModifyFieldUnits();
         }
 
-        private void PreMidGameRoundLogic(int currentRound)
+        private void PreMidGameRoundLogic()
         {
             if (Field.IsFull() && IsEnoughGoldForAction(LevelUpTavernTierCost))
                 LevelUpTavernTier();
@@ -100,7 +100,7 @@ namespace AutoBattler.Data.Members
             ModifyFieldUnits();
         }
 
-        private void MidGameRoundLogic(int currentRound)
+        private void MidGameRoundLogic()
         {
             if (Field.IsFull())
                 LevelUpTavernTier();
@@ -177,8 +177,16 @@ namespace AutoBattler.Data.Members
             if (unitsAmountInStorage <= fieldOpenedCellsAmount)
                 PlaceAllUnitsOnField(unitsAmountInStorage);
 
-            if (Field.IsFull() && unitsAmountInStorage >= 2)
-                SellUnitFromStorage(Storage.GetWeakestUnit());
+            if (Field.IsFull() && unitsAmountInStorage > 0)
+            {
+
+
+                if (unitsAmountInStorage >= 2)
+                    SellUnitFromStorage(Storage.GetWeakestUnit());
+            }
+                
+
+
         }
 
         private void PlaceAllUnitsOnField(int unitsAmount)
@@ -186,7 +194,7 @@ namespace AutoBattler.Data.Members
             BaseUnit unit;
             for (int i = 0; i < unitsAmount; ++i)
             {
-                unit = Storage.GetUnit();
+                unit = Storage.GetFirstUnit();
                 Storage.RemoveUnit(unit);
                 Field.AddUnit(unit);
             }
