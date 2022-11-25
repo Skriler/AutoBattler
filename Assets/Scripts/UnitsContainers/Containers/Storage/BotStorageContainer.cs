@@ -1,12 +1,29 @@
+using System.Linq;
 using AutoBattler.Data.Units;
 using AutoBattler.SaveSystem.Data;
-using System.Linq;
+using UnityEngine;
 
 namespace AutoBattler.UnitsContainers.Containers.Storage
 { 
     public class BotStorageContainer : MemberStorageContainer
     {
         public bool IsEmpty() => GetUnitsAmount() == 0;
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            CanPlaceUnits = false;
+        }
+
+        public override void AddUnit(BaseUnit unit, Vector2Int index)
+        {
+            if (IsCellOccupied(index))
+                return;
+
+            base.AddUnit(unit, index);
+            units[index.x].SetDraggableActive(false);
+        }
 
         public int GetUnitsAmount()
         {

@@ -11,7 +11,6 @@ using AutoBattler.EventManagers;
 using AutoBattler.Managers;
 using AutoBattler.Data.Units;
 using AutoBattler.SaveSystem.Data;
-using System.Linq;
 
 namespace AutoBattler.Data.Members
 {
@@ -46,9 +45,6 @@ namespace AutoBattler.Data.Members
         {
             base.TakeDamage(damage);
             BotsEventManager.SendHealthAmountChanged(Health, Id);
-
-            if (!IsAlive())
-                Death();
         }
 
         public void MakeTurn(int currentRound, int amountOfAliveMembers)
@@ -78,10 +74,10 @@ namespace AutoBattler.Data.Members
 
         private void EarlyGameRoundLogic(int currentRound)
         {
-            do
+            while (Gold != 0)
             {
                 BuyUnit();
-            } while (Gold != 0);
+            }
             
             ModifyFieldUnits();
         }

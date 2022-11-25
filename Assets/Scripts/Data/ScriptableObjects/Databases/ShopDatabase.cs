@@ -68,6 +68,9 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
                 .Where(u => u.characteristics.Cost <= maxCost)
                 .ToList();
 
+            if (units.Count == 0)
+                return default(ShopUnitEntity);
+
             return units[Random.Range(0, units.Count)];
         }
 
@@ -78,6 +81,9 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
                 .Where(u => u.characteristics.TavernTier <= maxTavernTier)
                 .Where(u => u.characteristics.Cost <= maxCost)
                 .ToList();
+
+            if (units.Count == 0)
+                return default(ShopUnitEntity);
 
             return units[Random.Range(0, units.Count)];
         }

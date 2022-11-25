@@ -144,6 +144,8 @@ namespace AutoBattler.Managers
             currentBattleManager.EndBattle();
             FightEventManager.SendFightEnded();
 
+            CheckAndRemoveDeadBots();
+
             if (IsGameEnded())
             {
                 LoadResultScene();
@@ -151,6 +153,8 @@ namespace AutoBattler.Managers
             else
             {
                 currentNotification?.Show();
+                currentBattleManager?.Setup(player, bots);
+
                 RewardMembers();
                 ++CurrentRound;
                 RunBotsRoundLogic();
@@ -173,16 +177,29 @@ namespace AutoBattler.Managers
             if (player.Health <= 0)
                 return true;
 
-            if (GameMode == GameMode.Solo && 
-                player.RoundsWonAmount >= roundsWonAmountForWin)
+            if (GameMode == GameMode.Solo && player.RoundsWonAmount >= roundsWonAmountForWin)
                 return true;
 
-            if (GameMode == GameMode.Confrontation)
-            {
-
-            }
+            if (GameMode == GameMode.Confrontation && bots.Count == 0)
+                return true;
 
             return false;
+        }
+
+        private void CheckAndRemoveDeadBots()
+        {
+            List<Bot> botForDelete = new List<Bot>();
+
+            foreach (Bot bot in bots)
+            {
+                if (bot.IsAlive())
+                    continue;
+
+                botForDelete.Add(bot);
+                bot.Death();
+            }
+
+            botForDelete.ForEach(b => bots.Remove(b));
         }
 
         private void LoadResultScene()

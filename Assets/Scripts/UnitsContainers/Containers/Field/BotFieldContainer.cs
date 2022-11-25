@@ -16,6 +16,7 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             base.Awake();
 
             Buffs = transform.GetComponentInChildren<BotBuffContainer>();
+            CanPlaceUnits = false;
         }
 
         public override MemberBuffContainer GetMemberBuffContainer() => Buffs;

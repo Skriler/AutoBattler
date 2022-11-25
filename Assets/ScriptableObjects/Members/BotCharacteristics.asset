@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310bfadc3b8826542a10817b8d9205c2, type: 3}
   m_Name: BotCharacteristics
   m_EditorClassIdentifier: 
-  startHealth: 3
+  startHealth: 10
   startGold: 1
   startTavernTier: 1
   maxHealth: 10

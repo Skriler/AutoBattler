@@ -104,9 +104,9 @@ namespace AutoBattler.Data.Members
             ++RoundsWonAmount;
         }
 
-        public virtual void Death()
+        public void Death()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
         public void LoadDataFromMemberData(MemberData memberData)
