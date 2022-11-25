@@ -869,7 +869,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.3
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4569850890832137741
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UICanvasRectTransform: {fileID: 0}
-  offset: {x: 270, y: -30}
+  offset: {x: 10, y: 2}
   textTitle: {fileID: 4569850890284498726}
   textTypeValue: {fileID: 1773159807004978589}
   textBonus: {fileID: 4569850891221607627}
