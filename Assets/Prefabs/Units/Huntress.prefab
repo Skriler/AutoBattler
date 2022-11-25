@@ -230,38 +230,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2561483174923761787}
-          m_TargetAssemblyTypeName: AutoBattler.Data.Units.BaseUnit, Assembly-CSharp
-          m_MethodName: MouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2561483174923761787}
-          m_TargetAssemblyTypeName: AutoBattler.Data.Units.BaseUnit, Assembly-CSharp
-          m_MethodName: MouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!82 &1949380173
 AudioSource:
   m_ObjectHideFlags: 0
@@ -271,7 +239,8 @@ AudioSource:
   m_GameObject: {fileID: 8237455561310214644}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -3583701399763804762, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -3583701399763804762, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b98c20ef197bd674eb8b4a60eca5118b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

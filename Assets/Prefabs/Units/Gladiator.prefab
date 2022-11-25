@@ -79,7 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 4723107735738678597, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
+  m_Sprite: {fileID: 4723107735738678597, guid: 174209194dbf2fb44aef1ea1ba76a2f1,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -230,38 +231,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1738413245807282944}
-          m_TargetAssemblyTypeName: AutoBattler.Data.Units.BaseUnit, Assembly-CSharp
-          m_MethodName: MouseEnter
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1738413245807282944}
-          m_TargetAssemblyTypeName: AutoBattler.Data.Units.BaseUnit, Assembly-CSharp
-          m_MethodName: MouseExit
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!82 &837902171
 AudioSource:
   m_ObjectHideFlags: 0
@@ -271,7 +240,8 @@ AudioSource:
   m_GameObject: {fileID: 1738413245807282955}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -3583701399763804762, guid: a5036c95cf1fc2442bef93583940e106, type: 2}
+  OutputAudioMixerGroup: {fileID: -3583701399763804762, guid: a5036c95cf1fc2442bef93583940e106,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: cc49cf93fcb97dd4ea7adaf71b2bf194, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

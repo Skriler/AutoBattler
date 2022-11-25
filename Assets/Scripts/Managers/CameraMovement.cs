@@ -1,5 +1,6 @@
 using UnityEngine;
 using AutoBattler.Data.Enums;
+using AutoBattler.Data.Units;
 
 namespace AutoBattler.Managers
 {
@@ -16,14 +17,17 @@ namespace AutoBattler.Managers
         [SerializeField] private float maxSoloModeCameraSize = 6;
         [SerializeField] private float maxConfrontationModeCameraSize = 6;
         [SerializeField] private string backgroundTag = "Background";
+        [SerializeField] private string unitTag = "Unit";
 
         private Camera mainCamera;
         private Vector3 startPosition;
         private float backgroundMinX, backgroundMaxX;
         private float backgroundMinY, backgroundMaxY;
+        private BaseUnit currentUnit;
 
         public bool IsActive { get; set; } = true;
         public bool IsOnUI { get; set; } = false;
+        public bool IsUnitTooltipActive { get; private set; } = false;
 
         private void Start()
         {
@@ -32,6 +36,8 @@ namespace AutoBattler.Managers
 
         private void Update()
         {
+            CheckRaycastOnUnit();
+
             if (Input.GetMouseButtonUp(0) && IsActive)
                 IsActive = false;
 
@@ -133,6 +139,27 @@ namespace AutoBattler.Managers
             float newY = Mathf.Clamp(targetPosition.y, minY, maxY);
 
             return new Vector3(newX, newY, targetPosition.z);
+        }
+
+        private void CheckRaycastOnUnit()
+        {
+            Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.one);
+
+            if (hit.collider.tag != unitTag)
+            {
+                if (IsUnitTooltipActive)
+                {
+                    currentUnit.MouseExit();
+                    IsUnitTooltipActive = false;
+                }
+                return;
+            }
+
+            currentUnit = hit.transform.GetComponent<BaseUnit>();
+
+            currentUnit.MouseEnter();
+            IsUnitTooltipActive = true;
         }
     }
 }

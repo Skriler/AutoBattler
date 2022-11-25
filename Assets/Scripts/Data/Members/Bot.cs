@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using AutoBattler.UnitsContainers.Containers.Field;
@@ -20,6 +21,8 @@ namespace AutoBattler.Data.Members
         public BotFieldContainer Field { get; protected set; }
 
         private ShopDatabase shopDb;
+        private UnitRace targetRace;
+        private UnitSpecification targetSpecification;
 
         protected override void Awake()
         {
@@ -27,6 +30,8 @@ namespace AutoBattler.Data.Members
 
             Storage = transform.GetComponentInChildren<BotStorageContainer>();
             Field = transform.GetComponentInChildren<BotFieldContainer>();
+            targetRace = GetRandomRace();
+            targetSpecification = GetRandomSpecification();
         }
 
         public override MemberFieldContainer GetFieldContainer() => Field;
@@ -84,15 +89,20 @@ namespace AutoBattler.Data.Members
 
         private void PreMidGameRoundLogic(int currentRound)
         {
-            if (currentRound == (int)GamePhase.EarlyGame)
+            if (Field.IsFull() && IsEnoughGoldForAction(LevelUpTavernTierCost))
                 LevelUpTavernTier();
 
+            while (Gold != 0)
+            {
+                BuyUnit();
+            }
 
+            ModifyFieldUnits();
         }
 
         private void MidGameRoundLogic(int currentRound)
         {
-            if (currentRound == (int)GamePhase.PreMidGame)
+            if (Field.IsFull())
                 LevelUpTavernTier();
 
 
@@ -122,12 +132,19 @@ namespace AutoBattler.Data.Members
             Storage.AddUnit(shopUnit);
         }
 
+        private void SellUnitFromStorage(BaseUnit unit)
+        {
+            Storage.RemoveUnit(unit);
+            Destroy(unit.gameObject);
+            GainGold(1);
+        }
+
         private ShopUnitEntity GetRequiredShopUnitEntity()
         {
             ShopUnitEntity requiredUnit;
 
             List<Buff> requiredBuffs = Field.Buffs.GetRequiredBuffs();
-            Buff requiredBuff = requiredBuffs[Random.Range(0, requiredBuffs.Count)];
+            Buff requiredBuff = requiredBuffs[UnityEngine.Random.Range(0, requiredBuffs.Count)];
 
             if (requiredBuff is RaceBuff)
             {
@@ -159,6 +176,9 @@ namespace AutoBattler.Data.Members
 
             if (unitsAmountInStorage <= fieldOpenedCellsAmount)
                 PlaceAllUnitsOnField(unitsAmountInStorage);
+
+            if (Field.IsFull() && unitsAmountInStorage >= 2)
+                SellUnitFromStorage(Storage.GetWeakestUnit());
         }
 
         private void PlaceAllUnitsOnField(int unitsAmount)
@@ -170,6 +190,20 @@ namespace AutoBattler.Data.Members
                 Storage.RemoveUnit(unit);
                 Field.AddUnit(unit);
             }
+        }
+
+        private UnitRace GetRandomRace()
+        {
+            Array races = Enum.GetValues(typeof(UnitRace));
+            return (UnitRace)races
+                .GetValue(UnityEngine.Random.Range(0, races.Length));
+        }
+
+        private UnitSpecification GetRandomSpecification()
+        {
+            Array specifications = Enum.GetValues(typeof(UnitSpecification));
+            return (UnitSpecification)specifications
+                .GetValue(UnityEngine.Random.Range(0, specifications.Length));
         }
 
         public override void LoadData(GameData data)

@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using AutoBattler.SaveSystem.Data;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Units;
 using AutoBattler.Data.Buffs.Containers;
+using AutoBattler.Data.Enums;
 
 namespace AutoBattler.UnitsContainers.Containers.Field
 {
@@ -22,6 +24,25 @@ namespace AutoBattler.UnitsContainers.Containers.Field
         public override MemberBuffContainer GetMemberBuffContainer() => Buffs;
 
         public bool IsEmpty() => GetUnitsAmount() == 0;
+
+        public bool IsFull()
+        {
+            for (int i = 0; i < units.GetLength(0); ++i)
+            {
+                for (int j = 0; j < units.GetLength(1); ++j)
+                {
+                    if (units[i, j] != null)
+                        continue;
+
+                    if (!memberFieldGridManager.IsFreeTile(new Vector2Int(i, j)))
+                        continue;
+
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         public void AddUnit(BaseUnit unit)
         {
@@ -60,7 +81,29 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         private Vector2Int FindBestPlaceForUnit(BaseUnit unit)
         {
-            Vector2Int index = new Vector2Int(-1, -1);
+            int preferdLineIndex = unit.Specification switch
+            {
+                UnitSpecification.Swordsman => 1,
+                UnitSpecification.Archer => 0,
+                UnitSpecification.Mage => 0,
+                UnitSpecification.Assassin => 0,
+                UnitSpecification.Knight => 1,
+                UnitSpecification.Brute => 1,
+                _ => 1
+            };
+
+            List<Vector2Int> freeCells = GetFreeCells();
+            List<Vector2Int> freeCellsOnLine = GetFreeCellsOnLine(freeCells, preferdLineIndex);
+
+            if (freeCellsOnLine.Count > 0)
+                freeCells = freeCellsOnLine;
+
+            return freeCells.ElementAt(Random.Range(0, freeCells.Count));
+        }
+
+        private List<Vector2Int> GetFreeCells()
+        {
+            List<Vector2Int> freeCells = new List<Vector2Int>();
 
             for (int i = 0; i < units.GetLength(0); ++i)
             {
@@ -72,13 +115,29 @@ namespace AutoBattler.UnitsContainers.Containers.Field
                     if (!memberFieldGridManager.IsFreeTile(new Vector2Int(i, j)))
                         continue;
 
-                    index.Set(i, j);
-                    return index;
+                    freeCells.Add(new Vector2Int(i, j));
                 }
             }
 
-            return index;
+            return freeCells;
         }
+
+        private List<Vector2Int> GetFreeCellsOnLine(List<Vector2Int> cells, int line)
+        {
+            List<Vector2Int> freeCellsOnLine = new List<Vector2Int>();
+
+            foreach (Vector2Int cell in cells)
+            {
+                if (cell.x != line)
+                    continue;
+
+                freeCellsOnLine.Add(cell);
+            }
+
+            return freeCellsOnLine;
+        }
+
+        private int GetAnotherLineIndex(int lineIndex) => lineIndex == 1 ? 0 : 1;
 
         public override void LoadData(GameData data)
         {
