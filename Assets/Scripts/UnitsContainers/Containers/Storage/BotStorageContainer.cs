@@ -1,8 +1,4 @@
-using UnityEngine;
 using AutoBattler.Data.Units;
-using AutoBattler.Data.ScriptableObjects.Databases;
-using AutoBattler.Data.ScriptableObjects.Structs;
-using AutoBattler.Managers;
 using AutoBattler.SaveSystem.Data;
 using System.Linq;
 
@@ -10,6 +6,8 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
 { 
     public class BotStorageContainer : MemberStorageContainer
     {
+        public bool IsEmpty() => GetUnitsAmount() == 0;
+
         public int GetUnitsAmount()
         {
             int unitsAmount = 0;

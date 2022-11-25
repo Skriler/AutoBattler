@@ -2,9 +2,6 @@
 using AutoBattler.Data.Members;
 using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
-using AutoBattler.Data.ScriptableObjects.Databases;
-using AutoBattler.Data.ScriptableObjects.Structs;
-using AutoBattler.Managers;
 
 namespace AutoBattler.Data.Buffs.Containers
 {

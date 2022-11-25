@@ -1,18 +1,24 @@
 using UnityEngine;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
-using AutoBattler.Managers;
-using AutoBattler.Data.Buffs;
-using AutoBattler.Data.Enums;
-using AutoBattler.Data.ScriptableObjects.Structs;
-using AutoBattler.Data.ScriptableObjects.Databases;
-using AutoBattler.SaveSystem;
+using AutoBattler.Data.Buffs.Containers;
 using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.UnitsContainers.Containers.Field
 {
     public class PlayerFieldContainer : MemberFieldContainer
     {
+        public PlayerBuffContainer Buffs { get; private set; }
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            Buffs = transform.GetComponentInChildren<PlayerBuffContainer>();
+        }
+
+        public override MemberBuffContainer GetMemberBuffContainer() => Buffs;
+
         public override void AddUnit(BaseUnit unit, Vector2Int index)
         {
             if (IsCellOccupied(index))

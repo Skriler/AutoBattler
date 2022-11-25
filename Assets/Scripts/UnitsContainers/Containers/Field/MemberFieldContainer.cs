@@ -20,8 +20,6 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         protected MemberFieldGridManager memberFieldGridManager;
 
-        public MemberBuffContainer Buffs { get; private set; }
-
         protected override void Awake()
         {
             base.Awake();
@@ -30,7 +28,6 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             BuffsEventManager.OnBuffLevelDecreased += RemoveBuffEffect;
 
             memberFieldGridManager = GetComponent<MemberFieldGridManager>();
-            Buffs = transform.GetComponentInChildren<MemberBuffContainer>();
         }
 
         private void OnDestroy()
@@ -43,6 +40,8 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         public abstract void SaveData(GameData data);
 
+        public abstract MemberBuffContainer GetMemberBuffContainer();
+
         public override bool IsCellOccupied(Vector2Int index) => units[index.x, index.y] != null;
 
         public int GetOpenedCellsAmount() => memberFieldGridManager.GetOpenedCellsAmount();
@@ -52,7 +51,7 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         public void AddBuffEffect(Buff buff)
         {
-            if (!Buffs.Contains(buff) || !buff.IsActive())
+            if (!GetMemberBuffContainer().Contains(buff) || !buff.IsActive())
                 return;
 
             ApplyCharacteristicBonus(buff.TargetCharacteristic, buff.Bonus);
@@ -60,7 +59,7 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         public void RemoveBuffEffect(Buff buff)
         {
-            if (!Buffs.Contains(buff))
+            if (!GetMemberBuffContainer().Contains(buff))
                 return;
 
             float removedPointsAmount = -buff.Bonus;

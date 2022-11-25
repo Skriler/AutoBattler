@@ -1,15 +1,27 @@
-using AutoBattler.Data.Units;
-using UnityEngine;
-using AutoBattler.UnitsContainers.Grids;
-using AutoBattler.Data.Buffs;
-using AutoBattler.SaveSystem.Data;
 using System.Linq;
+using UnityEngine;
+using AutoBattler.SaveSystem.Data;
 using AutoBattler.EventManagers;
+using AutoBattler.Data.Units;
+using AutoBattler.Data.Buffs.Containers;
 
 namespace AutoBattler.UnitsContainers.Containers.Field
 {
     public class BotFieldContainer : MemberFieldContainer
     {
+        public BotBuffContainer Buffs { get; private set; }
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            Buffs = transform.GetComponentInChildren<BotBuffContainer>();
+        }
+
+        public override MemberBuffContainer GetMemberBuffContainer() => Buffs;
+
+        public bool IsEmpty() => GetUnitsAmount() == 0;
+
         public void AddUnit(BaseUnit unit)
         {
             Vector2Int index = FindBestPlaceForUnit(unit);

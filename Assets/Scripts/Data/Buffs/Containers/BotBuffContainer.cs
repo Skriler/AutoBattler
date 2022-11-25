@@ -65,6 +65,31 @@ namespace AutoBattler.Data.Buffs.Containers
             RemoveBuffsFromUnit(unit);
         }
 
+        public List<Buff> GetRequiredBuffs()
+        {
+            List<Buff> requiredBuffs = new List<Buff>();
+            int minUnitsAmount = 999;
+
+            foreach (Buff buff in buffs)
+            {
+                if (buff.MaxLevel == buff.CurrentLevel)
+                    continue;
+
+                if (buff.UnitsPerLevel - buff.UnitsAmountOnCurrentLevel == minUnitsAmount)
+                {
+                    requiredBuffs.Add(buff);
+                }
+                else if (buff.UnitsPerLevel - buff.UnitsAmountOnCurrentLevel < minUnitsAmount)
+                {
+                    requiredBuffs.Clear();
+                    minUnitsAmount = buff.UnitsPerLevel - buff.UnitsAmountOnCurrentLevel;
+                    requiredBuffs.Add(buff);
+                }
+            }
+
+            return requiredBuffs;
+        }
+
         public override void LoadData(GameData data)
         {
             MemberData memberData = data.bots.Where(b => b.id == owner.Id).First();

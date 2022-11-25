@@ -59,5 +59,27 @@ namespace AutoBattler.Data.ScriptableObjects.Databases
                 .Select(u => u.prefab)
                 .ToList();
         }
+
+        public ShopUnitEntity GetUnitWithRace(UnitRace race, int maxTavernTier, int maxCost)
+        {
+            List<ShopUnitEntity> units = shopUnits
+                .Where(u => u.characteristics.Race == race)
+                .Where(u => u.characteristics.TavernTier <= maxTavernTier)
+                .Where(u => u.characteristics.Cost <= maxCost)
+                .ToList();
+
+            return units[Random.Range(0, units.Count)];
+        }
+
+        public ShopUnitEntity GetUnitWithSpecification(UnitSpecification specification, int maxTavernTier, int maxCost)
+        {
+            List<ShopUnitEntity> units = shopUnits
+                .Where(u => u.characteristics.Specification == specification)
+                .Where(u => u.characteristics.TavernTier <= maxTavernTier)
+                .Where(u => u.characteristics.Cost <= maxCost)
+                .ToList();
+
+            return units[Random.Range(0, units.Count)];
+        }
     }
 }

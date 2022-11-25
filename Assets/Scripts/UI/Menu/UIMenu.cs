@@ -17,6 +17,7 @@ namespace AutoBattler.UI.Menu
         [SerializeField] private GameObject gameModeSelectionMenu;
         [SerializeField] private Button continueButton;
         [SerializeField] private TextMeshProUGUI textVersion;
+        [SerializeField] private Image uiBackground;
 
         private void Start()
         {
@@ -72,12 +73,14 @@ namespace AutoBattler.UI.Menu
         public void OpenOptionsMenu()
         {
             mainMenu.SetActive(optionsMenu.activeSelf);
+            uiBackground.gameObject.SetActive(!optionsMenu.activeSelf);
             optionsMenu.SetActive(!optionsMenu.activeSelf);
         }
 
         public void OpenGameModeSelectionMenu()
         {
             mainMenu.SetActive(gameModeSelectionMenu.activeSelf);
+            uiBackground.gameObject.SetActive(!gameModeSelectionMenu.activeSelf);
             gameModeSelectionMenu.SetActive(!gameModeSelectionMenu.activeSelf);
         }
     }
