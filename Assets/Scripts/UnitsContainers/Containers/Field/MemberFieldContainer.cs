@@ -79,12 +79,11 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         public void LoadDataFromMemberData(MemberData memberData)
         {
-            ShopDatabase shopDb = GameManager.Instance.ShopDb;
             ShopUnitEntity shopUnitEntity;
 
             foreach (UnitData unitData in memberData.field)
             {
-                shopUnitEntity = shopDb.GetShopUnitEntityByTitle(unitData.title);
+                shopUnitEntity = ShopUnitsManager.Instance.GetShopUnitEntityByTitle(unitData.title);
 
                 AddUnit(
                     shopUnitEntity,

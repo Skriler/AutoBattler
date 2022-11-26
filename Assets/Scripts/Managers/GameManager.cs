@@ -19,7 +19,6 @@ namespace AutoBattler.Managers
         [Header("Components")]
         [SerializeField] private Player player;
         [SerializeField] private List<Bot> bots;
-        [SerializeField] private ShopDatabase shopDb;
         [SerializeField] private GameObject UICanvas;
         [SerializeField] private BattleManager soloModeBattleManager;
         [SerializeField] private BattleManager confrontationModeBattleManager;
@@ -44,7 +43,6 @@ namespace AutoBattler.Managers
         public int CurrentRound { get; private set; } = 1;
         public GameMode GameMode { get; private set; }
 
-        public ShopDatabase ShopDb => shopDb;
         public int StartGainGoldPerRound => startGainGoldPerRound;
         public int MaxGainGoldPerRound => maxGainGoldPerRound;
 
@@ -158,6 +156,8 @@ namespace AutoBattler.Managers
                 RewardMembers();
                 ++CurrentRound;
                 RunBotsRoundLogic();
+
+                DataPersistenceManager.Instance.SaveGame();
             }
         }
 

@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using AutoBattler.Managers;
 using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.ScriptableObjects.Structs;
 
@@ -19,7 +17,7 @@ namespace AutoBattler.UI.Menu
 
         private void GenerateUIUnits()
         {
-            List<ShopUnitEntity> shopUnits = shopDb.GetUnits();
+            List<ShopUnitEntity> shopUnits = shopDb.shopUnits;
             int unitsAmount = shopUnits.Count;
 
             for (int i = 0; i < units.Count; ++i)

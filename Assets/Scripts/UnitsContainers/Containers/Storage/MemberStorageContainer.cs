@@ -3,7 +3,6 @@ using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 using AutoBattler.Data.Members;
 using System.Linq;
-using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.Managers;
 
@@ -19,12 +18,12 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
 
         public void LoadDataFromMemberData(MemberData memberData)
         {
-            ShopDatabase shopDb = GameManager.Instance.ShopDb;
+            ShopUnitsManager shopUnitsManager = ShopUnitsManager.Instance;
             ShopUnitEntity shopUnitEntity;
 
             foreach (UnitData unitData in memberData.storage)
             {
-                shopUnitEntity = shopDb.GetShopUnitEntityByTitle(unitData.title);
+                shopUnitEntity = shopUnitsManager.GetShopUnitEntityByTitle(unitData.title);
 
                 AddUnit(
                     shopUnitEntity,

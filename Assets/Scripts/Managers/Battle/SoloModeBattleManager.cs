@@ -51,13 +51,16 @@ namespace AutoBattler.Managers.Battle
 
         private List<BaseUnit> GenerateUnits(int tavernTier, int currentRound)
         {
-            ShopUnitEntity keyUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(tavernTier, currentRound);
+            ShopUnitEntity keyUnit = shopUnitsManager
+                .GetRandomShopUnitEntityAtTavernTier(tavernTier, currentRound);
 
             List<BaseUnit> units = new List<BaseUnit>();
             units.Add(keyUnit.prefab);
 
-            List<BaseUnit> sameRaceUnits = shopDb.GetUnitsWithRace(keyUnit.characteristics.Race, tavernTier);
-            List<BaseUnit> sameSpecificationUnits = shopDb.GetUnitsWithSpecification(keyUnit.characteristics.Specification, tavernTier);
+            List<BaseUnit> sameRaceUnits = shopUnitsManager
+                .GetUnitsWithRace(keyUnit.characteristics.Race, tavernTier);
+            List<BaseUnit> sameSpecificationUnits = shopUnitsManager
+                .GetUnitsWithSpecification(keyUnit.characteristics.Specification, tavernTier);
 
             units.AddRange(GenerateUnits(sameRaceUnits, tavernTier, currentRound));
             units.AddRange(GenerateUnits(sameSpecificationUnits, tavernTier, currentRound));

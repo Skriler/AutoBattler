@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -41,6 +42,11 @@ namespace AutoBattler.UI.Tooltips
             SetDamageTypesProtectionValues(characteristics);
         }
 
+        protected override void CalculateAndSetPosition()
+        {
+            transform.position = Input.mousePosition + (Vector3)offset;
+        }
+
         private void SetBaseCharacteristics(UnitCharacteristics characteristics)
         {
             textTitle.text = characteristics.Title;
@@ -60,7 +66,7 @@ namespace AutoBattler.UI.Tooltips
 
         private void SetDamageTypesProtectionValues(UnitCharacteristics characteristics)
         {
-            DamageTypeProtection[] damageTypesProtection = characteristics.DamageTypesProtectionPercentage;
+            List<DamageTypeProtection> damageTypesProtection = characteristics.DamageTypesProtectionPercentage;
 
             foreach (DamageTypeProtection damageTypeProtection in damageTypesProtection)
             {

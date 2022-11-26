@@ -29,7 +29,6 @@ namespace AutoBattler.Data.Units
 
         public string Id { get; protected set; }
         public string Title { get; protected set; }
-        public string Description { get; protected set; }
         public int Cost { get; protected set; }
         public UnitRace Race { get; protected set; }
         public UnitSpecification Specification { get; protected set; }
@@ -42,11 +41,12 @@ namespace AutoBattler.Data.Units
 
         public bool IsFightMode { get; protected set; } = false;
 
+        public Draggable Draggable { get; protected set; }
+
         protected Dictionary<DamageType, int> damageTypesProtectionPercentage;
 
         protected SpriteRenderer spriteRenderer;
         protected Animator animator;
-        protected Draggable draggable;
 
         protected HealthBar healthBar;
         protected WaitForSeconds staminaRegenTick;
@@ -62,18 +62,16 @@ namespace AutoBattler.Data.Units
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
-            draggable = GetComponent<Draggable>();
+            Draggable = GetComponent<Draggable>();
             staminaRegenTick = new WaitForSeconds(staminaRegenInterval);
 
             Id = Guid.NewGuid().ToString("N");
             Set—haracteristics();
 
-            healthBar = Instantiate(barPrefab, this.transform);
-            healthBar.Setup(this.transform, characteristics.MaxHealth, characteristics.AttackSpeed);
+            healthBar = Instantiate(barPrefab, transform);
+            healthBar.Setup(transform, characteristics.MaxHealth, characteristics.AttackSpeed);
             healthBar.Hide();
         }
-
-        public void SetDraggableActive(bool isActive) => draggable.IsActive = isActive;
 
         protected virtual void Start() { }
 
@@ -109,13 +107,12 @@ namespace AutoBattler.Data.Units
         {
             UIUnitTooltip.Instance.Show();
             UIUnitTooltip.Instance.Setup(this);
-            UIUnitDescription.Instance.Show(Description);
+            UIUnitDescription.Instance.Show(characteristics);
         }
 
         private void Set—haracteristics()
         {
             Title = characteristics.Title;
-            Description = characteristics.Description;
             Cost = characteristics.Cost;
 
             Race = characteristics.Race;
@@ -129,12 +126,14 @@ namespace AutoBattler.Data.Units
             Stamina = 0;
 
             damageTypesProtectionPercentage = new Dictionary<DamageType, int>();
-            DamageTypeProtection[] damageTypeProtection = characteristics.DamageTypesProtectionPercentage;
+            List<DamageTypeProtection> damageTypesProtection = characteristics.DamageTypesProtectionPercentage;
 
-            for (int i = 0; i < damageTypeProtection.Length; ++i)
+            foreach (DamageTypeProtection damageTypeProtection in damageTypesProtection)
             {
-                DamageTypeProtection currentDamageTypeProtection = damageTypeProtection[i];
-                damageTypesProtectionPercentage.Add(currentDamageTypeProtection.damageType, currentDamageTypeProtection.protectionPercentage);
+                damageTypesProtectionPercentage.Add(
+                    damageTypeProtection.damageType, 
+                    damageTypeProtection.protectionPercentage
+                    );
             }
         }
 
@@ -312,14 +311,14 @@ namespace AutoBattler.Data.Units
 
         public void EnterFightMode(BaseUnit[,] enemyUnits)
         {
-            draggable.IsActive = false;
+            Draggable.IsActive = false;
             IsFightMode = true;
             this.enemyUnits = enemyUnits;
         }
 
         public void ExitFightMode()
         {
-            draggable.IsActive = true;
+            Draggable.IsActive = true;
             IsFightMode = false;
             enemyUnits = null;
 

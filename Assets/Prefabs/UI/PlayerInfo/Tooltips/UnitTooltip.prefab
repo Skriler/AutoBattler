@@ -1576,7 +1576,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UICanvasRectTransform: {fileID: 0}
-  offset: {x: 2, y: 10}
+  offset: {x: 3, y: 3}
+  isPivotOnTop: 0
   textTitle: {fileID: 7875864487246829386}
   textHealthValue: {fileID: 7875864486784741150}
   textAttackDamageValue: {fileID: 7875864487011320528}

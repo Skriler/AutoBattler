@@ -10,6 +10,7 @@ namespace AutoBattler.UI.Tooltips
 
         [Header("Parameters")]
         [SerializeField] protected Vector2 offset = new Vector2(160, -160);
+        [SerializeField] protected bool isPivotOnTop = false;
 
         protected RectTransform rectTransform;
         protected Camera currentCamera;
@@ -45,7 +46,7 @@ namespace AutoBattler.UI.Tooltips
 
         protected void Update()
         {
-            CalculatePosition();
+            CalculateAndSetPosition();
         }
 
         private void SetScreenParameters()
@@ -57,7 +58,7 @@ namespace AutoBattler.UI.Tooltips
             screenSize = new Vector2(Screen.width, Screen.height);
         }
 
-        private void CalculatePosition()
+        protected virtual void CalculateAndSetPosition()
         {
             Vector2 mousePositon = Input.mousePosition;
             mousePositon += GetActualSize(offset);
@@ -85,7 +86,7 @@ namespace AutoBattler.UI.Tooltips
             if (position.x > screenSize.x - tooltipSize.x)
                 position.x = screenSize.x - tooltipSize.x;
 
-            if (position.y > screenSize.y - tooltipSize.y)
+            if (position.y > screenSize.y - tooltipSize.y && !isPivotOnTop)
                 position.y = screenSize.y - tooltipSize.y;
 
             return position;
@@ -103,7 +104,7 @@ namespace AutoBattler.UI.Tooltips
 
         public void Show()
         {
-            CalculatePosition();
+            CalculateAndSetPosition();
             gameObject.SetActive(true);
             transform.SetAsLastSibling();
         }

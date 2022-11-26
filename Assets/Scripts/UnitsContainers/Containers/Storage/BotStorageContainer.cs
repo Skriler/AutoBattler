@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using AutoBattler.Data.Units;
 using AutoBattler.SaveSystem.Data;
@@ -16,13 +17,26 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
             CanPlaceUnits = false;
         }
 
+        public void AddUnit(BaseUnit unit)
+        {
+            List<Vector2Int> freeCells = GetFreeCells();
+
+            if (freeCells.Count == 0)
+                return;
+
+            Vector2Int unitIndex = freeCells.ElementAt(Random.Range(0, freeCells.Count));
+            AddUnit(unit, unitIndex);
+        }
+
         public override void AddUnit(BaseUnit unit, Vector2Int index)
         {
             if (IsCellOccupied(index))
                 return;
 
             base.AddUnit(unit, index);
-            units[index.x].SetDraggableActive(false);
+
+            if (units[index.x].Draggable.IsActive)
+                units[index.x].Draggable.IsActive = false;
         }
 
         public int GetUnitsAmount()
@@ -56,6 +70,24 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
         public BaseUnit GetWeakestUnit() => GetMostUnit(true);
 
         public BaseUnit GetStrongestUnit() => GetMostUnit(false);
+
+        private List<Vector2Int> GetFreeCells()
+        {
+            List<Vector2Int> freeCells = new List<Vector2Int>();
+
+            for (int i = 0; i < units.Length; ++i)
+            {
+                if (units[i] != null)
+                    continue;
+
+                if (!gridManager.IsFreeTile(new Vector2Int(i, 0)))
+                    continue;
+
+                freeCells.Add(new Vector2Int(i, 0));
+            }
+
+            return freeCells;
+        }
 
         private BaseUnit GetMostUnit(bool isWeakestRequired)
         {

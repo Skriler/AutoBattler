@@ -14,7 +14,7 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
     {
         [Header("Shop Characteristics")]
         [SerializeField] private string title;
-        [SerializeField] [TextArea(5, 10)] private string attackDescription;
+        [SerializeField] [TextArea(2, 5)] private string attackDescription;
         [SerializeField] private int cost;
         [SerializeField] private int tavernTier;
 
@@ -27,12 +27,10 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         [SerializeField] private DamageType damageType;
         [SerializeField] private float attackDamage = 10f;
         [SerializeField] private float attackSpeed = 5f;
-        [SerializeField] private DamageTypeProtection[] damageTypesProtectionPercentage;
-
-        private string description;
+        [SerializeField] private List<DamageTypeProtection> damageTypesProtectionPercentage;
 
         public string Title => title;
-        public string Description => GetDescription();
+        public string AttackDescription => attackDescription;
         public int Cost => cost;
         public int TavernTier => tavernTier;
 
@@ -43,24 +41,6 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         public DamageType DamageType => damageType;
         public float AttackDamage => attackDamage;
         public float AttackSpeed => attackSpeed;
-        public DamageTypeProtection[] DamageTypesProtectionPercentage => damageTypesProtectionPercentage;
-
-        private string GetDescription()
-        {
-            if (description == string.Empty)
-            {
-                StringBuilder descriptionBuilder = new StringBuilder();
-                descriptionBuilder
-                    .Append(Race.ToString())
-                    .Append(". ")
-                    .Append(Specification.ToString())
-                    .AppendLine(".")
-                    .AppendLine(attackDescription);
-
-                description = descriptionBuilder.ToString();
-            }
-
-            return description;
-        }
+        public List<DamageTypeProtection> DamageTypesProtectionPercentage => damageTypesProtectionPercentage;
     }
 }

@@ -20,7 +20,7 @@ namespace AutoBattler.Data.Members
         public BotStorageContainer Storage { get; protected set; }
         public BotFieldContainer Field { get; protected set; }
 
-        private ShopDatabase shopDb;
+        private ShopUnitsManager shopUnitsManager;
         private UnitRace targetRace;
         private UnitSpecification targetSpecification;
 
@@ -54,89 +54,133 @@ namespace AutoBattler.Data.Members
 
         public void MakeTurn(int currentRound, int amountOfAliveMembers)
         {
-            if (shopDb == null)
-                shopDb = GameManager.Instance.ShopDb;
+            if (shopUnitsManager == null)
+                shopUnitsManager = ShopUnitsManager.Instance;
 
-            switch (currentRound)
-            {
-                case < (int)GamePhase.EarlyGame:
-                    EarlyGameRoundLogic();
-                    break;
-                case < (int)GamePhase.PreMidGame:
-                    PreMidGameRoundLogic();
-                    break;
-                case < (int)GamePhase.MidGame:
-                    MidGameRoundLogic();
-                    break;
-                case < (int)GamePhase.PreLateGame:
-                    PreLateGameRoundLogic();
-                    break;
-                case < (int)GamePhase.LateGame:
-                    LateGameRoundLogic();
-                    break;
-            }
-        }
+            //switch (currentRound)
+            //{
+            //    case < (int)GamePhase.EarlyGame:
+            //        EarlyGameRoundLogic();
+            //        break;
+            //    case < (int)GamePhase.PreMidGame:
+            //        PreMidGameRoundLogic();
+            //        break;
+            //    case < (int)GamePhase.MidGame:
+            //        MidGameRoundLogic();
+            //        break;
+            //    case < (int)GamePhase.PreLateGame:
+            //        PreLateGameRoundLogic();
+            //        break;
+            //    case < (int)GamePhase.LateGame:
+            //        LateGameRoundLogic();
+            //        break;
+            //}
 
-        private void EarlyGameRoundLogic()
-        {
-            while (Gold != 0)
-            {
-                BuyUnit();
-            }
-            
-            ModifyFieldUnits();
-        }
-
-        private void PreMidGameRoundLogic()
-        {
             if (Field.IsFull() && IsEnoughGoldForAction(LevelUpTavernTierCost))
                 LevelUpTavernTier();
 
+            ShopUnitEntity shopUnit;
             while (Gold != 0)
             {
-                BuyUnit();
+                shopUnit = GetRequiredUnit();
+
+                if (!IsEnoughGoldForAction(shopUnit.characteristics.Cost))
+                    break;
+
+                BuyUnit(shopUnit);
             }
 
             ModifyFieldUnits();
         }
 
-        private void MidGameRoundLogic()
-        {
-            if (Field.IsFull())
-                LevelUpTavernTier();
+        //private void EarlyGameRoundLogic()
+        //{
+        //    while (Gold != 0)
+        //    {
+        //        BuyUnit();
+        //    }
+            
+        //    ModifyFieldUnits();
+        //}
+
+        //private void PreMidGameRoundLogic()
+        //{
+        //    if (Field.IsFull() && IsEnoughGoldForAction(LevelUpTavernTierCost))
+        //        LevelUpTavernTier();
+
+        //    while (Gold != 0)
+        //    {
+        //        BuyUnit();
+        //    }
+
+        //    ModifyFieldUnits();
+        //}
+
+        //private void MidGameRoundLogic()
+        //{
+        //    if (Field.IsFull() && IsEnoughGoldForAction(LevelUpTavernTierCost))
+        //        LevelUpTavernTier();
+
+        //    while (Gold != 0)
+        //    {
+        //        BuyUnit();
+        //    }
+
+        //    ModifyFieldUnits();
+        //}
+
+        //private void PreLateGameRoundLogic()
+        //{
+        //    if (Field.IsFull() && IsEnoughGoldForAction(LevelUpTavernTierCost))
+        //        LevelUpTavernTier();
 
 
-        }
 
-        private void PreLateGameRoundLogic()
-        {
+        //    while (Gold != 0)
+        //    {
+        //        BuyUnit();
+        //    }
 
-        }
+        //    ModifyFieldUnits();
+        //}
 
-        private void LateGameRoundLogic()
-        {
+        //private void LateGameRoundLogic()
+        //{
+        //    if (Field.IsFull() && IsEnoughGoldForAction(LevelUpTavernTierCost))
+        //        LevelUpTavernTier();
 
-        }
+        //    ShopUnitEntity shopUnit;
+        //    while (Gold != 0)
+        //    {
+        //        shopUnit = GetRequiredUnit();
+
+        //        if (!IsEnoughGoldForAction(shopUnit.characteristics.Cost))
+        //            break;
+
+        //        BuyUnit(shopUnit);
+        //    }
+
+        //    ModifyFieldUnits();
+        //}
             
 
-        private void BuyUnit()
+        private ShopUnitEntity GetRequiredUnit()
         {
-            ShopUnitEntity shopUnit;
+            ShopUnitEntity shopUnit = 
+                Storage.IsEmpty() && Field.IsEmpty() ?
+                shopUnitsManager.GetRandomShopUnitEntityAtTavernTierAndLower(TavernTier, Gold) : 
+                GetRequiredShopUnitEntity();
 
-            if (Storage.IsEmpty() && Field.IsEmpty())
-                shopUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(TavernTier, Gold);
-            else
-                shopUnit = GetRequiredShopUnitEntity();
+            return shopUnit;
+        }
+
+        private void BuyUnit(ShopUnitEntity shopUnit)
+        {
+            if (!IsEnoughGoldForAction(shopUnit.characteristics.Cost))
+                return;
 
             SpendGold(shopUnit.characteristics.Cost);
             Storage.AddUnit(shopUnit);
-        }
-
-        private void SellUnitFromStorage(BaseUnit unit)
-        {
-            Storage.RemoveUnit(unit);
-            Destroy(unit.gameObject);
-            GainGold(1);
         }
 
         private ShopUnitEntity GetRequiredShopUnitEntity()
@@ -148,7 +192,7 @@ namespace AutoBattler.Data.Members
 
             if (requiredBuff is RaceBuff)
             {
-                requiredUnit = shopDb.GetUnitWithRace(
+                requiredUnit = shopUnitsManager.GetUnitWithRace(
                     (requiredBuff as RaceBuff).Race,
                     TavernTier,
                     Gold
@@ -156,7 +200,7 @@ namespace AutoBattler.Data.Members
             }
             else
             {
-                requiredUnit = shopDb.GetUnitWithSpecification(
+                requiredUnit = shopUnitsManager.GetUnitWithSpecification(
                     (requiredBuff as SpecificationBuff).Specification,
                     TavernTier,
                     Gold
@@ -164,7 +208,7 @@ namespace AutoBattler.Data.Members
             }
 
             if (requiredUnit.Equals(default(ShopUnitEntity)))
-                requiredUnit = shopDb.GetRandomShopUnitEntityAtTavernTier(TavernTier, Gold);
+                requiredUnit = shopUnitsManager.GetRandomShopUnitEntityAtTavernTierAndLower(TavernTier, Gold);
 
             return requiredUnit;
         }
@@ -172,32 +216,38 @@ namespace AutoBattler.Data.Members
         private void ModifyFieldUnits()
         {
             int unitsAmountInStorage = Storage.GetUnitsAmount();
-            int fieldOpenedCellsAmount = Field.GetOpenedCellsAmount();
+            int freeCellsAmountOnField = Field.GetFreeCellsAmount();
 
-            if (unitsAmountInStorage <= fieldOpenedCellsAmount)
-                PlaceAllUnitsOnField(unitsAmountInStorage);
-
-            if (Field.IsFull() && unitsAmountInStorage > 0)
-            {
-
-
-                if (unitsAmountInStorage >= 2)
-                    SellUnitFromStorage(Storage.GetWeakestUnit());
-            }
-                
-
-
-        }
-
-        private void PlaceAllUnitsOnField(int unitsAmount)
-        {
             BaseUnit unit;
-            for (int i = 0; i < unitsAmount; ++i)
+            for (int i = 0; i < unitsAmountInStorage; ++i)
             {
-                unit = Storage.GetFirstUnit();
+                if (freeCellsAmountOnField == 0)
+                {
+                    unit = Field.GetWeakestUnit();
+                    Field.RemoveUnit(unit);
+                    Storage.AddUnit(unit);
+                }
+
+                unit = Storage.GetStrongestUnit();
                 Storage.RemoveUnit(unit);
                 Field.AddUnit(unit);
+
+                --unitsAmountInStorage;
             }
+
+            unitsAmountInStorage = Storage.GetUnitsAmount();
+            while (unitsAmountInStorage >= 2)
+            {
+                SellUnitFromStorage(Storage.GetWeakestUnit());
+                --unitsAmountInStorage;
+            }
+        }
+
+        private void SellUnitFromStorage(BaseUnit unit)
+        {
+            Storage.RemoveUnit(unit);
+            Destroy(unit.gameObject);
+            GainGold(1);
         }
 
         private UnitRace GetRandomRace()

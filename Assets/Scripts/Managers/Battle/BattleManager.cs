@@ -15,11 +15,11 @@ namespace AutoBattler.Managers.Battle
         protected int armyWidth;
         protected int armyHeight;
 
-        protected ShopDatabase shopDb;
+        protected ShopUnitsManager shopUnitsManager;
 
         protected virtual void Start()
         {
-            shopDb = GameManager.Instance.ShopDb;
+            shopUnitsManager = ShopUnitsManager.Instance;
         }
 
         public abstract void StartBattle();

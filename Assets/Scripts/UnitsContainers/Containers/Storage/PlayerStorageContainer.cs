@@ -1,10 +1,4 @@
-using System.Linq;
-using UnityEngine;
-using AutoBattler.Data.ScriptableObjects.Databases;
-using AutoBattler.Data.ScriptableObjects.Structs;
-using AutoBattler.Managers;
 using AutoBattler.EventManagers;
-using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.UnitsContainers.Containers.Storage

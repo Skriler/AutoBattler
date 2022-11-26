@@ -425,6 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UICanvasRectTransform: {fileID: 0}
   offset: {x: 2, y: 10}
+  isPivotOnTop: 0
   textTitle: {fileID: 1292526995687052139}
   textDescription: {fileID: 1292526994549844955}
 --- !u!114 &6761511515438171170

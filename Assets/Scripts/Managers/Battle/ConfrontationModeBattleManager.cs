@@ -115,7 +115,9 @@ namespace AutoBattler.Managers.Battle
                     if (memberArmy[i, j] == null)
                         continue;
 
-                    copiedUnits[i, j] = shopDb.GetShopUnitEntityByTitle(memberArmy[i, j].Title).prefab;
+                    copiedUnits[i, j] = ShopUnitsManager.Instance
+                        .GetShopUnitEntityByTitle(memberArmy[i, j].Title)
+                        .prefab;
                 }
             }
 

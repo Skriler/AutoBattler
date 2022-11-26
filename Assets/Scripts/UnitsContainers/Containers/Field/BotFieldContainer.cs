@@ -27,6 +27,8 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 
         public bool IsEmpty() => GetUnitsAmount() == 0;
 
+        public int GetFreeCellsAmount() => GetFreeCells().Count;
+
         public bool IsFull()
         {
             for (int i = 0; i < units.GetLength(0); ++i)

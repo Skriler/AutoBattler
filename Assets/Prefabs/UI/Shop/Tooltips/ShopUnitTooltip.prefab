@@ -1525,7 +1525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UICanvasRectTransform: {fileID: 0}
-  offset: {x: 2, y: 10}
+  offset: {x: 10, y: -5}
+  isPivotOnTop: 1
   textTitle: {fileID: 5247897401319061404}
   textCostValue: {fileID: 5633280807349901502}
   textTavernTierValue: {fileID: 4596107396106763366}

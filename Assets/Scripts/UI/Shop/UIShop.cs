@@ -16,13 +16,13 @@ namespace AutoBattler.UI.Shop
         [SerializeField] private UIRefreshButtonButton refreshButton;
 
         [Header("Data")]
-        [SerializeField] private List<UICard> unitCards;
+        [SerializeField] private List<UIUnitCard> unitCards;
         [SerializeField] private Player player;
 
         [Header("Parameters")]
         [SerializeField] private int refreshCost = 1;
 
-        private ShopDatabase shopDb;
+        private ShopUnitsManager shopUnitsManager;
 
         public bool IsFreezed { get; private set; } = false;
 
@@ -42,7 +42,7 @@ namespace AutoBattler.UI.Shop
 
         private void Start()
         {
-            shopDb = GameManager.Instance.ShopDb;
+            shopUnitsManager = ShopUnitsManager.Instance;
             GenerateUnits();
 
             refreshButton.UpdateDescription(refreshCost);
@@ -59,7 +59,7 @@ namespace AutoBattler.UI.Shop
             levelUpButton.UpdateDescription(player.LevelUpTavernTierCost);
         }
 
-        public void OnCardClick(UICard card, ShopUnitEntity shopUnit)
+        public void OnCardClick(UIUnitCard card, ShopUnitEntity shopUnit)
         {
             if (player.Storage.IsFull() || !player.IsEnoughGoldForAction(shopUnit.characteristics.Cost))
             {
@@ -78,7 +78,7 @@ namespace AutoBattler.UI.Shop
 
         public void FreezeUnits()
         {
-            foreach(UICard card in unitCards)
+            foreach(UIUnitCard card in unitCards)
                 card.Freeze();
 
             IsFreezed = !IsFreezed;
@@ -130,18 +130,18 @@ namespace AutoBattler.UI.Shop
 
         private void GenerateUnits()
         {
-            List<ShopUnitEntity> shopUnits = shopDb.GetUnitsAtTavernTier(player.TavernTier);
+            List<ShopUnitEntity> shopUnits = shopUnitsManager.GetUnitsAtTavernTier(player.TavernTier);
             unitCards.ForEach(card => GenerateUnit(card, shopUnits));
         }
 
-        private void GenerateUnit(UICard card, List<ShopUnitEntity> units)
+        private void GenerateUnit(UIUnitCard card, List<ShopUnitEntity> units)
         {
             card.Setup(units[Random.Range(0, units.Count)]);
         }
 
         private void SetActiveUnitCards()
         {
-            foreach (UICard card in unitCards)
+            foreach (UIUnitCard card in unitCards)
             {
                 if (!card.gameObject.activeSelf)
                     card.gameObject.SetActive(true);
@@ -150,9 +150,9 @@ namespace AutoBattler.UI.Shop
 
         private void AddUnitCardsOnEmptySlots()
         {
-            List<ShopUnitEntity> shopUnits = shopDb.GetUnitsAtTavernTier(player.TavernTier);
+            List<ShopUnitEntity> shopUnits = shopUnitsManager.GetUnitsAtTavernTier(player.TavernTier);
 
-            foreach (UICard card in unitCards)
+            foreach (UIUnitCard card in unitCards)
             {
                 if (card.gameObject.activeSelf)
                     continue;
