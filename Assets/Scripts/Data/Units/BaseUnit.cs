@@ -325,7 +325,7 @@ namespace AutoBattler.Data.Units
             Resurrect();
         }
 
-        private bool IsAliveEnemyUnits()
+        protected bool IsAliveEnemyUnits()
         {
             if (enemyUnits == null)
                 return false;

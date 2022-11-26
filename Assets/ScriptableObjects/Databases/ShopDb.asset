@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ShopDb
   m_EditorClassIdentifier: 
   shopUnits:
-  - prefab: {fileID: 2632153202910365915, guid: b0bff002eff9bc046a200a0e0648a89c, type: 3}
+  - prefab: {fileID: 5813165843209022780, guid: b0bff002eff9bc046a200a0e0648a89c,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 07456346a06a5fe4bbbf7a711109ec12, type: 2}
     sprites:
     - {fileID: 966441215, guid: 10383abdbe15c2146b6a946d1f9ba9a3, type: 3}
@@ -22,7 +23,8 @@ MonoBehaviour:
     - {fileID: -167106901, guid: 10383abdbe15c2146b6a946d1f9ba9a3, type: 3}
     swapSpeed: 0.14
     isFlipOnX: 0
-  - prefab: {fileID: 8374093531091826159, guid: 9db58f13aa1877646978c95a4077b751, type: 3}
+  - prefab: {fileID: 6176192070316655701, guid: 9db58f13aa1877646978c95a4077b751,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 6454bd20e03efc8478c8226162ed58ef, type: 2}
     sprites:
     - {fileID: 4723107735738678597, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
@@ -38,7 +40,8 @@ MonoBehaviour:
     - {fileID: 7132915409514813599, guid: fc46633b0eb321e46838bcb9ff2d4150, type: 3}
     swapSpeed: 0.07
     isFlipOnX: 0
-  - prefab: {fileID: 1848265461344530, guid: e382bac12e4ff25479815a965dc02728, type: 3}
+  - prefab: {fileID: 3030283074528774422, guid: e382bac12e4ff25479815a965dc02728,
+      type: 3}
     characteristics: {fileID: 11400000, guid: f4292cc5761ce424db4de35a2ebb0981, type: 2}
     sprites:
     - {fileID: 1046793900, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
@@ -51,7 +54,8 @@ MonoBehaviour:
     - {fileID: 1480395550, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
     swapSpeed: 0.08
     isFlipOnX: 1
-  - prefab: {fileID: 9003593576820251052, guid: 56df41792776b5e4eb4a5f95112f6103, type: 3}
+  - prefab: {fileID: 7748670077632984966, guid: 56df41792776b5e4eb4a5f95112f6103,
+      type: 3}
     characteristics: {fileID: 11400000, guid: bb2c99b8c99da87438ce33b011534ace, type: 2}
     sprites:
     - {fileID: 1749333562, guid: c3d20be621f92d044ba7ce2b01fc3f7f, type: 3}
@@ -62,7 +66,8 @@ MonoBehaviour:
     - {fileID: 1314838095, guid: c3d20be621f92d044ba7ce2b01fc3f7f, type: 3}
     swapSpeed: 0.1
     isFlipOnX: 0
-  - prefab: {fileID: 7444803635570424404, guid: 1aef1705fc32e174e956df499d92d7e6, type: 3}
+  - prefab: {fileID: 8525318537503876823, guid: 1aef1705fc32e174e956df499d92d7e6,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 8af25f349fef489498db2ce5865ccd31, type: 2}
     sprites:
     - {fileID: 4723107735738678597, guid: ff470bbcf011a8340b283eb5c956b488, type: 3}
@@ -75,7 +80,8 @@ MonoBehaviour:
     - {fileID: 3384493420599841878, guid: ff470bbcf011a8340b283eb5c956b488, type: 3}
     swapSpeed: 0.1
     isFlipOnX: 0
-  - prefab: {fileID: 4842235446000305926, guid: ffa8ad839598ca04cb06ee9c38f79251, type: 3}
+  - prefab: {fileID: 8073824203736052125, guid: ffa8ad839598ca04cb06ee9c38f79251,
+      type: 3}
     characteristics: {fileID: 11400000, guid: e445d6b92e9395b4e910ac7d63d86894, type: 2}
     sprites:
     - {fileID: -4795363162621231457, guid: bb5f76f12f19aff448ed50a38b3c4fdd, type: 3}
@@ -88,7 +94,8 @@ MonoBehaviour:
     - {fileID: 7784096630628774620, guid: bb5f76f12f19aff448ed50a38b3c4fdd, type: 3}
     swapSpeed: 0.09
     isFlipOnX: 0
-  - prefab: {fileID: 1738413245807282944, guid: 01dc60d8d84915d49a61557285239935, type: 3}
+  - prefab: {fileID: 7060161831411738142, guid: 01dc60d8d84915d49a61557285239935,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 0917f303b23df6946a7698bb87d2d030, type: 2}
     sprites:
     - {fileID: 4723107735738678597, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
@@ -104,7 +111,8 @@ MonoBehaviour:
     - {fileID: 7132915409514813599, guid: 174209194dbf2fb44aef1ea1ba76a2f1, type: 3}
     swapSpeed: 0.07
     isFlipOnX: 0
-  - prefab: {fileID: 1892099914438007101, guid: 2904324e46bd6c646ae12145b5c39df2, type: 3}
+  - prefab: {fileID: 2135642143811592610, guid: 2904324e46bd6c646ae12145b5c39df2,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 760b41428bd80144c87bf1b1a046e7b1, type: 2}
     sprites:
     - {fileID: 4723107735738678597, guid: 21845a84999d38941afb7a1481b892e9, type: 3}
@@ -113,7 +121,8 @@ MonoBehaviour:
     - {fileID: 6373048116405451881, guid: 21845a84999d38941afb7a1481b892e9, type: 3}
     swapSpeed: 0.14
     isFlipOnX: 0
-  - prefab: {fileID: 7358428183084925548, guid: 0b9089e262f85f147ac06fa746dbbd1f, type: 3}
+  - prefab: {fileID: 6649220350967805063, guid: 0b9089e262f85f147ac06fa746dbbd1f,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 259a1870b5df4424fb7a6ea88fd27054, type: 2}
     sprites:
     - {fileID: 21300000, guid: 42a50bf9efa6b394486d0243fcab1fc2, type: 3}
@@ -122,7 +131,8 @@ MonoBehaviour:
     - {fileID: 21300006, guid: 42a50bf9efa6b394486d0243fcab1fc2, type: 3}
     swapSpeed: 0.2
     isFlipOnX: 1
-  - prefab: {fileID: 2561483174923761787, guid: d25070aea9af4e64fa2aaece4ea91661, type: 3}
+  - prefab: {fileID: 4344472233392844310, guid: d25070aea9af4e64fa2aaece4ea91661,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 3e335787bed01f94bbd680bb0ae7bf15, type: 2}
     sprites:
     - {fileID: 970863238, guid: 78e1141719314354fb33c07df63525ff, type: 3}
@@ -137,7 +147,8 @@ MonoBehaviour:
     - {fileID: -1714810639, guid: 78e1141719314354fb33c07df63525ff, type: 3}
     swapSpeed: 0.08
     isFlipOnX: 0
-  - prefab: {fileID: 8465192854784038228, guid: aa9bae761d074894f897dd5282b9e762, type: 3}
+  - prefab: {fileID: 7344214606186882750, guid: aa9bae761d074894f897dd5282b9e762,
+      type: 3}
     characteristics: {fileID: 11400000, guid: fc1a2a92463b4d34aba8c57add73aa28, type: 2}
     sprites:
     - {fileID: 21300000, guid: cf5841cf43c8eaf4397788f8003f6498, type: 3}
@@ -150,7 +161,8 @@ MonoBehaviour:
     - {fileID: 21300014, guid: cf5841cf43c8eaf4397788f8003f6498, type: 3}
     swapSpeed: 0.1
     isFlipOnX: 0
-  - prefab: {fileID: 4106326690541371043, guid: da56a428bffad9c4da72c38f09d5e94e, type: 3}
+  - prefab: {fileID: 6638396369595940487, guid: da56a428bffad9c4da72c38f09d5e94e,
+      type: 3}
     characteristics: {fileID: 11400000, guid: ccf3e8722829411489a3a8968f24181a, type: 2}
     sprites:
     - {fileID: 21300000, guid: 881f4223a9bccbb4d81f8c99c5a88ea1, type: 3}
@@ -159,7 +171,8 @@ MonoBehaviour:
     - {fileID: 21300006, guid: 881f4223a9bccbb4d81f8c99c5a88ea1, type: 3}
     swapSpeed: 0.2
     isFlipOnX: 1
-  - prefab: {fileID: 8775531214802292067, guid: 817065f6effee504588092015e60ad02, type: 3}
+  - prefab: {fileID: 1893253487974513071, guid: 817065f6effee504588092015e60ad02,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 761b0c64faf06284994eba6f63eb4a86, type: 2}
     sprites:
     - {fileID: 4723107735738678597, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
@@ -172,7 +185,8 @@ MonoBehaviour:
     - {fileID: 3384493420599841878, guid: 0e3502a80399d164ea01f1868f65acbf, type: 3}
     swapSpeed: 0.12
     isFlipOnX: 0
-  - prefab: {fileID: 618620137749664239, guid: c7ab0538a33cd184cb2439f09cae49fd, type: 3}
+  - prefab: {fileID: 1572008286815872677, guid: c7ab0538a33cd184cb2439f09cae49fd,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 8e71a89c095cc964aa92ba0322a1d99d, type: 2}
     sprites:
     - {fileID: 152136079, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
@@ -185,7 +199,8 @@ MonoBehaviour:
     - {fileID: -1342214980, guid: 0ed1a7179f60b3c46bc01d2e6a7da750, type: 3}
     swapSpeed: 0.09
     isFlipOnX: 0
-  - prefab: {fileID: 7234212490075698693, guid: e65866f924bc536479d47c3fc1cfcb16, type: 3}
+  - prefab: {fileID: 3199820105305940110, guid: e65866f924bc536479d47c3fc1cfcb16,
+      type: 3}
     characteristics: {fileID: 11400000, guid: f15185ec700230b419b4cdf512bd16ff, type: 2}
     sprites:
     - {fileID: 4723107735738678597, guid: 77ba605bbd83f4448bc8683510c3155e, type: 3}
@@ -196,7 +211,8 @@ MonoBehaviour:
     - {fileID: -2834552850196481573, guid: 77ba605bbd83f4448bc8683510c3155e, type: 3}
     swapSpeed: 0.1
     isFlipOnX: 0
-  - prefab: {fileID: 7315566695364362712, guid: e64f8eecb10e2db4a9facbbf16f2cd50, type: 3}
+  - prefab: {fileID: 6014909843500110202, guid: e64f8eecb10e2db4a9facbbf16f2cd50,
+      type: 3}
     characteristics: {fileID: 11400000, guid: f2f3e6026e0a574439e9b460bf086bd4, type: 2}
     sprites:
     - {fileID: 4723107735738678597, guid: b1e975ca895ea054799f7d2b9d841dad, type: 3}
@@ -205,7 +221,8 @@ MonoBehaviour:
     - {fileID: 6373048116405451881, guid: b1e975ca895ea054799f7d2b9d841dad, type: 3}
     swapSpeed: 0.13
     isFlipOnX: 0
-  - prefab: {fileID: 5459603388553350485, guid: 8a3eba4e2deb7cd4daeded16f412c593, type: 3}
+  - prefab: {fileID: 6252569338622497132, guid: 8a3eba4e2deb7cd4daeded16f412c593,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 895265209e968434883b5b6bd4f5a27e, type: 2}
     sprites:
     - {fileID: 4723107735738678597, guid: 7f335bddbc86c9c409fdc19ac15c490a, type: 3}
@@ -218,7 +235,8 @@ MonoBehaviour:
     - {fileID: 3384493420599841878, guid: 7f335bddbc86c9c409fdc19ac15c490a, type: 3}
     swapSpeed: 0.12
     isFlipOnX: 0
-  - prefab: {fileID: 4253011241457257918, guid: 58cb2795c05caa74e953f77c16e806d5, type: 3}
+  - prefab: {fileID: 3096127863202683335, guid: 58cb2795c05caa74e953f77c16e806d5,
+      type: 3}
     characteristics: {fileID: 11400000, guid: 7dbf78441f294bf43a8c3cefe207b61e, type: 2}
     sprites:
     - {fileID: 4723107735738678597, guid: d4cf0a24b75ce6348a53d72b3a4a9ea5, type: 3}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8775531214802292094}
   - component: {fileID: 8775531214802292065}
   - component: {fileID: 8775531214802292066}
-  - component: {fileID: 8775531214802292067}
+  - component: {fileID: 1893253487974513071}
   - component: {fileID: 8775531214802292092}
   - component: {fileID: 8775531214802292093}
   - component: {fileID: 1669946707}
@@ -137,7 +137,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3875, y: 0.6850203}
   m_EdgeRadius: 0
---- !u!114 &8775531214802292067
+--- !u!114 &1893253487974513071
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8775531214802292088}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ae6877e25ce5547be8602d32d881cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f5d407c13d26e24c84d7379bfb53c65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   barPrefab: {fileID: 16294054681551812, guid: d0bc2cac1821b024e93f73156d5621af, type: 3}
@@ -155,7 +155,7 @@ MonoBehaviour:
   staminaRegenInterval: 0.05
   dealDamageInterval: 0.4
   findTargetInterval: 0.1
-  "lowHealth\u0421oefficient": 0.3
+  "lowHealth\u0421oefficient": 0.45
 --- !u!114 &8775531214802292092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8775531214802292067}
+        - m_Target: {fileID: 1893253487974513071}
           m_TargetAssemblyTypeName: AutoBattler.Data.Units.BaseUnit, Assembly-CSharp
           m_MethodName: MouseEnter
           m_Mode: 1
@@ -251,7 +251,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 8775531214802292067}
+        - m_Target: {fileID: 1893253487974513071}
           m_TargetAssemblyTypeName: AutoBattler.Data.Units.BaseUnit, Assembly-CSharp
           m_MethodName: MouseExit
           m_Mode: 1

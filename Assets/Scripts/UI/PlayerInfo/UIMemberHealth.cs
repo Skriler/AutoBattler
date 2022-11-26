@@ -11,6 +11,9 @@ namespace AutoBattler.UI.PlayerInfo
         [SerializeField] protected Member owner;
         [SerializeField] protected TextMeshProUGUI textHealth;
 
+        private Camera mainCamera;
+        private Vector3 ownerPosition;
+
         private string startTitle;
         private string startDescription;
 
@@ -26,6 +29,9 @@ namespace AutoBattler.UI.PlayerInfo
 
         protected void Start()
         {
+            mainCamera = Camera.main;
+            ownerPosition = owner.gameObject.transform.position;
+
             UpdateTitle();
             UpdateDescription();
             UpdateHealth();
@@ -45,6 +51,13 @@ namespace AutoBattler.UI.PlayerInfo
         public void UpdateHealth()
         {
             textHealth.text = owner?.Health.ToString();
+        }
+
+        public void SetCameraOnOwnerField()
+        {
+            ownerPosition.z = mainCamera.transform.position.z;
+
+            mainCamera.transform.position = ownerPosition;
         }
     }
 }

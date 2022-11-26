@@ -316,6 +316,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberHealth 1 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282280247f949384d825dbf7a5c02546, type: 3}
 --- !u!224 &2256752689943921242 stripped
@@ -393,6 +410,22 @@ MonoBehaviour:
         - m_Target: {fileID: 870854191}
           m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIBaseObject, Assembly-CSharp
           m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 870854191}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIMemberHealth, Assembly-CSharp
+          m_MethodName: SetCameraOnOwnerField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -531,6 +564,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberHealth 1 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282280247f949384d825dbf7a5c02546, type: 3}
 --- !u!224 &3912801918683589614 stripped
@@ -608,6 +658,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1838515344}
           m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIBaseObject, Assembly-CSharp
           m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1838515344}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIMemberHealth, Assembly-CSharp
+          m_MethodName: SetCameraOnOwnerField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -746,6 +812,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberHealth 0 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282280247f949384d825dbf7a5c02546, type: 3}
 --- !u!114 &3510985465744416875 stripped
@@ -835,6 +918,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1554026657}
           m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIBaseObject, Assembly-CSharp
           m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1554026657}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIMemberHealth, Assembly-CSharp
+          m_MethodName: SetCameraOnOwnerField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -961,6 +1060,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberHealth 1 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282280247f949384d825dbf7a5c02546, type: 3}
 --- !u!114 &1255108577466200276 stripped
@@ -1044,6 +1160,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1753283929}
           m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIBaseObject, Assembly-CSharp
           m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1753283929}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIMemberHealth, Assembly-CSharp
+          m_MethodName: SetCameraOnOwnerField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1176,6 +1308,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberHealth 0 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282280247f949384d825dbf7a5c02546, type: 3}
 --- !u!114 &1661834813492940739 stripped
@@ -1265,6 +1414,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1479383379}
           m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIBaseObject, Assembly-CSharp
           m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1479383379}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIMemberHealth, Assembly-CSharp
+          m_MethodName: SetCameraOnOwnerField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1391,6 +1556,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberHealth 0 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282280247f949384d825dbf7a5c02546, type: 3}
 --- !u!114 &1572245243973262848 stripped
@@ -1474,6 +1656,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1740663758}
           m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIBaseObject, Assembly-CSharp
           m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1740663758}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIMemberHealth, Assembly-CSharp
+          m_MethodName: SetCameraOnOwnerField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1606,6 +1804,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberHealth 1 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282280247f949384d825dbf7a5c02546, type: 3}
 --- !u!114 &1441488711967075969 stripped
@@ -1695,6 +1910,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1610993880}
           m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIBaseObject, Assembly-CSharp
           m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1610993880}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIMemberHealth, Assembly-CSharp
+          m_MethodName: SetCameraOnOwnerField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1821,6 +2052,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: MemberHealth 0 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 9141967334726592877, guid: c7280e2fcf7d2b64d8ef167cd44c9867,
+        type: 2}
+    - target: {fileID: 8904445737179247895, guid: 282280247f949384d825dbf7a5c02546,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 282280247f949384d825dbf7a5c02546, type: 3}
 --- !u!114 &778940979993387668 stripped
@@ -1904,6 +2152,22 @@ MonoBehaviour:
         - m_Target: {fileID: 1975970546}
           m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIBaseObject, Assembly-CSharp
           m_MethodName: MouseExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1975970546}
+          m_TargetAssemblyTypeName: AutoBattler.UI.PlayerInfo.UIMemberHealth, Assembly-CSharp
+          m_MethodName: SetCameraOnOwnerField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
