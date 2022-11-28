@@ -20,7 +20,7 @@ namespace AutoBattler.UI.PlayerInfo
 
         public void MouseExit() => UIBaseObjectTooltip.Instance.Hide();
 
-        public void MouseEnter()
+        public virtual void MouseEnter()
         {
             UIBaseObjectTooltip.Instance.Show();
             UIBaseObjectTooltip.Instance.Setup(this);

@@ -36,7 +36,7 @@ namespace AutoBattler.Managers
 
         private void Update()
         {
-            //CheckRaycastOnUnit();
+            CheckRaycastOnUnit();
 
             if (Input.GetMouseButtonUp(0) && IsActive)
                 IsActive = false;
@@ -141,25 +141,25 @@ namespace AutoBattler.Managers
             return new Vector3(newX, newY, targetPosition.z);
         }
 
-        //private void CheckRaycastOnUnit()
-        //{
-        //    Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        //    RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.one);
+        private void CheckRaycastOnUnit()
+        {
+            Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.one);
 
-        //    if (hit.collider.tag != unitTag)
-        //    {
-        //        if (IsUnitTooltipActive)
-        //        {
-        //            currentUnit.MouseExit();
-        //            IsUnitTooltipActive = false;
-        //        }
-        //        return;
-        //    }
+            if (hit.collider.tag != unitTag)
+            {
+                if (IsUnitTooltipActive)
+                {
+                    currentUnit.MouseExit();
+                    IsUnitTooltipActive = false;
+                }
+                return;
+            }
 
-        //    currentUnit = hit.transform.GetComponent<BaseUnit>();
+            currentUnit = hit.transform.GetComponent<BaseUnit>();
 
-        //    currentUnit.MouseEnter();
-        //    IsUnitTooltipActive = true;
-        //}
+            currentUnit.MouseEnter();
+            IsUnitTooltipActive = true;
+        }
     }
 }

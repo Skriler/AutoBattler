@@ -15,6 +15,7 @@ namespace AutoBattler.UI.Manual
         [SerializeField] private List<GameObject> pages;
 
         private int currentPageIndex = 0;
+        private float initialTimeScale = 1;
 
         private void Start()
         {
@@ -23,13 +24,14 @@ namespace AutoBattler.UI.Manual
 
         private void OnEnable()
         {
+            initialTimeScale = Time.timeScale;
             Time.timeScale = 0;
             CameraMovement.Instance.IsOnUI = true;
         }
 
         private void OnDisable()
         {
-            Time.timeScale = 1;
+            Time.timeScale = initialTimeScale;
             CameraMovement.Instance.IsOnUI = false;
         }
 

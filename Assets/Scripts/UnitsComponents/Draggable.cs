@@ -19,6 +19,7 @@ namespace AutoBattler.UnitsComponents
         private int startSortingOrder;
 
         public bool IsActive { get; set; } = true;
+        public bool IsDragging { get; private set; } = false;
 
         private void Start()
         {
@@ -27,7 +28,45 @@ namespace AutoBattler.UnitsComponents
             mainCamera = Camera.main;
         }
 
-        public void OnStartDrag()
+        private void Update()
+        {
+            if (!IsActive)
+                return;
+
+            if (Input.GetMouseButtonUp(0) && IsDragging)
+            {
+                IsDragging = false;
+                OnEndDrag();
+                return;
+            }
+
+            CheckMouseInput();
+        }
+
+        private void CheckMouseInput()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                BaseUnit raycastUnit = Physics2D.Raycast(mousePosition, Vector2.one)
+                    .collider
+                    .GetComponent<BaseUnit>();
+
+                if (raycastUnit != null && raycastUnit.Id == unit.Id)
+                {
+                    IsDragging = false;
+                    return;
+                }
+
+                IsDragging = true;
+                OnStartDrag();
+            }
+
+            if (Input.GetMouseButton(0) && IsDragging)
+                OnDragging();
+        }
+
+        private void OnStartDrag()
         {
             if (!IsActive)
                 return;
@@ -39,7 +78,7 @@ namespace AutoBattler.UnitsComponents
             UIUnitTooltip.Instance.Hide();
         }
 
-        public void OnDragging()
+        private void OnDragging()
         {
             if (!IsActive)
                 return;
@@ -55,7 +94,7 @@ namespace AutoBattler.UnitsComponents
             UIUnitTooltip.Instance.Hide();
         }
 
-        public void OnEndDrag()
+        private void OnEndDrag()
         {
             if (!IsActive)
                 return;

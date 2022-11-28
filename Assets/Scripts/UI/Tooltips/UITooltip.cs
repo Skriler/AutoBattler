@@ -77,6 +77,8 @@ namespace AutoBattler.UI.Tooltips
 
         private Vector2 ClampPosition(Vector2 position)
         {
+            Vector2 mousePosition = Input.mousePosition;
+
             tooltipSize = new Vector2(
                 rectTransform.rect.width,
                 rectTransform.rect.height
@@ -88,6 +90,12 @@ namespace AutoBattler.UI.Tooltips
 
             if (position.y > screenSize.y - tooltipSize.y && !isPivotOnTop)
                 position.y = screenSize.y - tooltipSize.y;
+
+            if (position.x <= mousePosition.x && position.x + tooltipSize.x >= mousePosition.x &&
+                position.y <= mousePosition.y && position.y + tooltipSize.y >= mousePosition.y)
+            {
+                position.y -= tooltipSize.y;
+            }    
 
             return position;
         }

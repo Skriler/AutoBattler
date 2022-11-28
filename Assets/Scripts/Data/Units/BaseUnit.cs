@@ -75,7 +75,7 @@ namespace AutoBattler.Data.Units
 
         protected virtual void Start() { }
 
-        protected virtual void Update()
+        protected void Update()
         {
             if (!IsFightMode || !IsAlive())
                 return;

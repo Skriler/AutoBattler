@@ -35,6 +35,11 @@ namespace AutoBattler.Managers
         [SerializeField] private int damageForLose = 1;
         [SerializeField] private int roundsWonAmountForWin = 10;
 
+        [Header("TimeScale")]
+        [SerializeField] private float timeScaleStep = 0.25f;
+        [SerializeField] private float minTimeScale = 1f;
+        [SerializeField] private float maxTimeScale = 3.5f;
+
         private BattleManager currentBattleManager;
         private RoundResultNotification currentNotification;
 
@@ -73,6 +78,17 @@ namespace AutoBattler.Managers
             bots.ForEach(b => b.gameObject.SetActive(!isSoloMode));
             UIPlayerInfo.Instance.SetActiveSoloModeObjects(isSoloMode);
             UIPlayerInfo.Instance.SetActiveConfrontationModeObjects(!isSoloMode);
+        }
+
+        public void IncreaseTimeScale() => ChangeTimeScale(Time.timeScale + timeScaleStep);
+        public void DecreaseTimeScale() => ChangeTimeScale(Time.timeScale - timeScaleStep);
+
+        private void ChangeTimeScale(float value)
+        {
+            if (value < minTimeScale || value > maxTimeScale)
+                return;
+
+            Time.timeScale = value;
         }
 
         public void OpenMenu()
