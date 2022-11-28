@@ -5,29 +5,44 @@ using UnityEngine.UI;
 using AutoBattler.SaveSystem.Data;
 using AutoBattler.SaveSystem;
 using AutoBattler.Managers;
+using AutoBattler.Data.ScriptableObjects.Characteristics;
 
 public class UIOptionsMenu : MonoBehaviour
 {
-    private static int MIN_SLIDER_VALUE = 0;
-    private static int MAX_SLIDER_VALUE = 100;
+    private static int MIN_VOLUME_SLIDER_VALUE = 0;
+    private static int MAX_VOLUME_SLIDER_VALUE = 100;
+
+    [Header("Characteristics")]
+    [SerializeField] private MemberCharacteristics playerCharacteristics;
+
+    [Header("Pages")]
+    [SerializeField] private List<GameObject> pages;
 
     [Header("Components")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
-    [SerializeField] private Toggle fullScreenToggle;
+    [SerializeField] private Toggle fullScreenToggle,
+        muteOtherFieldsToggle;
     [SerializeField] private Slider masterVolumeSlider,
         musicVolumeSlider,
         effectsVolumeSlider,
-        UIVolumeSlider;
-    [SerializeField] private TMP_Text masterVolumeHandleText, 
-        musicVolumeHandleText, 
-        effectsVolumeHandleText, 
-        UIVolumeHandleText;
+        UIVolumeSlider,
+        startHealthAmountSlider,
+        maxGoldenCupAmountSlider;
+    [SerializeField] private TMP_Text masterVolumeHandleText,
+        musicVolumeHandleText,
+        effectsVolumeHandleText,
+        UIVolumeHandleText,
+        startHealthAmountHandleText,
+        maxGoldenCupAmountHandleText;
 
+    private int currentPageIndex;
     private Resolution[] resolutions;
 
     private void Start()
     {
         SetResolutionDropdownItems();
+        currentPageIndex = 0;
+        GoToPage(currentPageIndex);
     }
 
     private void OnEnable()
@@ -38,6 +53,21 @@ public class UIOptionsMenu : MonoBehaviour
     private void OnDisable()
     {
         FileSaveSystem.SaveSettings();
+    }
+
+    public void GoToNextPage() => GoToPage(currentPageIndex + 1);
+
+    public void GoToPreviousPage() => GoToPage(currentPageIndex - 1);
+
+    public void GoToPage(int index)
+    {
+        if (index < 0 || index >= pages.Count)
+            return;
+
+        pages[currentPageIndex].gameObject.SetActive(false);
+        pages[index].gameObject.SetActive(true);
+
+        currentPageIndex = index;
     }
 
     private void SetResolutionDropdownItems()
@@ -68,17 +98,32 @@ public class UIOptionsMenu : MonoBehaviour
 
     private void SetPlayerSettings()
     {
+        PlayerSettings.StartHealthAmount = 
+            PlayerSettings.StartHealthAmount <= 0 ? 
+            playerCharacteristics.StartHealth : 
+            PlayerSettings.StartHealthAmount;
+
+        PlayerSettings.MaxGoldenCupAmount =
+            PlayerSettings.MaxGoldenCupAmount <= 0 ?
+            playerCharacteristics.MaxGoldenCupAmount :
+            PlayerSettings.MaxGoldenCupAmount;
+
         fullScreenToggle.isOn = PlayerSettings.IsFullScreen;
+        muteOtherFieldsToggle.isOn = PlayerSettings.IsMuteOtherFields;
 
         masterVolumeSlider.value = PlayerSettings.MasterVolume;
         musicVolumeSlider.value = PlayerSettings.MusicVolume;
         effectsVolumeSlider.value = PlayerSettings.EffectsVolume;
         UIVolumeSlider.value = PlayerSettings.UIVolume;
+        startHealthAmountSlider.value = PlayerSettings.StartHealthAmount;
+        maxGoldenCupAmountSlider.value = PlayerSettings.MaxGoldenCupAmount;
 
         SetVolumeHandleText(masterVolumeHandleText, PlayerSettings.MasterVolume);
         SetVolumeHandleText(musicVolumeHandleText, PlayerSettings.MusicVolume);
         SetVolumeHandleText(effectsVolumeHandleText, PlayerSettings.EffectsVolume);
         SetVolumeHandleText(UIVolumeHandleText, PlayerSettings.UIVolume);
+        startHealthAmountHandleText.text = PlayerSettings.StartHealthAmount.ToString();
+        maxGoldenCupAmountHandleText.text = PlayerSettings.MaxGoldenCupAmount.ToString();
 
         Screen.fullScreen = PlayerSettings.IsFullScreen;
         SetResolution(PlayerSettings.Resolution, PlayerSettings.IsFullScreen);
@@ -124,10 +169,33 @@ public class UIOptionsMenu : MonoBehaviour
         Screen.fullScreen = isFullScreen;
     }
 
+    public void SetMuteOtherFields(bool isMuteOtherFields)
+    {
+        PlayerSettings.IsMuteOtherFields = isMuteOtherFields;
+    }
+
+    public void SetStartHealthAmount(float healthAmount)
+    {
+        PlayerSettings.StartHealthAmount = (int)healthAmount;
+        startHealthAmountHandleText.text = healthAmount.ToString();
+
+        if (currentPageIndex == 1)
+            FileSaveSystem.DeleteSavedProgress();
+    }
+
+    public void SetMaxGoldenCupAmount(float goldenCupAmount)
+    {
+        PlayerSettings.MaxGoldenCupAmount = (int)goldenCupAmount;
+        maxGoldenCupAmountHandleText.text = goldenCupAmount.ToString();
+
+        if (currentPageIndex == 1)
+            FileSaveSystem.DeleteSavedProgress();
+    }
+
     private void SetVolumeHandleText(TMP_Text volumeHandleText, float volume)
     {
         volumeHandleText.text =
-            Mathf.Lerp(MIN_SLIDER_VALUE, MAX_SLIDER_VALUE, volume / 100)
+            Mathf.Lerp(MIN_VOLUME_SLIDER_VALUE, MAX_VOLUME_SLIDER_VALUE, volume / 100)
             .ToString();
     }
 

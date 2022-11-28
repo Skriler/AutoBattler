@@ -52,7 +52,7 @@ namespace AutoBattler.UnitsComponents
                     .collider
                     .GetComponent<BaseUnit>();
 
-                if (raycastUnit != null && raycastUnit.Id == unit.Id)
+                if (raycastUnit == null || raycastUnit.Id != unit.Id)
                 {
                     IsDragging = false;
                     return;

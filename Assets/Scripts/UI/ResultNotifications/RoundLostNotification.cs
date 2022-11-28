@@ -1,7 +1,5 @@
-using System.Collections;
 using UnityEngine;
 using TMPro;
-using AutoBattler.Managers;
 
 namespace AutoBattler.UI.ResultNotifications
 {

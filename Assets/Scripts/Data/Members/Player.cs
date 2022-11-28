@@ -70,10 +70,10 @@ namespace AutoBattler.Data.Members
             LevelUpTavernTierCost = Field.GetOpenedCellsAmount();
         }
 
-        public override void IncreaseRoundsWonAmountByOne()
+        public override void IncreaseGoldenCupAmount(int value)
         {
-            base.IncreaseRoundsWonAmountByOne();
-            PlayerEventManager.SendRoundsWonAmountIncreased(RoundsWonAmount);
+            base.IncreaseGoldenCupAmount(value);
+            PlayerEventManager.SendGoldenCupAmountIncreased(GoldenCup);
         }
 
         private void PlayDragSound(BaseUnit unit, Vector3 worldPosition)
@@ -91,7 +91,7 @@ namespace AutoBattler.Data.Members
             PlayerEventManager.SendGoldAmountChanged(Gold);
             PlayerEventManager.SendHealthAmountChanged(Health);
             PlayerEventManager.SendTavernTierIncreased(TavernTier);
-            PlayerEventManager.SendRoundsWonAmountIncreased(RoundsWonAmount);
+            PlayerEventManager.SendGoldenCupAmountIncreased(GoldenCup);
         }
 
         public override void SaveData(GameData data)

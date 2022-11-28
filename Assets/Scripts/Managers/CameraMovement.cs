@@ -146,7 +146,7 @@ namespace AutoBattler.Managers
             Vector3 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.one);
 
-            if (hit.collider.tag != unitTag)
+            if (hit.collider == null || hit.collider.tag != unitTag)
             {
                 if (IsUnitTooltipActive)
                 {

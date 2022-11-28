@@ -51,12 +51,12 @@ MonoBehaviour:
   maxDistance: 2
   startFireColor: {r: 0.6509434, g: 0, b: 0, a: 1}
   fadedFireColor: {r: 0.4433962, g: 0, b: 0, a: 1}
-  startIceColor: {r: 0, g: 0.5660378, b: 0.5660378, a: 1}
-  fadedIceColor: {r: 0, g: 0.254717, b: 0.254717, a: 1}
+  startIceColor: {r: 0, g: 0.24577229, b: 0.9150943, a: 1}
+  fadedIceColor: {r: 0, g: 0.16001455, b: 0.5943396, a: 1}
   startChaosColor: {r: 0.5401405, g: 0, b: 0.6886792, a: 1}
   fadedChaosColor: {r: 0.2587601, g: 0, b: 0.3773585, a: 1}
-  startPurifyColor: {r: 0.20826685, g: 0.5, b: 0, a: 1}
-  fadedPurifyColor: {r: 0.09765626, g: 0.23584908, b: 0, a: 1}
+  startPurifyColor: {r: 0, g: 0.8490566, b: 0.8405703, a: 1}
+  fadedPurifyColor: {r: 0, g: 0.49056602, b: 0.48378396, a: 1}
 --- !u!1 &494854030189099634
 GameObject:
   m_ObjectHideFlags: 0

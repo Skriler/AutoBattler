@@ -121,6 +121,15 @@ namespace AutoBattler.SaveSystem
                 case "Resolution":
                     PlayerSettings.Resolution = ParseResolution(value);
                     break;
+                case "IsMuteOtherFields":
+                    PlayerSettings.IsMuteOtherFields = bool.Parse(value);
+                    break;
+                case "StartHealthAmount":
+                    PlayerSettings.StartHealthAmount = int.Parse(value);
+                    break;
+                case "MaxGoldenCupAmount":
+                    PlayerSettings.MaxGoldenCupAmount = int.Parse(value);
+                    break;
             }
         }
 

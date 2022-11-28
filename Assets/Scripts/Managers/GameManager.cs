@@ -24,16 +24,19 @@ namespace AutoBattler.Managers
         [SerializeField] private BattleManager confrontationModeBattleManager;
 
         [Header("Prefabs")]
-        [SerializeField] private RoundResultNotification roundLostNotification;
-        [SerializeField] private RoundResultNotification roundWonNotification;
+        [SerializeField] private RoundLostNotification roundLostNotification;
+        [SerializeField] private RoundWonNotification roundWonNotification;
 
         [Header("Parameters")]
         [SerializeField] private float checkBattleWaitTime = 0.5f;
         [SerializeField] private float endBattleWaitTime = 2.5F;
+
+        [Header("Characteristics")]
         [SerializeField] private int startGainGoldPerRound = 3;
         [SerializeField] private int maxGainGoldPerRound = 10;
         [SerializeField] private int damageForLose = 1;
-        [SerializeField] private int roundsWonAmountForWin = 10;
+        [SerializeField] private int goldenCupAmountForWin = 10;
+        [SerializeField] private int goldenCupAmountForRoundWin = 1;
 
         [Header("TimeScale")]
         [SerializeField] private float timeScaleStep = 0.25f;
@@ -56,9 +59,19 @@ namespace AutoBattler.Managers
             RunBotsRoundLogic();
 
             DataPersistenceManager.Instance.LoadGame();
-            GameMode = DataPersistenceManager.Instance.GameMode;
+            InitializeFields();
 
             HideAnotherGameModeObjects();
+            CameraMovement.Instance.CalculateBackgroundParameters();
+        }
+
+        private void InitializeFields()
+        {
+            GameMode = DataPersistenceManager.Instance.GameMode;
+            goldenCupAmountForWin = 
+                PlayerSettings.MaxGoldenCupAmount <= 0 ?
+                goldenCupAmountForWin : 
+                PlayerSettings.MaxGoldenCupAmount;
 
             currentBattleManager = GameMode switch
             {
@@ -67,8 +80,6 @@ namespace AutoBattler.Managers
                 _ => soloModeBattleManager
             };
             currentBattleManager.Setup(player, bots);
-
-            CameraMovement.Instance.CalculateBackgroundParameters();
         }
 
         private void HideAnotherGameModeObjects()
@@ -78,6 +89,7 @@ namespace AutoBattler.Managers
             bots.ForEach(b => b.gameObject.SetActive(!isSoloMode));
             UIPlayerInfo.Instance.SetActiveSoloModeObjects(isSoloMode);
             UIPlayerInfo.Instance.SetActiveConfrontationModeObjects(!isSoloMode);
+            roundWonNotification.SetActiveGoldenCupContainer(isSoloMode);
         }
 
         public void IncreaseTimeScale() => ChangeTimeScale(Time.timeScale + timeScaleStep);
@@ -123,7 +135,7 @@ namespace AutoBattler.Managers
 
                 if (fightResult.Value)
                 {
-                    member.IncreaseRoundsWonAmountByOne();
+                    member.IncreaseGoldenCupAmount(goldenCupAmountForRoundWin);
                 }
                 else
                 {
@@ -147,7 +159,8 @@ namespace AutoBattler.Managers
         {
             currentNotification = Instantiate(roundWonNotification, UICanvas.transform);
             (currentNotification as RoundWonNotification).Setup(
-                player.GetRoundRewardGoldAmount()
+                player.GetRoundRewardGoldAmount(),
+                goldenCupAmountForRoundWin
                 );
         }
 
@@ -171,7 +184,9 @@ namespace AutoBattler.Managers
 
                 RewardMembers();
                 ++CurrentRound;
-                RunBotsRoundLogic();
+
+                if (GameMode == GameMode.Confrontation)
+                    RunBotsRoundLogic();
 
                 DataPersistenceManager.Instance.SaveGame();
             }
@@ -193,7 +208,7 @@ namespace AutoBattler.Managers
             if (player.Health <= 0)
                 return true;
 
-            if (GameMode == GameMode.Solo && player.RoundsWonAmount >= roundsWonAmountForWin)
+            if (GameMode == GameMode.Solo && player.GoldenCup >= goldenCupAmountForWin)
                 return true;
 
             if (GameMode == GameMode.Confrontation && bots.Count == 0)

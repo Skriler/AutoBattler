@@ -22,6 +22,8 @@ namespace AutoBattler.UI.Menu
 
         private void Start()
         {
+            Time.timeScale = 1;
+
             textVersion.text += Application.version;
             textShadowVersion.text += Application.version;
 
@@ -77,6 +79,7 @@ namespace AutoBattler.UI.Menu
             mainMenu.SetActive(optionsMenu.activeSelf);
             uiBackground.gameObject.SetActive(!optionsMenu.activeSelf);
             optionsMenu.SetActive(!optionsMenu.activeSelf);
+            continueButton.interactable = FileSaveSystem.IsSavedProgress();
         }
 
         public void OpenGameModeSelectionMenu()

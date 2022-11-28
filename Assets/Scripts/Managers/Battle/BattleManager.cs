@@ -46,13 +46,13 @@ namespace AutoBattler.Managers.Battle
             armyHeight = playersArmy.GetLength(1);
         }
 
-        protected void EnterFightModeForMemberArmies(Member member, BaseUnit[,] playerEnemyUnits)
+        protected void EnterFightModeForMemberArmies(Member member, BaseUnit[,] memberEnemyUnits)
         {
             MemberFieldContainer field = member.GetFieldContainer();
             EnemyFieldContainer enemyField = member.EnemyField;
 
             field.CanPlaceUnits = false;
-            enemyField.SpawnUnits(playerEnemyUnits);
+            enemyField.SpawnUnits(memberEnemyUnits);
 
             BaseUnit[,] memberArmy = field.GetArmy();
             BaseUnit[,] memberEnemyArmy = enemyField.GetArmy();

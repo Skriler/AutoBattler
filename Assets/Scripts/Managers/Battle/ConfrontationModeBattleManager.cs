@@ -3,6 +3,7 @@ using UnityEngine;
 using AutoBattler.Data.Members;
 using AutoBattler.Data.Units;
 using AutoBattler.UnitsContainers.Containers.Field;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.Managers.Battle
 {
@@ -20,7 +21,11 @@ namespace AutoBattler.Managers.Battle
             BaseUnit[,] memberEnemyArmy;
             foreach (var battlePair in battlePairs)
             {
-                memberEnemyArmy = GetCopyOfMemberArmy(battlePair.Key.GetFieldContainer());
+                if (battlePair.Key is Player && PlayerSettings.IsMuteOtherFields)
+                    memberEnemyArmy = GetCopyOfMemberArmy(battlePair.Key.GetFieldContainer(), true);
+                else
+                    memberEnemyArmy = GetCopyOfMemberArmy(battlePair.Key.GetFieldContainer());
+
                 EnterFightModeForMemberArmies(battlePair.Value, memberEnemyArmy);
 
                 memberEnemyArmy = GetCopyOfMemberArmy(battlePair.Value.GetFieldContainer());
@@ -103,7 +108,7 @@ namespace AutoBattler.Managers.Battle
             return battlePairs;
         }
 
-        private BaseUnit[,] GetCopyOfMemberArmy(FieldContainer fieldContainer)
+        private BaseUnit[,] GetCopyOfMemberArmy(FieldContainer fieldContainer, bool isMuteUnits = false)
         {
             BaseUnit[,] copiedUnits = new BaseUnit[armyWidth, armyHeight];
             BaseUnit[,] memberArmy = fieldContainer.GetArmy();
@@ -118,6 +123,9 @@ namespace AutoBattler.Managers.Battle
                     copiedUnits[i, j] = ShopUnitsManager.Instance
                         .GetShopUnitEntityByTitle(memberArmy[i, j].Title)
                         .prefab;
+
+                    if (isMuteUnits)
+                        copiedUnits[i, j].IsAttackSoundMuted = true;
                 }
             }
 

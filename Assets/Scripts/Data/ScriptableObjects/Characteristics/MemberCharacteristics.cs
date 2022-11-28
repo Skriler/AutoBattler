@@ -14,6 +14,7 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         [SerializeField] private int maxHealth = 10;
         [SerializeField] private int maxGold = 99;
         [SerializeField] private int maxTavernTier = 5;
+        [SerializeField] private int maxGoldenCupAmount = 10;
 
         public int StartHealth => startHealth;
         public int StartGold => startGold;
@@ -21,5 +22,6 @@ namespace AutoBattler.Data.ScriptableObjects.Characteristics
         public int MaxHealth => maxHealth;
         public int MaxGold => maxGold;
         public int MaxTavernTier => maxTavernTier;
+        public int MaxGoldenCupAmount => maxGoldenCupAmount;
     }
 }

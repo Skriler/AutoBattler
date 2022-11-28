@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Data.Units.Entities
 {

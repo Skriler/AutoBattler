@@ -34,7 +34,7 @@ namespace AutoBattler.UI.PlayerInfo
             PlayerEventManager.OnHealthAmountChanged += SetHealth;
             PlayerEventManager.OnHealthAmountChanged += UpdatePlayerHealth;
             PlayerEventManager.OnTavernTierIncreased += SetTavernTier;
-            PlayerEventManager.OnRoundsWonAmountIncreased += SetGoldenCup;
+            PlayerEventManager.OnGoldenCupAmountIncreased += SetGoldenCup;
             FightEventManager.OnFightStarted += DisableButtons;
             FightEventManager.OnFightEnded += EnableButtons;
             BotsEventManager.OnHealthAmountChanged += UpdateMemberHealth;
@@ -46,7 +46,7 @@ namespace AutoBattler.UI.PlayerInfo
             PlayerEventManager.OnHealthAmountChanged -= SetHealth;
             PlayerEventManager.OnHealthAmountChanged -= UpdatePlayerHealth;
             PlayerEventManager.OnTavernTierIncreased -= SetTavernTier;
-            PlayerEventManager.OnRoundsWonAmountIncreased -= SetGoldenCup;
+            PlayerEventManager.OnGoldenCupAmountIncreased -= SetGoldenCup;
             FightEventManager.OnFightStarted -= DisableButtons;
             FightEventManager.OnFightEnded -= EnableButtons;
             BotsEventManager.OnHealthAmountChanged -= UpdateMemberHealth;

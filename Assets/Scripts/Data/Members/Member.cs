@@ -18,7 +18,7 @@ namespace AutoBattler.Data.Members
         public int Health { get; protected set; }
         public int Gold { get; protected set; }
         public int TavernTier { get; protected set; }
-        public int RoundsWonAmount { get; protected set; }
+        public int GoldenCup { get; protected set; }
         public int LevelUpTavernTierCost { get; protected set; } = 4;
 
         public string Id => id;
@@ -51,9 +51,13 @@ namespace AutoBattler.Data.Members
 
         public bool IsAlive() => Health > 0;
 
+        public virtual void IncreaseGoldenCupAmount(int value) => GoldenCup += value;
+
         protected void SetStartPlayerCharacteristics()
         {
-            Health = characteristics.StartHealth;
+            Health = PlayerSettings.StartHealthAmount == 0 ? 
+                characteristics.StartHealth : 
+                PlayerSettings.StartHealthAmount;
             Gold = characteristics.StartGold;
             TavernTier = characteristics.StartTavernTier;
         }
@@ -99,11 +103,6 @@ namespace AutoBattler.Data.Members
             ++TavernTier;
         }
 
-        public virtual void IncreaseRoundsWonAmountByOne()
-        {
-            ++RoundsWonAmount;
-        }
-
         public void Death()
         {
             gameObject.SetActive(false);
@@ -116,7 +115,7 @@ namespace AutoBattler.Data.Members
             Gold = memberData.gold;
             TavernTier = memberData.tavernTier;
             LevelUpTavernTierCost = memberData.levelUpTavernTierCost;
-            RoundsWonAmount = memberData.roundsWonAmount;
+            GoldenCup = memberData.goldenCup;
             LevelUpTavernTierCost = memberData.levelUpTavernTierCost;
         }
 
@@ -126,7 +125,7 @@ namespace AutoBattler.Data.Members
             memberData.health = Health;
             memberData.gold = Gold;
             memberData.tavernTier = TavernTier;
-            memberData.roundsWonAmount = RoundsWonAmount;
+            memberData.goldenCup = GoldenCup;
             memberData.levelUpTavernTierCost = LevelUpTavernTierCost;
         }
     }

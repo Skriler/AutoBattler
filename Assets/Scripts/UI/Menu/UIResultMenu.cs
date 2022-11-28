@@ -14,6 +14,8 @@ namespace AutoBattler.UI.Menu
 
         private void Start()
         {
+            Time.timeScale = 1;
+
             FileSaveSystem.DeleteSavedProgress();
 
             SetupSceneComponents(GameManager.IsPlayerWon);

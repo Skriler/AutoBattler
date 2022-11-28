@@ -97,6 +97,10 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             };
 
             List<Vector2Int> freeCells = GetFreeCells();
+
+            if (freeCells.Count == 0)
+                return new Vector2Int(-1, -1);
+
             List<Vector2Int> freeCellsOnLine = GetFreeCellsOnLine(freeCells, preferdLineIndex);
 
             if (freeCellsOnLine.Count > 0)

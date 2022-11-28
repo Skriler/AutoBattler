@@ -35,8 +35,9 @@ namespace AutoBattler.UnitsContainers.Containers.Storage
 
             base.AddUnit(unit, index);
 
-            if (units[index.x].Draggable.IsActive)
-                units[index.x].Draggable.IsActive = false;
+            units[index.x].transform.position = gridManager.GetTilePositionByIndex(index);
+            units[index.x].Draggable.IsActive = false;
+            units[index.x].IsAttackSoundMuted = PlayerSettings.IsMuteOtherFields;   
         }
 
         public int GetUnitsAmount()

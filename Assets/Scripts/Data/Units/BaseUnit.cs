@@ -40,6 +40,7 @@ namespace AutoBattler.Data.Units
         public float Stamina { get; protected set; }
 
         public bool IsFightMode { get; protected set; } = false;
+        public bool IsAttackSoundMuted { get; set; } = false;
 
         public Draggable Draggable { get; protected set; }
 
@@ -47,12 +48,13 @@ namespace AutoBattler.Data.Units
 
         protected SpriteRenderer spriteRenderer;
         protected Animator animator;
-
         protected HealthBar healthBar;
+
         protected WaitForSeconds staminaRegenTick;
         protected Coroutine regenStamina;
-
         protected BaseUnit[,] enemyUnits;
+
+        protected bool isDraggableWasActive;
 
         protected abstract void FindTarget(BaseUnit[,] enemyUnits);
         protected abstract bool HasTarget();
@@ -243,7 +245,9 @@ namespace AutoBattler.Data.Units
                 yield break;
 
             DealDamageToTarget();
-            attackSound?.Play();
+
+            if (!IsAttackSoundMuted)
+                attackSound?.Play();
         }
 
         protected IEnumerator RegenStaminaCoroutine()
@@ -282,6 +286,9 @@ namespace AutoBattler.Data.Units
             healthBar.Show();
             healthBar.UpdateHealth(Health);
             healthBar.UpdateStamina(Stamina);
+
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
         }
 
         public DamageType GetOppositeDamageType()
@@ -311,6 +318,7 @@ namespace AutoBattler.Data.Units
 
         public void EnterFightMode(BaseUnit[,] enemyUnits)
         {
+            isDraggableWasActive = Draggable.IsActive;
             Draggable.IsActive = false;
             IsFightMode = true;
             this.enemyUnits = enemyUnits;
@@ -318,7 +326,7 @@ namespace AutoBattler.Data.Units
 
         public void ExitFightMode()
         {
-            Draggable.IsActive = true;
+            Draggable.IsActive = isDraggableWasActive;
             IsFightMode = false;
             enemyUnits = null;
 
