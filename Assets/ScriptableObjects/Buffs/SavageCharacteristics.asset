@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Savage Buff
   targetCharacteristic: 0
-  bonus: 2.6
+  bonus: 3.6
   maxLevel: 3
   unitsPerLevel: 3

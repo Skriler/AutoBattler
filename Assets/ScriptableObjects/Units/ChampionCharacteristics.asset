@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Champion
   attackDescription: Attack one front-line unit.
-  cost: 5
+  cost: 4
   tavernTier: 3
   race: 1
   specification: 4
-  maxHealth: 130
+  maxHealth: 125
   damageType: 2
-  attackDamage: 29.2
+  attackDamage: 31.2
   attackSpeed: 4.4
   damageTypesProtectionPercentage:
   - damageType: 0

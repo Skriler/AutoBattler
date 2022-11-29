@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Human Buff
   targetCharacteristic: 0
-  bonus: 2.3
+  bonus: 3.3
   maxLevel: 3
   unitsPerLevel: 3

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Brute Buff
   targetCharacteristic: 0
-  bonus: 2.8
+  bonus: 3.8
   maxLevel: 2
   unitsPerLevel: 3
