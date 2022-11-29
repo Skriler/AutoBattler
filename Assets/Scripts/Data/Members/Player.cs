@@ -4,7 +4,6 @@ using AutoBattler.UnitsContainers.Containers.Storage;
 using AutoBattler.Data.Units;
 using AutoBattler.EventManagers;
 using AutoBattler.Managers;
-using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.Data.Members
@@ -46,18 +45,21 @@ namespace AutoBattler.Data.Members
         {
             base.SpendGold(actionCost);
             PlayerEventManager.SendGoldAmountChanged(Gold);
+            ScoreManager.Instance.IncreaseScore(actionCost);
         }
 
         public override void GainGold(int gold)
         {
             base.GainGold(gold);
             PlayerEventManager.SendGoldAmountChanged(Gold);
+            ScoreManager.Instance.IncreaseScore(gold);
         }
 
         public override void TakeDamage(int damage)
         {
             base.TakeDamage(damage);
             PlayerEventManager.SendHealthAmountChanged(Health);
+            ScoreManager.Instance.IncreaseScore(damage);
         }
 
         public override void LevelUpTavernTier()
@@ -67,6 +69,7 @@ namespace AutoBattler.Data.Members
 
             base.LevelUpTavernTier();
             PlayerEventManager.OnTavernTierIncreased(TavernTier);
+            ScoreManager.Instance.IncreaseScore(TavernTier);
             LevelUpTavernTierCost = Field.GetOpenedCellsAmount();
         }
 
@@ -74,6 +77,7 @@ namespace AutoBattler.Data.Members
         {
             base.IncreaseGoldenCupAmount(value);
             PlayerEventManager.SendGoldenCupAmountIncreased(GoldenCup);
+            ScoreManager.Instance.IncreaseScore(value);
         }
 
         private void PlayDragSound(BaseUnit unit, Vector3 worldPosition)

@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dc2690b0b445e4682e7df287b9ed35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboardId: 0
+  soloModeLeaderboardId: 9204
+  confrontationModeLeaderboardId: 9220
+  maxScoreAmount: 30
+  scoreMultiplier: 10
