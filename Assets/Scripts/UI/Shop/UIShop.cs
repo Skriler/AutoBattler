@@ -2,14 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using AutoBattler.EventManagers;
 using AutoBattler.Data.Members;
-using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.UI.Tooltips;
 using AutoBattler.Managers;
+using AutoBattler.SaveSystem;
+using AutoBattler.SaveSystem.Data;
 
 namespace AutoBattler.UI.Shop
 {
-    public class UIShop : MonoBehaviour
+    public class UIShop : MonoBehaviour, IDataPersistence
     {
         [Header("UI Elements")]
         [SerializeField] private UILevelUpButton levelUpButton;
@@ -30,23 +31,25 @@ namespace AutoBattler.UI.Shop
         {
             FightEventManager.OnFightStarted += EndRound;
             FightEventManager.OnFightEnded += StartRound;
-            SaveSystemEventManager.OnDataLoaded += GenerateUnits;
+            SaveSystemEventManager.OnDataLoaded += Show;
+            SaveSystemEventManager.OnNewGameDataCreated += Show;
         }
 
         protected void OnDestroy()
         {
             FightEventManager.OnFightStarted -= EndRound;
             FightEventManager.OnFightEnded -= StartRound;
-            SaveSystemEventManager.OnDataLoaded -= GenerateUnits;
+            SaveSystemEventManager.OnDataLoaded -= Show;
+            SaveSystemEventManager.OnNewGameDataCreated -= Show;
         }
 
         private void Start()
         {
             shopUnitsManager = ShopUnitsManager.Instance;
+
             GenerateUnits();
 
             refreshButton.UpdateDescription(refreshCost);
-            gameObject.SetActive(false);
         }
 
         public void MouseEnter() => CameraMovement.Instance.IsOnUI = true;
@@ -179,6 +182,45 @@ namespace AutoBattler.UI.Shop
         {
             if (gameObject.activeSelf)
                 gameObject.SetActive(false);
+        }
+
+        public void LoadData(GameData data)
+        {
+            ShopUnitEntity shopUnit;
+
+            foreach (ShopUnitData shopUnitData in data.shop.units)
+            {
+                if (shopUnitData.isActive)
+                {
+                    shopUnit = shopUnitsManager.GetShopUnitEntityByTitle(shopUnitData.title);
+                    unitCards[shopUnitData.index].Setup(shopUnit);
+                }
+                else
+                {
+                    unitCards[shopUnitData.index].gameObject.SetActive(false);
+                }
+            }
+
+            if (data.shop.isFreezed)
+                FreezeUnits();
+        }
+
+        public void SaveData(GameData data)
+        {
+            data.shop.isFreezed = IsFreezed;
+
+            data.shop.units.Clear();
+            ShopUnitData shopUnitData;
+
+            for (int i = 0; i < unitCards.Count; ++i)
+            {
+                shopUnitData = new ShopUnitData(
+                    unitCards[i].UnitTitle, 
+                    i, 
+                    unitCards[i].gameObject.activeSelf
+                    );
+                data.shop.units.Add(shopUnitData);
+            }
         }
     }
 }

@@ -31,6 +31,7 @@ namespace AutoBattler.SaveSystem
         {
             GameMode = gameMode;
             gameData = new GameData();
+            SaveSystemEventManager.SendNewGameDataCreated();
         }
 
         public void LoadGame()
@@ -54,6 +55,7 @@ namespace AutoBattler.SaveSystem
 
         public void SaveGame()
         {
+            dataPersistenceObjects = GetAllDataPersistenceObjects();
             foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
                 dataPersistenceObj.SaveData(gameData);
 

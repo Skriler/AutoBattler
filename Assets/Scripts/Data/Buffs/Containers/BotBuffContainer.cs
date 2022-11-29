@@ -92,6 +92,9 @@ namespace AutoBattler.Data.Buffs.Containers
 
         public override void LoadData(GameData data)
         {
+            if (data.bots.Count == 0)
+                return;
+
             MemberData memberData = data.bots.Where(b => b.id == owner.Id).First();
 
             LoadDataFromMemberData(memberData);

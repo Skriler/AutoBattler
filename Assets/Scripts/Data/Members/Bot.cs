@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using AutoBattler.UnitsContainers.Containers.Field;
 using AutoBattler.UnitsContainers.Containers.Storage;
 using AutoBattler.Data.ScriptableObjects.Structs;
@@ -51,7 +50,7 @@ namespace AutoBattler.Data.Members
             BotsEventManager.SendHealthAmountChanged(Health, Id);
         }
 
-        public void MakeTurn(int currentRound, int amountOfAliveMembers)
+        public void MakeTurn()
         {
             if (shopUnitsManager == null)
                 shopUnitsManager = ShopUnitsManager.Instance;
@@ -176,6 +175,9 @@ namespace AutoBattler.Data.Members
 
         public override void LoadData(GameData data)
         {
+            if (data.bots.Count == 0)
+                return;
+
             MemberData memberData = data.bots.Where(b => b.id == Id).First();
 
             LoadDataFromMemberData(memberData);

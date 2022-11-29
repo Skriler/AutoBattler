@@ -194,7 +194,7 @@ namespace AutoBattler.Managers
 
         private void RunBotsRoundLogic()
         {
-            bots.ForEach(b => b.MakeTurn(CurrentRound, 0));
+            bots.ForEach(b => b.MakeTurn());
         }
 
         private void RewardMembers()

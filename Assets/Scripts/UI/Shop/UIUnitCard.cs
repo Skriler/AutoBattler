@@ -31,8 +31,9 @@ namespace AutoBattler.UI.Shop
 
         public bool IsFreezed { get; private set; }
 
-        public void OnClick() => OnCardClick.Invoke(this, shopUnit);
+        public string UnitTitle => shopUnit.characteristics.Title;
 
+        public void OnClick() => OnCardClick.Invoke(this, shopUnit);
 
         public void OnPointerEnter(PointerEventData eventData)
         {
