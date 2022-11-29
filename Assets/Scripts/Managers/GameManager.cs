@@ -59,6 +59,7 @@ namespace AutoBattler.Managers
 
             DataPersistenceManager.Instance.LoadGame();
             InitializeFields();
+            CheckAndRemoveDeadBots();
 
             HideAnotherGameModeObjects();
             CameraMovement.Instance.CalculateBackgroundParameters();

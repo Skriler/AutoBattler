@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using AutoBattler.UnitsContainers.Containers.Field;
 using AutoBattler.UnitsContainers.Containers.Storage;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.Data.Buffs;
-using AutoBattler.Data.Enums;
 using AutoBattler.EventManagers;
 using AutoBattler.Managers;
 using AutoBattler.Data.Units;
@@ -19,8 +18,6 @@ namespace AutoBattler.Data.Members
         public BotFieldContainer Field { get; protected set; }
 
         private ShopUnitsManager shopUnitsManager;
-        private UnitRace targetRace;
-        private UnitSpecification targetSpecification;
 
         protected override void Awake()
         {
@@ -28,8 +25,6 @@ namespace AutoBattler.Data.Members
 
             Storage = transform.GetComponentInChildren<BotStorageContainer>();
             Field = transform.GetComponentInChildren<BotFieldContainer>();
-            targetRace = GetRandomRace();
-            targetSpecification = GetRandomSpecification();
         }
 
         public override MemberFieldContainer GetFieldContainer() => Field;
@@ -55,8 +50,12 @@ namespace AutoBattler.Data.Members
             if (shopUnitsManager == null)
                 shopUnitsManager = ShopUnitsManager.Instance;
 
-            if (Field.IsFull() && IsEnoughGoldForAction(LevelUpTavernTierCost) && 
-                UnityEngine.Random.value < 0.5f)
+            if (Storage.GetUnitsAmount() >= 5 && 
+                IsEnoughGoldForAction(LevelUpTavernTierCost))
+                LevelUpTavernTier();
+            else if (Field.IsFull() && 
+                IsEnoughGoldForAction(LevelUpTavernTierCost) && 
+                Random.value < 0.5f)
                 LevelUpTavernTier();
 
             ShopUnitEntity shopUnit;
@@ -64,7 +63,7 @@ namespace AutoBattler.Data.Members
             {
                 shopUnit = GetRequiredUnit();
 
-                if (!IsEnoughGoldForAction(shopUnit.characteristics.Cost))
+                if (!IsEnoughGoldForAction(shopUnit.characteristics.Cost) || Storage.IsFull())
                     break;
 
                 BuyUnit(shopUnit);
@@ -85,7 +84,7 @@ namespace AutoBattler.Data.Members
 
         private void BuyUnit(ShopUnitEntity shopUnit)
         {
-            if (!IsEnoughGoldForAction(shopUnit.characteristics.Cost))
+            if (!IsEnoughGoldForAction(shopUnit.characteristics.Cost) || Storage.IsFull())
                 return;
 
             SpendGold(shopUnit.characteristics.Cost);
@@ -97,7 +96,7 @@ namespace AutoBattler.Data.Members
             ShopUnitEntity requiredUnit;
 
             List<Buff> requiredBuffs = Field.Buffs.GetRequiredBuffs();
-            Buff requiredBuff = requiredBuffs[UnityEngine.Random.Range(0, requiredBuffs.Count)];
+            Buff requiredBuff = requiredBuffs[Random.Range(0, requiredBuffs.Count)];
 
             if (requiredBuff is RaceBuff)
             {
@@ -157,20 +156,6 @@ namespace AutoBattler.Data.Members
             Storage.RemoveUnit(unit);
             Destroy(unit.gameObject);
             GainGold(1);
-        }
-
-        private UnitRace GetRandomRace()
-        {
-            Array races = Enum.GetValues(typeof(UnitRace));
-            return (UnitRace)races
-                .GetValue(UnityEngine.Random.Range(0, races.Length));
-        }
-
-        private UnitSpecification GetRandomSpecification()
-        {
-            Array specifications = Enum.GetValues(typeof(UnitSpecification));
-            return (UnitSpecification)specifications
-                .GetValue(UnityEngine.Random.Range(0, specifications.Length));
         }
 
         public override void LoadData(GameData data)
