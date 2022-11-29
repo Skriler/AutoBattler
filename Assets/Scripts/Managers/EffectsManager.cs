@@ -21,13 +21,16 @@ namespace AutoBattler.Managers
             UnitsEventManager.OnUnitTookDamage -= InstantiateTakenDamageText;
         }
 
-        public void InstantiateTakenDamageText(BaseUnit unit, float healthAmount, DamageType damageType)
+        public void InstantiateTakenDamageText(BaseUnit unit, float healthAmount, DamageType damageType, bool isCriticalDamage)
         {
             if (unit == null)
                 return;
 
-            TakenDamageContainer takenDamageContainer = Instantiate(takenDamageContainerPrefab, unit.gameObject.transform);
-            takenDamageContainer.Setup(healthAmount, damageType);
+            TakenDamageContainer takenDamageContainer = Instantiate(
+                takenDamageContainerPrefab, 
+                unit.gameObject.transform
+                );
+            takenDamageContainer.Setup(healthAmount, damageType, isCriticalDamage);
         }
     }
 }

@@ -1,7 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using AutoBattler.Data.Enums;
 
 namespace AutoBattler.Data.Units
 {
@@ -16,7 +13,15 @@ namespace AutoBattler.Data.Units
             if (!HasTarget())
                 return;
 
-            currentTarget.TakeDamage(AttackDamage, DamageType);
+            float damage = Random.value > criticalHitChance ? 
+                AttackDamage : 
+                AttackDamage * criticalHitAttackMultiplier;
+
+            currentTarget.TakeDamage(
+                damage, 
+                DamageType, 
+                damage > AttackDamage
+                );
         }
     }
 }

@@ -2,11 +2,14 @@ using UnityEngine;
 using AutoBattler.UnitsContainers.Grids;
 using AutoBattler.Data.Units;
 using AutoBattler.Data.ScriptableObjects.Structs;
+using AutoBattler.Data.Members;
 
 namespace AutoBattler.UnitsContainers.Containers.Field
 {
     public abstract class FieldContainer : UnitsContainer
     {
+        [SerializeField] protected Member owner;
+
         protected GridManager gridManager;
         protected GameObject unitsContainer;
         protected BaseUnit[,] units;

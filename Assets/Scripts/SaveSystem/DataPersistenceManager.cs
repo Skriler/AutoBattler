@@ -5,6 +5,7 @@ using AutoBattler.Managers;
 using AutoBattler.EventManagers;
 using AutoBattler.SaveSystem.Data;
 using AutoBattler.Data.Enums;
+using AutoBattler.UI.Shop;
 
 namespace AutoBattler.SaveSystem
 {
@@ -31,7 +32,6 @@ namespace AutoBattler.SaveSystem
         {
             GameMode = gameMode;
             gameData = new GameData();
-            SaveSystemEventManager.SendNewGameDataCreated();
         }
 
         public void LoadGame()
@@ -55,7 +55,6 @@ namespace AutoBattler.SaveSystem
 
         public void SaveGame()
         {
-            dataPersistenceObjects = GetAllDataPersistenceObjects();
             foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
                 dataPersistenceObj.SaveData(gameData);
 

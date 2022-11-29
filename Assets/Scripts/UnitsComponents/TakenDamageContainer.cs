@@ -63,9 +63,11 @@ namespace AutoBattler.UnitsComponents
 
         public void MouseEnter() => UIUnitTooltip.Instance.Show();
 
-        public void Setup(float damage, DamageType damageType)
+        public void Setup(float damage, DamageType damageType, bool isCriticalDamage)
         {
-            textDamage.text = damage.ToString();
+            textDamage.text = isCriticalDamage ? 
+                damage.ToString() + "!!!" : 
+                damage.ToString();
 
             textDamage.color = damageType switch
             {

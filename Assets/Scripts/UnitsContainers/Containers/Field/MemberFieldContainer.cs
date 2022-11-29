@@ -5,9 +5,7 @@ using AutoBattler.Data.Buffs.Containers;
 using AutoBattler.Data.ScriptableObjects.Structs;
 using AutoBattler.SaveSystem;
 using AutoBattler.SaveSystem.Data;
-using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Managers;
-using AutoBattler.Data.Members;
 using AutoBattler.Data.Buffs;
 using AutoBattler.Data.Enums;
 using AutoBattler.EventManagers;
@@ -16,8 +14,6 @@ namespace AutoBattler.UnitsContainers.Containers.Field
 {
     public abstract class MemberFieldContainer : FieldContainer, IDataPersistence
     {
-        [SerializeField] protected Member owner;
-
         protected MemberFieldGridManager memberFieldGridManager;
 
         protected override void Awake()

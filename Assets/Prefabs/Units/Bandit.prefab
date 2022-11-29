@@ -154,6 +154,8 @@ MonoBehaviour:
   dealDamageInterval: 0.4
   findTargetInterval: 0.1
   "lowHealth\u0421oefficient": 0.45
+  criticalHitChance: 0.15
+  criticalHitAttackMultiplier: 1.5
 --- !u!114 &7852386474025373552
 MonoBehaviour:
   m_ObjectHideFlags: 0

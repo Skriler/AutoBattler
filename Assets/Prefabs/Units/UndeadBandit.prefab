@@ -154,6 +154,8 @@ MonoBehaviour:
   dealDamageInterval: 0.4
   findTargetInterval: 0.1
   "lowHealth\u0421oefficient": 0.45
+  criticalHitChance: 0.15
+  criticalHitAttackMultiplier: 1.5
 --- !u!114 &1273386353172517222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragSortingOrder: 10
   dragOffset: {x: -0.1, y: -0.1, z: 0}
-  unitTag: Unit
 --- !u!82 &485715714
 AudioSource:
   m_ObjectHideFlags: 0

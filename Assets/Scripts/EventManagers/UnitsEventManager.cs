@@ -22,7 +22,7 @@ namespace AutoBattler.EventManagers
 
         public static UnityAction<BaseUnit> OnUnitRemovedFromField;
 
-        public static UnityAction<BaseUnit, float, DamageType> OnUnitTookDamage;
+        public static UnityAction<BaseUnit, float, DamageType, bool> OnUnitTookDamage;
 
         public static void SendDraggedUnitChangedPosition(Vector3 position)
             => OnDraggedUnitChangedPosition.Invoke(position);
@@ -45,7 +45,7 @@ namespace AutoBattler.EventManagers
         public static void SendUnitRemovedFromField(BaseUnit unit)
             => OnUnitRemovedFromField.Invoke(unit);
 
-        public static void SendUnitTookDamage(BaseUnit unit, float damageAmount, DamageType damageType)
-            => OnUnitTookDamage.Invoke(unit, damageAmount, damageType);
+        public static void SendUnitTookDamage(BaseUnit unit, float damageAmount, DamageType damageType, bool isCriticalDamage)
+            => OnUnitTookDamage.Invoke(unit, damageAmount, damageType, isCriticalDamage);
     }
 }

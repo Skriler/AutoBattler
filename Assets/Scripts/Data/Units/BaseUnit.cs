@@ -27,6 +27,10 @@ namespace AutoBattler.Data.Units
         [SerializeField] protected float findTargetInterval = 0.1f;
         [SerializeField] protected float lowHealthÑoefficient = 0.45f;
 
+        [Header("Critical damage")]
+        [SerializeField] protected float criticalHitChance = 0.15f;
+        [SerializeField] protected float criticalHitAttackMultiplier = 1.5f;
+
         public string Id { get; protected set; }
         public string Title { get; protected set; }
         public int Cost { get; protected set; }
@@ -161,7 +165,7 @@ namespace AutoBattler.Data.Units
 
         public bool HasLowHealth() => Health <= MaxHealth * lowHealthÑoefficient;
 
-        public void TakeDamage(float damage, DamageType damageType)
+        public void TakeDamage(float damage, DamageType damageType, bool isCriticalDamage)
         {
             if (Health == 0)
                 return;
@@ -174,7 +178,7 @@ namespace AutoBattler.Data.Units
 
             healthBar.UpdateHealth(Health);
 
-            UnitsEventManager.SendUnitTookDamage(this, damage, damageType);
+            UnitsEventManager.SendUnitTookDamage(this, damage, damageType, isCriticalDamage);
 
             if (UIUnitTooltip.Instance.CurrentUnit == this)
                 UIUnitTooltip.Instance.Setup(this);

@@ -15,6 +15,7 @@ namespace AutoBattler.UI.Menu
         [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject optionsMenu;
         [SerializeField] private GameObject gameModeSelectionMenu;
+        [SerializeField] private GameObject leaderboardMenu;
         [SerializeField] private Button continueButton;
         [SerializeField] private TextMeshProUGUI textVersion;
         [SerializeField] private TextMeshProUGUI textShadowVersion;
@@ -74,19 +75,21 @@ namespace AutoBattler.UI.Menu
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
+        public void OpenGameModeSelectionMenu() => OpenMenu(gameModeSelectionMenu);
+
+        public void OpenLeaderboardMenu() => OpenMenu(leaderboardMenu);
+
         public void OpenOptionsMenu()
         {
-            mainMenu.SetActive(optionsMenu.activeSelf);
-            uiBackground.gameObject.SetActive(!optionsMenu.activeSelf);
-            optionsMenu.SetActive(!optionsMenu.activeSelf);
+            OpenMenu(optionsMenu);
             continueButton.interactable = FileSaveSystem.IsSavedProgress();
         }
 
-        public void OpenGameModeSelectionMenu()
+        private void OpenMenu(GameObject menu)
         {
-            mainMenu.SetActive(gameModeSelectionMenu.activeSelf);
-            uiBackground.gameObject.SetActive(!gameModeSelectionMenu.activeSelf);
-            gameModeSelectionMenu.SetActive(!gameModeSelectionMenu.activeSelf);
+            mainMenu.SetActive(menu.activeSelf);
+            uiBackground.gameObject.SetActive(!menu.activeSelf);
+            menu.SetActive(!menu.activeSelf);
         }
     }
 }

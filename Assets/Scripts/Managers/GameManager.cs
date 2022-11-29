@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using AutoBattler.Data.ScriptableObjects.Databases;
 using AutoBattler.Data.Members;
 using AutoBattler.EventManagers;
 using AutoBattler.UI.ResultNotifications;

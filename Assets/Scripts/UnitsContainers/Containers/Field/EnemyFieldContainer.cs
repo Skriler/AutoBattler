@@ -5,6 +5,8 @@ using AutoBattler.Data.Buffs.Containers;
 using AutoBattler.EventManagers;
 using AutoBattler.UnitsContainers.Enums;
 using AutoBattler.UI.Tooltips;
+using AutoBattler.SaveSystem.Data;
+using AutoBattler.Data.Members;
 
 namespace AutoBattler.UnitsContainers.Containers.Field
 {
@@ -45,7 +47,10 @@ namespace AutoBattler.UnitsContainers.Containers.Field
             if (units == null)
                 return;
 
-            enemyFieldGridManager.SpawnUnits(units, unitsContainer.transform);
+            bool isAttackSoundMuted = PlayerSettings.IsMuteOtherFields ? true : false;
+            isAttackSoundMuted = isAttackSoundMuted && owner is Player ? false : true;
+
+            enemyFieldGridManager.SpawnUnits(units, unitsContainer.transform, isAttackSoundMuted);
             ApplyBuffsForUnits(units);
 
             this.units = units;

@@ -10,7 +10,7 @@ namespace AutoBattler.UnitsContainers.Grids
 
         public void ChangeTileStatus(Vector2Int index, TileStatus tileStatus) => tiles[index.x, index.y].SetTileStatus(tileStatus);
 
-        public void SpawnUnits(BaseUnit[,] units, Transform unitsContainer)
+        public void SpawnUnits(BaseUnit[,] units, Transform unitsContainer, bool isAttackSoundMuted)
         {
             Vector3 newUnitPosition;
             BaseUnit newUnit;
@@ -29,6 +29,7 @@ namespace AutoBattler.UnitsContainers.Grids
                     newUnit.transform.SetParent(unitsContainer);
                     newUnit.EnterEnemyMode();
                     newUnit.ShowHealthBar();
+                    newUnit.IsAttackSoundMuted = isAttackSoundMuted;
 
                     units[i, j] = newUnit;
                 }

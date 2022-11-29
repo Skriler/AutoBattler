@@ -12,7 +12,8 @@ namespace AutoBattler.UI.Shop
 {
     public class UIShop : MonoBehaviour, IDataPersistence
     {
-        [Header("UI Elements")]
+        [Header("Components")]
+        [SerializeField] private GameObject shopContainer;
         [SerializeField] private UILevelUpButton levelUpButton;
         [SerializeField] private UIRefreshButtonButton refreshButton;
 
@@ -31,16 +32,12 @@ namespace AutoBattler.UI.Shop
         {
             FightEventManager.OnFightStarted += EndRound;
             FightEventManager.OnFightEnded += StartRound;
-            SaveSystemEventManager.OnDataLoaded += Show;
-            SaveSystemEventManager.OnNewGameDataCreated += Show;
         }
 
         protected void OnDestroy()
         {
             FightEventManager.OnFightStarted -= EndRound;
             FightEventManager.OnFightEnded -= StartRound;
-            SaveSystemEventManager.OnDataLoaded -= Show;
-            SaveSystemEventManager.OnNewGameDataCreated -= Show;
         }
 
         private void Start()
@@ -50,6 +47,7 @@ namespace AutoBattler.UI.Shop
             GenerateUnits();
 
             refreshButton.UpdateDescription(refreshCost);
+            shopContainer.SetActive(false);
         }
 
         public void MouseEnter() => CameraMovement.Instance.IsOnUI = true;
@@ -58,7 +56,7 @@ namespace AutoBattler.UI.Shop
 
         public void Show()
         {
-            gameObject.SetActive(!gameObject.activeSelf);
+            shopContainer.SetActive(!shopContainer.activeSelf);
             levelUpButton.UpdateDescription(player.LevelUpTavernTierCost);
         }
 
@@ -180,8 +178,8 @@ namespace AutoBattler.UI.Shop
 
         private void EndRound()
         {
-            if (gameObject.activeSelf)
-                gameObject.SetActive(false);
+            if (shopContainer.activeSelf)
+                shopContainer.SetActive(false);
         }
 
         public void LoadData(GameData data)
