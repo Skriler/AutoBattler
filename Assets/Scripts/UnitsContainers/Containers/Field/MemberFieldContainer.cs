@@ -9,6 +9,7 @@ using AutoBattler.Managers;
 using AutoBattler.Data.Buffs;
 using AutoBattler.Data.Enums;
 using AutoBattler.EventManagers;
+using AutoBattler.Data.Members;
 
 namespace AutoBattler.UnitsContainers.Containers.Field
 {
@@ -87,6 +88,14 @@ namespace AutoBattler.UnitsContainers.Containers.Field
                     );
 
                 units[unitData.x, unitData.y].SetUnitDataСharacteristics(unitData);
+
+                if (owner is Bot)
+                {
+                    units[unitData.x, unitData.y].Draggable.IsActive = false;
+
+                    if (PlayerSettings.IsMuteOtherFields)
+                        units[unitData.x, unitData.y].IsAttackSoundMuted = true;
+                }
             }
         }
 

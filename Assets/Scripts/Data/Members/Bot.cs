@@ -50,12 +50,8 @@ namespace AutoBattler.Data.Members
             if (shopUnitsManager == null)
                 shopUnitsManager = ShopUnitsManager.Instance;
 
-            if (Storage.GetUnitsAmount() >= 5 && 
+            if ((Field.IsFull() || Random.value < 0.5f) &&
                 IsEnoughGoldForAction(LevelUpTavernTierCost))
-                LevelUpTavernTier();
-            else if (Field.IsFull() && 
-                IsEnoughGoldForAction(LevelUpTavernTierCost) && 
-                Random.value < 0.5f)
                 LevelUpTavernTier();
 
             ShopUnitEntity shopUnit;
@@ -67,6 +63,9 @@ namespace AutoBattler.Data.Members
                     break;
 
                 BuyUnit(shopUnit);
+
+                if (Storage.GetUnitsAmount() >= 4 && IsEnoughGoldForAction(LevelUpTavernTierCost))
+                    LevelUpTavernTier();
             }
 
             ModifyFieldUnits();
