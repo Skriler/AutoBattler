@@ -55,6 +55,9 @@ namespace AutoBattler.Managers
                 .Where(u => u.characteristics.Cost <= maxCost)
                 .ToList();
 
+            if (units.Count == 0)
+                return GetRandomShopUnitEntityAtTavernTierAndLower(tavernTier, maxCost);
+
             return units[Random.Range(0, units.Count)];
         }
 

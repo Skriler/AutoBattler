@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: KnightCharacteristics
   m_EditorClassIdentifier: 
   title: Knight Buff
-  type: 8
   targetCharacteristic: 2
-  bonus: 20
+  bonus: 45
   maxLevel: 3
   unitsPerLevel: 3

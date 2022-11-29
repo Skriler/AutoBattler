@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: SwordsmanCharacteristics
   m_EditorClassIdentifier: 
   title: Swordsman Buff
-  type: 4
   targetCharacteristic: 2
-  bonus: 20
+  bonus: 30
   maxLevel: 3
   unitsPerLevel: 3

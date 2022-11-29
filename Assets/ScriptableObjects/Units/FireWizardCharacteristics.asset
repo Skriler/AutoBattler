@@ -20,8 +20,8 @@ MonoBehaviour:
   specification: 2
   maxHealth: 175
   damageType: 0
-  attackDamage: 18.3
-  attackSpeed: 3
+  attackDamage: 12.3
+  attackSpeed: 3.3
   damageTypesProtectionPercentage:
   - damageType: 0
     protectionPercentage: 35

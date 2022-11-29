@@ -45,6 +45,8 @@ namespace AutoBattler.UI.ResultNotifications
                 canvasGroup.alpha = 1 - hidingNotificationTime / hideNotificationTime;
                 yield return hideNotificationTick;
             }
+
+            Destroy(gameObject);
         }
 
         protected string GetCharacteristicStr(int characteristicAmount)

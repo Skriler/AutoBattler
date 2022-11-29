@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: UndeadCharacteristics
   m_EditorClassIdentifier: 
   title: Undead Buff
-  type: 1
   targetCharacteristic: 2
-  bonus: 30
+  bonus: 25
   maxLevel: 2
   unitsPerLevel: 3

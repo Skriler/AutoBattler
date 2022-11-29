@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: AssassinCharacteristics
   m_EditorClassIdentifier: 
   title: Assassin Buff
-  type: 7
   targetCharacteristic: 0
-  bonus: 6.7
+  bonus: 3.8
   maxLevel: 2
   unitsPerLevel: 3

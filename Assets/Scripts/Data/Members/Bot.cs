@@ -50,9 +50,11 @@ namespace AutoBattler.Data.Members
             if (shopUnitsManager == null)
                 shopUnitsManager = ShopUnitsManager.Instance;
 
-            if ((Field.IsFull() || Random.value < 0.5f) &&
-                IsEnoughGoldForAction(LevelUpTavernTierCost))
+            if (Field.IsFull() && IsEnoughGoldForAction(LevelUpTavernTierCost))
+            {
+                SpendGold(LevelUpTavernTierCost);
                 LevelUpTavernTier();
+            }
 
             ShopUnitEntity shopUnit;
             while (Gold != 0)
@@ -65,7 +67,10 @@ namespace AutoBattler.Data.Members
                 BuyUnit(shopUnit);
 
                 if (Storage.GetUnitsAmount() >= 4 && IsEnoughGoldForAction(LevelUpTavernTierCost))
+                {
+                    SpendGold(LevelUpTavernTierCost);
                     LevelUpTavernTier();
+                }
             }
 
             ModifyFieldUnits();
@@ -75,7 +80,7 @@ namespace AutoBattler.Data.Members
         {
             ShopUnitEntity shopUnit = 
                 Storage.IsEmpty() && Field.IsEmpty() ?
-                shopUnitsManager.GetRandomShopUnitEntityAtTavernTierAndLower(TavernTier, Gold) : 
+                shopUnitsManager.GetRandomShopUnitEntityAtTavernTier(TavernTier, Gold) : 
                 GetRequiredShopUnitEntity();
 
             return shopUnit;
@@ -115,7 +120,7 @@ namespace AutoBattler.Data.Members
             }
 
             if (requiredUnit.Equals(default(ShopUnitEntity)))
-                requiredUnit = shopUnitsManager.GetRandomShopUnitEntityAtTavernTierAndLower(TavernTier, Gold);
+                requiredUnit = shopUnitsManager.GetRandomShopUnitEntityAtTavernTier(TavernTier, Gold);
 
             return requiredUnit;
         }
@@ -133,13 +138,18 @@ namespace AutoBattler.Data.Members
                     unit = Field.GetWeakestUnit();
                     Field.RemoveUnit(unit);
                     Storage.AddUnit(unit);
+
+                    ++freeCellsAmountOnField;
                 }
 
-                unit = Storage.GetStrongestUnit();
-                Storage.RemoveUnit(unit);
-                Field.AddUnit(unit);
+                if (freeCellsAmountOnField > 0)
+                {
+                    unit = Storage.GetStrongestUnit();
+                    Storage.RemoveUnit(unit);
+                    Field.AddUnit(unit);
 
-                --freeCellsAmountOnField;
+                    --freeCellsAmountOnField;
+                }
             }
 
             unitsAmountInStorage = Storage.GetUnitsAmount();
